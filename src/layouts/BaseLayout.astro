@@ -59,13 +59,21 @@ const preloadOg =
       <link rel="preload" as="image" href={imageUrl} type={imageType} fetchpriority="high" />
     ) : null}
     {isHome ? (
-      <link
-        rel="preload"
-        as="image"
-        href="/media/wd-hero-full.webp"
-        type="image/webp"
-        fetchpriority="high"
-      />
+      <>
+        <link
+          rel="preload"
+          as="video"
+          href="/videos/hero.webm"
+          type="video/webm"
+          fetchpriority="high"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/media/wd-video-thumb.jpg"
+          type="image/jpeg"
+        />
+      </>
     ) : null}
 
     <title>{seo.title}</title>
