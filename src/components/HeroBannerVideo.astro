@@ -1,7 +1,6 @@
 ---
 /** Native hero video — autoplays before React hydrates (hero panel only). */
 const webm = '/videos/hero.webm'
-const mp4 = '/videos/hero.mp4'
 const label = 'Wardogs cheat gameplay preview with ESP and aimbot FOV'
 ---
 
@@ -13,18 +12,15 @@ const label = 'Wardogs cheat gameplay preview with ESP and aimbot FOV'
   <div class="absolute inset-0 z-0 bg-z-bg" aria-hidden="true"></div>
   <video
     class="hero-video-bg absolute inset-0 z-[1] h-full w-full object-cover object-center"
+    src={webm}
     autoplay
     muted
     loop
     playsinline
     webkit-playsinline="true"
     preload="auto"
-    disablepictureinpicture
     aria-label={label}
-  >
-    <source src={webm} type="video/webm" />
-    <source src={mp4} type="video/mp4" />
-  </video>
+  ></video>
   <div class="hero-video-tint pointer-events-none absolute inset-0 z-[2]" aria-hidden="true"></div>
   <div class="hero-video-tint-glow pointer-events-none absolute inset-0 z-[2]" aria-hidden="true"></div>
   <div
@@ -36,102 +32,3 @@ const label = 'Wardogs cheat gameplay preview with ESP and aimbot FOV'
     aria-hidden="true"
   ></div>
 </div>
-
-<script is:inline>
-  ;(function () {
-    function bindHeroVideo(wrap) {
-      var video = wrap.querySelector('video')
-      if (!video || wrap.dataset.heroBound === '1') return
-      wrap.dataset.heroBound = '1'
-
-      var panel = wrap.closest('.hero-panel') || wrap
-      var hasPlayed = false
-      var armedObserver = false
-
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        video.pause()
-        video.removeAttribute('autoplay')
-        return
-      }
-
-      var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection
-      if (conn && conn.saveData) {
-        video.pause()
-        return
-      }
-
-      video.muted = true
-      video.defaultMuted = true
-      video.setAttribute('muted', '')
-      video.playsInline = true
-
-      function markPlaying() {
-        wrap.setAttribute('data-playing', 'true')
-        hasPlayed = true
-      }
-
-      function tryPlay() {
-        if (!video.paused) {
-          markPlaying()
-          return
-        }
-        var p = video.play()
-        if (p && p.then) {
-          p.then(markPlaying).catch(function () {})
-        }
-      }
-
-      function armScrollPause() {
-        if (armedObserver) return
-        armedObserver = true
-        var observer = new IntersectionObserver(
-          function (entries) {
-            var anyVisible = entries.some(function (e) {
-              return e.isIntersecting
-            })
-            if (anyVisible) tryPlay()
-            else if (hasPlayed) video.pause()
-          },
-          { root: null, threshold: 0 },
-        )
-        observer.observe(panel)
-      }
-
-      tryPlay()
-      video.addEventListener('playing', function () {
-        markPlaying()
-        armScrollPause()
-      })
-      video.addEventListener('canplay', tryPlay)
-      video.addEventListener('loadeddata', tryPlay)
-      video.addEventListener('waiting', tryPlay)
-      video.addEventListener('stalled', tryPlay)
-
-      document.addEventListener('visibilitychange', function () {
-        if (!document.hidden) tryPlay()
-      })
-
-      var attempts = 0
-      var retry = setInterval(function () {
-        tryPlay()
-        attempts += 1
-        if (attempts > 20 || hasPlayed) {
-          clearInterval(retry)
-          if (hasPlayed) armScrollPause()
-        }
-      }, 350)
-
-      setTimeout(armScrollPause, 2500)
-    }
-
-    function boot() {
-      document.querySelectorAll('[data-hero-video]').forEach(bindHeroVideo)
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', boot)
-    } else {
-      boot()
-    }
-  })()
-</script>

@@ -203,9 +203,7 @@ body {
   min-width: 100%;
   min-height: 100%;
   opacity: 1;
-  transform: translateZ(0);
-  /* Light grade — avoid crushing shadows on gameplay footage */
-  filter: saturate(0.92) contrast(1.04) brightness(0.92);
+  /* Do not filter the <video> — GPU compositing can freeze on the first frame */
 }
 
 /* Product page — infinite gameplay preview marquee */

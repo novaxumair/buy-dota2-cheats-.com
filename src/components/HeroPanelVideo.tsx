@@ -5,7 +5,7 @@ type HeroPanelVideoProps = {
   variant?: 'home' | 'forums'
 }
 
-/** Plays hero.webm only inside the hero panel (absolute fill, pauses off-screen). */
+/** Plays hero.webm only inside the hero panel (absolute fill). */
 export function HeroPanelVideo({ variant = 'home' }: HeroPanelVideoProps) {
   const rootRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -14,10 +14,6 @@ export function HeroPanelVideo({ variant = 'home' }: HeroPanelVideoProps) {
     const root = rootRef.current
     const video = videoRef.current
     if (!root || !video) return
-
-    const panel = root.closest('.hero-panel') ?? root
-    let hasPlayed = false
-    let observer: IntersectionObserver | null = null
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const conn = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
@@ -33,7 +29,6 @@ export function HeroPanelVideo({ variant = 'home' }: HeroPanelVideoProps) {
 
     const markPlaying = () => {
       root.setAttribute('data-playing', 'true')
-      hasPlayed = true
     }
 
     const tryPlay = () => {
@@ -41,43 +36,34 @@ export function HeroPanelVideo({ variant = 'home' }: HeroPanelVideoProps) {
       else markPlaying()
     }
 
-    const armScrollPause = () => {
-      if (observer) return
-      observer = new IntersectionObserver(
-        (entries) => {
-          const anyVisible = entries.some((e) => e.isIntersecting)
-          if (anyVisible) tryPlay()
-          else if (hasPlayed) video.pause()
-        },
-        { threshold: 0 },
-      )
-      observer.observe(panel)
+    const onError = () => {
+      if (video.dataset.fallbackUsed === '1') return
+      video.dataset.fallbackUsed = '1'
+      video.src = '/videos/hero.mp4'
+      video.load()
+      tryPlay()
     }
 
     tryPlay()
     video.addEventListener('canplay', tryPlay)
     video.addEventListener('loadeddata', tryPlay, { once: true })
-    video.addEventListener('playing', () => {
-      markPlaying()
-      armScrollPause()
+    video.addEventListener('playing', markPlaying)
+    video.addEventListener('error', onError)
+    video.addEventListener('pause', () => {
+      if (!document.hidden) tryPlay()
     })
-    video.addEventListener('waiting', tryPlay)
-    video.addEventListener('stalled', tryPlay)
 
-    const retry = window.setInterval(() => {
-      tryPlay()
-      if (hasPlayed) {
-        window.clearInterval(retry)
-        armScrollPause()
-      }
-    }, 350)
-    window.setTimeout(() => window.clearInterval(retry), 8000)
-    window.setTimeout(armScrollPause, 2500)
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) tryPlay()
+    })
+
+    const retry = window.setInterval(tryPlay, 400)
+    window.setTimeout(() => window.clearInterval(retry), 12000)
 
     return () => {
       window.clearInterval(retry)
-      observer?.disconnect()
       video.removeEventListener('canplay', tryPlay)
+      video.removeEventListener('error', onError)
     }
   }, [])
 
@@ -91,16 +77,14 @@ export function HeroPanelVideo({ variant = 'home' }: HeroPanelVideoProps) {
       <video
         ref={videoRef}
         className="hero-video-bg absolute inset-0 z-[1] h-full w-full object-cover object-center"
+        src={WD_HOME_VIDEO.src}
         autoPlay
         muted
         loop
         playsInline
         preload="auto"
         aria-label={WD_HOME_VIDEO.title}
-      >
-        <source src={WD_HOME_VIDEO.src} type="video/webm" />
-        <source src="/videos/hero.mp4" type="video/mp4" />
-      </video>
+      />
       <div className="hero-video-tint pointer-events-none absolute inset-0 z-[2]" />
       <div className="hero-video-tint-glow pointer-events-none absolute inset-0 z-[2]" />
       <div className="absolute inset-x-0 bottom-0 z-[3] h-40 bg-gradient-to-t from-z-bg via-z-bg/80 to-transparent" />

@@ -59,10 +59,7 @@ const preloadOg =
       <link rel="preload" as="image" href={imageUrl} type={imageType} fetchpriority="high" />
     ) : null}
     {isHome ? (
-      <>
-        <link rel="preload" as="video" href="/videos/hero.webm" type="video/webm" fetchpriority="high" />
-        <link rel="preload" as="video" href="/videos/hero.mp4" type="video/mp4" />
-      </>
+      <link rel="preload" as="video" href="/videos/hero.webm" type="video/webm" />
     ) : null}
 
     <title>{seo.title}</title>
@@ -111,5 +108,6 @@ const preloadOg =
     <div id="main">
       <slot />
     </div>
+    {isHome ? <script is:inline src="/scripts/hero-banner-video.js" defer></script> : null}
   </body>
 </html>

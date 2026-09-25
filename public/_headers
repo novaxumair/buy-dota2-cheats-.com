@@ -22,6 +22,11 @@
 
 /videos/*
   Cache-Control: public, max-age=2592000, immutable
+  Accept-Ranges: bytes
+
+/scripts/*
+  Cache-Control: public, max-age=86400
+  Content-Type: application/javascript; charset=utf-8
 
 /videos/*.mp4
   Content-Type: video/mp4
