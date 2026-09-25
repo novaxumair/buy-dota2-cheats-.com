@@ -29,7 +29,7 @@ const seo: PageSeo = {
   path: blogPath(post.slug),
   ogType: 'article',
   image: ogImage,
-  imageAlt: `${post.title} — Arena Breakout Infinite gameplay guide screenshot`,
+  imageAlt: `${post.title} — Wardogs cheats gameplay guide screenshot`,
   robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
 }
 
@@ -85,7 +85,7 @@ const jsonLdExtra = [
           '@type': 'VideoObject',
           name: media.videoTitle || media.title,
           description: media.videoDescription || media.caption,
-          thumbnailUrl: absoluteMedia('/media/abi-video-thumb.jpg'),
+          thumbnailUrl: absoluteMedia('/media/wd-video-thumb.jpg'),
           contentUrl: absoluteMedia(media.video),
           uploadDate: post.date,
           isFamilyFriendly: true,

@@ -4,10 +4,12 @@ import tailwind from '@astrojs/tailwind'
 import { sitemapBrowserViewPlugin } from './scripts/sitemap-browser-view.mjs'
 
 export default defineConfig({
-  site: 'https://abicheat.com',
+  site: 'https://buywardogscheat.com',
   output: 'static',
   trailingSlash: 'never',
   compressHTML: true,
+  /** Avoid Astro dev-toolbar “Learn more” links polluting Lighthouse on localhost */
+  devToolbar: { enabled: false },
   build: {
     inlineStylesheets: 'auto',
     assets: '_astro',
@@ -42,6 +44,15 @@ export default defineConfig({
             }
             if (id.includes('node_modules/lucide-react')) {
               return 'icons'
+            }
+            if (id.includes('/src/data/blogs')) {
+              return 'blogs-data'
+            }
+            if (id.includes('/src/data/forum-replies')) {
+              return 'forum-replies'
+            }
+            if (id.includes('/src/data/forum-index')) {
+              return 'forum-index'
             }
           },
         },

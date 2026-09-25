@@ -1,5 +1,4 @@
-# Path aliases (do not strip trailing slashes here — Astro trailingSlash:never + Pages
-# directory URLs already resolve; slash-only rules caused ERR_TOO_MANY_REDIRECTS loops)
+# Path aliases
 /refund/        /refunds       301
 /refund-policy  /refunds       301
 /refund-policy/ /refunds       301
@@ -11,41 +10,40 @@
 /terms-of-service/ /terms      301
 
 # Primary SEO keyword variants → product or home
-/arena-breakout-infinite-cheats  /abi-cheats   301
-/arena-breakout-infinite-cheats/ /abi-cheats   301
-/arena-breakout-infinite-cheat   /abi-cheats   301
-/arena-breakout-infinite-cheat/  /abi-cheats   301
-/arena-breakout-infinite-hacks   /abi-cheats   301
-/arena-breakout-infinite-hacks/  /abi-cheats   301
-/arena-breakout-infinite-hack    /abi-cheats   301
-/arena-breakout-infinite-hack/   /abi-cheats   301
-/abi-hacks      /abi-cheats   301
-/abi-hacks/     /abi-cheats   301
-/abi-hack       /abi-cheats   301
-/abi-hack/      /abi-cheats   301
-/abi-aimbot     /abi-cheats   301
-/abi-aimbot/    /abi-cheats   301
-/abi-esp        /abi-cheats   301
-/abi-esp/       /abi-cheats   301
-/arena-breakout-infinite-aimbot  /abi-cheats   301
-/arena-breakout-infinite-aimbot/ /abi-cheats   301
-/arena-breakout-infinite-esp     /abi-cheats   301
-/arena-breakout-infinite-esp/    /abi-cheats   301
-/arena-breakout-infinite-wallhack  /abi-cheats 301
-/arena-breakout-infinite-wallhack/ /abi-cheats 301
-/arena-breakout-infinite-loot-esp  /abi-cheats 301
-/arena-breakout-infinite-loot-esp/ /abi-cheats 301
-/buy-abi-cheats  /   301
-/buy-abi-cheats/ /   301
-/buy-arena-breakout-infinite-cheats  /   301
-/buy-arena-breakout-infinite-cheats/ /   301
+/wardogs-cheats/  /wardogs-cheats  301
+/buy-wardogs-cheats  /   301
+/buy-wardogs-cheats/ /   301
+/buy-wardogs-cheat   /wardogs-cheats   301
+/buy-wardogs-cheat/  /wardogs-cheats   301
+/get-wardogs-cheats  /forums/complete-setup  301
+/get-wardogs-cheats/ /forums/complete-setup  301
+/get-wardogs-cheat   /forums/complete-setup  301
+/get-wardogs-cheat/  /forums/complete-setup  301
+/wardogs-esp     /forums/player-visuals-breakdown  301
+/wardogs-esp/    /forums/player-visuals-breakdown  301
+/wardogs-aimbot  /forums/wardogs-aimbot-options  301
+/wardogs-aimbot/ /forums/wardogs-aimbot-options  301
+/buy-wardogs-esp /wardogs-cheats  301
+/buy-wardogs-esp/ /wardogs-cheats 301
+/buy-wardogs-aimbot /wardogs-cheats 301
+/buy-wardogs-aimbot/ /wardogs-cheats 301
+/wardogs-cheats-lifetime /forums/wardogs-cheats-lifetime 301
+/wardogs-cheats-lifetime/ /forums/wardogs-cheats-lifetime 301
+/wardogs-cheat-discord /forums/wardogs-cheat-discord 301
+/wardogs-cheat-discord/ /forums/wardogs-cheat-discord 301
+
+# Legacy template paths
+/abi-cheats    /wardogs-cheats   301
+/abi-cheats/   /wardogs-cheats   301
+/dayz-cheats    /wardogs-cheats   301
+/dayz-cheats/   /wardogs-cheats   301
+/arena-breakout-infinite-cheats  /wardogs-cheats   301
+/arena-breakout-infinite-cheats/ /wardogs-cheats   301
 
 /guides         /forums        301
 /guides/        /forums        301
 /features-list  /forums/features-list  301
 /setup          /forums/complete-setup 301
-/abi-setup      /forums/complete-setup 301
-/abi-cheats-setup /forums/complete-setup 301
 
 # Forum short-slug aliases
 /forums/setup         /forums/complete-setup     301
@@ -53,35 +51,30 @@
 /forums/aimbot        /forums/aimbot-settings    301
 /forums/esp           /forums/esp-wallhack-guide 301
 /forums/wallhack      /forums/esp-wallhack-guide 301
-/forums/loot          /forums/loot-container-esp 301
+/forums/vehicles      /forums/vehicle-esp-first  301
+/forums/radar         /forums/radar-recommended-config 301
 /forums/antivirus     /forums/disable-antivirus  301
-/forums/defender      /forums/disable-antivirus  301
 /forums/windows       /forums/windows-setup      301
-/forums/stream-proof  /forums/stream-proof-setup 301
 /forums/patch         /forums/game-patch-status  301
 /forums/status        /forums/load-status-checklist 301
 /forums/loader        /forums/loader-errors      301
-/forums/extraction    /forums/extraction-loot-guide 301
 /forums/combat        /forums/combat-assist-settings 301
+/forums/buy           /forums/buy-wardogs-cheats-safely 301
+/forums/lifetime      /forums/wardogs-cheats-lifetime 301
+/forums/discord       /forums/wardogs-cheat-discord 301
 
 # Legacy slugs → forums
 /articles       /forums        301
 /articles/      /forums        301
 /articles/*     /forums        301
-/blog/instructions       /forums/complete-setup#1-buy-and-confirm-status  301
+/blog/instructions       /forums/complete-setup#1-confirm-status-and-checkout  301
 /blog/how-to-load        /forums/complete-setup#3-load-order       301
-/forums/instructions     /forums/complete-setup#1-buy-and-confirm-status  301
-/forums/instructions/    /forums/complete-setup#1-buy-and-confirm-status  301
+/forums/instructions     /forums/complete-setup#1-confirm-status-and-checkout  301
+/forums/instructions/    /forums/complete-setup#1-confirm-status-and-checkout  301
 /forums/how-to-load      /forums/complete-setup#3-load-order       301
 /forums/how-to-load/     /forums/complete-setup#3-load-order       301
 /blog/:slug/    /forums/:slug  301
 /blog/:slug     /forums/:slug  301
-
-# Legacy product path from template
-/dayz-cheats    /abi-cheats   301
-/dayz-cheats/   /abi-cheats   301
-/dayz-hacks     /abi-cheats   301
-/dayz-hacks/    /abi-cheats   301
 
 # Alternate sitemap URLs
 /sitemap-pages.xml     /sitemap.xml  301

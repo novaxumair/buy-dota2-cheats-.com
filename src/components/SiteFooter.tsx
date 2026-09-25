@@ -1,26 +1,14 @@
 import { LogoMark } from './LogoMark'
 import { OFFICIAL_GAME_LINKS, SITE_GUIDE_LINKS, SITE_PAGE_LINKS } from '../data/links'
 import { SITE_NAME } from '../data/site'
+import { isActiveRoute as isCurrent, normalizePath } from '../lib/paths'
 
 type SiteFooterProps = {
   currentPath?: string
 }
 
-function normalizePath(path?: string) {
-  if (!path) return ''
-  return path.replace(/\/+$/, '') || '/'
-}
-
-function isCurrent(to: string, currentPath?: string) {
-  const path = normalizePath(currentPath)
-  if (!path) return false
-  const target = normalizePath(to)
-  if (target === '/') return path === '/'
-  return path === target || path.startsWith(`${target}/`)
-}
-
 /**
- * Site footer with page / guide / official ABI links (crawl-friendly).
+ * Site footer with page / guide / official Wardogs links (crawl-friendly).
  * XML sitemap remains at /sitemap.xml — not shown as an on-page “sitemap” section.
  */
 export function SiteFooter({ currentPath }: SiteFooterProps) {
@@ -32,12 +20,12 @@ export function SiteFooter({ currentPath }: SiteFooterProps) {
         <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
           <div className="w-full max-w-sm shrink-0 lg:max-w-xs">
             <div className="flex items-center gap-2">
-              <LogoMark className="text-z-soft" />
+              <LogoMark />
               <span className="font-semibold text-z-ink">{SITE_NAME}</span>
             </div>
             <p className="mt-3 text-sm leading-relaxed text-white/55">
-              Arena Breakout Infinite cheats for PC — Aimbot, player ESP, loot wallhack, and
-              patch-synced loader status for ABI raids on PC.
+              Wardogs cheats for PC — aimbot, player ESP, vehicle radar, and patch-synced loader
+              status for control-zone fights.
             </p>
           </div>
 
@@ -141,8 +129,8 @@ export function SiteFooter({ currentPath }: SiteFooterProps) {
         </div>
 
         <p className="mt-10 border-t border-z-soft/10 pt-6 text-xs text-white/35">
-          © {new Date().getFullYear()} {SITE_NAME}. Not affiliated with the Arena Breakout Infinite
-          publisher. Indexed pages are listed in{' '}
+          © {new Date().getFullYear()} {SITE_NAME}. Not affiliated with the Wardogs publisher.
+          Indexed pages are listed in{' '}
           <a href="/sitemap.xml" className="underline-offset-2 hover:text-white/55 hover:underline">
             sitemap.xml
           </a>

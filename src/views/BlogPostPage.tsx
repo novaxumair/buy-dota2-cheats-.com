@@ -1,7 +1,7 @@
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Lock } from 'lucide-react'
 import { Navbar } from '../components/Navbar'
 import { SiteFooter } from '../components/SiteFooter'
-import { BLOGS, blogPath, getBlog } from '../data/blogs'
+import { blogPath, getBlog, getRelatedForumThreads } from '../data/blogs'
 import { guidePath } from '../data/games'
 import { CheckoutLink } from '../components/CheckoutLink'
 import { SeoMedia } from '../components/SeoMedia'
@@ -27,13 +27,21 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
 
   if (!post) return <NotFoundPage />
 
-  const related = BLOGS.filter((b) => b.slug !== post.slug).slice(0, 6)
+  const related = getRelatedForumThreads(post.slug, 6)
   const replies = getForumReplies(post.slug)
+
+  function replyKey(reply: (typeof replies)[number], index: number) {
+    return `${reply.author}-${reply.date}-${index}`
+  }
+
+  function isStaffReply(role: (typeof replies)[number]['role']) {
+    return role === 'editor' || role === 'moderator'
+  }
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-z-bg text-white">
       <div className="border-b border-z-soft/15 bg-z-bg/90 backdrop-blur-xl">
-        <Navbar />
+        <Navbar currentPath={`/forums/${slug}`} />
       </div>
 
       <main className="page-body">
@@ -54,9 +62,15 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
               <span className="text-white/70">{post.tag}</span>
             </nav>
 
-            <p className="mt-6 text-xs font-medium uppercase tracking-[0.2em] text-white/45">
-              {post.tag} · {post.date}
-            </p>
+            <div className="mt-6 flex flex-wrap items-center gap-2">
+              <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/45">
+                {post.tag} · {post.date}
+              </p>
+              <span className="inline-flex items-center gap-1 rounded-full border border-amber-400/25 bg-amber-400/10 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-amber-100/90">
+                <Lock className="h-3 w-3" strokeWidth={2} aria-hidden />
+                Read-only
+              </span>
+            </div>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
               {post.title}
             </h1>
@@ -90,31 +104,55 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
                   Thread replies ({replies.length})
                 </h2>
                 <p className="mt-2 text-xs text-white/40">
-                  Sample replies for setup reference — not live user-generated posts.
+                  Locked archive — highlighted posts are from staff. New replies are disabled.
                 </p>
                 <ul className="mt-5 space-y-4">
-                  {replies.map((reply) => (
-                    <li key={`${reply.author}-${reply.date}`} className="page-card rounded-2xl p-5">
-                      <div className="flex flex-wrap items-baseline justify-between gap-2">
-                        <p className="text-sm font-semibold text-white">{reply.author}</p>
-                        <time className="text-xs text-white/40" dateTime={reply.date}>
-                          {reply.date}
-                        </time>
-                      </div>
-                      <p className="mt-2 text-sm leading-relaxed text-white/60">{reply.body}</p>
-                    </li>
-                  ))}
+                  {replies.map((reply, index) => {
+                    const staff = isStaffReply(reply.role)
+                    return (
+                      <li
+                        key={replyKey(reply, index)}
+                        className={`page-card rounded-2xl p-5 ${
+                          staff
+                            ? 'border border-amber-400/30 bg-amber-400/[0.07] ring-1 ring-amber-400/15'
+                            : ''
+                        }`}
+                      >
+                        <div className="flex flex-wrap items-baseline justify-between gap-2">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <p className="text-sm font-semibold text-white">{reply.author}</p>
+                            {staff ? (
+                              <span className="rounded-md bg-amber-400/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-amber-100/95">
+                                {reply.role === 'editor' ? 'Editor' : 'Moderator'}
+                              </span>
+                            ) : null}
+                          </div>
+                          <time className="text-xs text-white/40" dateTime={reply.date}>
+                            {reply.date}
+                          </time>
+                        </div>
+                        {reply.replyToAuthor ? (
+                          <p className="mt-2 text-xs font-medium text-amber-100/75">
+                            Replying to @{reply.replyToAuthor}
+                          </p>
+                        ) : null}
+                        <p className={`mt-2 text-sm leading-relaxed ${staff ? 'text-white/75' : 'text-white/60'}`}>
+                          {reply.body}
+                        </p>
+                      </li>
+                    )
+                  })}
                 </ul>
               </section>
             ) : null}
 
             <div className="page-card mt-12 rounded-2xl p-6 sm:p-8">
               <h2 className="text-lg font-semibold text-white">
-                Ready for Arena Breakout Infinite cheats?
+                Ready for Wardogs cheats?
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-white/55">
-                Check Active loader status, then continue to ESP, wallhack, and optional Aimbot for
-                ABI on {SITE_HOST}. Need help? Read{' '}
+                Check Active loader status, then continue to ESP, wallhack-style visuals, and optional
+                aimbot on {SITE_HOST}. Need help? Read{' '}
                 <a href="/support" className="text-white/80 underline-offset-2 hover:underline">
                   support
                 </a>{' '}
@@ -126,7 +164,7 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
               </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
-                  href={guidePath('abi')}
+                  href={guidePath('wardogs')}
                   className="inline-flex items-center justify-center rounded-full border border-white/15 px-5 py-2.5 text-sm font-medium text-white hover:bg-white/5"
                 >
                   Product details
@@ -166,7 +204,10 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
                     href={blogPath(b.slug)}
                     className="page-card group flex h-full flex-col rounded-2xl p-5"
                   >
-                    <p className="text-xs uppercase tracking-wider text-white/40">{b.tag}</p>
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="text-xs uppercase tracking-wider text-white/40">{b.tag}</p>
+                      <Lock className="h-3 w-3 shrink-0 text-amber-100/70" strokeWidth={2} aria-hidden />
+                    </div>
                     <h3 className="mt-2 text-sm font-semibold text-white group-hover:text-white/85">
                       {b.title}
                     </h3>

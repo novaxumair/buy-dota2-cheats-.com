@@ -1,5 +1,5 @@
-﻿/**
- * Single sitemap at /sitemap.xml — every indexed page URL + image entries.
+/**
+ * Single sitemap at /sitemap.xml ? every indexed page URL + image entries.
  * One urlset only (never a sitemap index). 404 is excluded.
  */
 import { existsSync, readFileSync, readdirSync, unlinkSync, writeFileSync } from 'node:fs'
@@ -10,21 +10,21 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const publicDir = join(root, 'public')
 const dataDir = join(root, 'src', 'data')
 const pagesDir = join(root, 'src', 'pages')
-const SITE = (process.env.SITE_URL || 'https://abicheat.com').replace(/\/$/, '')
+const SITE = (process.env.SITE_URL || 'https://buywardogscheat.com').replace(/\/$/, '')
 const TODAY = new Date().toLocaleDateString('en-CA')
 const HREFLANG = ['en', 'x-default']
 
-const HERO_FULL = '/media/abi-hero-full.webp'
-const COVER = '/media/abi-cover.webp'
-const BOX = '/media/abi-screenshot-8.webp'
-const ESP = '/media/abi-screenshot-5.webp'
-const MENU = '/media/abi-menu.webp'
-const CONTROL = '/media/abi-control-art.jpg'
-const HOME_ART = '/media/abi-home-art.jpg'
-const TACTICAL_ART = '/media/abi-tactical-art.jpg'
-const VIDEO_THUMB = '/media/abi-video-thumb.jpg'
+const HERO_FULL = '/media/wd-hero-full.webp'
+const COVER = '/media/wd-cover.webp'
+const BOX = '/media/wd-screenshot-8.webp'
+const ESP = '/media/wd-screenshot-5.webp'
+const MENU = '/media/wd-menu.webp'
+const CONTROL = '/media/wd-control-art.jpg'
+const HOME_ART = '/media/wd-home-art.jpg'
+const TACTICAL_ART = '/media/wd-tactical-art.jpg'
+const VIDEO_THUMB = '/media/wd-video-thumb.jpg'
 const PREVIEW_VIDEO = '/videos/hero.webm'
-const OG_DEFAULT = '/og/abi-cheats.jpg'
+const OG_DEFAULT = '/og/wardogs-cheats.jpg'
 
 const ALL_SITE_IMAGES = [
   HERO_FULL,
@@ -37,7 +37,7 @@ const ALL_SITE_IMAGES = [
   TACTICAL_ART,
   VIDEO_THUMB,
   '/og/home.jpg',
-  '/og/abi-cheats.jpg',
+  '/og/wardogs-cheats.jpg',
   '/og/forums.jpg',
   '/og/reviews.jpg',
   '/og/faq.jpg',
@@ -66,7 +66,7 @@ const FORUM_IMAGES = {
 
 const PAGE_META = {
   '/': { priority: '1.0', changefreq: 'daily' },
-  '/abi-cheats': { priority: '0.9', changefreq: 'weekly' },
+  '/wardogs-cheats': { priority: '0.9', changefreq: 'weekly' },
   '/forums': { priority: '0.85', changefreq: 'weekly' },
   '/reviews': { priority: '0.8', changefreq: 'weekly' },
   '/faq': { priority: '0.75', changefreq: 'monthly' },
@@ -108,6 +108,12 @@ function loadGames() {
 
 function loadForums() {
   const src = readFileSync(join(dataDir, 'blogs.ts'), 'utf8')
+  const jsonMatch = src.match(
+    /export const BLOGS: BlogPost\[\] = (\[[\s\S]*?\n\])\s*\n\s*export function getBlog/,
+  )
+  if (jsonMatch) {
+    return JSON.parse(jsonMatch[1])
+  }
   const pattern =
     /slug:\s*['"]([^'"]+)['"],\s*title:\s*['"]([^'"]+)['"],\s*excerpt:\s*['"]([^'"]+)['"],\s*metaTitle:\s*['"]([^'"]+)['"],\s*metaDescription:\s*['"]([^'"]+)['"],[\s\S]*?date:\s*['"](\d{4}-\d{2}-\d{2})['"]/g
   return [...src.matchAll(pattern)].map((match) => ({
@@ -174,29 +180,35 @@ function imagesForPath(path, games, forums) {
     return [
       {
         src: '/og/home.jpg',
-        title: 'ABI Cheats Open Graph',
-        caption: 'Google and social preview image for abicheat.com homepage.',
+        title: 'Wardogs Cheats Open Graph',
+        caption: 'Google and social preview image for buywardogscheat.com homepage.',
       },
       {
         src: HERO_FULL,
-        title: 'ABI Cheats Hero',
-        caption: 'Buy ABI cheats - ABI Aimbot, ESP and radar hack hero artwork for PC.',
+        title: 'Wardogs Cheats Hero',
+        caption: 'Buy Wardogs Cheats - Wardogs aimbot, ESP and radar hack hero artwork for PC.',
       },
       {
         src: COVER,
-        title: 'ABI Cheats Product Cover',
-        caption: 'ABI cheats product cover for checkout and social previews.',
+        title: 'Wardogs Cheats Product Cover',
+        caption: 'Wardogs Cheats product cover for checkout and social previews.',
       },
       {
         src: VIDEO_THUMB,
-        title: 'ABI Cheats Preview Thumbnail',
-        caption: 'Thumbnail for the ABI Aimbot and ESP preview video.',
+        title: 'Wardogs Cheats Preview Thumbnail',
+        caption: 'Thumbnail for the Wardogs aimbot and ESP preview video.',
       },
       {
         src: OG_DEFAULT,
-        title: 'ABI Cheats Product Social Preview',
-        caption: 'Default Open Graph image for abicheat.com product pages.',
+        title: 'Wardogs Cheats Product Social Preview',
+        caption: 'Default Open Graph image for buywardogscheat.com product pages.',
       },
+      { src: BOX, title: 'Wardogs ESP gameplay', caption: 'Player ESP wallhack screenshot for sitemap.' },
+      { src: ESP, title: 'Wardogs aimbot FOV', caption: 'Aimbot FOV circle gameplay screenshot.' },
+      { src: MENU, title: 'Wardogs cheat menu', caption: 'Menu reference artwork.' },
+      { src: CONTROL, title: 'Wardogs control art', caption: 'Support and setup artwork.' },
+      { src: HOME_ART, title: 'Wardogs home art', caption: 'Homepage supplementary artwork.' },
+      { src: TACTICAL_ART, title: 'Wardogs tactical art', caption: 'Tactical gameplay artwork.' },
     ]
   }
 
@@ -204,13 +216,13 @@ function imagesForPath(path, games, forums) {
   if (game) {
     return [
       {
-        src: '/og/abi-cheats.jpg',
-        title: 'ABI Cheats Open Graph',
-        caption: 'Google and social preview for the ABI cheats product page.',
+        src: '/og/wardogs-cheats.jpg',
+        title: 'Wardogs Cheats Open Graph',
+        caption: 'Google and social preview for the Wardogs Cheats product page.',
       },
       {
         src: COVER,
-        title: 'ABI Aimbot ESP Product Artwork',
+        title: 'Wardogs aimbot ESP Product Artwork',
         caption: 'Product features, compatibility, status and price before checkout.',
       },
       {
@@ -230,8 +242,8 @@ function imagesForPath(path, games, forums) {
       },
       {
         src: VIDEO_THUMB,
-        title: 'ABI Cheats Preview Thumbnail',
-        caption: 'Thumbnail for the ABI cheats preview video.',
+        title: 'Wardogs Cheats Preview Thumbnail',
+        caption: 'Thumbnail for the Wardogs Cheats preview video.',
       },
     ]
   }
@@ -240,13 +252,13 @@ function imagesForPath(path, games, forums) {
     return [
       {
         src: '/og/forums.jpg',
-        title: 'ABI Cheats Forums Open Graph',
-        caption: 'Google preview image for the ABI Cheats guides index.',
+        title: 'Wardogs Cheats Forums Open Graph',
+        caption: 'Google preview image for the Wardogs Cheats guides index.',
       },
       {
         src: MENU,
-        title: 'ABI Cheats Forum Artwork',
-        caption: 'Artwork reference for ABI setup and feature guides.',
+        title: 'Wardogs Cheats Forum Artwork',
+        caption: 'Artwork reference for Wardogs setup and feature guides.',
       },
     ]
   }
@@ -260,14 +272,14 @@ function imagesForPath(path, games, forums) {
         title: `${forum?.title || slug} Open Graph`,
         caption:
           forum?.metaDescription ||
-          `Google preview image for ${forum?.title || slug} on abicheat.com.`,
+          `Google preview image for ${forum?.title || slug} on buywardogscheat.com.`,
       },
       {
         src: FORUM_IMAGES[slug] || MENU,
         title: `${forum?.title || slug} Artwork`,
         caption:
           forum?.excerpt ||
-          `Visible ABI Cheats guide artwork for ${forum?.title || slug}.`,
+          `Visible Wardogs Cheats guide artwork for ${forum?.title || slug}.`,
       },
     ]
   }
@@ -276,8 +288,8 @@ function imagesForPath(path, games, forums) {
     return [
       {
         src: '/og/reviews.jpg',
-        title: 'ABI Cheats Reviews Open Graph',
-        caption: 'Google preview image for ABI cheats reviews.',
+        title: 'Wardogs Cheats Reviews Open Graph',
+        caption: 'Google preview image for Wardogs Cheats reviews.',
       },
     ]
   }
@@ -285,8 +297,8 @@ function imagesForPath(path, games, forums) {
     return [
       {
         src: '/og/faq.jpg',
-        title: 'ABI Cheats FAQ Open Graph',
-        caption: 'Google preview image for the ABI Cheats FAQ.',
+        title: 'Wardogs Cheats FAQ Open Graph',
+        caption: 'Google preview image for the Wardogs Cheats FAQ.',
       },
     ]
   }
@@ -294,8 +306,8 @@ function imagesForPath(path, games, forums) {
     return [
       {
         src: '/og/support.jpg',
-        title: 'ABI Cheats Support Open Graph',
-        caption: 'Google preview image for ABI Cheats support.',
+        title: 'Wardogs Cheats Support Open Graph',
+        caption: 'Google preview image for Wardogs Cheats support.',
       },
     ]
   }
@@ -303,8 +315,8 @@ function imagesForPath(path, games, forums) {
     return [
       {
         src: '/og/privacy.jpg',
-        title: 'ABI Cheats Privacy Policy',
-        caption: 'Privacy policy preview for abicheat.com orders and support.',
+        title: 'Wardogs Cheats Privacy Policy',
+        caption: 'Privacy policy preview for buywardogscheat.com orders and support.',
       },
     ]
   }
@@ -312,8 +324,8 @@ function imagesForPath(path, games, forums) {
     return [
       {
         src: '/og/terms.jpg',
-        title: 'ABI Cheats Terms of Use',
-        caption: 'License terms preview for ABI Cheats.',
+        title: 'Wardogs Cheats Terms of Use',
+        caption: 'License terms preview for Wardogs Cheats.',
       },
     ]
   }
@@ -321,23 +333,23 @@ function imagesForPath(path, games, forums) {
     return [
       {
         src: '/og/refunds.jpg',
-        title: 'ABI Cheats Refund Policy',
-        caption: 'Refund rules preview for digital ABI Cheats licenses.',
+        title: 'Wardogs Cheats Refund Policy',
+        caption: 'Refund rules preview for digital Wardogs Cheats licenses.',
       },
     ]
   }
 
-  return [{ src: OG_DEFAULT, title: 'ABI Cheats', caption: 'ABI Cheats page artwork.' }]
+  return [{ src: OG_DEFAULT, title: 'Wardogs Cheats', caption: 'Wardogs Cheats page artwork.' }]
 }
 
 function videosForPath(path) {
-  if (path === '/abi-cheats') {
+  if (path === '/wardogs-cheats') {
     return [
       {
         thumb: VIDEO_THUMB,
-        title: 'ABI Cheats Aimbot and ESP Preview',
+        title: 'Wardogs Cheats Aimbot and ESP Preview',
         description:
-          'Self-hosted ABI cheats preview showing Aimbot, ESP menu and survival gameplay visuals on PC.',
+          'Self-hosted Wardogs Cheats preview showing Aimbot, ESP menu and survival gameplay visuals on PC.',
         content: PREVIEW_VIDEO,
       },
     ]
@@ -446,16 +458,16 @@ function validate(games, forums, allPaths, sitemap) {
     if (!imageLocs.includes(siteUrl(image))) errors.push(`Sitemap missing required image: ${image}`)
   }
   if (!sitemap.includes(siteUrl(PREVIEW_VIDEO))) {
-    errors.push('Sitemap missing ABI preview video content_loc')
+    errors.push('Sitemap missing Wardogs preview video content_loc')
   }
   if (/Tarkov|tarkovcheats|EFT Reaper|Warzone|warzonecheats|Ricochet/i.test(sitemap)) {
     errors.push('Sitemap still contains legacy Tarkov/Warzone labels')
   }
-  if (!sitemap.includes('abicheat.com')) {
-    errors.push('Sitemap must target abicheat.com')
+  if (!sitemap.includes('buywardogscheat.com')) {
+    errors.push('Sitemap must target buywardogscheat.com')
   }
   if (/tarkovcheats|warzonecheats|wardogshacks|theisle/i.test(sitemap)) {
-    errors.push('Sitemap contains a non-ABI domain')
+    errors.push('Sitemap contains a non-Wardogs domain')
   }
   if (imageLocs.length < expectedUrls.size) {
     errors.push('Image count is lower than page count - every URL needs an image')

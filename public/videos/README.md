@@ -1,4 +1,5 @@
-﻿# Videos
+﻿# Hero video
 
-- `/videos/hero.webm` — Arena Breakout Infinite cheat hero loop (muted, cover fit)
-- Product and forum pages may reference this preview alongside `/media/abi-video-thumb.jpg`
+- `/videos/hero.webm` — Wardogs cheat hero loop (muted, cover fit, infinite loop)
+- Do not add unused legacy videos here (they ship with the site and hurt Lighthouse).
+- Product and forum pages may reference this preview alongside `/media/wd-video-thumb.jpg`

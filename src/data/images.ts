@@ -1,11 +1,11 @@
-import { ABI_COVER, ABI_HERO, ABI_MENU } from './media'
-import { ABI_OG, getOgImageForPath, PAGE_OG } from './og'
+import { WD_COVER, WD_HERO, WD_MENU } from './media'
+import { WD_OG, getOgImageForPath, PAGE_OG } from './og'
 
-export { ABI_OG, getOgImageForPath, PAGE_OG }
+export { WD_OG, getOgImageForPath, PAGE_OG }
 export { forumOgImage } from './og'
 
-export const ABI_PRODUCT_HERO = ABI_HERO
-export const ABI_PRODUCT_COVER = ABI_COVER
+export const WD_PRODUCT_HERO = WD_HERO
+export const WD_PRODUCT_COVER = WD_COVER
 
 export type ImageSeoFields = {
   alt: string
@@ -21,13 +21,13 @@ export const IMAGE_SEO: Record<
     heroCaption: string
   }
 > = {
-  abi: {
-    alt: 'Arena Breakout Infinite cheats product artwork for PC',
-    title: 'Arena Breakout Infinite Cheats Product Details',
-    caption: 'ABI Aimbot, ESP, wallhack, loot ESP, and container overlays',
-    heroAlt: 'Arena Breakout Infinite ESP and Aimbot features',
-    heroTitle: 'Arena Breakout Infinite Cheats Features',
-    heroCaption: 'Review ABI Aimbot, ESP, wallhack, and loader status',
+  wardogs: {
+    alt: 'Wardogs cheats product artwork for PC',
+    title: 'Wardogs Cheats Product Details',
+    caption: 'Wardogs aimbot, ESP, vehicle radar, and wallhack-style overlays',
+    heroAlt: 'Wardogs ESP and aimbot features',
+    heroTitle: 'Wardogs Cheats Features',
+    heroCaption: 'Review Wardogs aimbot, ESP, vehicle radar, and loader status',
   },
 }
 
@@ -38,55 +38,55 @@ export const PAGE_IMAGES: Record<
   PageImage
 > = {
   home: {
-    src: ABI_HERO,
+    src: WD_HERO,
     og: PAGE_OG.home,
-    alt: 'Arena Breakout Infinite cheats ESP and Aimbot artwork for PC',
-    title: 'Arena Breakout Infinite Cheats',
-    caption: 'ABI Aimbot, ESP, wallhack, and loot overlays overview.',
+    alt: 'Wardogs cheats ESP and aimbot artwork for PC',
+    title: 'Wardogs Cheats',
+    caption: 'Wardogs aimbot, ESP, vehicle radar, and wallhack-style overview.',
   },
   forums: {
-    src: '/media/abi-screenshot-4.webp',
+    src: '/media/wd-screenshot-4.webp',
     og: PAGE_OG.forums,
-    alt: 'Arena Breakout Infinite wallhack ESP gameplay screenshot',
-    title: 'Arena Breakout Infinite Cheat Guides',
-    caption: 'Setup, Aimbot, and ESP forum threads.',
+    alt: 'Wardogs wallhack ESP gameplay screenshot',
+    title: 'Wardogs Cheat Guides',
+    caption: 'Setup, aimbot, and ESP forum threads.',
   },
   reviews: {
-    src: '/media/abi-screenshot-2.webp',
+    src: '/media/wd-screenshot-2.webp',
     og: PAGE_OG.reviews,
-    alt: 'Arena Breakout Infinite Aimbot gameplay review screenshot',
-    title: 'Arena Breakout Infinite Cheat Reviews',
-    caption: 'Feature feedback from ABI players.',
+    alt: 'Wardogs aimbot gameplay review screenshot',
+    title: 'Wardogs Cheat Reviews',
+    caption: 'Feature feedback from Wardogs players.',
   },
   faq: {
-    src: '/media/abi-screenshot-8.webp',
+    src: '/media/wd-screenshot-8.webp',
     og: PAGE_OG.faq,
-    alt: 'Arena Breakout Infinite loot ESP screenshot for FAQ',
-    title: 'Arena Breakout Infinite Cheats FAQ',
+    alt: 'Wardogs player ESP screenshot for FAQ',
+    title: 'Wardogs Cheats FAQ',
     caption: 'Pricing, features, and setup answers.',
   },
   support: {
-    src: '/media/abi-screenshot-6.webp',
+    src: '/media/wd-screenshot-6.webp',
     og: PAGE_OG.support,
-    alt: 'Arena Breakout Infinite scoped ESP support screenshot',
-    title: 'Arena Breakout Infinite Cheat Support',
+    alt: 'Wardogs scoped ESP support screenshot',
+    title: 'Wardogs Cheat Support',
     caption: 'Delivery, loader, and Windows help.',
   },
   product: {
-    src: ABI_COVER,
+    src: WD_COVER,
     og: PAGE_OG.product,
-    alt: 'Arena Breakout Infinite Aimbot ESP and wallhack product artwork',
-    title: 'Arena Breakout Infinite Cheats Features',
-    caption: 'Product details for ABI Aimbot and ESP.',
+    alt: 'Wardogs aimbot ESP and wallhack product artwork',
+    title: 'Wardogs Cheats Features',
+    caption: 'Product details for Wardogs aimbot and ESP.',
   },
 }
 
 export function getGameImage(_slug: string): string {
-  return ABI_PRODUCT_COVER
+  return WD_PRODUCT_COVER
 }
 
 export function getProductHeroImage(_slug: string): string {
-  return ABI_PRODUCT_COVER
+  return WD_PRODUCT_COVER
 }
 
 export function getOgImage(path?: string): string {

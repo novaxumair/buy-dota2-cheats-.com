@@ -11,7 +11,7 @@ export function PolicyPage({ page }: PolicyPageProps) {
   return (
     <div className="min-h-screen overflow-x-hidden bg-z-bg text-white">
       <div className="border-b border-z-soft/15 bg-z-bg/90 backdrop-blur-xl">
-        <Navbar />
+        <Navbar currentPath={page.path} />
       </div>
 
       <main className="page-body">

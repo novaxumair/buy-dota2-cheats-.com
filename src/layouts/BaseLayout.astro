@@ -28,8 +28,8 @@ const imageType = isOgJpeg
     : image.endsWith('.gif')
       ? 'image/gif'
       : 'image/jpeg'
-const imageWidth = isOgJpeg ? 1200 : image.includes('/media/abi-') ? 800 : 1200
-const imageHeight = isOgJpeg ? 630 : image.includes('/media/abi-') ? 450 : 630
+const imageWidth = isOgJpeg ? 1200 : image.includes('/media/wd-') ? 800 : 1200
+const imageHeight = isOgJpeg ? 630 : image.includes('/media/wd-') ? 450 : 630
 const robots =
   seo.robots ||
   'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
@@ -38,7 +38,7 @@ const isHome = seo.path === '/' || seo.path === ''
 /** Preload OG only when it supports LCP (hero/product/forums) — not text pages */
 const preloadOg =
   isHome ||
-  seo.path === '/abi-cheats' ||
+  seo.path === '/wardogs-cheats' ||
   seo.path === '/forums' ||
   seo.path.startsWith('/forums/')
 ---
@@ -52,7 +52,8 @@ const preloadOg =
     <meta name="theme-color" content="#08060f" />
     <meta name="format-detection" content="telephone=no" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     {preloadOg ? (
       <link rel="preload" as="image" href={imageUrl} type={imageType} fetchpriority="high" />
@@ -61,7 +62,7 @@ const preloadOg =
       <link
         rel="preload"
         as="image"
-        href="/media/abi-hero-full.webp"
+        href="/media/wd-hero-full.webp"
         type="image/webp"
         fetchpriority="high"
       />

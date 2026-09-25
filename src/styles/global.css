@@ -1,7 +1,6 @@
-@import '@fontsource/geist/latin-400.css';
-@import '@fontsource/geist/latin-600.css';
-@import '@fontsource/geist/latin-700.css';
-@import '@fontsource/silkscreen/latin-400.css';
+@import '@fontsource/tektur/latin-400.css';
+@import '@fontsource/tektur/latin-600.css';
+@import '@fontsource/tektur/latin-700.css';
 
 @tailwind base;
 @tailwind components;
@@ -47,7 +46,7 @@ body::-webkit-scrollbar {
 
 body {
   margin: 0;
-  font-family: 'Geist', 'Geist Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Tektur', -apple-system, BlinkMacSystemFont, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

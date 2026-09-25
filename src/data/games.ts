@@ -7,9 +7,9 @@ export type Game = {
   popular?: boolean
 }
 
-/** Site is Arena Breakout Infinite cheats only — no other titles. */
+/** Site is Wardogs cheats only — no other titles. */
 export const GAMES: Game[] = [
-  { slug: 'abi', name: 'Arena Breakout Infinite', status: 'Active', popular: true },
+  { slug: 'wardogs', name: 'Wardogs', status: 'Active', popular: true },
 ]
 
 export function getGame(slug: string) {
@@ -29,61 +29,48 @@ export const PRODUCT_FEATURE_GROUPS = [
   {
     name: 'Aimbot options',
     items: [
-      'Enable Akimbo',
+      'Enable Aimbot',
+      'FOV',
+      'Smooth',
+      'Bone Selection',
       'Visible Check',
-      'Ignore Knocked',
-      'Draw Target Line',
+      'Prediction',
       'Draw FOV',
-      'Max. Distance',
-      'Custom Keybind for Mouse',
-      'Aimbot Filter',
-      'Aimbot Smoothness',
-      'Aimbot Speed',
-      'Aimbot FOV',
+      'Draw Target Line',
     ],
   },
   {
-    name: 'Visual options',
+    name: 'Player visual options',
     items: [
-      'Player ESP',
-      'AI ESP',
-      'Enable',
-      'Inventory List',
       'Box',
+      'Skeleton',
+      'Head Circle',
+      'Health Bar',
       'Distance',
       'Name',
-      'Team Index',
-      'Weapon Type',
+      'Team / Squad',
+      'Weapon',
       'View Direction',
-      'Health Bar',
-      'Head Circle',
-      'Snaplines',
-      'Skeleton',
-      'Inventory Price',
-      'Level',
-      'Side',
+      'OOF Arrows',
+      'Max Distance',
     ],
   },
   {
-    name: 'World visual options',
-    items: [
-      'Enable Player Corpse ESP',
-      'Enable AI Corpse ESP',
-      'Price',
-      'Max Distance',
-      'Minimum Price',
-    ],
+    name: 'Vehicle visual options',
+    items: ['Vehicle ESP', 'Vehicle Type', 'Vehicle Distance', 'Occupied / Empty'],
+  },
+  {
+    name: 'Radar options',
+    items: ['2D Radar', 'Player Markers', 'Vehicle Markers', 'Radar Range'],
   },
   {
     name: 'Misc options',
     items: [
-      'Crosshair',
-      'Font Size',
-      'Combat Mode',
-      'Create config',
-      'Save config',
-      'Load Config',
-      'Delete Config',
+      'No Recoil',
+      'No Spread',
+      'Full Bright',
+      'Custom Crosshair',
+      'Config System (Save / Load)',
     ],
   },
 ] as const
@@ -91,35 +78,35 @@ export const PRODUCT_FEATURE_GROUPS = [
 export const GUIDE_FEATURES = [
   {
     name: 'Aimbot & combat assist',
-    text: 'Configurable Aimbot with FOV, smoothing, speed, visible checks, and custom mouse binds — tuned for ABI firefights without locking through solid cover when checks are on.',
+    text: 'Configurable aimbot with FOV, smooth, bone selection, visible check, prediction, and draw overlays — tuned for control-zone firefights when you choose to enable assist.',
   },
   {
-    name: 'Player & AI ESP',
-    text: 'Boxes, skeletons, names, weapon type, health bars, and team index for PMCs and scavs — see contacts through warehouses and stairwells before you commit.',
+    name: 'Player ESP & wallhack visuals',
+    text: 'Boxes, skeletons, names, weapon type, health bars, team/squad filters, and OOF arrows — see contacts through buildings and hills before you commit.',
   },
   {
-    name: 'Loot & container wallhack',
-    text: 'Item ESP with price filters, minimum value thresholds, and container highlights so high-value pulls stand out on Farm, Valley, and Northridge runs.',
+    name: 'Vehicle ESP',
+    text: 'Vehicle type, distance, and occupied/empty state for roads and convoys — avoid bait trucks and track rotations across the map.',
   },
   {
-    name: 'Corpse & extraction intel',
-    text: 'Player and AI corpse ESP with price tags — recover kits safely and spot leftover loot after firefights.',
+    name: '2D radar awareness',
+    text: 'Player and vehicle markers with adjustable radar range — pair with sound for third-party timing in 100-player lobbies.',
   },
   {
-    name: 'Combat mode & configs',
-    text: 'Save raid, PvP, and looting profiles — load configs per map or squad role without rebuilding the menu every session.',
+    name: 'Misc weapon & vision helpers',
+    text: 'No recoil, no spread, full bright, and custom crosshair when you want cleaner gunfights without rebuilding sensitivity.',
   },
   {
-    name: 'Stream-friendly overlays',
-    text: 'Stream-proof mode keeps ESP and Aimbot overlays off common capture paths while you still see them locally.',
+    name: 'Config profiles',
+    text: 'Save and load configs for solo scouting vs trio pushes — swap ESP-only and assist profiles without retuning every login.',
   },
   {
     name: 'Windows PC support',
-    text: 'Built for Arena Breakout Infinite on Windows 10 and 11 via Steam, Epic, Microsoft Store, and the official launcher.',
+    text: 'Built for Wardogs on Windows 10 and 11 via Steam when loader status is Active.',
   },
   {
     name: 'Patch-synced loader',
-    text: 'We publish Active or Updating status after ABI patches so you load only when the current build matches the game client.',
+    text: 'We publish Active or Updating status after Wardogs patches so you load only when the current build matches the game client.',
   },
 ] as const
 

@@ -18,8 +18,7 @@ export default {
         },
       },
       fontFamily: {
-        geist: ['Geist', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        silkscreen: ['Silkscreen', 'cursive'],
+        sans: ['Tektur', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
       },
     },
   },

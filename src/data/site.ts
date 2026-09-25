@@ -1,27 +1,48 @@
-﻿import { ABI_OG } from './images'
+﻿import { WD_OG } from './images'
 import { PAGE_OG } from './og'
 
-export const SITE_URL = 'https://abicheat.com'
-export const SITE_NAME = 'ABI Cheats'
-export const SITE_HOST = 'abicheat.com'
+export const SITE_URL = 'https://buywardogscheat.com'
+export const SITE_NAME = 'Wardogs Cheats'
+export const SITE_HOST = 'buywardogscheat.com'
 
 /** Stable site identity — Organization, WebSite, and about copy (not per-route). */
 export const SITE_PURPOSE =
-  'Arena Breakout Infinite Cheats is a single-game site focused on Arena Breakout Infinite cheats, tools, and related gameplay features. The site is dedicated to Arena Breakout Infinite only and does not sell cheats for other games.'
+  'Wardogs Cheats is a single-game site focused on Wardogs cheats, tools, and related gameplay features. The site is dedicated to Wardogs only and does not sell cheats for other games.'
 
 /** Site-wide subject terms for schema knowsAbout (max 6). */
 export const SITE_ABOUT = [
-  'Arena Breakout Infinite Cheats',
-  'Arena Breakout Infinite',
-  'Arena Breakout Infinite cheat features',
-  'Arena Breakout Infinite ESP',
-  'Arena Breakout Infinite gameplay tools',
-  'Arena Breakout Infinite cheat setup',
+  'Wardogs Cheats',
+  'Wardogs',
+  'Wardogs cheat features',
+  'Wardogs ESP',
+  'Wardogs gameplay tools',
+  'Wardogs cheat setup',
 ] as const
+
+/** Legitimate brand variants only — not a meta keyword list. */
+export const ORGANIZATION_ALTERNATE_NAMES = [
+  'Wardogs Cheats',
+  'Wardogs cheats',
+  'wardogscheats',
+  'wardogscheats.org',
+] as const
+
+/**
+ * Short intent-specific terms per main route (3–6 each). Not rendered as meta keywords.
+ * Used for docs, verification, and internal SEO discipline.
+ */
+export const SEO_ROUTE_INTENTS = {
+  home: ['Wardogs Cheats', 'Wardogs cheats', 'Wardogs', 'Wardogs tools'],
+  product: ['Wardogs Cheats', 'Wardogs cheat', 'Wardogs features', 'Wardogs setup'],
+  featuresHub: ['Wardogs cheat features', 'Wardogs tools', 'Wardogs features', 'Wardogs cheats'],
+  reviews: ['Wardogs Cheats reviews', 'Wardogs cheat review', 'Wardogs player feedback'],
+  forums: ['Wardogs Cheats forum', 'Wardogs discussions', 'Wardogs cheat discussions'],
+  faq: ['Wardogs Cheats FAQ', 'Wardogs cheat questions', 'Wardogs setup questions'],
+} as const
 
 /** Product JSON-LD description (features + delivery — distinct from SITE_PURPOSE). */
 export const PRODUCT_SCHEMA_DESCRIPTION =
-  'Windows PC cheat menu for Arena Breakout Infinite with aimbot, player and AI ESP, loot and container overlays, configs, and digital license delivery.'
+  'Windows PC cheat menu for Wardogs with aimbot, player ESP, vehicle ESP, 2D radar, misc weapon helpers, configs, and digital license delivery.'
 
 /** Offer price shown on product schema + purchase UI. */
 export const PRODUCT_PRICE_USD = '35'
@@ -31,7 +52,7 @@ export const SEO_REGIONS = [
   { hreflang: 'x-default', label: 'Default' },
 ] as const
 
-export const OG_IMAGE = ABI_OG
+export const OG_IMAGE = WD_OG
 
 export type PageSeo = {
   title: string
@@ -48,74 +69,74 @@ const INDEX_ROBOTS =
 
 export const SEO = {
   home: {
-    title: 'Arena Breakout Infinite Cheats | Features, Tools & Updates',
+    title: 'Wardogs Cheats | Features, Tools & Updates',
     description:
-      'Single-game site for Arena Breakout Infinite cheats on PC — feature overview, loader status, setup guides, player reviews, and forums. Plans from $35.',
+      'Wardogs Cheats for PC — feature overview, setup forums, player reviews, and loader status. Single-game site dedicated to Wardogs only.',
     path: '/',
     ogType: 'website',
     image: PAGE_OG.home,
-    imageAlt: 'Arena Breakout Infinite gameplay showing in-game overlay on PC',
+    imageAlt: 'Wardogs gameplay with ESP skeleton and aimbot FOV circle on PC',
     robots: INDEX_ROBOTS,
   },
   forums: {
-    title: 'Arena Breakout Infinite Cheats Forum | Community Discussions',
+    title: 'Wardogs Cheats Forum | Community Discussions',
     description:
-      'Community discussions and setup guides for Arena Breakout Infinite cheats — aimbot tuning, ESP defaults, loot overlays, loader help, and patch-day checklists.',
+      'Community guides and discussions for Wardogs cheats — setup, ESP, aimbot tuning, vehicle radar, loader help, and patch-day checklists.',
     path: '/forums',
     ogType: 'website',
     image: PAGE_OG.forums,
-    imageAlt: 'Arena Breakout Infinite gameplay screenshot from forum guides',
+    imageAlt: 'Wardogs ESP wallhack gameplay screenshot from forum guides',
     robots: INDEX_ROBOTS,
   },
   reviews: {
-    title: 'Arena Breakout Infinite Cheats Reviews | Player Feedback',
+    title: 'Wardogs Cheats Reviews | Player Feedback',
     description:
-      'Player feedback on Arena Breakout Infinite cheats — ESP accuracy, aimbot smoothing, loot filters, and loader updates after ABI patches.',
+      'Player feedback on Wardogs cheats — ESP clarity, aimbot smoothing, vehicle radar, and loader updates after game patches.',
     path: '/reviews',
     ogType: 'website',
     image: PAGE_OG.reviews,
-    imageAlt: 'Arena Breakout Infinite gameplay screenshot referenced in reviews',
+    imageAlt: 'Wardogs aimbot FOV gameplay screenshot referenced in reviews',
     robots: INDEX_ROBOTS,
   },
   faq: {
-    title: 'Arena Breakout Infinite Cheats FAQ | Common Questions',
+    title: 'Wardogs Cheats FAQ | Common Questions',
     description:
-      'Answers about Arena Breakout Infinite cheats — Windows requirements, features, pricing from $35, digital delivery, loader status, and setup steps.',
+      'Answers about Wardogs cheats — Windows requirements, ESP and aimbot features, pricing from $35, digital delivery, loader status, and setup steps.',
     path: '/faq',
     ogType: 'website',
     image: PAGE_OG.faq,
-    imageAlt: 'Arena Breakout Infinite loot overlay screenshot from FAQ',
+    imageAlt: 'Wardogs player ESP overlay screenshot from FAQ',
     robots: INDEX_ROBOTS,
   },
   support: {
-    title: 'Arena Breakout Infinite Cheats Support | Loader & Delivery',
+    title: 'Wardogs Cheats Support | Loader & Delivery',
     description:
-      'Help with Arena Breakout Infinite cheat orders, license delivery, Windows loader steps, antivirus exclusions, and common menu errors.',
+      'Help with Wardogs cheat orders, license delivery, Windows loader steps, antivirus exclusions, and common menu errors.',
     path: '/support',
     ogType: 'website',
     image: PAGE_OG.support,
-    imageAlt: 'Arena Breakout Infinite cheat support and loader help',
+    imageAlt: 'Wardogs cheat support and loader help',
     robots: INDEX_ROBOTS,
   },
   product: {
-    title: 'Arena Breakout Infinite Cheats | Features & Setup',
+    title: 'Wardogs Cheats | Features & Setup',
     description:
-      'Full Arena Breakout Infinite cheat feature list for PC — aimbot, player ESP, loot overlays, configs, system requirements, and checkout from $35.',
-    path: '/abi-cheats',
+      'Wardogs cheat menu for PC — aimbot, player ESP, vehicle ESP, 2D radar, and config tools. System requirements, pricing from $35, and loader status.',
+    path: '/wardogs-cheats',
     ogType: 'product',
     image: PAGE_OG.product,
-    imageAlt: 'Arena Breakout Infinite product page showing ESP and aimbot gameplay',
+    imageAlt: 'Wardogs product page showing ESP skeleton and aimbot FOV gameplay',
     robots: INDEX_ROBOTS,
   },
 } as const satisfies Record<string, PageSeo>
 
 export const HOME_HEADINGS = {
-  h1: 'Arena Breakout Infinite Cheats',
-  h2Features: 'What You Get With Arena Breakout Infinite Cheats',
-  h2HowItWorks: 'How Arena Breakout Infinite Cheats Works',
-  h2Reviews: 'Arena Breakout Infinite Cheats Reviews',
-  h2Forums: 'Arena Breakout Infinite Cheats Forum',
-  h2Faq: 'Arena Breakout Infinite Cheats FAQ',
+  h1: 'Wardogs Cheats',
+  h2Features: 'Wardogs Cheats Features',
+  h2HowItWorks: 'How Wardogs Cheats Works',
+  h2Reviews: 'Wardogs Cheats Reviews',
+  h2Forums: 'Wardogs Cheats Forum',
+  h2Faq: 'Wardogs Cheats FAQ',
   h2Access: 'Ready when you are',
 } as const
 

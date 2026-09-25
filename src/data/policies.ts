@@ -1,4 +1,4 @@
-Ôªøexport type PolicySection = {
+export type PolicySection = {
   heading: string
   body: string[]
 }
@@ -18,12 +18,12 @@ export const POLICY_PAGES: PolicyPageContent[] = [
   {
     slug: 'privacy',
     path: '/privacy',
-    title: 'Privacy Policy | Arena Breakout Infinite Cheats',
+    title: 'Privacy Policy | Wardogs Cheats',
     description:
-      'How abicheat.com handles order details, delivery email, support messages and basic site analytics for ABI cheats.',
+      'How buywardogscheat.com handles order details, delivery email, support messages and basic site analytics for Wardogs cheats.',
     h1: 'Privacy Policy',
     intro:
-      'This page explains what we collect when you browse abicheat.com, buy an Arena Breakout Infinite cheat license, or contact support ‚Äî and what we do not collect.',
+      'This page explains what we collect when you browse buywardogscheat.com, buy an Wardogs cheat license, or contact support ó and what we do not collect.',
     sections: [
       {
         heading: 'What we collect',
@@ -37,7 +37,7 @@ export const POLICY_PAGES: PolicyPageContent[] = [
         heading: 'How we use it',
         body: [
           'Order email is used for license delivery, renewals, and reply-to support.',
-          'Support details are used only to resolve your ticket ‚Äî loader errors, exclusions, status questions, or refund requests that fall under our refunds policy.',
+          'Support details are used only to resolve your ticket ó loader errors, exclusions, status questions, or refund requests that fall under our refunds policy.',
           'Aggregate traffic data helps us keep pages fast and catch abuse. It is not used to profile you for ads.',
         ],
       },
@@ -45,8 +45,8 @@ export const POLICY_PAGES: PolicyPageContent[] = [
         heading: 'Cookies and third parties',
         body: [
           'Essential cookies may be set by checkout or CDN providers so payment and delivery work.',
-          'Preview media is self-hosted on abicheat.com. Third-party embeds are not used for the main product preview.',
-          'Official Arena Breakout Infinite store links are external. Their privacy policies apply once you leave abicheat.com.',
+          'Preview media is self-hosted on buywardogscheat.com. Third-party embeds are not used for the main product preview.',
+          'Official Wardogs store links are external. Their privacy policies apply once you leave buywardogscheat.com.',
         ],
       },
       {
@@ -66,24 +66,24 @@ export const POLICY_PAGES: PolicyPageContent[] = [
   {
     slug: 'terms',
     path: '/terms',
-    title: 'Terms of Use | Arena Breakout Infinite Cheats',
+    title: 'Terms of Use | Wardogs Cheats',
     description:
-      'License rules, age limits, anti-cheat risk, and liability limits for ABI cheats on abicheat.com.',
+      'License rules, age limits, anti-cheat risk, and liability limits for Wardogs cheats on buywardogscheat.com.',
     h1: 'Terms of Use',
     intro:
-      'Buying or running Arena Breakout Infinite cheats means you accept these terms. A license covers personal use of Aimbot, ESP, wallhack, and loot tools for ABI on Windows PC ‚Äî nothing beyond that.',
+      'Buying or running Wardogs cheats means you accept these terms. A license covers personal use of Aimbot, ESP, wallhack, and vehicle radar and misc tools for Wardogs on Windows PC ó nothing beyond that.',
     sections: [
       {
         heading: 'Acceptance and what a license covers',
         body: [
-          'A key unlocks the current ABI cheat build for the duration you purchased (weekly or monthly plans where offered).',
+          'A key unlocks the current Wardogs cheat build for the duration you purchased (weekly or monthly plans where offered).',
           'Handing the package to someone else, reselling it, sharing accounts, or reverse-engineering the loader breaks these terms and can end your access without a refund.',
         ],
       },
       {
         heading: 'Risk and anti-cheat disclaimer',
         body: [
-          'Arena Breakout Infinite uses anti-cheat and publisher moderation. Using third-party software can violate the game‚Äôs terms and lead to account penalties.',
+          'Wardogs uses anti-cheat and publisher moderation. Using third-party software can violate the gameís terms and lead to account penalties.',
           'We push rebuilds after game updates when needed, but nothing here guarantees a build stays compatible forever or that an account stays safe.',
           'All risk sits with you. We accept no liability for bans, lost progress, or other damage tied to using the product. Check Active status before you load.',
         ],
@@ -98,8 +98,8 @@ export const POLICY_PAGES: PolicyPageContent[] = [
       {
         heading: 'Limitation of liability and disputes',
         body: [
-          'The product is provided ‚Äúas is.‚Äù If anything goes wrong, our total liability is capped at what you paid for the affected license in the previous 30 days.',
-          'Open a ticket on Support first. Governing law follows our payment processor‚Äôs jurisdiction unless local law requires otherwise.',
+          'The product is provided ìas is.î If anything goes wrong, our total liability is capped at what you paid for the affected license in the previous 30 days.',
+          'Open a ticket on Support first. Governing law follows our payment processorís jurisdiction unless local law requires otherwise.',
           'We may update these terms on this page. Continued use after a change means the new version applies.',
         ],
       },
@@ -113,12 +113,12 @@ export const POLICY_PAGES: PolicyPageContent[] = [
   {
     slug: 'refunds',
     path: '/refunds',
-    title: 'Refund Policy | Arena Breakout Infinite Cheats',
+    title: 'Refund Policy | Wardogs Cheats',
     description:
-      'When ABI cheat refunds apply for digital licenses, delivery failures, and Updating status windows on abicheat.com.',
+      'When Wardogs cheat refunds apply for digital licenses, delivery failures, and Updating status windows on buywardogscheat.com.',
     h1: 'Refund Policy',
     intro:
-      'Arena Breakout Infinite cheat licenses are digital goods. This page covers when we can refund, when we cannot, and how to open a request with your order ID.',
+      'Wardogs cheat licenses are digital goods. This page covers when we can refund, when we cannot, and how to open a request with your order ID.',
     sections: [
       {
         heading: 'When refunds are available',
@@ -132,7 +132,7 @@ export const POLICY_PAGES: PolicyPageContent[] = [
         heading: 'When refunds are not available',
         body: [
           'Change of mind after a working key has been delivered and activated.',
-          'Bans or gameplay outcomes ‚Äî status is never a permanent guarantee.',
+          'Bans or gameplay outcomes ó status is never a permanent guarantee.',
           'Issues caused by skipping antivirus exclusions, running conflicting overlays, or loading while status is Updating.',
           'Shared, resold, or otherwise invalidated keys under the Terms of Use.',
         ],

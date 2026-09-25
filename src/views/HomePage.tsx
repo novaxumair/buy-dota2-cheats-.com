@@ -1,4 +1,4 @@
-import { ArrowRight, Crosshair, Eye, MapPin, Package, Sparkles, Star } from 'lucide-react'
+import { ArrowRight, Crosshair, Eye, Radar, Truck, Sparkles, Star } from 'lucide-react'
 import { Navbar } from '../components/Navbar'
 import { VideoBg } from '../components/VideoBg'
 import { SiteFooter } from '../components/SiteFooter'
@@ -7,33 +7,34 @@ import { guidePath } from '../data/games'
 import { CheckoutLink } from '../components/CheckoutLink'
 import { HOME_FAQS } from '../data/faqs'
 import { HOME_HEADINGS, SITE_NAME } from '../data/site'
-import { BLOGS, blogPath } from '../data/blogs'
+import { blogPath } from '../data/blogs'
+import { FORUM_INDEX } from '../data/forum-index'
 import { REVIEWS } from '../data/reviews'
 
 const FEATURES = [
   {
     icon: Crosshair,
-    label: 'Aimbot & combat assist',
-    desc: 'FOV, smoothing, visible checks, and custom binds — tuned for ABI firefights when you choose to enable assist.',
+    label: 'Aimbot options',
+    desc: 'FOV, smooth, bone selection, visible check, and draw overlays — tuned for control-zone fights when you enable assist.',
     href: blogPath('aimbot-settings'),
   },
   {
     icon: Eye,
-    label: 'Player & AI ESP',
-    desc: 'Boxes, skeleton, names, weapon type, and health through walls — see PMCs and scavs before you push.',
+    label: 'Player ESP & wallhack',
+    desc: 'Box, skeleton, health, weapon, and team filters — see contacts through cover before you push.',
     href: blogPath('esp-wallhack-guide'),
   },
   {
-    icon: Package,
-    label: 'Loot & container ESP',
-    desc: 'Item and container wallhack with price filters — high-value pulls stand out on every map.',
-    href: blogPath('loot-container-esp'),
+    icon: Truck,
+    label: 'Vehicle ESP',
+    desc: 'Type, distance, and occupied/empty state — track convoys and avoid bait trucks on open roads.',
+    href: blogPath('vehicle-esp-first'),
   },
   {
-    icon: MapPin,
-    label: 'Extraction awareness',
-    desc: 'Corpse ESP, distance tags, and combat mode toggles for safer extracts after messy fights.',
-    href: blogPath('extraction-loot-guide'),
+    icon: Radar,
+    label: '2D radar',
+    desc: 'Player and vehicle markers with adjustable range — pair with sound for third-party timing.',
+    href: blogPath('radar-recommended-config'),
   },
 ] as const
 
@@ -41,7 +42,7 @@ const HOW_IT_WORKS = [
   {
     step: '01',
     title: 'Check loader status',
-    text: 'After Arena Breakout Infinite patches we label builds Active or Updating on abicheat.com — load only when Active matches your client.',
+    text: 'After Wardogs patches we label builds Active or Updating on buywardogscheat.com — load only when Active matches your client.',
   },
   {
     step: '02',
@@ -51,13 +52,13 @@ const HOW_IT_WORKS = [
   {
     step: '03',
     title: 'Configure ESP-first',
-    text: 'Enable player and loot ESP, save a config profile, then add Aimbot or combat mode only if you want assist in raids.',
+    text: 'Enable player ESP and 2D radar, save a config profile, then add aimbot only if you want combat assist in control-zone fights.',
   },
 ] as const
 
 export function HomePage() {
   const featuredReviews = REVIEWS.slice(0, 4)
-  const forumHighlights = BLOGS.slice(0, 4)
+  const forumHighlights = FORUM_INDEX.slice(0, 4)
 
   return (
     <div className="min-h-screen overflow-x-hidden text-white">
@@ -65,25 +66,26 @@ export function HomePage() {
         <VideoBg />
 
         <div className="relative z-20 flex min-h-screen flex-col">
-          <Navbar onVideo />
+          <Navbar onVideo currentPath="/" />
 
           <main className="page-x mt-auto pb-6 sm:pb-8 lg:pb-10">
             <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
               <div className="relative z-30 max-w-xl lg:max-w-2xl">
                 <p className="mb-2.5 text-[11px] font-medium uppercase tracking-[0.18em] text-z-soft/80 sm:mb-3 sm:text-xs sm:tracking-[0.2em]">
-                  Arena Breakout Infinite · PC · Worldwide
+                  Wardogs · PC · Steam · Control zone
                 </p>
                 <h1 className="text-[1.75rem] font-semibold leading-[1.12] tracking-tight text-white sm:text-4xl lg:text-[2.65rem] lg:leading-[1.1]">
                   {HOME_HEADINGS.h1}
                 </h1>
                 <p className="mt-3 max-w-lg text-sm leading-relaxed text-white/70 sm:mt-3.5 sm:text-[0.95rem]">
-                  PC cheat tools for ABI raids — ESP, loot filters, and optional aimbot on Windows
-                  10/11. Guides, forums, and loader status before you commit.
+                  Tactical PC overlays for Wardogs — player ESP, vehicle radar, optional aimbot, and
+                  wallhack-style visuals on Windows 10/11. Guides, forums, and loader status before
+                  you commit.
                 </p>
 
                 <div className="relative z-50 mt-5 flex flex-col gap-2.5 sm:flex-row sm:items-center">
                   <a
-                    href={guidePath('abi')}
+                    href={guidePath('wardogs')}
                     className="cta-gradient inline-flex items-center justify-center rounded-full px-6 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
                   >
                     Explore features
@@ -104,21 +106,21 @@ export function HomePage() {
                     <span className="text-sm font-semibold text-white">Patch-synced loader</span>
                   </div>
                   <p className="mt-2.5 text-xs leading-relaxed text-white/70 sm:mt-3 sm:text-sm">
-                    Active or Updating labels after ABI updates — no mystery builds after maintenance
-                    windows.
+                    Active or Updating labels after Wardogs updates — no mystery builds after patch
+                    days.
                   </p>
                 </div>
 
                 <div className="glass flex h-full min-h-[140px] flex-col rounded-2xl p-4 sm:min-h-[160px] sm:p-5">
                   <div className="mb-2.5 flex items-center gap-2 sm:mb-3">
                     <div className="flex h-5 w-5 items-center justify-center rounded bg-z-accent/30 text-[10px] font-bold text-z-soft sm:h-6 sm:w-6 sm:text-xs">
-                      ABI
+                      WD
                     </div>
                     <span className="text-sm font-semibold text-white">From the forums</span>
                   </div>
                   <p className="flex-1 text-xs leading-relaxed text-white/80 sm:text-sm">
-                    “Loot ESP with min price 15k cleaned my screen — finally see GPUs without tunnel
-                    vision on grey loot.”
+                    “Vehicle occupied flag stopped us pushing a bait truck — radar + ESP combo actually
+                    saved the control-zone push.”
                   </p>
                   <div className="mt-3 flex items-center gap-2.5 sm:mt-4 sm:gap-3">
                     <div className="flex h-8 w-8 items-center justify-center rounded-full bg-z-accent/25 text-xs font-semibold text-z-ink sm:h-9 sm:w-9 sm:text-sm">
@@ -126,7 +128,7 @@ export function HomePage() {
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-white">RouteRunner</p>
-                      <p className="text-xs text-white/60">ABI farmer</p>
+                      <p className="text-xs text-white/60">Control zone trios</p>
                     </div>
                   </div>
                 </div>
@@ -145,8 +147,8 @@ export function HomePage() {
               {HOME_HEADINGS.h2Features}
             </h2>
             <p className="mb-8 max-w-2xl text-sm leading-relaxed text-white/55 sm:text-base">
-              Aimbot options, player ESP, loot overlays, and config tools — forum threads cover
-              tuning and setup.
+              Aimbot options, player ESP, vehicle radar, and config tools — forum threads cover tuning
+              and setup for wardogs cheats without cluttering your HUD.
             </p>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {FEATURES.map(({ icon: Icon, label, desc, href }) => (
@@ -176,8 +178,8 @@ export function HomePage() {
               {HOME_HEADINGS.h2HowItWorks}
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/55 sm:text-base">
-              ABI cheats stay maintainable when you treat loader status and configs like part of the
-              raid kit — same as armor repairs after a patch.
+              Wardogs cheats stay maintainable when you treat loader status and configs like part of
+              your loadout — same habit as checking patch notes before queue.
             </p>
             <ol className="mt-10 grid gap-4 lg:grid-cols-3">
               {HOW_IT_WORKS.map(({ step, title, text }) => (
@@ -221,8 +223,8 @@ export function HomePage() {
                   {HOME_HEADINGS.h2Reviews}
                 </h2>
                 <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/55 sm:text-base">
-                  Feedback from ABI players on ESP accuracy, loot filters, and loader updates — no
-                  external review links.
+                  Feedback from Wardogs players on ESP clarity, aimbot tuning, vehicle radar, and
+                  loader updates — no external review links.
                 </p>
               </div>
               <a
@@ -263,8 +265,8 @@ export function HomePage() {
                   {HOME_HEADINGS.h2Forums}
                 </h2>
                 <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/55 sm:text-base">
-                  Aimbot tuning, ESP defaults, loot routes, and loader fixes — browse threads or sign
-                  in on the forums tab for full replies.
+                  Aimbot tuning, ESP defaults, vehicle radar, and loader fixes — browse threads for
+                  full player replies on every guide.
                 </p>
               </div>
               <a
@@ -333,7 +335,7 @@ export function HomePage() {
               When loader status is Active and your config is saved, continue to checkout for{' '}
               {SITE_NAME} on PC — or read the{' '}
               <a
-                href="/abi-cheats"
+                href="/wardogs-cheats"
                 className="text-white/80 underline-offset-2 hover:underline"
               >
                 full feature list

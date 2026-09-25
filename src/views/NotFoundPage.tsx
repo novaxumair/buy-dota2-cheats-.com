@@ -16,21 +16,18 @@ export function NotFoundPage() {
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/45">
               Error 404
             </p>
-            <h1
-              className="mt-4 text-6xl font-normal tracking-tight text-white sm:text-7xl"
-              style={{ fontFamily: "'Silkscreen', cursive" }}
-            >
+            <h1 className="mt-4 text-6xl font-bold tracking-tight text-white sm:text-7xl">
               404
             </h1>
             <h2 className="mt-4 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
               Page not found
             </h2>
             <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-white/55 sm:text-base">
-              That route does not exist. Search Arena Breakout Infinite cheat guides or head back home.
+              That route does not exist. Search Wardogs cheat guides or head back home.
             </p>
 
             <div className="relative z-50 mx-auto mt-8 flex max-w-xl justify-center text-left">
-              <HeroSearch placeholder="Search ABI cheat guides…" className="w-full" />
+              <HeroSearch placeholder="Search Wardogs cheat guides…" className="w-full" />
             </div>
 
             <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">

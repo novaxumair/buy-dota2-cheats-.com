@@ -1,4 +1,4 @@
-Ôªø/**
+/**
  * Auto-generate 1200x630 JPEG Open Graph images for every indexed URL.
  * Google SERP / social crawlers fetch these for right-side thumbnails.
  * Never overwrites battlelog-sourced /media assets.
@@ -34,16 +34,16 @@ async function exists(path) {
 }
 
 const requiredMedia = [
-  join(mediaDir, 'abi-hero-full.webp'),
-  join(mediaDir, 'abi-cover.webp'),
-  join(mediaDir, 'abi-menu.webp'),
-  join(mediaDir, 'abi-video-thumb.jpg'),
-  join(mediaDir, 'abi-screenshot-1.webp'),
+  join(mediaDir, 'wd-hero-full.webp'),
+  join(mediaDir, 'wd-cover.webp'),
+  join(mediaDir, 'wd-menu.webp'),
+  join(mediaDir, 'wd-video-thumb.jpg'),
+  join(mediaDir, 'wd-screenshot-1.webp'),
 ]
 
 for (const path of requiredMedia) {
   if (!(await exists(path))) {
-    throw new Error(`Missing ABI media asset (run scripts/prepare-abi-media.mjs): ${path}`)
+    throw new Error(`Missing Wardogs media asset (run scripts/prepare-wardogs-media.mjs): ${path}`)
   }
 }
 
@@ -71,7 +71,7 @@ function overlaySvg(width, height, eyebrow, title, subtitle) {
         )
         .join('\n')}
       <text x="64" y="480" fill="#c9bdd2" font-size="26" font-family="Arial, sans-serif">${escapeXml(subtitle)}</text>
-      <text x="64" y="560" fill="#9299a3" font-size="20" font-family="Arial, sans-serif">abicheat.com</text>
+      <text x="64" y="560" fill="#9299a3" font-size="20" font-family="Arial, sans-serif">buywardogscheat.com</text>
     </svg>
   `)
 }
@@ -90,11 +90,29 @@ async function writeOgJpeg(outPath, sourcePath, eyebrow, title, subtitle) {
     .toFile(outPath)
 }
 
+function loadBlogsFromSrc(src) {
+  const jsonMatch = src.match(
+    /export const BLOGS: BlogPost\[\] = (\[[\s\S]*?\n\])\s*\n\s*export function getBlog/,
+  )
+  if (jsonMatch) return JSON.parse(jsonMatch[1])
+  return null
+}
+
 function loadForumSlugs(src) {
+  const blogs = loadBlogsFromSrc(src)
+  if (blogs) return blogs.map((b) => b.slug)
   return [...src.matchAll(/slug:\s*['"]([^'"]+)['"]/g)].map((m) => m[1])
 }
 
 function loadForumMeta(src) {
+  const blogs = loadBlogsFromSrc(src)
+  if (blogs) {
+    return blogs.map((b) => ({
+      slug: b.slug,
+      title: b.metaTitle,
+      description: b.metaDescription,
+    }))
+  }
   const pattern =
     /slug:\s*['"]([^'"]+)['"],[\s\S]*?metaTitle:\s*['"]([^'"]+)['"],[\s\S]*?metaDescription:\s*['"]([^'"]+)['"]/g
   return [...src.matchAll(pattern)].map((m) => ({
@@ -104,53 +122,53 @@ function loadForumMeta(src) {
   }))
 }
 
-const heroFull = join(mediaDir, 'abi-hero-full.webp')
-const coverArt = join(mediaDir, 'abi-cover.webp')
-const espShot = join(mediaDir, 'abi-screenshot-5.webp')
-const menuArt = join(mediaDir, 'abi-menu.webp')
-const videoThumb = join(mediaDir, 'abi-video-thumb.jpg')
+const heroFull = join(mediaDir, 'wd-hero-full.webp')
+const coverArt = join(mediaDir, 'wd-cover.webp')
+const espShot = join(mediaDir, 'wd-screenshot-5.webp')
+const menuArt = join(mediaDir, 'wd-menu.webp')
+const videoThumb = join(mediaDir, 'wd-video-thumb.jpg')
 
 const staticOg = [
   {
     file: 'home.jpg',
     source: heroFull,
-    eyebrow: 'ABI CHEATS',
-    title: 'Arena Breakout Infinite ESP & Aimbot',
-    subtitle: 'ABI cheats from $35 ¬∑ patch-synced loader',
+    eyebrow: 'Wardogs Cheats',
+    title: 'Wardogs ESP & Aimbot',
+    subtitle: 'Wardogs Cheats from $35 ù patch-synced loader',
   },
   {
-    file: 'abi-cheats.jpg',
+    file: 'wardogs-cheats.jpg',
     source: coverArt,
     eyebrow: 'PRODUCT DETAILS',
-    title: 'ABI Aimbot, ESP & Wallhack',
+    title: 'Wardogs aimbot, ESP & Wallhack',
     subtitle: 'Features, status and price',
   },
   {
     file: 'forums.jpg',
     source: menuArt,
     eyebrow: 'GUIDES',
-    title: 'Arena Breakout Infinite Cheat Forums',
+    title: 'Wardogs Cheat Forums',
     subtitle: 'Aimbot, ESP, loader and patch guides',
   },
   {
     file: 'reviews.jpg',
     source: espShot,
     eyebrow: 'REVIEWS',
-    title: 'ABI Cheat Buyer Reviews',
+    title: 'Wardogs cheat Buyer Reviews',
     subtitle: 'Real ESP and Aimbot feedback',
   },
   {
     file: 'faq.jpg',
     source: menuArt,
     eyebrow: 'FAQ',
-    title: 'Arena Breakout Infinite Cheats FAQ',
+    title: 'Wardogs Cheats FAQ',
     subtitle: 'Price, features and setup answers',
   },
   {
     file: 'support.jpg',
     source: videoThumb,
     eyebrow: 'SUPPORT',
-    title: 'ABI Cheat Support',
+    title: 'Wardogs cheat Support',
     subtitle: 'Loader, delivery and Windows help',
   },
   {
@@ -158,14 +176,14 @@ const staticOg = [
     source: heroFull,
     eyebrow: 'POLICY',
     title: 'Privacy Policy',
-    subtitle: 'How abicheat.com handles order data',
+    subtitle: 'How buywardogscheat.com handles order data',
   },
   {
     file: 'terms.jpg',
     source: heroFull,
     eyebrow: 'POLICY',
     title: 'Terms of Use',
-    subtitle: 'License rules for ABI cheats',
+    subtitle: 'License rules for Wardogs Cheats',
   },
   {
     file: 'refunds.jpg',
@@ -187,12 +205,12 @@ for (const item of staticOg) {
 const blogsSrc = await readFile(blogsPath, 'utf8')
 const forums = loadForumMeta(blogsSrc)
 if (!forums.length) {
-  // Fallback if regex misses ‚Äî at least create from slugs
+  // Fallback if regex misses ? at least create from slugs
   for (const slug of loadForumSlugs(blogsSrc)) {
     forums.push({
       slug,
-      title: `ABI Cheats ${slug}`,
-      description: 'Arena Breakout Infinite cheat guide on abicheat.com',
+      title: `Wardogs Cheats ${slug}`,
+      description: 'Wardogs cheat guide on buywardogscheat.com',
     })
   }
 }
@@ -209,9 +227,9 @@ for (const forum of forums) {
   await writeOgJpeg(
     out,
     source,
-    'ABI GUIDE',
+    'Wardogs guide',
     forum.title.replace(/\s*\|\s*.*$/, '').slice(0, 48),
-    'Arena Breakout Infinite cheats ¬∑ abicheat.com',
+    'Wardogs cheats ù buywardogscheat.com',
   )
   created.push(file)
 }
@@ -235,9 +253,9 @@ function fillerSvg(width, height, eyebrow, title, subtitle) {
 }
 
 for (const [name, eyebrow, title, subtitle] of [
-  ['abi-tactical-art.jpg', 'ARENA BREAKOUT INFINITE', 'ABI Cheats', 'Aimbot ¬∑ ESP ¬∑ Loot ESP'],
-  ['abi-control-art.jpg', 'ABI ¬∑ WINDOWS PC', 'ESP & Wallhack', 'Built for ABI raids'],
-  ['abi-home-art.jpg', 'abicheat.com', 'ABI Cheats', 'Aimbot, ESP, wallhack and loot overlays'],
+  ['wd-tactical-art.jpg', 'WARDOGS', 'Wardogs Cheats', 'Aimbot ù ESP ù Vehicle radar'],
+  ['wd-control-art.jpg', 'Wardogs ù WINDOWS PC', 'ESP & Wallhack', 'Built for control-zone fights'],
+  ['wd-home-art.jpg', 'buywardogscheat.com', 'Wardogs Cheats', 'Aimbot, ESP, wallhack and radar'],
 ]) {
   const path = join(mediaDir, name)
   if (
@@ -251,4 +269,4 @@ for (const [name, eyebrow, title, subtitle] of [
   }
 }
 
-console.log(`SEO OG images ready (${created.length}): ${created.slice(0, 8).join(', ')}‚Ä¶`)
+console.log(`SEO OG images ready (${created.length}): ${created.slice(0, 8).join(', ')}?`)

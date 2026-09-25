@@ -17,12 +17,12 @@ import { FaqSection } from '../components/FaqSection'
 import { CheckoutLink } from '../components/CheckoutLink'
 import { NotFoundPage } from './NotFoundPage'
 import { blogPath } from '../data/blogs'
-import { ABI_HOME_VIDEO } from '../data/media'
+import { WD_HOME_VIDEO } from '../data/media'
 
 function ProductPurchaseCard({ game }: { game: Game }) {
   return (
     <div className="overflow-hidden rounded-2xl border border-z-soft/15 bg-[rgba(20,16,31,0.95)] sm:rounded-3xl">
-      <CheckoutLink className="block" aria-label="Buy Arena Breakout Infinite cheats">
+      <CheckoutLink className="block" aria-label="Buy Wardogs cheats">
         <GameCover
           slug={game.slug}
           name={game.name}
@@ -33,9 +33,9 @@ function ProductPurchaseCard({ game }: { game: Game }) {
       </CheckoutLink>
       <div className="p-5 sm:p-6">
         <div className="flex items-center gap-3">
-          <div className="icon-well shrink-0 text-sm font-bold">ABI</div>
+          <div className="icon-well shrink-0 text-sm font-bold">WD</div>
           <div className="min-w-0">
-            <p className="truncate text-sm font-semibold text-white">Arena Breakout Infinite</p>
+            <p className="truncate text-sm font-semibold text-white">Wardogs</p>
             <p className="text-xs text-white/45">
               {game.status} · From ${PRODUCT_PRICE_USD}
             </p>
@@ -43,7 +43,7 @@ function ProductPurchaseCard({ game }: { game: Game }) {
         </div>
 
         <CheckoutLink className="cta-gradient mt-5 block w-full rounded-full py-3.5 text-center text-sm font-semibold text-white transition-opacity hover:opacity-90">
-          Buy ABI cheats
+          Buy Wardogs cheats
         </CheckoutLink>
         <p className="mt-3 text-center text-[11px] text-white/40">
           Digital delivery · Confirm Active status first
@@ -77,7 +77,7 @@ export function GameProductPage({ guideSlug }: GameProductPageProps) {
   return (
     <div className="content-surface min-h-screen overflow-x-hidden text-white">
       <div className="content-surface-nav">
-        <Navbar />
+        <Navbar currentPath="/wardogs-cheats" />
       </div>
 
       <main>
@@ -97,16 +97,16 @@ export function GameProductPage({ guideSlug }: GameProductPageProps) {
             <div className="mt-6 text-center lg:mt-8">
               <span className="inline-flex items-center gap-1.5 text-xs text-z-soft">
                 <Shield className="h-3.5 w-3.5 shrink-0" strokeWidth={1.75} />
-                {game.status} · Arena Breakout Infinite · Windows PC · {SITE_HOST}
+                {game.status} · Wardogs · Windows PC · {SITE_HOST}
               </span>
 
               <h1 className="mx-auto mt-3 max-w-3xl text-2xl font-semibold leading-tight tracking-tight text-white sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
-                Arena Breakout Infinite Cheats
+                Wardogs Cheats
               </h1>
               <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-white/55 sm:mt-4 sm:text-base">
-                Full ABI cheat menu — Aimbot options, player and AI ESP, loot and container
-                wallhack, corpse overlays, and config tools. Confirm Active loader status, then
-                checkout for PC.
+                Full Wardogs cheat menu — aimbot options, player ESP, vehicle ESP, 2D radar, and
+                misc weapon helpers. Buy wardogs cheats or get wardogs esp access when Active —
+                confirm loader status, then checkout for PC.
               </p>
             </div>
 
@@ -162,8 +162,8 @@ export function GameProductPage({ guideSlug }: GameProductPageProps) {
                       Platforms & patches
                     </h2>
                     <p className="mt-3">
-                      Runs on Arena Breakout Infinite via Steam, Epic, Microsoft Store, and the
-                      official launcher. After an ABI patch, status may show Updating until tested —{' '}
+                      Runs on Wardogs via Steam when loader status is Active. After a Wardogs patch,
+                      status may show Updating until tested —{' '}
                       {SITE_NAME} publishes Active labels so you are not loading a mismatched build.
                       Status first, raid second.
                     </p>
@@ -213,7 +213,7 @@ export function GameProductPage({ guideSlug }: GameProductPageProps) {
               Gameplay preview
             </h2>
             <p className="mx-auto mt-2 max-w-xl text-sm text-white/45">
-              {ABI_HOME_VIDEO.caption} Hover to slow the scroll — click any shot to zoom in.
+              {WD_HOME_VIDEO.caption} Hover to slow the scroll — click any shot to zoom in.
             </p>
           </div>
           <div className="relative left-1/2 mt-6 w-screen max-w-[100vw] -translate-x-1/2 sm:mt-8">
@@ -222,13 +222,13 @@ export function GameProductPage({ guideSlug }: GameProductPageProps) {
         </section>
 
         <FaqSection
-          heading="Arena Breakout Infinite cheats FAQ"
+          heading="Wardogs cheats FAQ"
           intro="Status, features, platforms, delivery, and load questions before checkout."
           items={PRODUCT_PAGE_FAQS}
         />
       </main>
 
-      <SiteFooter currentPath="/abi-cheats" />
+      <SiteFooter currentPath="/wardogs-cheats" />
     </div>
   )
 }

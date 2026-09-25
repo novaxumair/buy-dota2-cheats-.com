@@ -1,9 +1,9 @@
-﻿import { existsSync, readFileSync, readdirSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { join, relative } from 'node:path'
 
 const root = join(import.meta.dirname, '..')
 const dist = join(root, 'dist')
-const site = 'https://abicheat.com'
+const site = 'https://buywardogscheat.com'
 const failures = []
 
 function fail(message) {
@@ -73,24 +73,35 @@ for (const file of files) {
 }
 
 const home = readFileSync(join(dist, 'index.html'), 'utf8')
-const product = readFileSync(join(dist, 'abi-cheats', 'index.html'), 'utf8')
+const product = readFileSync(join(dist, 'wardogs-cheats', 'index.html'), 'utf8')
 const reviews = readFileSync(join(dist, 'reviews', 'index.html'), 'utf8')
 const faq = readFileSync(join(dist, 'faq', 'index.html'), 'utf8')
 const support = readFileSync(join(dist, 'support', 'index.html'), 'utf8')
 const forums = readFileSync(join(dist, 'forums', 'index.html'), 'utf8')
+const siteTs = readFileSync(join(root, 'src', 'data', 'site.ts'), 'utf8')
 
-if (
-  !home.includes(
-    '<title>Arena Breakout Infinite Cheats | Features, Tools &amp; Updates</title>',
-  )
-) {
+if (!home.includes('<title>Wardogs Cheats | Features, Tools &amp; Updates</title>')) {
   fail('Homepage does not own the exact title')
 }
-const siteTs = readFileSync(join(root, 'src', 'data', 'site.ts'), 'utf8')
+if (!product.includes('<title>Wardogs Cheats | Features &amp; Setup</title>')) {
+  fail('Product page title must match SEO.product')
+}
+if (!forums.includes('<title>Wardogs Cheats Forum | Community Discussions</title>')) {
+  fail('Forums index title must match SEO.forums')
+}
+if (!siteTs.includes('Wardogs gameplay tools')) {
+  fail('SITE_ABOUT must include Wardogs gameplay tools (6-term cap)')
+}
+if (!siteTs.includes('wardogscheats.org')) {
+  fail('ORGANIZATION_ALTERNATE_NAMES must include wardogscheats.org')
+}
+if (/name="keywords"/.test(home + product + forums)) {
+  fail('Pages must not use meta keywords')
+}
 const purposeMatch = siteTs.match(/export const SITE_PURPOSE =\s*\n\s*'([^']+)'/)
 const sitePurpose = purposeMatch?.[1] ?? ''
 if (!sitePurpose.includes('does not sell cheats for other games')) {
-  fail('SITE_PURPOSE must state single-game ABI focus')
+  fail('SITE_PURPOSE must state single-game Wardogs focus')
 }
 if ((siteTs.match(/SITE_ABOUT = \[[\s\S]*?\] as const/)?.[0].match(/'/g) || []).length !== 12) {
   fail('SITE_ABOUT must contain exactly 6 terms')
@@ -113,7 +124,7 @@ for (const [name, html] of [
   ['product', product],
   ['reviews', reviews],
 ]) {
-  if (!html.includes('"@id":"https://abicheat.com/#product"')) {
+  if (!html.includes('"@id":"https://buywardogscheat.com/#product"')) {
     fail(`${name}: missing shared Product ID`)
   }
 }
@@ -154,8 +165,8 @@ for (const file of files) {
   const twImage = html.match(/<meta name="twitter:image" content="([^"]+)"/)?.[1]
   const robotsMeta = html.match(/<meta name="robots" content="([^"]+)"/)?.[1]
 
-  if (!ogImage?.startsWith('https://abicheat.com/og/') || !ogImage.endsWith('.jpg')) {
-    fail(`${page}: og:image must be https://abicheat.com/og/*.jpg for SERP thumbnails`)
+  if (!ogImage?.startsWith('https://buywardogscheat.com/og/') || !ogImage.endsWith('.jpg')) {
+    fail(`${page}: og:image must be https://buywardogscheat.com/og/*.jpg for SERP thumbnails`)
   }
   if (!twImage || twImage !== ogImage) {
     fail(`${page}: twitter:image must match og:image`)
@@ -180,8 +191,8 @@ for (const [name, html] of [
   ['product', product],
   ['forums', forums],
 ]) {
-  if (!html.includes('/media/abi-') && !html.includes('/videos/hero.webm')) {
-    fail(`${name}: missing visible ABI media in page body`)
+  if (!html.includes('/media/wd-') && !html.includes('/videos/hero.webm')) {
+    fail(`${name}: missing visible Wardogs media in page body`)
   }
 }
 for (const [name, html, og] of [
@@ -193,7 +204,7 @@ for (const [name, html, og] of [
     fail(`${name}: missing Open Graph image ${og}`)
   }
 }
-if (!product.includes('preview-marquee-track') || !product.includes('/media/abi-screenshot-1.webp')) {
+if (!product.includes('preview-marquee-track') || !product.includes('/media/wd-screenshot-1.webp')) {
   fail('Product page is missing the gameplay preview image carousel')
 }
 if (home.includes('iframe.mediadelivery.net') || product.includes('iframe.mediadelivery.net')) {
@@ -210,11 +221,11 @@ if (
 const sitemap = readFileSync(join(dist, 'sitemap.xml'), 'utf8')
 if (sitemap.includes('<sitemapindex')) fail('sitemap.xml must be a single urlset, not an index')
 if (/forums\/(instructions|how-to-load)/.test(sitemap)) fail('Retired forum remains in sitemap.xml')
-if (!sitemap.includes('https://abicheat.com/')) {
-  fail('sitemap.xml must use https://abicheat.com URLs')
+if (!sitemap.includes('https://buywardogscheat.com/')) {
+  fail('sitemap.xml must use https://buywardogscheat.com URLs')
 }
 if (!sitemap.includes('/videos/hero.webm')) {
-  fail('sitemap.xml missing ABI preview video entry')
+  fail('sitemap.xml missing Wardogs preview video entry')
 }
 if (!sitemap.includes('xmlns:video=')) {
   fail('sitemap.xml missing video namespace for Google video indexing')
@@ -233,16 +244,16 @@ const uniqueSitemapUrls = new Set(pageLocs)
 const imageLocs = [...sitemap.matchAll(/<image:loc>([^<]+)<\/image:loc>/g)].map((match) => match[1])
 const requiredImages = [
   '/og/home.jpg',
-  '/og/abi-cheats.jpg',
+  '/og/wardogs-cheats.jpg',
   '/og/forums.jpg',
   '/og/reviews.jpg',
   '/og/faq.jpg',
   '/og/support.jpg',
-  '/media/abi-hero-full.webp',
-  '/media/abi-cover.webp',
-  '/media/abi-screenshot-5.webp',
-  '/media/abi-menu.webp',
-  '/media/abi-video-thumb.jpg',
+  '/media/wd-hero-full.webp',
+  '/media/wd-cover.webp',
+  '/media/wd-screenshot-5.webp',
+  '/media/wd-menu.webp',
+  '/media/wd-video-thumb.jpg',
 ]
 
 for (const url of expectedUrls) {
@@ -293,7 +304,7 @@ if (!existsSync(join(dist, 'robots.txt'))) fail('dist/robots.txt is missing')
 if (!existsSync(join(dist, '_routes.json'))) fail('dist/_routes.json is missing')
 
 const robots = readFileSync(join(dist, 'robots.txt'), 'utf8')
-if (!robots.includes('Sitemap: https://abicheat.com/sitemap.xml')) {
+if (!robots.includes('Sitemap: https://buywardogscheat.com/sitemap.xml')) {
   fail('robots.txt must point at the canonical HTTPS sitemap')
 }
 if (!robots.includes('Allow: /sitemap.xml')) {
@@ -313,22 +324,25 @@ if (!routes.exclude?.includes('/sitemap.xml') || !routes.exclude?.includes('/rob
 
 for (const asset of [
   'public/og/home.jpg',
-  'public/og/abi-cheats.jpg',
+  'public/og/wardogs-cheats.jpg',
   'public/og/forums.jpg',
   'public/og/reviews.jpg',
   'public/og/faq.jpg',
   'public/og/support.jpg',
-  'public/media/abi-hero-full.webp',
-  'public/media/abi-cover.webp',
-  'public/media/abi-menu.webp',
-  'public/media/abi-video-thumb.jpg',
-  'public/media/abi-screenshot-1.webp',
+  'public/media/wd-hero-full.webp',
+  'public/media/wd-cover.webp',
+  'public/media/wd-menu.webp',
+  'public/media/wd-video-thumb.jpg',
+  'public/media/wd-screenshot-1.webp',
   'public/videos/hero.webm',
   'public/sitemap.css',
   'public/_routes.json',
   'functions/_middleware.js',
 ]) {
   if (!existsSync(join(root, asset))) fail(`Missing first-party asset: ${asset}`)
+}
+if (existsSync(join(root, 'public/videos/dayz-preview.mp4'))) {
+  fail('Remove unused legacy asset: public/videos/dayz-preview.mp4')
 }
 
 const redirects = readFileSync(join(root, 'public', '_redirects'), 'utf8')
@@ -338,11 +352,14 @@ if (!redirects.includes('/sitemap-pages.xml')) {
 if (!redirects.includes('/sitemap-index.xml')) {
   fail('_redirects missing sitemap-index.xml -> /sitemap.xml redirect')
 }
-if (!redirects.includes('/arena-breakout-infinite-cheats')) {
-  fail('_redirects must map ABI keyword alias to /abi-cheats')
+if (!redirects.includes('/buy-wardogs-cheats')) {
+  fail('_redirects must map buy-wardogs-cheats keyword alias')
 }
-if (!redirects.includes('/dayz-cheats')) {
-  fail('_redirects must map legacy /dayz-cheats to /abi-cheats')
+if (!redirects.includes('/abi-cheats')) {
+  fail('_redirects must map legacy /abi-cheats to /wardogs-cheats')
+}
+if (/^\/wardogs-cheats\s+\/wardogs-cheats\s/m.test(redirects)) {
+  fail('_redirects must not 301 /wardogs-cheats to itself (redirect loop)')
 }
 
 const worker = readFileSync(join(root, 'workers', 'site.js'), 'utf8')
@@ -350,16 +367,16 @@ if (!worker.includes("startsWith('www.')") && !worker.includes('startsWith("www.
   fail('workers/site.js must detect www. hostnames for apex redirect')
 }
 if (!worker.includes('301')) {
-  fail('workers/site.js must 301 www → apex for a single canonical host')
+  fail('workers/site.js must 301 www ? apex for a single canonical host')
 }
 
 const middleware = readFileSync(join(root, 'functions', '_middleware.js'), 'utf8')
 if (!middleware.includes("startsWith('www.')") && !middleware.includes('startsWith("www.")')) {
-  fail('functions/_middleware.js must 301 www → apex')
+  fail('functions/_middleware.js must 301 www ? apex')
 }
 
 if (site.includes('://www.')) {
-  fail('Canonical SITE_URL must be apex (no www) — www redirects to apex')
+  fail('Canonical SITE_URL must be apex (no www)  www redirects to apex')
 }
 
 for (const file of files) {

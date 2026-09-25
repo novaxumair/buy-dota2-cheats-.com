@@ -1,5 +1,5 @@
 ﻿export const SUPPORT_INTRO =
-  'Support for Arena Breakout Infinite cheat buyers on abicheat.com — loader setup, Active status, menu config and delivery help after purchase.'
+  'Support for Wardogs cheat buyers on buywardogscheat.com — loader setup, Active status, menu config and delivery help after purchase.'
 
 export const SUPPORT_HIGHLIGHTS = [
   {
@@ -8,7 +8,7 @@ export const SUPPORT_HIGHLIGHTS = [
   },
   {
     title: 'Patch windows',
-    text: 'Game patches can invalidate yesterday’s build. Status honesty matters more than rushing a raid.',
+    text: 'Game patches can invalidate yesterday’s build. Status honesty matters more than rushing a queue.',
   },
   {
     title: 'Delivery',
@@ -19,11 +19,11 @@ export const SUPPORT_HIGHLIGHTS = [
 export const SUPPORT_FAQ = [
   {
     q: 'What do you support?',
-    a: 'Supported: Arena Breakout Infinite on Windows PC (Steam, Epic, Microsoft Store, official launcher), loader and menu help for paid licenses.',
+    a: 'Supported: Wardogs on Windows PC (Steam), loader and menu help for paid licenses.',
   },
   {
     q: 'How do I contact support?',
-    a: 'Open your order on abicheat.com and use the checkout support channel tied to your purchase. Include a status screenshot (Active / Updating) and whether you need load, menu or delivery help.',
+    a: 'Open your order on buywardogscheat.com and use the checkout support channel tied to your purchase. Include a status screenshot (Active / Updating) and whether you need load, menu or delivery help.',
   },
   {
     q: 'Loader fails after exclusions',
@@ -31,11 +31,11 @@ export const SUPPORT_FAQ = [
   },
   {
     q: 'Which clients are supported?',
-    a: 'Steam, Epic Games Store, Microsoft Store, and the official Arena Breakout launcher when status is Active.',
+    a: 'Steam when loader status is Active.',
   },
   {
     q: 'Delivery safety',
-    a: 'Delivery is digital after checkout on abicheat.com. Use only that loader link. Third-party mirrors are unsupported and unsafe.',
+    a: 'Delivery is digital after checkout on buywardogscheat.com. Use only that loader link. Third-party mirrors are unsupported and unsafe.',
   },
 ] as const
 

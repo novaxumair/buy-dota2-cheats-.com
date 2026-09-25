@@ -1,10 +1,11 @@
 import { useMemo, useState } from 'react'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Lock } from 'lucide-react'
 import { Navbar } from '../components/Navbar'
 import { SiteFooter } from '../components/SiteFooter'
 import { VideoBg } from '../components/VideoBg'
 import { HeroSearch } from '../components/HeroSearch'
-import { BLOGS, blogPath } from '../data/blogs'
+import { blogPath } from '../data/blogs'
+import { FORUM_INDEX } from '../data/forum-index'
 import { guidePath } from '../data/games'
 import { SITE_HOST } from '../data/site'
 
@@ -21,9 +22,9 @@ export function ForumsPage({ initialQuery = '' }: ForumsPageProps) {
 
   const filtered = useMemo(() => {
     const term = q.trim().toLowerCase()
-    if (!term) return BLOGS
-    return BLOGS.filter((b) => {
-      const hay = `${b.title} ${b.excerpt} ${b.tag} ${b.searchTerms}`.toLowerCase()
+    if (!term) return FORUM_INDEX
+    return FORUM_INDEX.filter((b) => {
+      const hay = `${b.title} ${b.excerpt} ${b.tag}`.toLowerCase()
       return hay.includes(term)
     })
   }, [q])
@@ -33,18 +34,18 @@ export function ForumsPage({ initialQuery = '' }: ForumsPageProps) {
       <section className="relative flex min-h-[60vh] flex-col overflow-x-clip sm:min-h-[65vh]">
         <VideoBg />
         <div className="relative z-20 flex min-h-[60vh] flex-col sm:min-h-[65vh]">
-          <Navbar onVideo />
+          <Navbar onVideo currentPath="/forums" />
           <div className="page-x mt-auto pb-10 sm:pb-14">
             <div className="relative z-30 mx-auto max-w-6xl">
               <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-white/50">
                 Forums · Setup · {SITE_HOST}
               </p>
               <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-                Arena Breakout Infinite Cheat Forums
+                Wardogs Cheats Forum
               </h1>
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/70">
-                Setup threads for ABI cheats — features, Aimbot tuning, player ESP, loot filters,
-                loader help, and patch status before you checkout.
+                Informational guides for wardogs esp, wardogs aimbot, vehicle radar, and loader help —
+                plus commercial threads when you want to buy wardogs cheats safely.
               </p>
               <div className="relative z-50 mt-7">
                 <HeroSearch
@@ -67,14 +68,14 @@ export function ForumsPage({ initialQuery = '' }: ForumsPageProps) {
             <div className="page-card mb-10 flex flex-col gap-4 rounded-2xl p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
               <div>
                 <p className="text-xs uppercase tracking-wider text-white/45">Product</p>
-                <h2 className="mt-1 text-xl font-semibold text-white">ABI Cheats</h2>
+                <h2 className="mt-1 text-xl font-semibold text-white">Wardogs Cheats</h2>
                 <p className="mt-2 max-w-xl text-sm text-white/55">
-                  Arena breakout infinite ESP, wallhack, and Aimbot — confirm Active loader status
+                  Wardogs ESP, aimbot, and wallhack-style visuals — confirm Active loader status
                   before checkout.
                 </p>
               </div>
               <a
-                href={guidePath('abi')}
+                href={guidePath('wardogs')}
                 className="cta-gradient inline-flex shrink-0 items-center justify-center rounded-full px-6 py-3 text-sm font-medium text-white"
               >
                 Product details
@@ -109,11 +110,18 @@ export function ForumsPage({ initialQuery = '' }: ForumsPageProps) {
                   <a
                     key={post.slug}
                     href={blogPath(post.slug)}
+                    aria-label={`Read forum thread: ${post.title}`}
                     className="page-card group flex h-full flex-col rounded-2xl p-5 sm:p-6"
                   >
-                    <span className="text-xs font-medium uppercase tracking-wider text-white/45">
-                      {post.tag}
-                    </span>
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <span className="text-xs font-medium uppercase tracking-wider text-white/45">
+                        {post.tag}
+                      </span>
+                      <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wide text-amber-100/80">
+                        <Lock className="h-3 w-3" strokeWidth={2} aria-hidden />
+                        Locked
+                      </span>
+                    </div>
                     <h3 className="mt-3 text-base font-semibold tracking-tight text-white sm:text-lg">
                       {post.title}
                     </h3>

@@ -4,6 +4,7 @@ import {
   PRODUCT_PRICE_USD,
   PRODUCT_SCHEMA_DESCRIPTION,
   SEO_REGIONS,
+  ORGANIZATION_ALTERNATE_NAMES,
   SITE_ABOUT,
   SITE_NAME,
   SITE_PURPOSE,
@@ -13,7 +14,7 @@ import {
 } from '../data/site'
 import { getReviewsAggregate, REVIEWS } from '../data/reviews'
 import type { GameStatus } from '../data/games'
-import { ABI_HOME_VIDEO, PAGE_MEDIA } from '../data/media'
+import { WD_HOME_VIDEO, PAGE_MEDIA } from '../data/media'
 
 export const PRODUCT_ID = `${SITE_URL}/#product`
 
@@ -40,21 +41,16 @@ export function siteIdentityGraph() {
       '@type': 'Organization',
       '@id': `${SITE_URL}/#organization`,
       name: SITE_NAME,
-      alternateName: [
-        'Arena Breakout Infinite Cheats',
-        'Arena Breakout Infinite cheats',
-        'abicheat',
-        'abicheat.com',
-      ],
+      alternateName: [...ORGANIZATION_ALTERNATE_NAMES],
       url: SITE_URL,
       description: SITE_PURPOSE,
       knowsAbout: [...SITE_ABOUT],
       brand: { '@type': 'Brand', name: SITE_NAME },
       logo: {
         '@type': 'ImageObject',
-        url: `${SITE_URL}/favicon.svg`,
-        width: 48,
-        height: 46,
+        url: `${SITE_URL}/logo.png`,
+        width: 512,
+        height: 512,
       },
       image: absoluteAsset(OG_IMAGE),
     },
@@ -67,7 +63,7 @@ export function siteIdentityGraph() {
       inLanguage: 'en',
       about: {
         '@type': 'Thing',
-        name: 'Arena Breakout Infinite Cheats',
+        name: 'Wardogs Cheats',
         description: SITE_PURPOSE,
       },
       publisher: { '@id': `${SITE_URL}/#organization` },
@@ -88,7 +84,7 @@ export function webPageNode(seo: PageSeo) {
     inLanguage: 'en',
   } as Record<string, unknown>
   const hasVisibleImage =
-    ['/', '/abi-cheats', '/forums'].includes(seo.path) || seo.path.startsWith('/forums/')
+    ['/', '/wardogs-cheats', '/forums'].includes(seo.path) || seo.path.startsWith('/forums/')
   const hasOgImage = Boolean(seo.image)
   if (hasVisibleImage || hasOgImage) {
     page.primaryImageOfPage = {
@@ -107,12 +103,12 @@ export function productCoreJsonLd() {
   return {
     '@type': 'Product',
     '@id': PRODUCT_ID,
-    name: 'Arena Breakout Infinite Cheats',
-    alternateName: ['Arena Breakout Infinite Cheats', 'ABI Cheats'],
+    name: 'Wardogs Cheats',
+    alternateName: ['Wardogs Cheats', 'Wardogs cheat'],
     description: PRODUCT_SCHEMA_DESCRIPTION,
-    url: `${SITE_URL}/abi-cheats`,
+    url: `${SITE_URL}/wardogs-cheats`,
     image: [
-      absoluteAsset('/og/abi-cheats.jpg'),
+      absoluteAsset('/og/wardogs-cheats.jpg'),
       absoluteAsset('/og/home.jpg'),
       absoluteAsset(PAGE_MEDIA.product.image),
       absoluteAsset(PAGE_MEDIA.home.image),
@@ -120,13 +116,13 @@ export function productCoreJsonLd() {
     brand: { '@type': 'Brand', name: SITE_NAME },
     manufacturer: { '@id': `${SITE_URL}/#organization` },
     category: 'PC game software',
-    offers: baseOffer(`${SITE_URL}/abi-cheats`, 'https://schema.org/InStock'),
+    offers: baseOffer(`${SITE_URL}/wardogs-cheats`, 'https://schema.org/InStock'),
     subjectOf: {
       '@type': 'VideoObject',
-      name: ABI_HOME_VIDEO.title,
-      description: ABI_HOME_VIDEO.caption,
-      thumbnailUrl: absoluteAsset(ABI_HOME_VIDEO.poster),
-      contentUrl: absoluteAsset(ABI_HOME_VIDEO.src),
+      name: WD_HOME_VIDEO.title,
+      description: WD_HOME_VIDEO.caption,
+      thumbnailUrl: absoluteAsset(WD_HOME_VIDEO.poster),
+      contentUrl: absoluteAsset(WD_HOME_VIDEO.src),
       uploadDate: '2026-09-16',
       inLanguage: 'en',
     },
@@ -138,12 +134,12 @@ export function productDetailJsonLd(status: GameStatus) {
     status === 'Active' ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock'
   return {
     ...productCoreJsonLd(),
-    url: `${SITE_URL}/abi-cheats`,
+    url: `${SITE_URL}/wardogs-cheats`,
     image: absoluteAsset(PAGE_MEDIA.product.image),
     about: {
       '@type': 'VideoGame',
-      name: 'Arena Breakout Infinite',
-      alternateName: ['ABI', 'Arena Breakout'],
+      name: 'Wardogs',
+      alternateName: ['WARDOGS'],
       gamePlatform: 'PC',
     },
     additionalProperty: [
@@ -151,16 +147,16 @@ export function productDetailJsonLd(status: GameStatus) {
       {
         '@type': 'PropertyValue',
         name: 'Features',
-        value: 'Aimbot, player ESP, AI ESP, loot ESP, container wallhack, corpse ESP, configs',
+        value: 'Aimbot, player ESP, vehicle ESP, 2D radar, misc weapon helpers, configs',
       },
       {
         '@type': 'PropertyValue',
         name: 'Clients',
-        value: 'Steam, Epic Games, Microsoft Store, official launcher',
+        value: 'Steam',
       },
       { '@type': 'PropertyValue', name: 'Status', value: status },
     ],
-    offers: baseOffer(`${SITE_URL}/abi-cheats`, availability),
+    offers: baseOffer(`${SITE_URL}/wardogs-cheats`, availability),
   }
 }
 
@@ -168,7 +164,7 @@ export function productReviewsJsonLd() {
   const aggregate = getReviewsAggregate()
   return {
     ...productCoreJsonLd(),
-    url: `${SITE_URL}/abi-cheats`,
+    url: `${SITE_URL}/wardogs-cheats`,
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: aggregate.ratingValue,
@@ -181,7 +177,7 @@ export function productReviewsJsonLd() {
       author: { '@type': 'Person', name: review.author },
       datePublished: review.datePublished,
       reviewBody: review.body,
-      name: `${review.author} ABI cheats review`,
+      name: `Review by ${review.author}`,
       reviewRating: {
         '@type': 'Rating',
         ratingValue: String(review.rating),
