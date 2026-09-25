@@ -1,6 +1,6 @@
 ﻿# Hero video
 
-- `/videos/hero.mp4` — primary hero loop (H.264, Safari + Chrome)
-- `/videos/hero.webm` — WebM fallback (VP9)
-- Do not add unused legacy videos here (they ship with the site and hurt Lighthouse).
-- Product and forum pages may reference this preview alongside `/media/wd-video-thumb.jpg`
+- `/videos/hero.webm` — homepage hero loop (VP9, **opaque** yuv420p — no alpha channel)
+- `/videos/hero.mp4` — H.264 fallback (Safari / if WebM fails)
+- VP9 with alpha (`alpha_mode`) freezes on the first frame in Chrome when used as a CSS background `<video>` — always flatten before deploy.
+- Poster/thumb: `/media/wd-video-thumb.jpg`

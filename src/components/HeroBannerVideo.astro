@@ -1,6 +1,7 @@
 ---
-/** Native hero video — autoplays before React hydrates (hero panel only). */
+/** Native hero video — must stay opaque (no VP9 alpha) for Chrome background playback. */
 const webm = '/videos/hero.webm'
+const mp4 = '/videos/hero.mp4'
 const label = 'Wardogs cheat gameplay preview with ESP and aimbot FOV'
 ---
 
@@ -9,10 +10,8 @@ const label = 'Wardogs cheat gameplay preview with ESP and aimbot FOV'
   data-hero-video
   aria-hidden="true"
 >
-  <div class="absolute inset-0 z-0 bg-z-bg" aria-hidden="true"></div>
   <video
     class="hero-video-bg absolute inset-0 z-[1] h-full w-full object-cover object-center"
-    src={webm}
     autoplay
     muted
     loop
@@ -20,7 +19,10 @@ const label = 'Wardogs cheat gameplay preview with ESP and aimbot FOV'
     webkit-playsinline="true"
     preload="auto"
     aria-label={label}
-  ></video>
+  >
+    <source src={webm} type="video/webm" />
+    <source src={mp4} type="video/mp4" />
+  </video>
   <div class="hero-video-tint pointer-events-none absolute inset-0 z-[2]" aria-hidden="true"></div>
   <div class="hero-video-tint-glow pointer-events-none absolute inset-0 z-[2]" aria-hidden="true"></div>
   <div

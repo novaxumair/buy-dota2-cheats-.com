@@ -77,14 +77,16 @@ export function HeroPanelVideo({ variant = 'home' }: HeroPanelVideoProps) {
       <video
         ref={videoRef}
         className="hero-video-bg absolute inset-0 z-[1] h-full w-full object-cover object-center"
-        src={WD_HOME_VIDEO.src}
         autoPlay
         muted
         loop
         playsInline
         preload="auto"
         aria-label={WD_HOME_VIDEO.title}
-      />
+      >
+        <source src={WD_HOME_VIDEO.src} type="video/webm" />
+        <source src="/videos/hero.mp4" type="video/mp4" />
+      </video>
       <div className="hero-video-tint pointer-events-none absolute inset-0 z-[2]" />
       <div className="hero-video-tint-glow pointer-events-none absolute inset-0 z-[2]" />
       <div className="absolute inset-x-0 bottom-0 z-[3] h-40 bg-gradient-to-t from-z-bg via-z-bg/80 to-transparent" />
