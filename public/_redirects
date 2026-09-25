@@ -10,7 +10,7 @@
 /terms-of-service/ /terms      301
 
 # Primary SEO keyword variants → product or home
-/wardogs-cheats/  /wardogs-cheats  301
+# (Do not strip /wardogs-cheats/ — Cloudflare 308s bare path back to trailing slash → loop)
 /buy-wardogs-cheats  /   301
 /buy-wardogs-cheats/ /   301
 /buy-wardogs-cheat   /wardogs-cheats   301

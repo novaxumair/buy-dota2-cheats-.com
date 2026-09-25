@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { ArrowRight, Lock } from 'lucide-react'
 import { Navbar } from '../components/Navbar'
 import { SiteFooter } from '../components/SiteFooter'
+import { HeroPanelVideo } from '../components/HeroPanelVideo'
 import { HeroSearch } from '../components/HeroSearch'
 import { blogPath } from '../data/blogs'
 import { FORUM_INDEX } from '../data/forum-index'
@@ -10,11 +11,9 @@ import { SITE_HOST } from '../data/site'
 
 type ForumsPageProps = {
   initialQuery?: string
-  /** Hero video is rendered by HeroVideoBg.astro in the page shell */
-  bareHero?: boolean
 }
 
-export function ForumsPage({ initialQuery = '', bareHero = false }: ForumsPageProps) {
+export function ForumsPage({ initialQuery = '' }: ForumsPageProps) {
   const [q, setQ] = useState(() => initialQuery)
 
   function onSearchChange(next: string) {
@@ -31,7 +30,7 @@ export function ForumsPage({ initialQuery = '', bareHero = false }: ForumsPagePr
   }, [q])
 
   const heroContent = (
-        <div className="relative z-20 flex min-h-[60vh] flex-col sm:min-h-[65vh]">
+        <div className="relative z-20 flex h-full min-h-0 flex-1 flex-col">
           <Navbar onVideo currentPath="/forums" />
           <div className="page-x mt-auto pb-10 sm:pb-14">
             <div className="relative z-30 mx-auto max-w-6xl">
@@ -60,13 +59,10 @@ export function ForumsPage({ initialQuery = '', bareHero = false }: ForumsPagePr
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-z-bg text-white">
-      {bareHero ? (
-        heroContent
-      ) : (
-        <section className="relative flex min-h-[60vh] flex-col overflow-x-clip sm:min-h-[65vh]">
-          {heroContent}
-        </section>
-      )}
+      <section className="hero-panel hero-panel--forums relative flex flex-col overflow-hidden">
+        <HeroPanelVideo variant="forums" />
+        {heroContent}
+      </section>
 
       <div className="hero-to-body" aria-hidden />
 

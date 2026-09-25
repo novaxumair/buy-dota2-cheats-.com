@@ -1,0 +1,106 @@
+---
+/** Native hero video — autoplays before React hydrates (hero panel only). */
+const webm = '/videos/hero.webm'
+const mp4 = '/videos/hero.mp4'
+const label = 'Wardogs cheat gameplay preview with ESP and aimbot FOV'
+---
+
+<div
+  class="hero-video-wrap pointer-events-none absolute inset-0 z-0 overflow-hidden select-none"
+  data-hero-video
+  aria-hidden="true"
+>
+  <div class="absolute inset-0 z-0 bg-z-bg" aria-hidden="true"></div>
+  <video
+    class="hero-video-bg absolute inset-0 z-[1] h-full w-full object-cover object-center"
+    autoplay
+    muted
+    loop
+    playsinline
+    webkit-playsinline="true"
+    preload="auto"
+    aria-label={label}
+  >
+    <source src={webm} type="video/webm" />
+    <source src={mp4} type="video/mp4" />
+  </video>
+  <div class="hero-video-tint pointer-events-none absolute inset-0 z-[2]" aria-hidden="true"></div>
+  <div class="hero-video-tint-glow pointer-events-none absolute inset-0 z-[2]" aria-hidden="true"></div>
+  <div
+    class="absolute inset-x-0 bottom-0 z-[3] h-40 bg-gradient-to-t from-z-bg via-z-bg/80 to-transparent"
+    aria-hidden="true"
+  ></div>
+  <div
+    class="absolute inset-x-0 top-0 z-[3] h-24 bg-gradient-to-b from-z-bg/70 to-transparent"
+    aria-hidden="true"
+  ></div>
+</div>
+
+<script is:inline>
+  ;(function initHeroBannerVideos() {
+    const wraps = document.querySelectorAll('[data-hero-video]')
+    wraps.forEach(function (wrap) {
+      const video = wrap.querySelector('video')
+      if (!video || wrap.dataset.heroBound === '1') return
+      wrap.dataset.heroBound = '1'
+
+      const panel = wrap.closest('.hero-panel') || wrap
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        video.pause()
+        video.removeAttribute('autoplay')
+        return
+      }
+
+      const conn = navigator.connection
+      if (conn && conn.saveData) {
+        video.pause()
+        return
+      }
+
+      video.muted = true
+      video.defaultMuted = true
+      video.setAttribute('muted', '')
+
+      function markPlaying() {
+        wrap.setAttribute('data-playing', 'true')
+      }
+
+      function tryPlay() {
+        if (video.paused) {
+          video.play().then(markPlaying).catch(function () {})
+        } else {
+          markPlaying()
+        }
+      }
+
+      tryPlay()
+      video.addEventListener('canplay', tryPlay)
+      video.addEventListener('loadeddata', tryPlay)
+      video.addEventListener('playing', markPlaying)
+
+      var attempts = 0
+      var retry = setInterval(function () {
+        tryPlay()
+        attempts += 1
+        if (attempts > 12 || !video.paused) clearInterval(retry)
+      }, 400)
+
+      document.addEventListener('visibilitychange', function () {
+        if (!document.hidden) tryPlay()
+      })
+
+      var observer = new IntersectionObserver(
+        function (entries) {
+          var visible = entries.some(function (e) {
+            return e.isIntersecting && e.intersectionRatio > 0.05
+          })
+          if (visible) tryPlay()
+          else video.pause()
+        },
+        { threshold: [0, 0.05, 0.25] },
+      )
+      observer.observe(panel)
+    })
+  })()
+</script>

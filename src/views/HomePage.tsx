@@ -56,16 +56,16 @@ const HOW_IT_WORKS = [
 ] as const
 
 type HomePageProps = {
-  /** Hero video is rendered by HeroVideoBg.astro in the page shell */
-  bareHero?: boolean
+  /** `hero` / `main` split so Astro can render native hero video before React loads */
+  part?: 'full' | 'hero' | 'main'
 }
 
-export function HomePage({ bareHero = false }: HomePageProps) {
+export function HomePage({ part = 'full' }: HomePageProps) {
   const featuredReviews = REVIEWS.slice(0, 4)
   const forumHighlights = FORUM_INDEX.slice(0, 4)
 
   const heroContent = (
-        <div className="relative z-20 flex min-h-screen flex-col">
+        <div className="relative z-20 flex h-full min-h-0 flex-1 flex-col">
           <Navbar onVideo currentPath="/" />
 
           <main className="page-x mt-auto pb-6 sm:pb-8 lg:pb-10">
@@ -138,16 +138,12 @@ export function HomePage({ bareHero = false }: HomePageProps) {
         </div>
   )
 
-  return (
-    <div className="min-h-screen overflow-x-hidden text-white">
-      {bareHero ? (
-        heroContent
-      ) : (
-        <section id="home" className="relative flex min-h-screen flex-col overflow-x-clip">
-          {heroContent}
-        </section>
-      )}
+  if (part === 'hero') {
+    return heroContent
+  }
 
+  const mainContent = (
+    <>
       <div className="hero-to-body" aria-hidden />
 
       <div className="page-body relative z-10">
@@ -360,6 +356,22 @@ export function HomePage({ bareHero = false }: HomePageProps) {
 
         <SiteFooter currentPath="/" />
       </div>
+    </>
+  )
+
+  if (part === 'main') {
+    return mainContent
+  }
+
+  return (
+    <div className="overflow-x-hidden text-white">
+      <section
+        id="home"
+        className="hero-panel hero-panel--home relative flex flex-col overflow-hidden"
+      >
+        {heroContent}
+      </section>
+      {mainContent}
     </div>
   )
 }

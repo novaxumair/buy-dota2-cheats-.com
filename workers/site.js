@@ -10,6 +10,26 @@ function assetsFetch(env, request, pathname) {
   return env.ASSETS.fetch(new Request(new URL(pathname, 'https://assets.local'), request))
 }
 
+/**
+ * Astro `trailingSlash: 'never'` — serve `/page` via `/page/index.html` without a 308 to `/page/`.
+ */
+async function fetchStatic(env, request, url) {
+  const pathname = url.pathname
+  const search = url.search
+
+  if (pathname === '/' || pathname.includes('.')) {
+    return assetsFetch(env, request, pathname + search)
+  }
+
+  const bare = pathname.replace(/\/+$/, '') || '/'
+  if (bare !== '/') {
+    const indexRes = await assetsFetch(env, request, `${bare}/index.html${search}`)
+    if (indexRes.ok) return indexRes
+  }
+
+  return assetsFetch(env, request, pathname + search)
+}
+
 function withHtmlCharset(response) {
   const contentType = response.headers.get('content-type') || ''
   const primary = contentType.split(',')[0].trim()
@@ -60,7 +80,7 @@ export default {
       return Response.redirect(apex.toString(), 301)
     }
 
-    const assetResponse = await assetsFetch(env, request, url.pathname + url.search)
+    const assetResponse = await fetchStatic(env, request, url)
     let response = withHtmlCharset(assetResponse)
 
     if (url.pathname === '/sitemap.xml' && response.ok) {

@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
-import HeroVideoBg from '../components/HeroVideoBg.astro'
 import { ForumsPage } from '../views/ForumsPage'
 import { SEO, SITE_URL } from '../data/site'
 
@@ -18,10 +17,5 @@ const jsonLdExtra = [
 ---
 
 <BaseLayout seo={SEO.forums} jsonLdExtra={jsonLdExtra}>
-  <div class="relative text-white">
-    <HeroVideoBg variant="forums" />
-    <section class="relative z-10 flex min-h-[65svh] flex-col overflow-x-clip">
-      <ForumsPage client:load bareHero initialQuery={initialQuery} />
-    </section>
-  </div>
+  <ForumsPage client:load initialQuery={initialQuery} />
 </BaseLayout>

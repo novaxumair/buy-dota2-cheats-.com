@@ -111,6 +111,25 @@ body {
   box-shadow: none;
 }
 
+.hero-panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  contain: paint;
+}
+
+.hero-panel--home {
+  height: 100svh;
+  max-height: 100svh;
+  min-height: 100svh;
+}
+
+.hero-panel--forums {
+  height: 65svh;
+  max-height: 65svh;
+  min-height: 65svh;
+}
+
 .hero-video-wrap {
   background: #08060f;
 }
@@ -184,12 +203,9 @@ body {
   -webkit-appearance: none;
   min-width: 100%;
   min-height: 100%;
+  opacity: 1;
   /* Light grade — avoid crushing shadows on gameplay footage */
   filter: saturate(0.92) contrast(1.04) brightness(0.92);
-}
-
-.hero-video-wrap[data-playing='true'] .hero-video-bg {
-  opacity: 1;
 }
 
 /* Product page — infinite gameplay preview marquee */
@@ -343,8 +359,14 @@ body {
 }
 
 .page-body {
-  background: transparent;
+  /* Opaque — never show hero video (or any fixed layer) through scrollable content */
+  background:
+    radial-gradient(ellipse 75% 45% at 8% -10%, rgba(167, 139, 250, 0.07), transparent 55%),
+    radial-gradient(ellipse 50% 30% at 94% 12%, rgba(124, 58, 237, 0.04), transparent 50%),
+    linear-gradient(180deg, #0c0a14 0%, #0a0812 55%, #08060f 100%);
   color: var(--ink);
+  position: relative;
+  z-index: 1;
 }
 
 /* Shared content pages: dark purple (support / reviews / product) */
