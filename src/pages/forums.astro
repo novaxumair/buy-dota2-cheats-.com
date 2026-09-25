@@ -17,5 +17,5 @@ const jsonLdExtra = [
 ---
 
 <BaseLayout seo={SEO.forums} jsonLdExtra={jsonLdExtra}>
-  <ForumsPage client:idle initialQuery={initialQuery} />
+  <ForumsPage client:load initialQuery={initialQuery} />
 </BaseLayout>
