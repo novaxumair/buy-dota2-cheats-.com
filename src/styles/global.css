@@ -127,6 +127,9 @@ body {
   height: 65svh;
   max-height: 65svh;
   min-height: 65svh;
+  /* Allow forum search dropdown to extend below the hero band */
+  overflow: visible;
+  z-index: 20;
 }
 
 .hero-video-wrap {

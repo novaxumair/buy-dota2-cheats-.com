@@ -59,7 +59,7 @@ export function ForumsPage({ initialQuery = '' }: ForumsPageProps) {
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-z-bg text-white">
-      <section className="hero-panel hero-panel--forums relative flex flex-col overflow-hidden">
+      <section className="hero-panel hero-panel--forums relative flex flex-col">
         <HeroPanelVideo variant="forums" />
         {heroContent}
       </section>
