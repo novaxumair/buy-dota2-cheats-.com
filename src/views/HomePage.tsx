@@ -1,6 +1,5 @@
 import { ArrowRight, Crosshair, Eye, Radar, Truck, Sparkles, Star } from 'lucide-react'
 import { Navbar } from '../components/Navbar'
-import { VideoBg } from '../components/VideoBg'
 import { SiteFooter } from '../components/SiteFooter'
 import { FaqSection } from '../components/FaqSection'
 import { guidePath } from '../data/games'
@@ -56,15 +55,16 @@ const HOW_IT_WORKS = [
   },
 ] as const
 
-export function HomePage() {
+type HomePageProps = {
+  /** Hero video is rendered by HeroVideoBg.astro in the page shell */
+  bareHero?: boolean
+}
+
+export function HomePage({ bareHero = false }: HomePageProps) {
   const featuredReviews = REVIEWS.slice(0, 4)
   const forumHighlights = FORUM_INDEX.slice(0, 4)
 
-  return (
-    <div className="min-h-screen overflow-x-hidden text-white">
-      <section id="home" className="relative flex min-h-screen flex-col overflow-x-clip">
-        <VideoBg />
-
+  const heroContent = (
         <div className="relative z-20 flex min-h-screen flex-col">
           <Navbar onVideo currentPath="/" />
 
@@ -136,7 +136,17 @@ export function HomePage() {
             </div>
           </main>
         </div>
-      </section>
+  )
+
+  return (
+    <div className="min-h-screen overflow-x-hidden text-white">
+      {bareHero ? (
+        heroContent
+      ) : (
+        <section id="home" className="relative flex min-h-screen flex-col overflow-x-clip">
+          {heroContent}
+        </section>
+      )}
 
       <div className="hero-to-body" aria-hidden />
 

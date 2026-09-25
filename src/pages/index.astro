@@ -1,5 +1,6 @@
 ﻿---
 import BaseLayout from '../layouts/BaseLayout.astro'
+import HeroVideoBg from '../components/HeroVideoBg.astro'
 import { HomePage } from '../views/HomePage'
 import { SEO } from '../data/site'
 import { productCoreJsonLd } from '../lib/seo'
@@ -9,5 +10,8 @@ import { productCoreJsonLd } from '../lib/seo'
   seo={SEO.home}
   jsonLdExtra={[productCoreJsonLd()]}
 >
-  <HomePage client:load />
+  <section id="home" class="relative flex min-h-screen flex-col overflow-x-clip">
+    <HeroVideoBg />
+    <HomePage client:load bareHero />
+  </section>
 </BaseLayout>

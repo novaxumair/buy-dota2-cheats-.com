@@ -1,0 +1,85 @@
+---
+/** Native hero video — must not depend on React hydration for autoplay. */
+const poster = '/media/wd-video-thumb.jpg'
+const webm = '/videos/hero.webm'
+const mp4 = '/videos/hero.mp4'
+const label = 'Wardogs cheat gameplay preview with ESP and aimbot FOV'
+---
+
+<div class="hero-video-wrap absolute inset-0 z-0 overflow-hidden pointer-events-none select-none" data-hero-video>
+  <div class="absolute inset-0 z-0 bg-z-bg" aria-hidden="true"></div>
+  <video
+    class="hero-video-bg absolute inset-0 z-[1] h-full w-full object-cover object-center"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    poster={poster}
+    aria-label={label}
+  >
+    <source src={mp4} type="video/mp4" />
+    <source src={webm} type="video/webm" />
+  </video>
+  <div class="hero-video-tint pointer-events-none absolute inset-0 z-[2]" aria-hidden="true"></div>
+  <div class="hero-video-tint-glow pointer-events-none absolute inset-0 z-[2]" aria-hidden="true"></div>
+  <div
+    class="absolute inset-x-0 bottom-0 z-[3] h-40 bg-gradient-to-t from-z-bg via-z-bg/80 to-transparent"
+    aria-hidden="true"
+  ></div>
+  <div
+    class="absolute inset-x-0 top-0 z-[3] h-24 bg-gradient-to-b from-z-bg/70 to-transparent"
+    aria-hidden="true"
+  ></div>
+</div>
+
+<script is:inline>
+  ;(function () {
+    var script = document.currentScript
+    if (!script) return
+    var root = script.previousElementSibling
+    if (!root) return
+    var video = root.querySelector('video')
+    if (!video) return
+
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection
+    if (reduceMotion || (conn && conn.saveData)) {
+      video.pause()
+      video.removeAttribute('autoplay')
+      return
+    }
+
+    video.muted = true
+    video.defaultMuted = true
+    video.setAttribute('muted', '')
+
+    function play() {
+      if (video.paused) {
+        var p = video.play()
+        if (p && p.catch) p.catch(function () {})
+      }
+    }
+
+    play()
+    video.addEventListener('loadeddata', play, { once: true })
+    video.addEventListener('canplay', play, { once: true })
+    video.addEventListener('playing', function () {
+      root.setAttribute('data-playing', 'true')
+      video.removeAttribute('poster')
+    })
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden) play()
+    })
+
+    var tries = 0
+    var retry = setInterval(function () {
+      tries += 1
+      if (!video.paused || tries > 12) {
+        clearInterval(retry)
+        return
+      }
+      play()
+    }, 400)
+  })()
+</script>
