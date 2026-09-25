@@ -182,8 +182,14 @@ body {
   outline: none;
   pointer-events: none;
   -webkit-appearance: none;
-  /* Keep footage readable; light violet grade only */
-  filter: saturate(0.85) contrast(1.06) brightness(0.88);
+  min-width: 100%;
+  min-height: 100%;
+  /* Light grade — avoid crushing shadows on gameplay footage */
+  filter: saturate(0.92) contrast(1.04) brightness(0.92);
+}
+
+.hero-video-wrap[data-playing='true'] .hero-video-bg {
+  opacity: 1;
 }
 
 /* Product page — infinite gameplay preview marquee */

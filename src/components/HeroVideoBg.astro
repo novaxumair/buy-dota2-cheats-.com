@@ -1,25 +1,36 @@
 ---
-/** Native hero video — must not depend on React hydration for autoplay. */
-const poster = '/media/wd-video-thumb.jpg'
+/** Native hero video — fixed to viewport band (not full page height). */
+interface Props {
+  variant?: 'home' | 'forums'
+}
+
+const { variant = 'home' } = Astro.props
 const webm = '/videos/hero.webm'
 const mp4 = '/videos/hero.mp4'
 const label = 'Wardogs cheat gameplay preview with ESP and aimbot FOV'
+const heightClass =
+  variant === 'forums' ? 'h-[65svh] max-h-[65svh]' : 'h-[100svh] max-h-[100svh]'
 ---
 
-<div class="hero-video-wrap absolute inset-0 z-0 overflow-hidden pointer-events-none select-none" data-hero-video>
-  <div class="absolute inset-0 z-0 bg-z-bg" aria-hidden="true"></div>
+<div
+  class:list={[
+    'hero-video-wrap pointer-events-none fixed left-0 right-0 top-0 z-0 select-none overflow-hidden',
+    heightClass,
+  ]}
+  data-hero-video
+>
   <video
     class="hero-video-bg absolute inset-0 z-[1] h-full w-full object-cover object-center"
     autoplay
     muted
     loop
     playsinline
+    webkit-playsinline="true"
     preload="auto"
-    poster={poster}
     aria-label={label}
   >
-    <source src={mp4} type="video/mp4" />
     <source src={webm} type="video/webm" />
+    <source src={mp4} type="video/mp4" />
   </video>
   <div class="hero-video-tint pointer-events-none absolute inset-0 z-[2]" aria-hidden="true"></div>
   <div class="hero-video-tint-glow pointer-events-none absolute inset-0 z-[2]" aria-hidden="true"></div>
@@ -66,7 +77,6 @@ const label = 'Wardogs cheat gameplay preview with ESP and aimbot FOV'
     video.addEventListener('canplay', play, { once: true })
     video.addEventListener('playing', function () {
       root.setAttribute('data-playing', 'true')
-      video.removeAttribute('poster')
     })
     document.addEventListener('visibilitychange', function () {
       if (!document.hidden) play()
@@ -75,11 +85,11 @@ const label = 'Wardogs cheat gameplay preview with ESP and aimbot FOV'
     var tries = 0
     var retry = setInterval(function () {
       tries += 1
-      if (!video.paused || tries > 12) {
+      if (!video.paused || tries > 15) {
         clearInterval(retry)
         return
       }
       play()
-    }, 400)
+    }, 350)
   })()
 </script>

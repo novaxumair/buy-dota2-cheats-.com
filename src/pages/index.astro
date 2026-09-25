@@ -10,8 +10,10 @@ import { productCoreJsonLd } from '../lib/seo'
   seo={SEO.home}
   jsonLdExtra={[productCoreJsonLd()]}
 >
-  <section id="home" class="relative flex min-h-screen flex-col overflow-x-clip">
-    <HeroVideoBg />
-    <HomePage client:load bareHero />
-  </section>
+  <div class="relative text-white">
+    <HeroVideoBg variant="home" />
+    <section id="home" class="relative z-10 flex min-h-[100svh] flex-col overflow-x-clip">
+      <HomePage client:load bareHero />
+    </section>
+  </div>
 </BaseLayout>

@@ -33,8 +33,8 @@ export function ProductPreview({ className = '' }: ProductPreviewProps) {
           poster={WD_HOME_VIDEO.poster}
           aria-label={WD_HOME_VIDEO.title}
         >
-          <source src="/videos/hero.mp4" type="video/mp4" />
           <source src={WD_HOME_VIDEO.src} type="video/webm" />
+          <source src="/videos/hero.mp4" type="video/mp4" />
         </video>
       </div>
       <p className="sr-only">{WD_HOME_VIDEO.title}</p>
