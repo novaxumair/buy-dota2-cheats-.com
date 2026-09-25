@@ -16,6 +16,8 @@ export function HeroPanelVideo({ variant = 'home' }: HeroPanelVideoProps) {
     if (!root || !video) return
 
     const panel = root.closest('.hero-panel') ?? root
+    let hasPlayed = false
+    let observer: IntersectionObserver | null = null
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const conn = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
@@ -27,9 +29,11 @@ export function HeroPanelVideo({ variant = 'home' }: HeroPanelVideoProps) {
 
     video.muted = true
     video.defaultMuted = true
+    video.playsInline = true
 
     const markPlaying = () => {
       root.setAttribute('data-playing', 'true')
+      hasPlayed = true
     }
 
     const tryPlay = () => {
@@ -37,23 +41,42 @@ export function HeroPanelVideo({ variant = 'home' }: HeroPanelVideoProps) {
       else markPlaying()
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.some((e) => e.isIntersecting && e.intersectionRatio > 0.02)
-        if (visible) tryPlay()
-        else video.pause()
-      },
-      { root: null, threshold: [0, 0.02, 0.25] },
-    )
-    observer.observe(panel)
+    const armScrollPause = () => {
+      if (observer) return
+      observer = new IntersectionObserver(
+        (entries) => {
+          const anyVisible = entries.some((e) => e.isIntersecting)
+          if (anyVisible) tryPlay()
+          else if (hasPlayed) video.pause()
+        },
+        { threshold: 0 },
+      )
+      observer.observe(panel)
+    }
 
     tryPlay()
     video.addEventListener('canplay', tryPlay)
     video.addEventListener('loadeddata', tryPlay, { once: true })
-    video.addEventListener('playing', markPlaying)
+    video.addEventListener('playing', () => {
+      markPlaying()
+      armScrollPause()
+    })
+    video.addEventListener('waiting', tryPlay)
+    video.addEventListener('stalled', tryPlay)
+
+    const retry = window.setInterval(() => {
+      tryPlay()
+      if (hasPlayed) {
+        window.clearInterval(retry)
+        armScrollPause()
+      }
+    }, 350)
+    window.setTimeout(() => window.clearInterval(retry), 8000)
+    window.setTimeout(armScrollPause, 2500)
 
     return () => {
-      observer.disconnect()
+      window.clearInterval(retry)
+      observer?.disconnect()
       video.removeEventListener('canplay', tryPlay)
     }
   }, [])

@@ -19,6 +19,7 @@ const label = 'Wardogs cheat gameplay preview with ESP and aimbot FOV'
     playsinline
     webkit-playsinline="true"
     preload="auto"
+    disablepictureinpicture
     aria-label={label}
   >
     <source src={webm} type="video/webm" />
@@ -37,14 +38,15 @@ const label = 'Wardogs cheat gameplay preview with ESP and aimbot FOV'
 </div>
 
 <script is:inline>
-  ;(function initHeroBannerVideos() {
-    const wraps = document.querySelectorAll('[data-hero-video]')
-    wraps.forEach(function (wrap) {
-      const video = wrap.querySelector('video')
+  ;(function () {
+    function bindHeroVideo(wrap) {
+      var video = wrap.querySelector('video')
       if (!video || wrap.dataset.heroBound === '1') return
       wrap.dataset.heroBound = '1'
 
-      const panel = wrap.closest('.hero-panel') || wrap
+      var panel = wrap.closest('.hero-panel') || wrap
+      var hasPlayed = false
+      var armedObserver = false
 
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         video.pause()
@@ -52,7 +54,7 @@ const label = 'Wardogs cheat gameplay preview with ESP and aimbot FOV'
         return
       }
 
-      const conn = navigator.connection
+      var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection
       if (conn && conn.saveData) {
         video.pause()
         return
@@ -61,46 +63,75 @@ const label = 'Wardogs cheat gameplay preview with ESP and aimbot FOV'
       video.muted = true
       video.defaultMuted = true
       video.setAttribute('muted', '')
+      video.playsInline = true
 
       function markPlaying() {
         wrap.setAttribute('data-playing', 'true')
+        hasPlayed = true
       }
 
       function tryPlay() {
-        if (video.paused) {
-          video.play().then(markPlaying).catch(function () {})
-        } else {
+        if (!video.paused) {
           markPlaying()
+          return
+        }
+        var p = video.play()
+        if (p && p.then) {
+          p.then(markPlaying).catch(function () {})
         }
       }
 
+      function armScrollPause() {
+        if (armedObserver) return
+        armedObserver = true
+        var observer = new IntersectionObserver(
+          function (entries) {
+            var anyVisible = entries.some(function (e) {
+              return e.isIntersecting
+            })
+            if (anyVisible) tryPlay()
+            else if (hasPlayed) video.pause()
+          },
+          { root: null, threshold: 0 },
+        )
+        observer.observe(panel)
+      }
+
       tryPlay()
+      video.addEventListener('playing', function () {
+        markPlaying()
+        armScrollPause()
+      })
       video.addEventListener('canplay', tryPlay)
       video.addEventListener('loadeddata', tryPlay)
-      video.addEventListener('playing', markPlaying)
-
-      var attempts = 0
-      var retry = setInterval(function () {
-        tryPlay()
-        attempts += 1
-        if (attempts > 12 || !video.paused) clearInterval(retry)
-      }, 400)
+      video.addEventListener('waiting', tryPlay)
+      video.addEventListener('stalled', tryPlay)
 
       document.addEventListener('visibilitychange', function () {
         if (!document.hidden) tryPlay()
       })
 
-      var observer = new IntersectionObserver(
-        function (entries) {
-          var visible = entries.some(function (e) {
-            return e.isIntersecting && e.intersectionRatio > 0.05
-          })
-          if (visible) tryPlay()
-          else video.pause()
-        },
-        { threshold: [0, 0.05, 0.25] },
-      )
-      observer.observe(panel)
-    })
+      var attempts = 0
+      var retry = setInterval(function () {
+        tryPlay()
+        attempts += 1
+        if (attempts > 20 || hasPlayed) {
+          clearInterval(retry)
+          if (hasPlayed) armScrollPause()
+        }
+      }, 350)
+
+      setTimeout(armScrollPause, 2500)
+    }
+
+    function boot() {
+      document.querySelectorAll('[data-hero-video]').forEach(bindHeroVideo)
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot)
+    } else {
+      boot()
+    }
   })()
 </script>
