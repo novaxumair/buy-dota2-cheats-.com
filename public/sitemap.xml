@@ -1,78 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="/sitemap.css"?>
+<!-- Generated 2026-09-25 | 65 canonical URLs | https://buywardogscheat.com -->
+<!-- Submit in Google Search Console: Sitemaps > https://buywardogscheat.com/sitemap.xml -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <!-- Homepage -->
   <url>
     <loc>https://buywardogscheat.com/</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/home.jpg</image:loc>
       <image:title>Wardogs Cheats Open Graph</image:title>
-      <image:caption>Google and social preview image for buywardogscheat.com homepage.</image:caption>
+      <image:caption>Primary social and search preview for the homepage.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://buywardogscheat.com/media/wd-hero-full.webp</image:loc>
       <image:title>Wardogs Cheats Hero</image:title>
-      <image:caption>Buy Wardogs Cheats - Wardogs aimbot, ESP and radar hack hero artwork for PC.</image:caption>
+      <image:caption>Hero artwork for Wardogs aimbot, ESP, and radar on PC.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://buywardogscheat.com/media/wd-cover.webp</image:loc>
       <image:title>Wardogs Cheats Product Cover</image:title>
-      <image:caption>Wardogs Cheats product cover for checkout and social previews.</image:caption>
+      <image:caption>Product cover used on checkout and product previews.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://buywardogscheat.com/media/wd-video-thumb.jpg</image:loc>
       <image:title>Wardogs Cheats Preview Thumbnail</image:title>
-      <image:caption>Thumbnail for the Wardogs aimbot and ESP preview video.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://buywardogscheat.com/og/wardogs-cheats.jpg</image:loc>
-      <image:title>Wardogs Cheats Product Social Preview</image:title>
-      <image:caption>Default Open Graph image for buywardogscheat.com product pages.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://buywardogscheat.com/media/wd-screenshot-8.webp</image:loc>
-      <image:title>Wardogs ESP gameplay</image:title>
-      <image:caption>Player ESP wallhack screenshot for sitemap.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://buywardogscheat.com/media/wd-screenshot-5.webp</image:loc>
-      <image:title>Wardogs aimbot FOV</image:title>
-      <image:caption>Aimbot FOV circle gameplay screenshot.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://buywardogscheat.com/media/wd-menu.webp</image:loc>
-      <image:title>Wardogs cheat menu</image:title>
-      <image:caption>Menu reference artwork.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://buywardogscheat.com/media/wd-control-art.jpg</image:loc>
-      <image:title>Wardogs control art</image:title>
-      <image:caption>Support and setup artwork.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://buywardogscheat.com/media/wd-home-art.jpg</image:loc>
-      <image:title>Wardogs home art</image:title>
-      <image:caption>Homepage supplementary artwork.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://buywardogscheat.com/media/wd-tactical-art.jpg</image:loc>
-      <image:title>Wardogs tactical art</image:title>
-      <image:caption>Tactical gameplay artwork.</image:caption>
+      <image:caption>Video thumbnail for the self-hosted product preview.</image:caption>
     </image:image>
   </url>
+  <!-- Product -->
   <url>
     <loc>https://buywardogscheat.com/wardogs-cheats</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/wardogs-cheats" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/wardogs-cheats" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/wardogs-cheats.jpg</image:loc>
       <image:title>Wardogs Cheats Open Graph</image:title>
@@ -112,13 +77,12 @@
       <video:live>no</video:live>
     </video:video>
   </url>
+  <!-- Forums index -->
   <url>
     <loc>https://buywardogscheat.com/forums</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums.jpg</image:loc>
       <image:title>Wardogs Cheats Forums Open Graph</image:title>
@@ -130,13 +94,12 @@
       <image:caption>Artwork reference for Wardogs setup and feature guides.</image:caption>
     </image:image>
   </url>
+  <!-- Forum threads -->
   <url>
     <loc>https://buywardogscheat.com/forums/aimbot-fov-settings</loc>
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/aimbot-fov-settings" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/aimbot-fov-settings" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-aimbot-fov-settings.jpg</image:loc>
       <image:title>Dialing in Your Field of View Settings for Natural Aiming Open Graph</image:title>
@@ -153,8 +116,6 @@
     <lastmod>2026-09-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/aimbot-settings" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/aimbot-settings" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-aimbot-settings.jpg</image:loc>
       <image:title>Aimbot Settings: What Level &amp; Why Won&apos;t I Get Banned? Open Graph</image:title>
@@ -171,8 +132,6 @@
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/aimbot-smooth-guide" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/aimbot-smooth-guide" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-aimbot-smooth-guide.jpg</image:loc>
       <image:title>How Smooth Aiming Keeps Your Gameplay Looking Legitimate Open Graph</image:title>
@@ -189,8 +148,6 @@
     <lastmod>2026-09-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/best-wardogs-cheats-review-2026" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/best-wardogs-cheats-review-2026" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-best-wardogs-cheats-review-2026.jpg</image:loc>
       <image:title>Best Wardogs Cheats Review &amp; Comparison 2026: Features, Safety &amp; Value Open Graph</image:title>
@@ -207,8 +164,6 @@
     <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/bone-selection-guide" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/bone-selection-guide" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-bone-selection-guide.jpg</image:loc>
       <image:title>Targeted Bone Selection Guide: Headshots vs Body Shots Open Graph</image:title>
@@ -225,8 +180,6 @@
     <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/box-esp-setup" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/box-esp-setup" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-box-esp-setup.jpg</image:loc>
       <image:title>Box ESP Setup: 2D vs 3D Bounding Boxes for Target Tracking Open Graph</image:title>
@@ -243,8 +196,6 @@
     <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/bullet-prediction" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/bullet-prediction" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-bullet-prediction.jpg</image:loc>
       <image:title>Leading Your Shots: Bullet Prediction Mechanics Explained Open Graph</image:title>
@@ -261,8 +212,6 @@
     <lastmod>2026-09-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/buy-wardogs-cheats-safely" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/buy-wardogs-cheats-safely" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-buy-wardogs-cheats-safely.jpg</image:loc>
       <image:title>Where to Buy Wardogs Cheats Safely: Full Access Options Open Graph</image:title>
@@ -279,8 +228,6 @@
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/combat-assist-settings" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/combat-assist-settings" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-combat-assist-settings.jpg</image:loc>
       <image:title>Combat Assist Settings: What Level &amp; Ban Risk Explained Open Graph</image:title>
@@ -297,8 +244,6 @@
     <lastmod>2026-09-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/complete-setup" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/complete-setup" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-complete-setup.jpg</image:loc>
       <image:title>Instructions to Use the Cheats Open Graph</image:title>
@@ -315,8 +260,6 @@
     <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/config-save-load" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/config-save-load" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-config-save-load.jpg</image:loc>
       <image:title>Fast Setup: How to Save and Load Your Custom Config Settings Open Graph</image:title>
@@ -333,8 +276,6 @@
     <lastmod>2026-09-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/custom-2d-radar-hud" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/custom-2d-radar-hud" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-custom-2d-radar-hud.jpg</image:loc>
       <image:title>Positioning Mastery: Setting Up a Custom 2D Radar HUD Open Graph</image:title>
@@ -351,8 +292,6 @@
     <lastmod>2026-09-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/custom-crosshair-overlays" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/custom-crosshair-overlays" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-custom-crosshair-overlays.jpg</image:loc>
       <image:title>Custom Crosshair Overlays for Hipfire and Precision Shooting Open Graph</image:title>
@@ -369,8 +308,6 @@
     <lastmod>2026-09-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/disable-antivirus" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/disable-antivirus" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-disable-antivirus.jpg</image:loc>
       <image:title>Antivirus Exclusions for Wardogs Cheats Open Graph</image:title>
@@ -387,8 +324,6 @@
     <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/distance-esp-indicators" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/distance-esp-indicators" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-distance-esp-indicators.jpg</image:loc>
       <image:title>Distance ESP Indicators: Judging Combat Ranges Effectively Open Graph</image:title>
@@ -405,8 +340,6 @@
     <lastmod>2026-09-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/draw-fov-overlays" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/draw-fov-overlays" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-draw-fov-overlays.jpg</image:loc>
       <image:title>Visualizing Your Aim Radius: How to Use Draw FOV Overlays Open Graph</image:title>
@@ -423,8 +356,6 @@
     <lastmod>2026-09-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/draw-target-line" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/draw-target-line" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-draw-target-line.jpg</image:loc>
       <image:title>Target Line Visuals: Instantly Identify Locked Enemies Open Graph</image:title>
@@ -441,8 +372,6 @@
     <lastmod>2026-09-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/enable-aimbot-safely" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/enable-aimbot-safely" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-enable-aimbot-safely.jpg</image:loc>
       <image:title>How to Configure and Enable Aimbot Safely in Wardogs Open Graph</image:title>
@@ -459,8 +388,6 @@
     <lastmod>2026-09-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/enemy-weapon-esp" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/enemy-weapon-esp" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-enemy-weapon-esp.jpg</image:loc>
       <image:title>Enemy Weapon ESP: Spotting High-Tier Guns Instantly Open Graph</image:title>
@@ -477,8 +404,6 @@
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/esp-wallhack-guide" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/esp-wallhack-guide" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-esp-wallhack-guide.jpg</image:loc>
       <image:title>Player ESP Settings: What to Enable First Open Graph</image:title>
@@ -495,8 +420,6 @@
     <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/features-list" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/features-list" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-features-list.jpg</image:loc>
       <image:title>Wardogs Cheats Features Open Graph</image:title>
@@ -513,8 +436,6 @@
     <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/full-bright-toggles" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/full-bright-toggles" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-full-bright-toggles.jpg</image:loc>
       <image:title>Full Bright Visual Toggles: Max Visibility in Dark Map Areas Open Graph</image:title>
@@ -531,8 +452,6 @@
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/game-patch-status" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/game-patch-status" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-game-patch-status.jpg</image:loc>
       <image:title>Wardogs Cheats After a Game Patch - What to Do Open Graph</image:title>
@@ -549,8 +468,6 @@
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/head-circle-visuals" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/head-circle-visuals" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-head-circle-visuals.jpg</image:loc>
       <image:title>Head Circle Visuals: Instant Headshot Alignment Overlays Open Graph</image:title>
@@ -567,8 +484,6 @@
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/health-bar-tracking" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/health-bar-tracking" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-health-bar-tracking.jpg</image:loc>
       <image:title>Enemy Health Bar Tracking: Prioritize Low-HP Targets Open Graph</image:title>
@@ -585,8 +500,6 @@
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/hotkeys" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/hotkeys" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-hotkeys.jpg</image:loc>
       <image:title>Wardogs Cheat Hotkeys After Load Open Graph</image:title>
@@ -603,8 +516,6 @@
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/hwid-spoofer-safety" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/hwid-spoofer-safety" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-hwid-spoofer-safety.jpg</image:loc>
       <image:title>Discover What an HWID Spoofer Does for Safety Open Graph</image:title>
@@ -621,8 +532,6 @@
     <lastmod>2026-09-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/load-status-checklist" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/load-status-checklist" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-load-status-checklist.jpg</image:loc>
       <image:title>Pre-Load Checklist Before You Buy or Queue Open Graph</image:title>
@@ -639,8 +548,6 @@
     <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/loader-errors" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/loader-errors" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-loader-errors.jpg</image:loc>
       <image:title>Fix Wardogs Cheat Loader Errors Open Graph</image:title>
@@ -657,8 +564,6 @@
     <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/max-distance-filters" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/max-distance-filters" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-max-distance-filters.jpg</image:loc>
       <image:title>Optimizing Max Distance Filters to Clean Up Your Screen Open Graph</image:title>
@@ -675,8 +580,6 @@
     <lastmod>2026-09-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/misc-utility-features" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/misc-utility-features" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-misc-utility-features.jpg</image:loc>
       <image:title>Miscellaneous Utility Features for Ultimate Gameplay Control Open Graph</image:title>
@@ -693,8 +596,6 @@
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/no-recoil-compensation" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/no-recoil-compensation" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-no-recoil-compensation.jpg</image:loc>
       <image:title>Zero Recoil Compensation: Eliminating Weapon Kickback Open Graph</image:title>
@@ -711,8 +612,6 @@
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/no-spread-elimination" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/no-spread-elimination" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-no-spread-elimination.jpg</image:loc>
       <image:title>Perfect Bullet Spread Elimination: Laser-Accurate Firing Open Graph</image:title>
@@ -729,8 +628,6 @@
     <lastmod>2026-09-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/occupied-empty-vehicles" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/occupied-empty-vehicles" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-occupied-empty-vehicles.jpg</image:loc>
       <image:title>Occupied vs Empty Vehicle Indicators: Ambush Prevention Open Graph</image:title>
@@ -747,8 +644,6 @@
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/oof-arrows-guide" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/oof-arrows-guide" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-oof-arrows-guide.jpg</image:loc>
       <image:title>Out of Field Arrows: Off-Screen Threat Alerts Explained Open Graph</image:title>
@@ -765,8 +660,6 @@
     <lastmod>2026-09-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/player-markers-radar" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/player-markers-radar" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-player-markers-radar.jpg</image:loc>
       <image:title>Player Markers on Radar: Tracking Enemy Rotation Paths Open Graph</image:title>
@@ -783,8 +676,6 @@
     <lastmod>2026-09-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/player-name-tags" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/player-name-tags" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-player-name-tags.jpg</image:loc>
       <image:title>Player Name Tags: Identifying High-Value Targets In-Game Open Graph</image:title>
@@ -801,8 +692,6 @@
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/player-visuals-breakdown" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/player-visuals-breakdown" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-player-visuals-breakdown.jpg</image:loc>
       <image:title>Complete Player Visuals Breakdown for Tactical Dominance Open Graph</image:title>
@@ -819,8 +708,6 @@
     <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/radar-options-guide" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/radar-options-guide" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-radar-options-guide.jpg</image:loc>
       <image:title>2D Radar Options: Complete Minimap Awareness Guide Open Graph</image:title>
@@ -837,8 +724,6 @@
     <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/radar-range-calibration" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/radar-range-calibration" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-radar-range-calibration.jpg</image:loc>
       <image:title>Calibrating Radar Range for Close and Long-Range Fights Open Graph</image:title>
@@ -855,8 +740,6 @@
     <lastmod>2026-09-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/radar-recommended-config" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/radar-recommended-config" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-radar-recommended-config.jpg</image:loc>
       <image:title>2D Radar &amp; Control Zone: Recommended Configurations Open Graph</image:title>
@@ -873,8 +756,6 @@
     <lastmod>2026-09-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/skeleton-esp-guide" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/skeleton-esp-guide" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-skeleton-esp-guide.jpg</image:loc>
       <image:title>Skeleton ESP: Real-Time Stance and Movement Overlay Guide Open Graph</image:title>
@@ -891,8 +772,6 @@
     <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/team-squad-filtering" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/team-squad-filtering" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-team-squad-filtering.jpg</image:loc>
       <image:title>Team &amp; Squad Visual Filtering: Avoid Screen Clutter Open Graph</image:title>
@@ -909,8 +788,6 @@
     <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/ultimate-wardogs-cheats-guide" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/ultimate-wardogs-cheats-guide" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-ultimate-wardogs-cheats-guide.jpg</image:loc>
       <image:title>Ultimate Wardogs Cheats Guide: Setup &amp; Features Open Graph</image:title>
@@ -927,8 +804,6 @@
     <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/vehicle-distance-measure" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/vehicle-distance-measure" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-vehicle-distance-measure.jpg</image:loc>
       <image:title>Measuring Vehicle Distance for Strategic Encounters Open Graph</image:title>
@@ -945,15 +820,13 @@
     <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/vehicle-esp-first" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/vehicle-esp-first" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-vehicle-esp-first.jpg</image:loc>
       <image:title>Vehicle ESP Settings: What to Enable First Open Graph</image:title>
       <image:caption>Vehicle ESP type, distance, and occupied/empty indicators for Wardogs - spot transports before you cross open ground.</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://buywardogscheat.com/media/wd-menu.webp</image:loc>
+      <image:loc>https://buywardogscheat.com/media/wd-screenshot-8.webp</image:loc>
       <image:title>Vehicle ESP Settings: What to Enable First Artwork</image:title>
       <image:caption>Vehicle ESP type, distance, and occupied/empty indicators for Wardogs - spot transports before you cross open ground.</image:caption>
     </image:image>
@@ -963,8 +836,6 @@
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/vehicle-esp-tracking" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/vehicle-esp-tracking" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-vehicle-esp-tracking.jpg</image:loc>
       <image:title>Full Vehicle ESP Tracking: Map Mobility Control Guide Open Graph</image:title>
@@ -981,8 +852,6 @@
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/vehicle-markers-radar" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/vehicle-markers-radar" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-vehicle-markers-radar.jpg</image:loc>
       <image:title>Vehicle Radar Markers: High-Speed Threat Detection Open Graph</image:title>
@@ -999,8 +868,6 @@
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/vehicle-type-identification" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/vehicle-type-identification" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-vehicle-type-identification.jpg</image:loc>
       <image:title>Vehicle Type Identification Overlays: Heavy Armor vs Transport Open Graph</image:title>
@@ -1017,17 +884,15 @@
     <lastmod>2026-09-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/vehicle-visuals-setup" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/vehicle-visuals-setup" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-vehicle-visuals-setup.jpg</image:loc>
       <image:title>Vehicle Visuals Setup: Locating All In-Game Transport Open Graph</image:title>
-      <image:caption>Vehicle overlay basics for roads, convoys, and extract timing.</image:caption>
+      <image:caption>Map-wide vehicle overlay tuning - silhouette colors, convoy spacing, and when to hide distant blips on road-heavy maps.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://buywardogscheat.com/media/wd-menu.webp</image:loc>
       <image:title>Vehicle Visuals Setup: Locating All In-Game Transport Artwork</image:title>
-      <image:caption>Vehicle overlay basics for roads, convoys, and extract timing.</image:caption>
+      <image:caption>Map-wide vehicle overlay tuning - silhouette colors, convoy spacing, and when to hide distant blips on road-heavy maps.</image:caption>
     </image:image>
   </url>
   <url>
@@ -1035,8 +900,6 @@
     <lastmod>2026-09-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/view-direction-lines" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/view-direction-lines" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-view-direction-lines.jpg</image:loc>
       <image:title>View Direction Lines: Spotting Enemy Flanks Before They Happen Open Graph</image:title>
@@ -1053,8 +916,6 @@
     <lastmod>2026-09-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/visible-check-guide" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/visible-check-guide" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-visible-check-guide.jpg</image:loc>
       <image:title>Preventing Wall Tracking: Why Visible Check Is Essential Open Graph</image:title>
@@ -1071,8 +932,6 @@
     <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/wardogs-aimbot-options" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/wardogs-aimbot-options" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-wardogs-aimbot-options.jpg</image:loc>
       <image:title>Precision Target Lock: Mastering Wardogs Aimbot Options Open Graph</image:title>
@@ -1089,8 +948,6 @@
     <lastmod>2026-09-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/wardogs-cheat-discord" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/wardogs-cheat-discord" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-wardogs-cheat-discord.jpg</image:loc>
       <image:title>Official Wardogs Cheat Discord Server: How to Join for Live Support Open Graph</image:title>
@@ -1107,8 +964,6 @@
     <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/wardogs-cheats-lifetime" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/wardogs-cheats-lifetime" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-wardogs-cheats-lifetime.jpg</image:loc>
       <image:title>Wardogs Cheats Lifetime License: Is Permanent Access Worth It? Open Graph</image:title>
@@ -1125,8 +980,6 @@
     <lastmod>2026-09-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/forums/windows-setup" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/forums/windows-setup" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/forums-windows-setup.jpg</image:loc>
       <image:title>Wardogs Cheats on Windows 10 and 11 Open Graph</image:title>
@@ -1138,13 +991,12 @@
       <image:caption>Windows prep for Wardogs cheats - overlays, Defender, TPM/HVCI notes.</image:caption>
     </image:image>
   </url>
+  <!-- Trust and support -->
   <url>
     <loc>https://buywardogscheat.com/reviews</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/reviews" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/reviews" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/reviews.jpg</image:loc>
       <image:title>Wardogs Cheats Reviews Open Graph</image:title>
@@ -1156,8 +1008,6 @@
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/faq" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/faq" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/faq.jpg</image:loc>
       <image:title>Wardogs Cheats FAQ Open Graph</image:title>
@@ -1169,21 +1019,18 @@
     <lastmod>2026-09-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/support" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/support" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/support.jpg</image:loc>
       <image:title>Wardogs Cheats Support Open Graph</image:title>
       <image:caption>Google preview image for Wardogs Cheats support.</image:caption>
     </image:image>
   </url>
+  <!-- Legal and policies -->
   <url>
     <loc>https://buywardogscheat.com/privacy</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/privacy" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/privacy.jpg</image:loc>
       <image:title>Wardogs Cheats Privacy Policy</image:title>
@@ -1195,8 +1042,6 @@
     <lastmod>2026-09-25</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.45</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/refunds" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/refunds" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/refunds.jpg</image:loc>
       <image:title>Wardogs Cheats Refund Policy</image:title>
@@ -1208,8 +1053,6 @@
     <lastmod>2026-09-25</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://buywardogscheat.com/terms" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://buywardogscheat.com/terms" />
     <image:image>
       <image:loc>https://buywardogscheat.com/og/terms.jpg</image:loc>
       <image:title>Wardogs Cheats Terms of Use</image:title>

@@ -61,7 +61,18 @@ export default {
     }
 
     const assetResponse = await assetsFetch(env, request, url.pathname + url.search)
-    const response = withHtmlCharset(assetResponse)
+    let response = withHtmlCharset(assetResponse)
+
+    if (url.pathname === '/sitemap.xml' && response.ok) {
+      const headers = new Headers(response.headers)
+      headers.set('content-type', 'application/xml; charset=utf-8')
+      headers.set('cache-control', 'public, max-age=3600')
+      response = new Response(response.body, {
+        status: response.status,
+        statusText: response.statusText,
+        headers,
+      })
+    }
 
     // Help crawlers + Seobility: advertise preferred host + self-canonical
     const headers = new Headers(response.headers)

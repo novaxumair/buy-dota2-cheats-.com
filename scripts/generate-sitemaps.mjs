@@ -12,7 +12,6 @@ const dataDir = join(root, 'src', 'data')
 const pagesDir = join(root, 'src', 'pages')
 const SITE = (process.env.SITE_URL || 'https://buywardogscheat.com').replace(/\/$/, '')
 const TODAY = new Date().toLocaleDateString('en-CA')
-const HREFLANG = ['en', 'x-default']
 
 const HERO_FULL = '/media/wd-hero-full.webp'
 const COVER = '/media/wd-cover.webp'
@@ -33,7 +32,6 @@ const ALL_SITE_IMAGES = [
   ESP,
   MENU,
   CONTROL,
-  HOME_ART,
   TACTICAL_ART,
   VIDEO_THUMB,
   '/og/home.jpg',
@@ -55,13 +53,12 @@ const FORUM_IMAGES = {
   'load-status-checklist': COVER,
   'aimbot-settings': MENU,
   'esp-wallhack-guide': ESP,
-  'loot-container-esp': MENU,
-  'stream-proof-setup': HOME_ART,
   'game-patch-status': COVER,
   'windows-setup': HERO_FULL,
-  'extraction-loot-guide': BOX,
   'combat-assist-settings': ESP,
   'loader-errors': TACTICAL_ART,
+  'vehicle-esp-first': BOX,
+  'radar-recommended-config': MENU,
 }
 
 const PAGE_META = {
@@ -132,13 +129,6 @@ function loadStaticRoutes() {
     .map((entry) => (entry.name === 'index.astro' ? '/' : `/${entry.name.slice(0, -6)}`))
 }
 
-function alternateLinks(url) {
-  return HREFLANG.map(
-    (language) =>
-      `    <xhtml:link rel="alternate" hreflang="${language}" href="${escapeXml(url)}" />`,
-  ).join('\n')
-}
-
 function imageBlock({ src, title, caption }) {
   return `    <image:image>
       <image:loc>${escapeXml(siteUrl(src))}</image:loc>
@@ -170,7 +160,6 @@ function urlEntry({ path, priority, changefreq, lastmod = TODAY, images, videos 
     <lastmod>${lastmod}</lastmod>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
-${alternateLinks(url)}
 ${media.join('\n')}
   </url>`
 }
@@ -181,34 +170,23 @@ function imagesForPath(path, games, forums) {
       {
         src: '/og/home.jpg',
         title: 'Wardogs Cheats Open Graph',
-        caption: 'Google and social preview image for buywardogscheat.com homepage.',
+        caption: 'Primary social and search preview for the homepage.',
       },
       {
         src: HERO_FULL,
         title: 'Wardogs Cheats Hero',
-        caption: 'Buy Wardogs Cheats - Wardogs aimbot, ESP and radar hack hero artwork for PC.',
+        caption: 'Hero artwork for Wardogs aimbot, ESP, and radar on PC.',
       },
       {
         src: COVER,
         title: 'Wardogs Cheats Product Cover',
-        caption: 'Wardogs Cheats product cover for checkout and social previews.',
+        caption: 'Product cover used on checkout and product previews.',
       },
       {
         src: VIDEO_THUMB,
         title: 'Wardogs Cheats Preview Thumbnail',
-        caption: 'Thumbnail for the Wardogs aimbot and ESP preview video.',
+        caption: 'Video thumbnail for the self-hosted product preview.',
       },
-      {
-        src: OG_DEFAULT,
-        title: 'Wardogs Cheats Product Social Preview',
-        caption: 'Default Open Graph image for buywardogscheat.com product pages.',
-      },
-      { src: BOX, title: 'Wardogs ESP gameplay', caption: 'Player ESP wallhack screenshot for sitemap.' },
-      { src: ESP, title: 'Wardogs aimbot FOV', caption: 'Aimbot FOV circle gameplay screenshot.' },
-      { src: MENU, title: 'Wardogs cheat menu', caption: 'Menu reference artwork.' },
-      { src: CONTROL, title: 'Wardogs control art', caption: 'Support and setup artwork.' },
-      { src: HOME_ART, title: 'Wardogs home art', caption: 'Homepage supplementary artwork.' },
-      { src: TACTICAL_ART, title: 'Wardogs tactical art', caption: 'Tactical gameplay artwork.' },
     ]
   }
 
@@ -368,6 +346,15 @@ function collectAllPaths(games, forums, staticRoutes) {
   return [...paths]
 }
 
+function sectionLabel(path) {
+  if (path === '/') return 'Homepage'
+  if (path.endsWith('-cheats')) return 'Product'
+  if (path === '/forums') return 'Forums index'
+  if (path.startsWith('/forums/')) return 'Forum threads'
+  if (path === '/reviews' || path === '/faq' || path === '/support') return 'Trust and support'
+  return 'Legal and policies'
+}
+
 function buildSitemap(games, forums, allPaths) {
   const forumByPath = new Map(forums.map((f) => [`/forums/${f.slug}`, f]))
 
@@ -386,28 +373,40 @@ function buildSitemap(games, forums, allPaths) {
     return diff !== 0 ? diff : a.localeCompare(b)
   })
 
-  const entries = sorted.map((path) => {
+  const chunks = []
+  let lastSection = ''
+  for (const path of sorted) {
+    const section = sectionLabel(path)
+    if (section !== lastSection) {
+      chunks.push(`  <!-- ${section} -->`)
+      lastSection = section
+    }
     const meta = PAGE_META[path] || {
       priority: path.startsWith('/forums/') ? '0.8' : '0.5',
       changefreq: path.startsWith('/forums/') ? 'monthly' : 'weekly',
     }
     const forum = forumByPath.get(path)
-    return urlEntry({
-      path,
-      priority: meta.priority,
-      changefreq: meta.changefreq,
-      lastmod: forum?.date || TODAY,
-      images: imagesForPath(path, games, forums),
-      videos: videosForPath(path),
-    })
-  })
+    chunks.push(
+      urlEntry({
+        path,
+        priority: meta.priority,
+        changefreq: meta.changefreq,
+        lastmod: forum?.date || TODAY,
+        images: imagesForPath(path, games, forums),
+        videos: videosForPath(path),
+      }),
+    )
+  }
 
+  const urlCount = sorted.length
   return `<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="/sitemap.css"?>
+<!-- Generated ${TODAY} | ${urlCount} canonical URLs | ${SITE} -->
+<!-- Submit in Google Search Console: Sitemaps > ${siteUrl('/sitemap.xml')} -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-${entries.join('\n')}
+${chunks.join('\n')}
 </urlset>
 `
 }
@@ -428,6 +427,10 @@ function validate(games, forums, allPaths, sitemap) {
     const diskPath = join(publicDir, image.replace(/^\//, ''))
     if (!existsSync(diskPath)) errors.push(`Missing image asset on disk: ${image}`)
   }
+  for (const forum of forums) {
+    const og = join(publicDir, 'og', `forums-${forum.slug}.jpg`)
+    if (!existsSync(og)) errors.push(`Missing forum OG image: /og/forums-${forum.slug}.jpg`)
+  }
 
   const expectedUrls = new Set(allPaths.map(siteUrl))
   const pageLocs = [...sitemap.matchAll(/<url>\s*<loc>([^<]+)<\/loc>/g)].map((match) => match[1])
@@ -441,7 +444,13 @@ function validate(games, forums, allPaths, sitemap) {
     if (!expectedUrls.has(url)) errors.push(`Unexpected URL: ${url}`)
   }
   if (new Set(pageLocs).size !== pageLocs.length) errors.push('sitemap.xml contains duplicate page URLs')
+  if (!sitemap.includes('<?xml-stylesheet type="text/css" href="/sitemap.css"?>')) {
+    errors.push('sitemap.xml must link sitemap.css for human-readable browser view (ignored by Googlebot)')
+  }
   if (sitemap.includes('<sitemapindex')) errors.push('sitemap.xml must be a single urlset, not an index')
+  if (sitemap.includes('xmlns:xhtml=')) {
+    errors.push('Remove xhtml namespace from sitemap (single-locale site; hreflang lives on HTML pages)')
+  }
   if ((sitemap.match(/<urlset[\s>]/g) || []).length !== 1) {
     errors.push('sitemap.xml must contain exactly one <urlset>')
   }

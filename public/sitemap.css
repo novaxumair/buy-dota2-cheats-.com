@@ -1,211 +1,135 @@
 @namespace sitemap url("http://www.sitemaps.org/schemas/sitemap/0.9");
-@namespace xhtml url("http://www.w3.org/1999/xhtml");
 @namespace image url("http://www.google.com/schemas/sitemap-image/1.1");
+@namespace video url("http://www.google.com/schemas/sitemap-video/1.1");
 
 :root {
   color-scheme: dark;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
   background: #0d1117;
   color: #e6edf3;
-  font-size: 14px;
-  line-height: 1.45;
-  scrollbar-color: #484f58 #0d1117;
-}
-
-*::selection {
-  background: #264f78;
-  color: #ffffff;
+  font-size: 15px;
+  line-height: 1.5;
 }
 
 sitemap|urlset {
-  display: grid;
-  grid-auto-flow: row;
-  grid-template-columns: 1fr;
-  row-gap: 10px;
-  min-width: max-content;
-  padding: 24px 28px;
-  white-space: pre;
-  font-size: 0;
-  line-height: 0;
+  display: block;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
 }
 
 sitemap|urlset::before {
-  content: '<!-- XML Sitemap View -->\A<?xml version="1.0" encoding="UTF-8"?>\A<?xml-stylesheet type="text/css" href="/sitemap.css"?>\A<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\A        xmlns:xhtml="http://www.w3.org/1999/xhtml"\A        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">';
+  content: "Wardogs Cheats — XML Sitemap\A Indexable pages for Google Search Console (buywardogscheat.com)\A\A Open the raw XML for crawlers; this styled view is for humans only.";
   display: block;
+  white-space: pre-wrap;
+  margin-bottom: 24px;
+  padding: 16px 18px;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  background: #161b22;
+  color: #8b949e;
   font-size: 14px;
-  line-height: 1.45;
-  color: #79c0ff;
-}
-
-sitemap|urlset::after {
-  content: "</urlset>";
-  display: block;
-  font-size: 14px;
-  line-height: 1.45;
-  color: #79c0ff;
+  line-height: 1.55;
 }
 
 sitemap|url {
-  display: grid;
-  grid-auto-flow: row;
-  grid-template-columns: 1fr;
-  margin-left: 16px;
-  font-size: 0;
-  line-height: 0;
-}
-
-sitemap|url::before {
-  content: "<url>";
   display: block;
-  font-size: 14px;
-  line-height: 1.45;
-  color: #79c0ff;
-}
-
-sitemap|url::after {
-  content: "</url>";
-  display: block;
-  font-size: 14px;
-  line-height: 1.45;
-  color: #79c0ff;
-}
-
-sitemap|loc,
-sitemap|lastmod,
-sitemap|changefreq,
-sitemap|priority,
-xhtml|link {
-  display: block;
-  margin-left: 16px;
-  font-size: 14px;
-  line-height: 1.45;
-}
-
-sitemap|loc::before {
-  content: "<loc>";
-  color: #79c0ff;
-}
-
-sitemap|loc::after {
-  content: "</loc>";
-  color: #79c0ff;
+  margin: 0 0 14px;
+  padding: 14px 16px;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  background: #161b22;
 }
 
 sitemap|loc {
-  color: #a5d6ff;
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: #58a6ff;
+  word-break: break-all;
+  margin-bottom: 8px;
+}
+
+sitemap|loc::before {
+  content: "URL ";
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8b949e;
+  display: block;
+  margin-bottom: 4px;
+}
+
+sitemap|lastmod,
+sitemap|changefreq,
+sitemap|priority {
+  display: inline-block;
+  margin: 4px 10px 0 0;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: #21262d;
+  font-size: 12px;
+  color: #c9d1d9;
 }
 
 sitemap|lastmod::before {
-  content: "<lastmod>";
-  color: #79c0ff;
-}
-
-sitemap|lastmod::after {
-  content: "</lastmod>";
-  color: #79c0ff;
-}
-
-sitemap|lastmod {
-  color: #ffa657;
+  content: "Updated ";
+  color: #8b949e;
 }
 
 sitemap|changefreq::before {
-  content: "<changefreq>";
-  color: #79c0ff;
-}
-
-sitemap|changefreq::after {
-  content: "</changefreq>";
-  color: #79c0ff;
-}
-
-sitemap|changefreq {
-  color: #d2a8ff;
+  content: "Frequency ";
+  color: #8b949e;
 }
 
 sitemap|priority::before {
-  content: "<priority>";
-  color: #79c0ff;
+  content: "Priority ";
+  color: #8b949e;
 }
 
-sitemap|priority::after {
-  content: "</priority>";
-  color: #79c0ff;
-}
-
-sitemap|priority {
-  color: #7ee787;
-}
-
-xhtml|link::before {
-  content: '<xhtml:link rel="alternate" hreflang="' attr(hreflang) '" href="' attr(href) '" />';
-  color: #a5d6ff;
-}
-
-image|image {
-  display: grid;
-  grid-auto-flow: row;
-  grid-template-columns: 1fr;
-  margin-left: 16px;
-  font-size: 0;
-  line-height: 0;
-}
-
-image|image::before {
-  content: "<image:image>";
+image|image,
+video|video {
   display: block;
-  font-size: 14px;
-  line-height: 1.45;
-  color: #79c0ff;
-}
-
-image|image::after {
-  content: "</image:image>";
-  display: block;
-  font-size: 14px;
-  line-height: 1.45;
-  color: #79c0ff;
+  margin: 10px 0 0;
+  padding: 10px 12px;
+  border-left: 3px solid #388bfd;
+  background: #0d1117;
+  border-radius: 0 8px 8px 0;
 }
 
 image|loc,
-image|title,
-image|caption {
+video|content_loc,
+video|thumbnail_loc {
   display: block;
-  margin-left: 16px;
-  font-size: 14px;
-  line-height: 1.45;
-}
-
-image|loc::before {
-  content: "<image:loc>";
-  color: #79c0ff;
-}
-
-image|loc::after {
-  content: "</image:loc>";
-  color: #79c0ff;
-}
-
-image|loc {
+  font-size: 13px;
   color: #a5d6ff;
+  word-break: break-all;
+  margin-top: 4px;
 }
 
-image|title::before {
-  content: "<image:title>";
-  color: #79c0ff;
+image|title,
+video|title {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #e6edf3;
+  margin-top: 6px;
 }
 
-image|title::after {
-  content: "</image:title>";
-  color: #79c0ff;
+image|caption,
+video|description {
+  display: block;
+  font-size: 12px;
+  color: #8b949e;
+  margin-top: 4px;
 }
 
-image|caption::before {
-  content: "<image:caption>";
-  color: #79c0ff;
-}
-
-image|caption::after {
-  content: "</image:caption>";
-  color: #79c0ff;
+video|family_friendly,
+video|live {
+  display: inline-block;
+  font-size: 11px;
+  color: #7ee787;
+  margin-right: 10px;
+  margin-top: 6px;
 }

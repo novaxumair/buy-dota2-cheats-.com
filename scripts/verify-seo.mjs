@@ -283,8 +283,11 @@ for (const image of requiredImages) {
 if (!sitemap.trimStart().startsWith('<?xml version="1.0" encoding="UTF-8"?>')) {
   fail('sitemap.xml must start with an XML declaration')
 }
-if (sitemap.includes('xml-stylesheet')) {
-  fail('sitemap.xml must not embed xml-stylesheet (Worker injects it for browsers only)')
+if (!sitemap.includes('<?xml-stylesheet type="text/css" href="/sitemap.css"?>')) {
+  fail('sitemap.xml must reference /sitemap.css for readable browser view (Googlebot ignores the PI)')
+}
+if (sitemap.includes('xmlns:xhtml=') || sitemap.includes('hreflang=')) {
+  fail('sitemap.xml must not duplicate hreflang entries (single-locale site; use HTML link tags)')
 }
 for (const stale of [
   'sitemap-pages.xml',
@@ -376,7 +379,7 @@ if (!middleware.includes("startsWith('www.')") && !middleware.includes('startsWi
 }
 
 if (site.includes('://www.')) {
-  fail('Canonical SITE_URL must be apex (no www)  www redirects to apex')
+  fail('Canonical SITE_URL must be apex (no www) Â www redirects to apex')
 }
 
 for (const file of files) {
@@ -397,8 +400,8 @@ if (!headers.includes('Content-Type: text/html; charset=utf-8')) {
 if (!headers.includes('/sitemap.xml')) {
   fail('_headers missing /sitemap.xml Content-Type')
 }
-if (!headers.includes('text/xml; charset=utf-8')) {
-  fail('_headers missing XML charset Content-Type')
+if (!headers.includes('application/xml; charset=utf-8')) {
+  fail('_headers missing application/xml charset Content-Type for /sitemap.xml')
 }
 
 if (failures.length) {
