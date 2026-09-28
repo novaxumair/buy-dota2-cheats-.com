@@ -224,11 +224,11 @@ if (/forums\/(instructions|how-to-load)/.test(sitemap)) fail('Retired forum rema
 if (!sitemap.includes('https://buyislecheats.com/')) {
   fail('sitemap.xml must use https://buyislecheats.com URLs')
 }
-if (!sitemap.includes('/videos/hero.webm')) {
-  fail('sitemap.xml missing The Isle preview video entry')
+if (sitemap.includes('xmlns:video=') || sitemap.includes('<video:')) {
+  fail('sitemap must not use video extension (GSC read errors)')
 }
-if (!sitemap.includes('xmlns:video=')) {
-  fail('sitemap.xml missing video namespace for Google video indexing')
+if (sitemap.includes('<?xml-stylesheet')) {
+  fail('sitemap must not use xml-stylesheet (GSC read errors on Cloudflare)')
 }
 if (/tarkovcheats|Tarkov|warzonecheats|Delta Product|Auron Product|Ricochet/i.test(sitemap)) {
   fail('sitemap.xml still contains legacy Tarkov/Warzone branding')
@@ -283,9 +283,6 @@ for (const image of requiredImages) {
 if (!sitemap.trimStart().startsWith('<?xml version="1.0" encoding="UTF-8"?>')) {
   fail('sitemap.xml must start with an XML declaration')
 }
-if (!sitemap.includes('<?xml-stylesheet type="text/css" href="/sitemap.css"?>')) {
-  fail('sitemap.xml must reference /sitemap.css for readable browser view (Googlebot ignores the PI)')
-}
 if (sitemap.includes('xmlns:xhtml=') || sitemap.includes('hreflang=')) {
   fail('sitemap.xml must not duplicate hreflang entries (single-locale site; use HTML link tags)')
 }
@@ -303,12 +300,18 @@ for (const stale of [
 }
 
 if (!existsSync(join(dist, 'sitemap.xml'))) fail('dist/sitemap.xml is missing')
+if (!existsSync(join(dist, 'sitemap'))) fail('dist/sitemap is missing (extensionless URL for Google)')
+const sitemapPlain = readFileSync(join(dist, 'sitemap'), 'utf8')
+if (sitemapPlain !== sitemap) fail('/sitemap and /sitemap.xml must be identical')
 if (!existsSync(join(dist, 'robots.txt'))) fail('dist/robots.txt is missing')
 if (!existsSync(join(dist, '_routes.json'))) fail('dist/_routes.json is missing')
 
 const robots = readFileSync(join(dist, 'robots.txt'), 'utf8')
-if (!robots.includes('Sitemap: https://buyislecheats.com/sitemap.xml')) {
-  fail('robots.txt must point at the canonical HTTPS sitemap')
+if (!robots.includes('Sitemap: https://buyislecheats.com/sitemap')) {
+  fail('robots.txt must point at the canonical HTTPS sitemap (/sitemap)')
+}
+if (!robots.includes('Allow: /sitemap')) {
+  fail('robots.txt must explicitly allow /sitemap')
 }
 if (!robots.includes('Allow: /sitemap.xml')) {
   fail('robots.txt must explicitly allow /sitemap.xml')
@@ -391,11 +394,11 @@ const headers = readFileSync(join(root, 'public', '_headers'), 'utf8')
 if (!headers.includes('Content-Type: text/html; charset=utf-8')) {
   fail('_headers missing HTML charset Content-Type')
 }
-if (!headers.includes('/sitemap.xml')) {
-  fail('_headers missing /sitemap.xml Content-Type')
+if (!headers.includes('/sitemap.xml') || !headers.includes('/sitemap')) {
+  fail('_headers missing /sitemap and /sitemap.xml Content-Type')
 }
 if (!headers.includes('application/xml; charset=utf-8')) {
-  fail('_headers missing application/xml charset Content-Type for /sitemap.xml')
+  fail('_headers missing application/xml charset Content-Type for sitemap')
 }
 
 if (failures.length) {

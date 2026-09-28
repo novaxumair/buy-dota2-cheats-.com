@@ -379,13 +379,7 @@ function buildSitemap(games, forums, allPaths) {
   })
 
   const chunks = []
-  let lastSection = ''
   for (const path of sorted) {
-    const section = sectionLabel(path)
-    if (section !== lastSection) {
-      chunks.push(`  <!-- ${section} -->`)
-      lastSection = section
-    }
     const meta = PAGE_META[path] || {
       priority: path.startsWith('/forums/') ? '0.8' : '0.5',
       changefreq: path.startsWith('/forums/') ? 'monthly' : 'weekly',
@@ -398,19 +392,14 @@ function buildSitemap(games, forums, allPaths) {
         changefreq: meta.changefreq,
         lastmod: forum?.date || TODAY,
         images: imagesForPath(path, games, forums),
-        videos: videosForPath(path),
+        videos: [],
       }),
     )
   }
 
-  const urlCount = sorted.length
   return `<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/css" href="/sitemap.css"?>
-<!-- Generated ${TODAY} | ${urlCount} canonical URLs | ${SITE} -->
-<!-- Submit in Google Search Console: Sitemaps > ${siteUrl('/sitemap.xml')} -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${chunks.join('\n')}
 </urlset>
 `
@@ -449,8 +438,11 @@ function validate(games, forums, allPaths, sitemap) {
     if (!expectedUrls.has(url)) errors.push(`Unexpected URL: ${url}`)
   }
   if (new Set(pageLocs).size !== pageLocs.length) errors.push('sitemap.xml contains duplicate page URLs')
-  if (!sitemap.includes('<?xml-stylesheet type="text/css" href="/sitemap.css"?>')) {
-    errors.push('sitemap.xml must link sitemap.css for human-readable browser view (ignored by Googlebot)')
+  if (sitemap.includes('<?xml-stylesheet')) {
+    errors.push('sitemap must not use xml-stylesheet (Google Search Console parse failures on Cloudflare)')
+  }
+  if (sitemap.includes('<video:')) {
+    errors.push('sitemap must not use video extension (keep video discovery on HTML pages only)')
   }
   if (sitemap.includes('<sitemapindex')) errors.push('sitemap.xml must be a single urlset, not an index')
   if (sitemap.includes('xmlns:xhtml=')) {
@@ -470,9 +462,6 @@ function validate(games, forums, allPaths, sitemap) {
   }
   for (const image of ALL_SITE_IMAGES) {
     if (!imageLocs.includes(siteUrl(image))) errors.push(`Sitemap missing required image: ${image}`)
-  }
-  if (!sitemap.includes(siteUrl(PREVIEW_VIDEO))) {
-    errors.push('Sitemap missing The Isle preview video content_loc')
   }
   if (/Tarkov|tarkovcheats|EFT Reaper|Warzone|warzonecheats|Ricochet/i.test(sitemap)) {
     errors.push('Sitemap still contains legacy Tarkov/Warzone labels')
@@ -500,16 +489,23 @@ function main() {
   const sitemap = buildSitemap(games, forums, allPaths)
   validate(games, forums, allPaths, sitemap)
 
-  writeFileSync(join(publicDir, 'sitemap.xml'), sitemap, 'utf8')
-  const distDir = join(root, 'dist')
-  if (existsSync(distDir)) {
-    writeFileSync(join(distDir, 'sitemap.xml'), sitemap, 'utf8')
+  const sitemapPaths = [
+    join(publicDir, 'sitemap.xml'),
+    join(publicDir, 'sitemap'),
+    ...(existsSync(join(root, 'dist'))
+      ? [join(root, 'dist', 'sitemap.xml'), join(root, 'dist', 'sitemap')]
+      : []),
+  ]
+  for (const path of sitemapPaths) {
+    writeFileSync(path, sitemap, 'utf8')
   }
+  const distDir = join(root, 'dist')
   writeFileSync(
     join(publicDir, 'robots.txt'),
     [
       'User-agent: Googlebot',
       'Allow: /',
+      'Allow: /sitemap',
       'Allow: /sitemap.xml',
       'Allow: /robots.txt',
       'Allow: /media/',
@@ -518,6 +514,7 @@ function main() {
       '',
       'User-agent: Google-InspectionTool',
       'Allow: /',
+      'Allow: /sitemap',
       'Allow: /sitemap.xml',
       'Allow: /robots.txt',
       'Allow: /media/',
@@ -526,6 +523,7 @@ function main() {
       '',
       'User-agent: Bingbot',
       'Allow: /',
+      'Allow: /sitemap',
       'Allow: /sitemap.xml',
       'Allow: /robots.txt',
       'Allow: /media/',
@@ -534,6 +532,7 @@ function main() {
       '',
       'User-agent: *',
       'Allow: /',
+      'Allow: /sitemap',
       'Allow: /sitemap.xml',
       'Allow: /robots.txt',
       'Allow: /media/',
@@ -542,7 +541,7 @@ function main() {
       'Disallow: /404',
       'Disallow: /404.html',
       '',
-      `Sitemap: ${siteUrl('/sitemap.xml')}`,
+      `Sitemap: ${siteUrl('/sitemap')}`,
       '',
     ].join('\n'),
     'utf8',
@@ -568,7 +567,7 @@ function main() {
   }
 
   console.log(
-    `Sitemap OK: ${allPaths.length} pages in single sitemap.xml (${siteUrl('/sitemap.xml')})`,
+    `Sitemap OK: ${allPaths.length} pages at ${siteUrl('/sitemap')} (+ /sitemap.xml mirror)`,
   )
 }
 
