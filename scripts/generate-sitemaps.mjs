@@ -148,19 +148,12 @@ function videoBlock({ thumb, title, description, content }) {
     </video:video>`
 }
 
-function urlEntry({ path, priority, changefreq, lastmod = TODAY, images, videos = [] }) {
-  if (!images?.length) throw new Error(`Sitemap entry for ${path} is missing images`)
+/** Minimal urlset entries — loc + lastmod only (best GSC compatibility on Cloudflare Pages). */
+function urlEntry({ path, lastmod = TODAY }) {
   const url = siteUrl(path)
-  const media = [
-    ...images.map((image) => imageBlock(image)),
-    ...videos.map((video) => videoBlock(video)),
-  ]
   return `  <url>
     <loc>${escapeXml(url)}</loc>
     <lastmod>${lastmod}</lastmod>
-    <changefreq>${changefreq}</changefreq>
-    <priority>${priority}</priority>
-${media.join('\n')}
   </url>`
 }
 
@@ -380,26 +373,12 @@ function buildSitemap(games, forums, allPaths) {
 
   const chunks = []
   for (const path of sorted) {
-    const meta = PAGE_META[path] || {
-      priority: path.startsWith('/forums/') ? '0.8' : '0.5',
-      changefreq: path.startsWith('/forums/') ? 'monthly' : 'weekly',
-    }
     const forum = forumByPath.get(path)
-    chunks.push(
-      urlEntry({
-        path,
-        priority: meta.priority,
-        changefreq: meta.changefreq,
-        lastmod: forum?.date || TODAY,
-        images: imagesForPath(path, games, forums),
-        videos: [],
-      }),
-    )
+    chunks.push(urlEntry({ path, lastmod: forum?.date || TODAY }))
   }
 
   return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${chunks.join('\n')}
 </urlset>
 `
@@ -428,7 +407,6 @@ function validate(games, forums, allPaths, sitemap) {
 
   const expectedUrls = new Set(allPaths.map(siteUrl))
   const pageLocs = [...sitemap.matchAll(/<url>\s*<loc>([^<]+)<\/loc>/g)].map((match) => match[1])
-  const imageLocs = [...sitemap.matchAll(/<image:loc>([^<]+)<\/image:loc>/g)].map((match) => match[1])
   const urlBlocks = sitemap.match(/<url>[\s\S]*?<\/url>/g) || []
 
   for (const url of expectedUrls) {
@@ -441,8 +419,8 @@ function validate(games, forums, allPaths, sitemap) {
   if (sitemap.includes('<?xml-stylesheet')) {
     errors.push('sitemap must not use xml-stylesheet (Google Search Console parse failures on Cloudflare)')
   }
-  if (sitemap.includes('<video:')) {
-    errors.push('sitemap must not use video extension (keep video discovery on HTML pages only)')
+  if (sitemap.includes('<video:') || sitemap.includes('xmlns:image=') || sitemap.includes('<image:')) {
+    errors.push('sitemap must be a plain urlset (no image/video extensions for GSC)')
   }
   if (sitemap.includes('<sitemapindex')) errors.push('sitemap.xml must be a single urlset, not an index')
   if (sitemap.includes('xmlns:xhtml=')) {
@@ -456,12 +434,9 @@ function validate(games, forums, allPaths, sitemap) {
   }
   for (const block of urlBlocks) {
     const loc = block.match(/<loc>([^<]+)<\/loc>/)?.[1] || '(unknown)'
-    if (!block.includes('<image:image>') || !block.includes('<image:loc>')) {
-      errors.push(`URL missing image entry: ${loc}`)
+    if (!block.includes('<lastmod>')) {
+      errors.push(`URL missing lastmod: ${loc}`)
     }
-  }
-  for (const image of ALL_SITE_IMAGES) {
-    if (!imageLocs.includes(siteUrl(image))) errors.push(`Sitemap missing required image: ${image}`)
   }
   if (/Tarkov|tarkovcheats|EFT Reaper|Warzone|warzonecheats|Ricochet/i.test(sitemap)) {
     errors.push('Sitemap still contains legacy Tarkov/Warzone labels')
@@ -471,9 +446,6 @@ function validate(games, forums, allPaths, sitemap) {
   }
   if (/tarkovcheats|warzonecheats|buywardogscheat|zadeyo|arena breakout/i.test(sitemap)) {
     errors.push('Sitemap contains legacy or third-party branding')
-  }
-  if (imageLocs.length < expectedUrls.size) {
-    errors.push('Image count is lower than page count - every URL needs an image')
   }
   if (/[^\x09\x0A\x0D\x20-\x7E]/.test(sitemap.replace(/https?:\/\//g, ''))) {
     // Allow non-ascii only inside https URLs if any; captions should be ascii.
@@ -542,6 +514,7 @@ function main() {
       'Disallow: /404.html',
       '',
       `Sitemap: ${siteUrl('/sitemap')}`,
+      `Sitemap: ${siteUrl('/sitemap.xml')}`,
       '',
     ].join('\n'),
     'utf8',

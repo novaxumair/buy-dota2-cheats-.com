@@ -227,6 +227,9 @@ if (!sitemap.includes('https://buyislecheats.com/')) {
 if (sitemap.includes('xmlns:video=') || sitemap.includes('<video:')) {
   fail('sitemap must not use video extension (GSC read errors)')
 }
+if (sitemap.includes('xmlns:image=') || sitemap.includes('<image:')) {
+  fail('sitemap must be plain urlset without image extension (GSC read errors)')
+}
 if (sitemap.includes('<?xml-stylesheet')) {
   fail('sitemap must not use xml-stylesheet (GSC read errors on Cloudflare)')
 }
@@ -241,21 +244,6 @@ const expectedUrls = new Set(
 const urlBlocks = sitemap.match(/<url>[\s\S]*?<\/url>/g) || []
 const pageLocs = urlBlocks.map((block) => block.match(/<loc>([^<]+)<\/loc>/)?.[1]).filter(Boolean)
 const uniqueSitemapUrls = new Set(pageLocs)
-const imageLocs = [...sitemap.matchAll(/<image:loc>([^<]+)<\/image:loc>/g)].map((match) => match[1])
-const requiredImages = [
-  '/og/home.jpg',
-  '/og/the-isle-cheats.jpg',
-  '/og/forums.jpg',
-  '/og/reviews.jpg',
-  '/og/faq.jpg',
-  '/og/support.jpg',
-  '/media/isle-hero-full.webp',
-  '/media/isle-cover.webp',
-  '/media/isle-screenshot-5.webp',
-  '/media/isle-menu.webp',
-  '/media/isle-video-thumb.jpg',
-]
-
 for (const url of expectedUrls) {
   if (!uniqueSitemapUrls.has(url)) fail(`sitemap.xml missing built page ${url}`)
 }
@@ -266,18 +254,10 @@ if (uniqueSitemapUrls.size !== pageLocs.length) fail('sitemap.xml contains dupli
 if (urlBlocks.length !== expectedUrls.size) {
   fail(`sitemap.xml must contain exactly ${expectedUrls.size} built page URLs`)
 }
-if ((sitemap.match(/<image:image>/g) || []).length < expectedUrls.size) {
-  fail('Every sitemap URL must include at least one image entry')
-}
 for (const block of urlBlocks) {
   const loc = block.match(/<loc>([^<]+)<\/loc>/)?.[1] || '(unknown)'
-  if (!block.includes('<image:image>') || !block.includes('<image:loc>')) {
-    fail(`sitemap URL missing image entry: ${loc}`)
-  }
-}
-for (const image of requiredImages) {
-  if (!imageLocs.some((loc) => loc.endsWith(image))) {
-    fail(`sitemap.xml missing required image ${image}`)
+  if (!block.includes('<lastmod>')) {
+    fail(`sitemap URL missing lastmod: ${loc}`)
   }
 }
 if (!sitemap.trimStart().startsWith('<?xml version="1.0" encoding="UTF-8"?>')) {
@@ -309,6 +289,9 @@ if (!existsSync(join(dist, '_routes.json'))) fail('dist/_routes.json is missing'
 const robots = readFileSync(join(dist, 'robots.txt'), 'utf8')
 if (!robots.includes('Sitemap: https://buyislecheats.com/sitemap')) {
   fail('robots.txt must point at the canonical HTTPS sitemap (/sitemap)')
+}
+if (!robots.includes('Sitemap: https://buyislecheats.com/sitemap.xml')) {
+  fail('robots.txt must also list /sitemap.xml for Search Console submissions')
 }
 if (!robots.includes('Allow: /sitemap')) {
   fail('robots.txt must explicitly allow /sitemap')
@@ -393,6 +376,9 @@ for (const file of files) {
 const headers = readFileSync(join(root, 'public', '_headers'), 'utf8')
 if (!headers.includes('Content-Type: text/html; charset=utf-8')) {
   fail('_headers missing HTML charset Content-Type')
+}
+if (/^\/\r?\n\s*Content-Type: text\/html/m.test(headers)) {
+  fail('_headers must not set Content-Type: text/html on / (overrides sitemap for Googlebot)')
 }
 if (!headers.includes('/sitemap.xml') || !headers.includes('/sitemap')) {
   fail('_headers missing /sitemap and /sitemap.xml Content-Type')
