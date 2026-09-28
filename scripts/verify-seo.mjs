@@ -321,8 +321,8 @@ if (!robots.includes('User-agent: Googlebot')) {
 }
 
 const routes = JSON.parse(readFileSync(join(dist, '_routes.json'), 'utf8'))
-if (!routes.exclude?.includes('/sitemap.xml') || !routes.exclude?.includes('/robots.txt')) {
-  fail('_routes.json must exclude /sitemap.xml and /robots.txt from Functions')
+if (Array.isArray(routes.include) && routes.include.length > 0) {
+  fail('_routes.json must use empty include so /sitemap.xml is served as static assets only')
 }
 
 for (const asset of [
@@ -340,7 +340,6 @@ for (const asset of [
   'public/videos/hero.webm',
   'public/sitemap.css',
   'public/_routes.json',
-  'functions/_middleware.js',
 ]) {
   if (!existsSync(join(root, asset))) fail(`Missing first-party asset: ${asset}`)
 }
@@ -371,11 +370,6 @@ if (!worker.includes("startsWith('www.')") && !worker.includes('startsWith("www.
 }
 if (!worker.includes('301')) {
   fail('workers/site.js must 301 www ? apex for a single canonical host')
-}
-
-const middleware = readFileSync(join(root, 'functions', '_middleware.js'), 'utf8')
-if (!middleware.includes("startsWith('www.')") && !middleware.includes('startsWith("www.")')) {
-  fail('functions/_middleware.js must 301 www ? apex')
 }
 
 if (site.includes('://www.')) {

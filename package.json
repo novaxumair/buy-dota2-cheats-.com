@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev --port 5174",
-    "build": "node scripts/generate-seo-assets.mjs && node scripts/generate-sitemaps.mjs && astro build && node scripts/verify-seo.mjs && node scripts/verify-redirects.mjs",
+    "build": "node scripts/generate-seo-assets.mjs && astro build && node scripts/generate-sitemaps.mjs && node scripts/verify-seo.mjs && node scripts/verify-redirects.mjs",
     "preview": "astro preview --port 5175",
     "deploy": "wrangler deploy -c wrangler.worker.toml",
     "check": "astro check",

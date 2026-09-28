@@ -501,6 +501,10 @@ function main() {
   validate(games, forums, allPaths, sitemap)
 
   writeFileSync(join(publicDir, 'sitemap.xml'), sitemap, 'utf8')
+  const distDir = join(root, 'dist')
+  if (existsSync(distDir)) {
+    writeFileSync(join(distDir, 'sitemap.xml'), sitemap, 'utf8')
+  }
   writeFileSync(
     join(publicDir, 'robots.txt'),
     [
@@ -543,6 +547,9 @@ function main() {
     ].join('\n'),
     'utf8',
   )
+  if (existsSync(distDir)) {
+    writeFileSync(join(distDir, 'robots.txt'), readFileSync(join(publicDir, 'robots.txt'), 'utf8'), 'utf8')
+  }
 
   for (const name of [
     'sitemap-pages.xml',
