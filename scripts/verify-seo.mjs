@@ -307,8 +307,15 @@ if (!robots.includes('User-agent: Googlebot')) {
 }
 
 const routes = JSON.parse(readFileSync(join(dist, '_routes.json'), 'utf8'))
-if (Array.isArray(routes.include) && routes.include.length > 0) {
-  fail('_routes.json must use empty include so /sitemap.xml is served as static assets only')
+if (!routes.include?.includes('/sitemap') || !routes.include?.includes('/sitemap.xml')) {
+  fail('_routes.json must route /sitemap and /sitemap.xml through Pages Functions')
+}
+for (const fn of ['functions/sitemap.js', 'functions/sitemap.xml.js']) {
+  const src = readFileSync(join(root, fn), 'utf8')
+  if (!src.includes('application/xml; charset=utf-8')) {
+    fail(`${fn} must return application/xml for Google Search Console`)
+  }
+  if (!src.includes('SITEMAP_XML')) fail(`${fn} missing embedded sitemap payload`)
 }
 
 for (const asset of [
