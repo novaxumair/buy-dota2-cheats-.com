@@ -1,6 +1,9 @@
-# Cloudflare Workers + Pages (optional deploy)
+﻿# Cloudflare Pages (Git) — build output for Astro static site
 name = "buyislecheats"
 compatibility_date = "2024-09-23"
+pages_build_output_dir = "./dist"
+
+# Optional Workers deploy (`npm run deploy`) — same dist assets + worker routing
 main = "workers/site.js"
 
 [assets]

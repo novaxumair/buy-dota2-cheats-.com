@@ -153,7 +153,7 @@ function decodeEntities(value = '') {
 
 for (const file of files) {
   const page = relative(dist, file).replaceAll('\\', '/')
-  if (page === '404.html') continue
+  if (page === '404.html' || page === 'checkout/index.html') continue
   const html = readFileSync(file, 'utf8')
   if (html.includes('content="noindex')) fail(`${page}: content page must not be noindex`)
 
