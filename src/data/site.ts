@@ -68,9 +68,9 @@ const INDEX_ROBOTS =
 
 export const SEO = {
   home: {
-    title: 'The Isle Cheats | Evrima ESP, Guides & Community',
+    title: 'The Isle Cheats | Evrima Overlays, Features & Setup Guides',
     description:
-      'The Isle cheats and ESP for Evrima on PC — player and dinosaur overlays, survival guides, forums, reviews, and loader status. Aimbot and wallhack-style awareness when you need it.',
+      'Survival overlays for The Isle Evrima on Windows PC — player ESP, dinosaur stat readouts, visual options, and wallhack-style awareness. Loader status, setup forums, reviews, and guides.',
     path: '/',
     ogType: 'website',
     image: PAGE_OG.home,

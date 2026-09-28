@@ -80,7 +80,7 @@ const support = readFileSync(join(dist, 'support', 'index.html'), 'utf8')
 const forums = readFileSync(join(dist, 'forums', 'index.html'), 'utf8')
 const siteTs = readFileSync(join(root, 'src', 'data', 'site.ts'), 'utf8')
 
-if (!home.includes('<title>The Isle Cheats | Evrima ESP, Guides &amp; Community</title>')) {
+if (!home.includes('<title>The Isle Cheats | Evrima Overlays, Features &amp; Setup Guides</title>')) {
   fail('Homepage does not own the exact title')
 }
 if (!product.includes('<title>The Isle ESP, Aimbot &amp; Wallhack | Features &amp; Plans</title>')) {
