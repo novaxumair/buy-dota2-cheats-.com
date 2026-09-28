@@ -17,7 +17,7 @@ function prefersStaticHero() {
 /** Full-bleed hero video — muted loop, cover fit. */
 export function VideoBg({
   image = WD_HERO,
-  imageAlt = 'Wardogs gameplay with ESP and aimbot overlay',
+  imageAlt = 'The Isle gameplay with ESP and aimbot overlay',
 }: VideoBgProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [posterOnly, setPosterOnly] = useState(false)

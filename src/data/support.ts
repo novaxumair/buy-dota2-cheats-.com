@@ -1,5 +1,5 @@
 ﻿export const SUPPORT_INTRO =
-  'Support for Wardogs cheat buyers on buywardogscheat.com — loader setup, Active status, menu config and delivery help after purchase.'
+  'Support for The Isle cheat buyers on buyislecheats.com — loader setup, Active status, menu config and delivery help after purchase.'
 
 export const SUPPORT_HIGHLIGHTS = [
   {
@@ -19,11 +19,11 @@ export const SUPPORT_HIGHLIGHTS = [
 export const SUPPORT_FAQ = [
   {
     q: 'What do you support?',
-    a: 'Supported: Wardogs on Windows PC (Steam), loader and menu help for paid licenses.',
+    a: 'Supported: The Isle on Windows PC (Steam), loader and menu help for paid licenses.',
   },
   {
     q: 'How do I contact support?',
-    a: 'Open your order on buywardogscheat.com and use the checkout support channel tied to your purchase. Include a status screenshot (Active / Updating) and whether you need load, menu or delivery help.',
+    a: 'Open your order on buyislecheats.com and use the checkout support channel tied to your purchase. Include a status screenshot (Active / Updating) and whether you need load, menu or delivery help.',
   },
   {
     q: 'Loader fails after exclusions',
@@ -35,7 +35,7 @@ export const SUPPORT_FAQ = [
   },
   {
     q: 'Delivery safety',
-    a: 'Delivery is digital after checkout on buywardogscheat.com. Use only that loader link. Third-party mirrors are unsupported and unsafe.',
+    a: 'Delivery is digital after checkout on buyislecheats.com. Use only that loader link. Third-party mirrors are unsupported and unsafe.',
   },
 ] as const
 

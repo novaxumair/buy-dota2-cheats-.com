@@ -38,11 +38,11 @@ export function ForumsPage({ initialQuery = '' }: ForumsPageProps) {
                 Forums · Setup · {SITE_HOST}
               </p>
               <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-                Wardogs Cheats Forum
+                The Isle Cheats Forum
               </h1>
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/70">
-                Informational guides for wardogs esp, wardogs aimbot, vehicle radar, and loader help —
-                plus commercial threads when you want to buy wardogs cheats safely.
+                Informational guides for the isle esp, the isle cheats evrima, and Evrima loader help —
+                plus commercial threads when you want to buy the isle cheats safely.
               </p>
               <div className="relative z-50 mt-7">
                 <HeroSearch
@@ -72,14 +72,14 @@ export function ForumsPage({ initialQuery = '' }: ForumsPageProps) {
             <div className="page-card mb-10 flex flex-col gap-4 rounded-2xl p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
               <div>
                 <p className="text-xs uppercase tracking-wider text-white/45">Product</p>
-                <h2 className="mt-1 text-xl font-semibold text-white">Wardogs Cheats</h2>
+                <h2 className="mt-1 text-xl font-semibold text-white">The Isle Cheats</h2>
                 <p className="mt-2 max-w-xl text-sm text-white/55">
-                  Wardogs ESP, aimbot, and wallhack-style visuals — confirm Active loader status
+                  The Isle ESP, aimbot, and wallhack-style visuals — confirm Active loader status
                   before checkout.
                 </p>
               </div>
               <a
-                href={guidePath('wardogs')}
+                href={guidePath('the-isle')}
                 className="cta-gradient inline-flex shrink-0 items-center justify-center rounded-full px-6 py-3 text-sm font-medium text-white"
               >
                 Product details

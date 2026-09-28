@@ -35,10 +35,10 @@ export function ReviewsPage() {
               {SITE_NAME}
             </p>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-              Wardogs Cheat Reviews
+              The Isle Cheat Reviews
             </h1>
             <p className="mt-4 text-base leading-relaxed text-white/60">
-              Feedback from players who use Wardogs cheats — ESP clarity, vehicle radar, aimbot tuning,
+              Feedback from players who use The Isle cheats — ESP clarity, vehicle radar, aimbot tuning,
               and whether builds held after the last game patch.
             </p>
             <p className="mt-4 text-sm text-white/45" aria-label="Aggregate rating">
@@ -83,7 +83,7 @@ export function ReviewsPage() {
             </div>
             <div className="flex shrink-0 flex-wrap items-center gap-3">
               <a
-                href="/wardogs-cheats"
+                href="/the-isle-cheats"
                 className="inline-flex h-11 items-center justify-center rounded-full border border-z-soft/35 bg-white/[0.06] px-5 text-sm font-semibold text-white backdrop-blur-xl transition-colors hover:border-z-soft/50 hover:bg-white/[0.1]"
               >
                 Product details

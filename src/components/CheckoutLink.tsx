@@ -5,12 +5,11 @@ type CheckoutLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 
   children: ReactNode
 }
 
-/** Outbound buy link — nofollow so Google does not index the redirect. */
+/** Outbound checkout link for all purchase CTAs. */
 export function CheckoutLink({ children, className, ...rest }: CheckoutLinkProps) {
   return (
     <a
       href={CHECKOUT_URL}
-      target="_blank"
       rel={CHECKOUT_REL}
       className={className}
       {...rest}
@@ -19,4 +18,4 @@ export function CheckoutLink({ children, className, ...rest }: CheckoutLinkProps
     </a>
   )
 }
-
+

@@ -18,7 +18,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Tektur', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        sans: ['Cinzel', 'Georgia', 'Times New Roman', 'serif'],
+        serif: ['Cinzel', 'Georgia', 'Times New Roman', 'serif'],
       },
     },
   },

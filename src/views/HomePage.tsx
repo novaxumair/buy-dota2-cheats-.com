@@ -1,4 +1,4 @@
-import { ArrowRight, Crosshair, Eye, Radar, Truck, Sparkles, Star } from 'lucide-react'
+import { ArrowRight, Eye, Leaf, Sparkles, Star, Trees } from 'lucide-react'
 import { Navbar } from '../components/Navbar'
 import { SiteFooter } from '../components/SiteFooter'
 import { FaqSection } from '../components/FaqSection'
@@ -12,28 +12,28 @@ import { REVIEWS } from '../data/reviews'
 
 const FEATURES = [
   {
-    icon: Crosshair,
-    label: 'Aimbot options',
-    desc: 'FOV, smooth, bone selection, visible check, and draw overlays — tuned for control-zone fights when you enable assist.',
-    href: blogPath('aimbot-settings'),
-  },
-  {
     icon: Eye,
-    label: 'Player ESP & wallhack',
-    desc: 'Box, skeleton, health, weapon, and team filters — see contacts through cover before you push.',
-    href: blogPath('esp-wallhack-guide'),
+    label: 'Player & dinosaur ESP',
+    desc: 'Box, snapline, species, growth, health, and stamina — the isle esp awareness before you leave the treeline.',
+    href: blogPath('player-esp-first'),
   },
   {
-    icon: Truck,
-    label: 'Vehicle ESP',
-    desc: 'Type, distance, and occupied/empty state — track convoys and avoid bait trucks on open roads.',
-    href: blogPath('vehicle-esp-first'),
+    icon: Trees,
+    label: 'NPC & animal overlays',
+    desc: 'NPC ESP and animal markers with distance caps — spot threats and food routes across Evrima.',
+    href: blogPath('animal-esp-features'),
   },
   {
-    icon: Radar,
-    label: '2D radar',
-    desc: 'Player and vehicle markers with adjustable range — pair with sound for third-party timing.',
-    href: blogPath('radar-recommended-config'),
+    icon: Leaf,
+    label: 'Survival world ESP',
+    desc: 'Corpse, fruit, and water toggles plus max distance filters for herbivore growth paths.',
+    href: blogPath('water-source-esp'),
+  },
+  {
+    icon: Sparkles,
+    label: 'Misc utilities',
+    desc: 'Fullbright, crosshair, panic key, and custom ESP colors — tune misc options without clutter.',
+    href: blogPath('miscellaneous-utility-settings'),
   },
 ] as const
 
@@ -41,7 +41,7 @@ const HOW_IT_WORKS = [
   {
     step: '01',
     title: 'Check loader status',
-    text: 'After Wardogs patches we label builds Active or Updating on buywardogscheat.com — load only when Active matches your client.',
+    text: 'After Evrima patches we label builds Active or Updating on buyislecheats.com — load only when Active matches your client.',
   },
   {
     step: '02',
@@ -51,7 +51,7 @@ const HOW_IT_WORKS = [
   {
     step: '03',
     title: 'Configure ESP-first',
-    text: 'Enable player ESP and 2D radar, save a config profile, then add aimbot only if you want combat assist in control-zone fights.',
+    text: 'Enable player ESP with distance and species tags, save a config profile, then add misc keys only when you need them.',
   },
 ] as const
 
@@ -72,20 +72,20 @@ export function HomePage({ part = 'full' }: HomePageProps) {
             <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
               <div className="relative z-30 max-w-xl lg:max-w-2xl">
                 <p className="mb-2.5 text-[11px] font-medium uppercase tracking-[0.18em] text-z-soft/80 sm:mb-3 sm:text-xs sm:tracking-[0.2em]">
-                  Wardogs · PC · Steam · Control zone
+                  The Isle · Evrima · PC · Steam
                 </p>
                 <h1 className="text-[1.75rem] font-semibold leading-[1.12] tracking-tight text-white sm:text-4xl lg:text-[2.65rem] lg:leading-[1.1]">
                   {HOME_HEADINGS.h1}
                 </h1>
                 <p className="mt-3 max-w-lg text-sm leading-relaxed text-white/70 sm:mt-3.5 sm:text-[0.95rem]">
-                  Tactical PC overlays for Wardogs — player ESP, vehicle radar, optional aimbot, and
-                  wallhack-style visuals on Windows 10/11. Guides, forums, and loader status before
-                  you commit.
+                  Survival overlays for The Isle Evrima — player ESP, dinosaur stat readouts, visual
+                  options, and wallhack-style awareness on Windows 10/11. Guides, forums, and loader
+                  status before you grow your next dinosaur.
                 </p>
 
                 <div className="relative z-50 mt-5 flex flex-col gap-2.5 sm:flex-row sm:items-center">
                   <a
-                    href={guidePath('wardogs')}
+                    href={guidePath('the-isle')}
                     className="cta-gradient inline-flex items-center justify-center rounded-full px-6 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
                   >
                     Explore features
@@ -106,21 +106,21 @@ export function HomePage({ part = 'full' }: HomePageProps) {
                     <span className="text-sm font-semibold text-white">Patch-synced loader</span>
                   </div>
                   <p className="mt-2.5 text-xs leading-relaxed text-white/70 sm:mt-3 sm:text-sm">
-                    Active or Updating labels after Wardogs updates — no mystery builds after patch
-                    days.
+                    <span className="text-glow-active">Active</span> or Updating labels after Evrima
+                    updates — no mystery builds after patch days.
                   </p>
                 </div>
 
                 <div className="glass flex h-full min-h-[140px] flex-col rounded-2xl p-4 sm:min-h-[160px] sm:p-5">
                   <div className="mb-2.5 flex items-center gap-2 sm:mb-3">
                     <div className="flex h-5 w-5 items-center justify-center rounded bg-z-accent/30 text-[10px] font-bold text-z-soft sm:h-6 sm:w-6 sm:text-xs">
-                      WD
+                      TI
                     </div>
                     <span className="text-sm font-semibold text-white">From the forums</span>
                   </div>
                   <p className="flex-1 text-xs leading-relaxed text-white/80 sm:text-sm">
-                    “Vehicle occupied flag stopped us pushing a bait truck — radar + ESP combo actually
-                    saved the control-zone push.”
+                    “Corpse ESP plus species tags stopped us blundering into a rex nest — distance
+                    filters kept the HUD readable on a foggy night.”
                   </p>
                   <div className="mt-3 flex items-center gap-2.5 sm:mt-4 sm:gap-3">
                     <div className="flex h-8 w-8 items-center justify-center rounded-full bg-z-accent/25 text-xs font-semibold text-z-ink sm:h-9 sm:w-9 sm:text-sm">
@@ -128,7 +128,7 @@ export function HomePage({ part = 'full' }: HomePageProps) {
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-white">RouteRunner</p>
-                      <p className="text-xs text-white/60">Control zone trios</p>
+                      <p className="text-xs text-white/60">Evrima pack play</p>
                     </div>
                   </div>
                 </div>
@@ -153,8 +153,8 @@ export function HomePage({ part = 'full' }: HomePageProps) {
               {HOME_HEADINGS.h2Features}
             </h2>
             <p className="mb-8 max-w-2xl text-sm leading-relaxed text-white/55 sm:text-base">
-              Aimbot options, player ESP, vehicle radar, and config tools — forum threads cover tuning
-              and setup for wardogs cheats without cluttering your HUD.
+              Visual options, player ESP, misc utilities, and config tools — forum threads cover the
+              isle cheats evrima setup without cluttering your HUD.
             </p>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {FEATURES.map(({ icon: Icon, label, desc, href }) => (
@@ -184,8 +184,8 @@ export function HomePage({ part = 'full' }: HomePageProps) {
               {HOME_HEADINGS.h2HowItWorks}
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/55 sm:text-base">
-              Wardogs cheats stay maintainable when you treat loader status and configs like part of
-              your loadout — same habit as checking patch notes before queue.
+              The Isle cheats stay maintainable when you treat loader status and configs like part of
+              your loadout — same habit as checking Evrima patch notes before a long growth session.
             </p>
             <ol className="mt-10 grid gap-4 lg:grid-cols-3">
               {HOW_IT_WORKS.map(({ step, title, text }) => (
@@ -229,8 +229,8 @@ export function HomePage({ part = 'full' }: HomePageProps) {
                   {HOME_HEADINGS.h2Reviews}
                 </h2>
                 <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/55 sm:text-base">
-                  Feedback from Wardogs players on ESP clarity, aimbot tuning, vehicle radar, and
-                  loader updates — no external review links.
+                  Feedback from Evrima players on ESP clarity, misc utilities, and loader updates —
+                  no external review links.
                 </p>
               </div>
               <a
@@ -271,7 +271,7 @@ export function HomePage({ part = 'full' }: HomePageProps) {
                   {HOME_HEADINGS.h2Forums}
                 </h2>
                 <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/55 sm:text-base">
-                  Aimbot tuning, ESP defaults, vehicle radar, and loader fixes — browse threads for
+                  the isle esp tactics, Evrima patch checklists, and loader fixes — browse threads for
                   full player replies on every guide.
                 </p>
               </div>
@@ -341,7 +341,7 @@ export function HomePage({ part = 'full' }: HomePageProps) {
               When loader status is Active and your config is saved, continue to checkout for{' '}
               {SITE_NAME} on PC — or read the{' '}
               <a
-                href="/wardogs-cheats"
+                href="/the-isle-cheats"
                 className="text-white/80 underline-offset-2 hover:underline"
               >
                 full feature list

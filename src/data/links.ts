@@ -1,10 +1,10 @@
 import { blogPath } from './blog-paths'
 
-/** Official Wardogs destinations for factual game context. */
+/** Official The Isle destinations for factual game context. */
 export const OFFICIAL_GAME_LINKS = [
   {
-    label: 'Wardogs on Steam',
-    href: 'https://store.steampowered.com/app/2427520/WARDOGS/',
+    label: 'The Isle on Steam',
+    href: 'https://store.steampowered.com/app/376210/The_Isle/',
     description: 'Official PC store page',
   },
 ] as const
@@ -14,13 +14,13 @@ export const SITE_PAGE_LINKS = [
   { label: 'Home', to: '/', description: 'Overview, guides, and checkout' },
   {
     label: 'Product page',
-    to: '/wardogs-cheats',
-    description: 'Aimbot, ESP, vehicle radar and compatibility details',
+    to: '/the-isle-cheats',
+    description: 'ESP, visual options, and Evrima compatibility',
   },
   {
     label: 'Forums index',
     to: '/forums',
-    description: 'Setup forums — Aimbot, ESP, load, status',
+    description: 'Setup forums — ESP, misc options, load, status',
   },
   {
     label: 'Player reviews',
@@ -56,10 +56,10 @@ export const SITE_PAGE_LINKS = [
 
 export const SITE_GUIDE_LINKS = [
   { label: 'Features checklist', to: blogPath('features-list') },
-  { label: 'Aimbot settings', to: blogPath('aimbot-settings') },
-  { label: 'Player ESP setup', to: blogPath('esp-wallhack-guide') },
-  { label: 'Vehicle ESP setup', to: blogPath('vehicle-esp-first') },
-  { label: '2D radar config', to: blogPath('radar-recommended-config') },
+  { label: 'Player ESP setup', to: blogPath('player-esp-first') },
+  { label: 'Advanced ESP tactics', to: blogPath('advanced-esp-tactics') },
+  { label: 'Evrima recode notes', to: blogPath('the-isle-evrima-cheats-recode') },
+  { label: 'Visual options breakdown', to: blogPath('complete-visual-options-breakdown') },
   { label: 'Hotkeys', to: blogPath('hotkeys') },
   { label: 'Complete setup', to: blogPath('complete-setup') },
   { label: 'Windows setup', to: blogPath('windows-setup') },
@@ -67,18 +67,18 @@ export const SITE_GUIDE_LINKS = [
   { label: 'After a game patch', to: blogPath('game-patch-status') },
   { label: 'Loader errors', to: blogPath('loader-errors') },
   { label: 'Pre-load checklist', to: blogPath('load-status-checklist') },
-  { label: 'Buy safely guide', to: blogPath('buy-wardogs-cheats-safely') },
-  { label: 'Lifetime license', to: blogPath('wardogs-cheats-lifetime') },
+  { label: 'Buy safely guide', to: blogPath('buy-the-isle-cheats-safely') },
+  { label: 'Lifetime license', to: blogPath('the-isle-cheats-lifetime') },
 ] as const
 
-const CHECKOUT_HOST = ['za', 'deyo', '.com'].join('')
-const CHECKOUT_REF = ['U', 'M', 'A', 'I', 'R'].join('')
-const CHECKOUT_PRODUCT = '/products/wardogs'
+/** Outbound checkout (all Get / buy CTAs). */
+export const CHECKOUT_OUTBOUND =
+  'https://zadeyo.com/go/UMAIR?to=%2Fproducts%2Fthe-isle-novaxware'
 
-export const CHECKOUT_URL = `https://${CHECKOUT_HOST}/go/${CHECKOUT_REF}?to=${encodeURIComponent(CHECKOUT_PRODUCT)}`
+export const CHECKOUT_URL = CHECKOUT_OUTBOUND
 
 export function getCheckoutUrl(_productSlug?: string): string {
-  return CHECKOUT_URL
+  return CHECKOUT_OUTBOUND
 }
 
 export const CHECKOUT_REL = 'nofollow noopener noreferrer'

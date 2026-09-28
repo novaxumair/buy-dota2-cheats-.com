@@ -1,4 +1,4 @@
-﻿import type { FaqItem } from '../data/faqs'
+import type { FaqItem } from '../data/faqs'
 import {
   OG_IMAGE,
   PRODUCT_PRICE_USD,
@@ -14,7 +14,7 @@ import {
 } from '../data/site'
 import { getReviewsAggregate, REVIEWS } from '../data/reviews'
 import type { GameStatus } from '../data/games'
-import { WD_HOME_VIDEO, PAGE_MEDIA } from '../data/media'
+import { ISLE_HOME_VIDEO, PAGE_MEDIA } from '../data/media'
 
 export const PRODUCT_ID = `${SITE_URL}/#product`
 
@@ -63,7 +63,7 @@ export function siteIdentityGraph() {
       inLanguage: 'en',
       about: {
         '@type': 'Thing',
-        name: 'Wardogs Cheats',
+        name: 'The Isle Cheats',
         description: SITE_PURPOSE,
       },
       publisher: { '@id': `${SITE_URL}/#organization` },
@@ -84,7 +84,7 @@ export function webPageNode(seo: PageSeo) {
     inLanguage: 'en',
   } as Record<string, unknown>
   const hasVisibleImage =
-    ['/', '/wardogs-cheats', '/forums'].includes(seo.path) || seo.path.startsWith('/forums/')
+    ['/', '/the-isle-cheats', '/forums'].includes(seo.path) || seo.path.startsWith('/forums/')
   const hasOgImage = Boolean(seo.image)
   if (hasVisibleImage || hasOgImage) {
     page.primaryImageOfPage = {
@@ -103,12 +103,12 @@ export function productCoreJsonLd() {
   return {
     '@type': 'Product',
     '@id': PRODUCT_ID,
-    name: 'Wardogs Cheats',
-    alternateName: ['Wardogs Cheats', 'Wardogs cheat'],
+    name: 'The Isle Cheats',
+    alternateName: ['The Isle Cheats', 'the isle cheats'],
     description: PRODUCT_SCHEMA_DESCRIPTION,
-    url: `${SITE_URL}/wardogs-cheats`,
+    url: `${SITE_URL}/the-isle-cheats`,
     image: [
-      absoluteAsset('/og/wardogs-cheats.jpg'),
+      absoluteAsset('/og/the-isle-cheats.jpg'),
       absoluteAsset('/og/home.jpg'),
       absoluteAsset(PAGE_MEDIA.product.image),
       absoluteAsset(PAGE_MEDIA.home.image),
@@ -116,13 +116,13 @@ export function productCoreJsonLd() {
     brand: { '@type': 'Brand', name: SITE_NAME },
     manufacturer: { '@id': `${SITE_URL}/#organization` },
     category: 'PC game software',
-    offers: baseOffer(`${SITE_URL}/wardogs-cheats`, 'https://schema.org/InStock'),
+    offers: baseOffer(`${SITE_URL}/the-isle-cheats`, 'https://schema.org/InStock'),
     subjectOf: {
       '@type': 'VideoObject',
-      name: WD_HOME_VIDEO.title,
-      description: WD_HOME_VIDEO.caption,
-      thumbnailUrl: absoluteAsset(WD_HOME_VIDEO.poster),
-      contentUrl: absoluteAsset(WD_HOME_VIDEO.src),
+      name: ISLE_HOME_VIDEO.title,
+      description: ISLE_HOME_VIDEO.caption,
+      thumbnailUrl: absoluteAsset(ISLE_HOME_VIDEO.poster),
+      contentUrl: absoluteAsset(ISLE_HOME_VIDEO.src),
       uploadDate: '2026-09-16',
       inLanguage: 'en',
     },
@@ -134,12 +134,12 @@ export function productDetailJsonLd(status: GameStatus) {
     status === 'Active' ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock'
   return {
     ...productCoreJsonLd(),
-    url: `${SITE_URL}/wardogs-cheats`,
+    url: `${SITE_URL}/the-isle-cheats`,
     image: absoluteAsset(PAGE_MEDIA.product.image),
     about: {
       '@type': 'VideoGame',
-      name: 'Wardogs',
-      alternateName: ['WARDOGS'],
+      name: 'The Isle',
+      alternateName: ['The Isle Evrima'],
       gamePlatform: 'PC',
     },
     additionalProperty: [
@@ -147,7 +147,7 @@ export function productDetailJsonLd(status: GameStatus) {
       {
         '@type': 'PropertyValue',
         name: 'Features',
-        value: 'Aimbot, player ESP, vehicle ESP, 2D radar, misc weapon helpers, configs',
+        value: 'Player ESP, NPC ESP, animal ESP, visual options, misc utilities, configs',
       },
       {
         '@type': 'PropertyValue',
@@ -156,7 +156,7 @@ export function productDetailJsonLd(status: GameStatus) {
       },
       { '@type': 'PropertyValue', name: 'Status', value: status },
     ],
-    offers: baseOffer(`${SITE_URL}/wardogs-cheats`, availability),
+    offers: baseOffer(`${SITE_URL}/the-isle-cheats`, availability),
   }
 }
 
@@ -164,7 +164,7 @@ export function productReviewsJsonLd() {
   const aggregate = getReviewsAggregate()
   return {
     ...productCoreJsonLd(),
-    url: `${SITE_URL}/wardogs-cheats`,
+    url: `${SITE_URL}/the-isle-cheats`,
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: aggregate.ratingValue,

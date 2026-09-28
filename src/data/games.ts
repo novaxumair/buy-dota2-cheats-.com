@@ -7,9 +7,9 @@ export type Game = {
   popular?: boolean
 }
 
-/** Site is Wardogs cheats only — no other titles. */
+/** Site is The Isle cheats only — no other titles. */
 export const GAMES: Game[] = [
-  { slug: 'wardogs', name: 'Wardogs', status: 'Active', popular: true },
+  { slug: 'the-isle', name: 'The Isle', status: 'Active', popular: true },
 ]
 
 export function getGame(slug: string) {
@@ -27,86 +27,69 @@ export function parseGuideSlug(param: string) {
 
 export const PRODUCT_FEATURE_GROUPS = [
   {
-    name: 'Aimbot options',
+    name: 'Visual options',
     items: [
-      'Enable Aimbot',
-      'FOV',
-      'Smooth',
-      'Bone Selection',
-      'Visible Check',
-      'Prediction',
-      'Draw FOV',
-      'Draw Target Line',
-    ],
-  },
-  {
-    name: 'Player visual options',
-    items: [
+      'Player ESP',
+      'NPC ESP',
+      'Animal ESP',
       'Box',
-      'Skeleton',
-      'Head Circle',
-      'Health Bar',
-      'Distance',
+      'Snapline',
       'Name',
-      'Team / Squad',
-      'Weapon',
-      'View Direction',
-      'OOF Arrows',
+      'Distance',
+      'Corpse',
+      'Health',
+      'Stamina',
+      'Growth',
+      'Species',
+      'Player Direction',
+      'Head Dot',
+      'Visible Check',
+      'Gore',
+      'Fruit',
+      'Water',
       'Max Distance',
     ],
   },
   {
-    name: 'Vehicle visual options',
-    items: ['Vehicle ESP', 'Vehicle Type', 'Vehicle Distance', 'Occupied / Empty'],
-  },
-  {
-    name: 'Radar options',
-    items: ['2D Radar', 'Player Markers', 'Vehicle Markers', 'Radar Range'],
-  },
-  {
     name: 'Misc options',
     items: [
-      'No Recoil',
-      'No Spread',
-      'Full Bright',
-      'Custom Crosshair',
-      'Config System (Save / Load)',
+      'Crosshair',
+      'Suicide',
+      'Fullbright',
+      'Show FPS',
+      'Show Resolution',
+      'Show Time',
+      'Custom Menu Key',
+      'Custom Panic Key',
+      'Custom ESP Colors',
     ],
   },
 ] as const
 
 export const GUIDE_FEATURES = [
   {
-    name: 'Aimbot & combat assist',
-    text: 'Configurable aimbot with FOV, smooth, bone selection, visible check, prediction, and draw overlays — tuned for control-zone firefights when you choose to enable assist.',
+    name: 'Player, NPC & animal ESP',
+    text: 'Layer player ESP with NPC and animal markers — species, growth, health, stamina, and distance readouts before you commit to a fight or migration.',
   },
   {
-    name: 'Player ESP & wallhack visuals',
-    text: 'Boxes, skeletons, names, weapon type, health bars, team/squad filters, and OOF arrows — see contacts through buildings and hills before you commit.',
+    name: 'Visual overlays',
+    text: 'Box, snapline, name tags, head dot, player direction, corpse, fruit, water, and gore toggles — tune max distance so jungles stay readable at night.',
   },
   {
-    name: 'Vehicle ESP',
-    text: 'Vehicle type, distance, and occupied/empty state for roads and convoys — avoid bait trucks and track rotations across the map.',
+    name: 'Misc survival utilities',
+    text: 'Crosshair, fullbright, FPS/resolution/time readouts, suicide for fast respawns, and custom menu or panic keys when you need quick control.',
   },
   {
-    name: '2D radar awareness',
-    text: 'Player and vehicle markers with adjustable radar range — pair with sound for third-party timing in 100-player lobbies.',
+    name: 'Color and config discipline',
+    text: 'Custom ESP colors plus saved profiles for herbivore growth vs carnivore hunts — swap overlays without retuning every login.',
   },
   {
-    name: 'Misc weapon & vision helpers',
-    text: 'No recoil, no spread, full bright, and custom crosshair when you want cleaner gunfights without rebuilding sensitivity.',
-  },
-  {
-    name: 'Config profiles',
-    text: 'Save and load configs for solo scouting vs trio pushes — swap ESP-only and assist profiles without retuning every login.',
-  },
-  {
-    name: 'Windows PC support',
-    text: 'Built for Wardogs on Windows 10 and 11 via Steam when loader status is Active.',
+    name: 'Evrima on Windows PC',
+    text: 'Built for The Isle Evrima on Windows 10 and 11 via Steam when loader status is Active.',
   },
   {
     name: 'Patch-synced loader',
-    text: 'We publish Active or Updating status after Wardogs patches so you load only when the current build matches the game client.',
+    text: 'We publish Active or Updating status after Evrima patches so you load only when the current build matches the game client.',
   },
 ] as const
 

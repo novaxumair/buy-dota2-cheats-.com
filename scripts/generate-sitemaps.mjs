@@ -10,20 +10,20 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const publicDir = join(root, 'public')
 const dataDir = join(root, 'src', 'data')
 const pagesDir = join(root, 'src', 'pages')
-const SITE = (process.env.SITE_URL || 'https://buywardogscheat.com').replace(/\/$/, '')
+const SITE = (process.env.SITE_URL || 'https://buyislecheats.com').replace(/\/$/, '')
 const TODAY = new Date().toLocaleDateString('en-CA')
 
-const HERO_FULL = '/media/wd-hero-full.webp'
-const COVER = '/media/wd-cover.webp'
-const BOX = '/media/wd-screenshot-8.webp'
-const ESP = '/media/wd-screenshot-5.webp'
-const MENU = '/media/wd-menu.webp'
-const CONTROL = '/media/wd-control-art.jpg'
-const HOME_ART = '/media/wd-home-art.jpg'
-const TACTICAL_ART = '/media/wd-tactical-art.jpg'
-const VIDEO_THUMB = '/media/wd-video-thumb.jpg'
+const HERO_FULL = '/media/isle-hero-full.webp'
+const COVER = '/media/isle-cover.webp'
+const BOX = '/media/isle-screenshot-8.webp'
+const ESP = '/media/isle-screenshot-5.webp'
+const MENU = '/media/isle-menu.webp'
+const CONTROL = '/media/isle-control-art.webp'
+const HOME_ART = '/media/isle-home-art.webp'
+const TACTICAL_ART = '/media/isle-tactical-art.webp'
+const VIDEO_THUMB = '/media/isle-video-thumb.jpg'
 const PREVIEW_VIDEO = '/videos/hero.webm'
-const OG_DEFAULT = '/og/wardogs-cheats.jpg'
+const OG_DEFAULT = '/og/the-isle-cheats.jpg'
 
 const ALL_SITE_IMAGES = [
   HERO_FULL,
@@ -35,7 +35,7 @@ const ALL_SITE_IMAGES = [
   TACTICAL_ART,
   VIDEO_THUMB,
   '/og/home.jpg',
-  '/og/wardogs-cheats.jpg',
+  '/og/the-isle-cheats.jpg',
   '/og/forums.jpg',
   '/og/reviews.jpg',
   '/og/faq.jpg',
@@ -63,7 +63,7 @@ const FORUM_IMAGES = {
 
 const PAGE_META = {
   '/': { priority: '1.0', changefreq: 'daily' },
-  '/wardogs-cheats': { priority: '0.9', changefreq: 'weekly' },
+  '/the-isle-cheats': { priority: '0.9', changefreq: 'weekly' },
   '/forums': { priority: '0.85', changefreq: 'weekly' },
   '/reviews': { priority: '0.8', changefreq: 'weekly' },
   '/faq': { priority: '0.75', changefreq: 'monthly' },
@@ -169,23 +169,28 @@ function imagesForPath(path, games, forums) {
     return [
       {
         src: '/og/home.jpg',
-        title: 'Wardogs Cheats Open Graph',
+        title: 'The Isle Cheats Open Graph',
         caption: 'Primary social and search preview for the homepage.',
       },
       {
         src: HERO_FULL,
-        title: 'Wardogs Cheats Hero',
-        caption: 'Hero artwork for Wardogs aimbot, ESP, and radar on PC.',
+        title: 'The Isle Cheats Hero',
+        caption: 'Hero artwork for The Isle aimbot, ESP, and radar on PC.',
       },
       {
         src: COVER,
-        title: 'Wardogs Cheats Product Cover',
+        title: 'The Isle Cheats Product Cover',
         caption: 'Product cover used on checkout and product previews.',
       },
       {
         src: VIDEO_THUMB,
-        title: 'Wardogs Cheats Preview Thumbnail',
+        title: 'The Isle Cheats Preview Thumbnail',
         caption: 'Video thumbnail for the self-hosted product preview.',
+      },
+      {
+        src: BOX,
+        title: 'The Isle ESP Gameplay Screenshot',
+        caption: 'Evrima gameplay with player ESP overlays on buyislecheats.com.',
       },
     ]
   }
@@ -194,13 +199,13 @@ function imagesForPath(path, games, forums) {
   if (game) {
     return [
       {
-        src: '/og/wardogs-cheats.jpg',
-        title: 'Wardogs Cheats Open Graph',
-        caption: 'Google and social preview for the Wardogs Cheats product page.',
+        src: '/og/the-isle-cheats.jpg',
+        title: 'The Isle Cheats Open Graph',
+        caption: 'Google and social preview for the The Isle Cheats product page.',
       },
       {
         src: COVER,
-        title: 'Wardogs aimbot ESP Product Artwork',
+        title: 'The Isle aimbot ESP Product Artwork',
         caption: 'Product features, compatibility, status and price before checkout.',
       },
       {
@@ -220,8 +225,8 @@ function imagesForPath(path, games, forums) {
       },
       {
         src: VIDEO_THUMB,
-        title: 'Wardogs Cheats Preview Thumbnail',
-        caption: 'Thumbnail for the Wardogs Cheats preview video.',
+        title: 'The Isle Cheats Preview Thumbnail',
+        caption: 'Thumbnail for the The Isle Cheats preview video.',
       },
     ]
   }
@@ -230,13 +235,13 @@ function imagesForPath(path, games, forums) {
     return [
       {
         src: '/og/forums.jpg',
-        title: 'Wardogs Cheats Forums Open Graph',
-        caption: 'Google preview image for the Wardogs Cheats guides index.',
+        title: 'The Isle Cheats Forums Open Graph',
+        caption: 'Google preview image for the The Isle Cheats guides index.',
       },
       {
         src: MENU,
-        title: 'Wardogs Cheats Forum Artwork',
-        caption: 'Artwork reference for Wardogs setup and feature guides.',
+        title: 'The Isle Cheats Forum Artwork',
+        caption: 'Artwork reference for The Isle setup and feature guides.',
       },
     ]
   }
@@ -250,14 +255,14 @@ function imagesForPath(path, games, forums) {
         title: `${forum?.title || slug} Open Graph`,
         caption:
           forum?.metaDescription ||
-          `Google preview image for ${forum?.title || slug} on buywardogscheat.com.`,
+          `Google preview image for ${forum?.title || slug} on buyislecheats.com.`,
       },
       {
         src: FORUM_IMAGES[slug] || MENU,
         title: `${forum?.title || slug} Artwork`,
         caption:
           forum?.excerpt ||
-          `Visible Wardogs Cheats guide artwork for ${forum?.title || slug}.`,
+          `Visible The Isle Cheats guide artwork for ${forum?.title || slug}.`,
       },
     ]
   }
@@ -266,8 +271,8 @@ function imagesForPath(path, games, forums) {
     return [
       {
         src: '/og/reviews.jpg',
-        title: 'Wardogs Cheats Reviews Open Graph',
-        caption: 'Google preview image for Wardogs Cheats reviews.',
+        title: 'The Isle Cheats Reviews Open Graph',
+        caption: 'Google preview image for The Isle Cheats reviews.',
       },
     ]
   }
@@ -275,8 +280,8 @@ function imagesForPath(path, games, forums) {
     return [
       {
         src: '/og/faq.jpg',
-        title: 'Wardogs Cheats FAQ Open Graph',
-        caption: 'Google preview image for the Wardogs Cheats FAQ.',
+        title: 'The Isle Cheats FAQ Open Graph',
+        caption: 'Google preview image for the The Isle Cheats FAQ.',
       },
     ]
   }
@@ -284,8 +289,8 @@ function imagesForPath(path, games, forums) {
     return [
       {
         src: '/og/support.jpg',
-        title: 'Wardogs Cheats Support Open Graph',
-        caption: 'Google preview image for Wardogs Cheats support.',
+        title: 'The Isle Cheats Support Open Graph',
+        caption: 'Google preview image for The Isle Cheats support.',
       },
     ]
   }
@@ -293,8 +298,8 @@ function imagesForPath(path, games, forums) {
     return [
       {
         src: '/og/privacy.jpg',
-        title: 'Wardogs Cheats Privacy Policy',
-        caption: 'Privacy policy preview for buywardogscheat.com orders and support.',
+        title: 'The Isle Cheats Privacy Policy',
+        caption: 'Privacy policy preview for buyislecheats.com orders and support.',
       },
     ]
   }
@@ -302,8 +307,8 @@ function imagesForPath(path, games, forums) {
     return [
       {
         src: '/og/terms.jpg',
-        title: 'Wardogs Cheats Terms of Use',
-        caption: 'License terms preview for Wardogs Cheats.',
+        title: 'The Isle Cheats Terms of Use',
+        caption: 'License terms preview for The Isle Cheats.',
       },
     ]
   }
@@ -311,23 +316,23 @@ function imagesForPath(path, games, forums) {
     return [
       {
         src: '/og/refunds.jpg',
-        title: 'Wardogs Cheats Refund Policy',
-        caption: 'Refund rules preview for digital Wardogs Cheats licenses.',
+        title: 'The Isle Cheats Refund Policy',
+        caption: 'Refund rules preview for digital The Isle Cheats licenses.',
       },
     ]
   }
 
-  return [{ src: OG_DEFAULT, title: 'Wardogs Cheats', caption: 'Wardogs Cheats page artwork.' }]
+  return [{ src: OG_DEFAULT, title: 'The Isle Cheats', caption: 'The Isle Cheats page artwork.' }]
 }
 
 function videosForPath(path) {
-  if (path === '/wardogs-cheats') {
+  if (path === '/the-isle-cheats') {
     return [
       {
         thumb: VIDEO_THUMB,
-        title: 'Wardogs Cheats Aimbot and ESP Preview',
+        title: 'The Isle Cheats Aimbot and ESP Preview',
         description:
-          'Self-hosted Wardogs Cheats preview showing Aimbot, ESP menu and survival gameplay visuals on PC.',
+          'Self-hosted The Isle Cheats preview showing Aimbot, ESP menu and survival gameplay visuals on PC.',
         content: PREVIEW_VIDEO,
       },
     ]
@@ -467,16 +472,16 @@ function validate(games, forums, allPaths, sitemap) {
     if (!imageLocs.includes(siteUrl(image))) errors.push(`Sitemap missing required image: ${image}`)
   }
   if (!sitemap.includes(siteUrl(PREVIEW_VIDEO))) {
-    errors.push('Sitemap missing Wardogs preview video content_loc')
+    errors.push('Sitemap missing The Isle preview video content_loc')
   }
   if (/Tarkov|tarkovcheats|EFT Reaper|Warzone|warzonecheats|Ricochet/i.test(sitemap)) {
     errors.push('Sitemap still contains legacy Tarkov/Warzone labels')
   }
-  if (!sitemap.includes('buywardogscheat.com')) {
-    errors.push('Sitemap must target buywardogscheat.com')
+  if (!sitemap.includes('buyislecheats.com')) {
+    errors.push('Sitemap must target buyislecheats.com')
   }
-  if (/tarkovcheats|warzonecheats|wardogshacks|theisle/i.test(sitemap)) {
-    errors.push('Sitemap contains a non-Wardogs domain')
+  if (/tarkovcheats|warzonecheats|buywardogscheat|zadeyo|arena breakout/i.test(sitemap)) {
+    errors.push('Sitemap contains legacy or third-party branding')
   }
   if (imageLocs.length < expectedUrls.size) {
     errors.push('Image count is lower than page count - every URL needs an image')

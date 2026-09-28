@@ -9,338 +9,284 @@ export type ForumIndexEntry = {
 export const FORUM_INDEX: ForumIndexEntry[] = [
   {
     "slug": "features-list",
-    "title": "Wardogs Cheats Features",
-    "excerpt": "Full module checklist for Wardogs cheats on PC — aimbot, player ESP, vehicle overlays, 2D radar, and config tools before you open checkout.",
+    "title": "The Isle Cheats Features",
+    "excerpt": "Full visual and misc module checklist for the isle cheats on PC — player ESP, NPC and animal overlays, snaplines, growth readouts, and misc utilities before checkout.",
     "tag": "Features"
   },
   {
     "slug": "complete-setup",
     "title": "Instructions to Use the Cheats",
-    "excerpt": "Step-by-step Wardogs cheat setup on Windows: confirm Active status, exclusions, load order, first ESP profile, optional aimbot, save config.",
+    "excerpt": "Step-by-step the isle cheats setup on Windows: confirm Active status, exclusions, load order, first ESP profile, save config, and Evrima branch notes.",
     "tag": "Setup"
   },
   {
-    "slug": "aimbot-settings",
-    "title": "Aimbot Settings: What Level & Why Won’t I Get Banned?",
-    "excerpt": "Tune Wardogs aimbot FOV, smooth, and visible check so tracking helps in control-zone fights without obvious kill-cam clips.",
-    "tag": "Aimbot"
-  },
-  {
-    "slug": "esp-wallhack-guide",
-    "title": "Player ESP Settings: What to Enable First",
-    "excerpt": "Configure Wardogs player ESP — box, skeleton, distance, weapon, team filter — without cluttering your HUD in mountain fights.",
-    "tag": "ESP"
-  },
-  {
-    "slug": "vehicle-esp-first",
-    "title": "Vehicle ESP Settings: What to Enable First",
-    "excerpt": "Vehicle ESP type, distance, and occupied/empty indicators for Wardogs — spot transports before you cross open ground.",
-    "tag": "Vehicles"
-  },
-  {
-    "slug": "radar-recommended-config",
-    "title": "2D Radar & Control Zone: Recommended Configurations",
-    "excerpt": "2D radar range, player markers, and vehicle markers tuned for Wardogs control-zone rotations and third-party sound.",
-    "tag": "Radar"
-  },
-  {
-    "slug": "combat-assist-settings",
-    "title": "Combat Assist Settings: What Level & Ban Risk Explained",
-    "excerpt": "Balance aimbot smooth, FOV, and ESP noise for Wardogs ranked-style queues — report habits and kill cam reality.",
-    "tag": "Combat"
-  },
-  {
-    "slug": "game-patch-status",
-    "title": "Wardogs Cheats After a Game Patch — What to Do",
-    "excerpt": "What Active vs Updating means after Wardogs patches — and why loading early wastes your control-zone session.",
-    "tag": "Status"
-  },
-  {
-    "slug": "ultimate-wardogs-cheats-guide",
-    "title": "Ultimate Wardogs Cheats Guide: Setup & Features",
-    "excerpt": "Overview of Wardogs cheat modules, loader status, and first-night config for control-zone and vehicle fights on PC.",
+    "slug": "the-isle-cheats-guide",
+    "title": "The Isle Cheats Guide: Safety, Features, and Survival Tips",
+    "excerpt": "Core the isle cheats guide — safe setup habits, ESP-first survival, growth pacing, and when to pause after Evrima updates.",
     "tag": "Guide"
   },
   {
-    "slug": "buy-wardogs-cheats-safely",
-    "title": "Where to Buy Wardogs Cheats Safely: Full Access Options",
-    "excerpt": "How to buy Wardogs cheats with clear pricing, digital delivery, and status labels before you load into a 100-player lobby.",
-    "tag": "Buying"
+    "slug": "the-isle-evrima-cheats-recode",
+    "title": "The Isle Evrima Cheats: What You Need to Know for the Recode",
+    "excerpt": "the isle cheats evrima and the isle evrima cheats explained — branch differences, overlay compatibility, and patch-day checklists for the recode client.",
+    "tag": "Evrima"
   },
   {
-    "slug": "wardogs-cheats-lifetime",
-    "title": "Wardogs Cheats Lifetime License: Is Permanent Access Worth It?",
-    "excerpt": "Lifetime vs monthly Wardogs cheat access — when permanent makes sense for regular control-zone players.",
-    "tag": "Pricing"
+    "slug": "advanced-esp-tactics",
+    "title": "Advanced ESP Tactics: Using The Isle ESP to Survive",
+    "excerpt": "Advanced the isle esp tactics — layering player, NPC, and animal ESP with snaplines, species tags, and max distance for Evrima hunts.",
+    "tag": "ESP"
   },
   {
-    "slug": "wardogs-cheat-discord",
-    "title": "Official Wardogs Cheat Discord Server: How to Join for Live Support",
-    "excerpt": "Find live Wardogs cheat support channels after purchase — status pings, config screenshots, and patch-day threads.",
-    "tag": "Community"
-  },
-  {
-    "slug": "best-wardogs-cheats-review-2026",
-    "title": "Best Wardogs Cheats Review & Comparison 2026: Features, Safety & Value",
-    "excerpt": "2026 Wardogs cheat comparison — ESP clarity, aimbot tuning, vehicle radar, pricing, and loader maintenance habits.",
+    "slug": "best-the-isle-cheats-review-2026",
+    "title": "Best The Isle Cheats Review & Comparison 2026: Features, Safety & Value",
+    "excerpt": "2026 the isle cheats comparison — ESP clarity, Evrima maintenance, pricing from $35, config save habits, and loader transparency.",
     "tag": "Review"
   },
   {
     "slug": "hwid-spoofer-safety",
     "title": "Discover What an HWID Spoofer Does for Safety",
-    "excerpt": "HWID spoofer basics for PC gamers — what hardware IDs are, why some players research them, and realistic limits.",
+    "excerpt": "HWID spoofer basics for PC gamers — hardware IDs, why some players research them, and realistic limits alongside loader discipline.",
     "tag": "Safety"
   },
   {
-    "slug": "wardogs-aimbot-options",
-    "title": "Precision Target Lock: Mastering Wardogs Aimbot Options",
-    "excerpt": "Deep dive on Wardogs aimbot enable, FOV, smooth, bones, visible check, and prediction.",
-    "tag": "Aimbot"
+    "slug": "buy-the-isle-cheats-safely",
+    "title": "Where to Buy The Isle Cheats Safely: Plans and Delivery",
+    "excerpt": "How to buy the isle cheats with clear pricing, digital delivery, and Active status labels before you load into Evrima.",
+    "tag": "Buying"
   },
   {
-    "slug": "enable-aimbot-safely",
-    "title": "How to Configure and Enable Aimbot Safely in Wardogs",
-    "excerpt": "Enable aimbot only after ESP and radar baselines — bind toggles and test in offline range first.",
-    "tag": "Aimbot"
+    "slug": "the-isle-cheats-lifetime",
+    "title": "The Isle Cheats Lifetime License: Is Permanent Access Worth It?",
+    "excerpt": "Lifetime vs monthly the isle cheats access — when permanent makes sense for regular Evrima survival players.",
+    "tag": "Pricing"
   },
   {
-    "slug": "aimbot-fov-settings",
-    "title": "Dialing in Your Field of View Settings for Natural Aiming",
-    "excerpt": "FOV cone sizing for CQB buildings vs open hills in Wardogs.",
-    "tag": "Aimbot"
-  },
-  {
-    "slug": "aimbot-smooth-guide",
-    "title": "How Smooth Aiming Keeps Your Gameplay Looking Legitimate",
-    "excerpt": "Smooth values that reduce snap on kill cams without feeling sluggish.",
-    "tag": "Aimbot"
-  },
-  {
-    "slug": "bone-selection-guide",
-    "title": "Targeted Bone Selection Guide: Headshots vs Body Shots",
-    "excerpt": "Bone selection tradeoffs for moving targets and armored foes.",
-    "tag": "Aimbot"
-  },
-  {
-    "slug": "visible-check-guide",
-    "title": "Preventing Wall Tracking: Why Visible Check Is Essential",
-    "excerpt": "Visible check stops locks through metal walls — use it in urban control zones.",
-    "tag": "Aimbot"
-  },
-  {
-    "slug": "bullet-prediction",
-    "title": "Leading Your Shots: Bullet Prediction Mechanics Explained",
-    "excerpt": "Prediction for sprinting targets and vehicle exits in Wardogs.",
-    "tag": "Aimbot"
-  },
-  {
-    "slug": "draw-fov-overlays",
-    "title": "Visualizing Your Aim Radius: How to Use Draw FOV Overlays",
-    "excerpt": "Draw FOV circle usage without blocking center crosshair vision.",
-    "tag": "Aimbot"
-  },
-  {
-    "slug": "draw-target-line",
-    "title": "Target Line Visuals: Instantly Identify Locked Enemies",
-    "excerpt": "Target line overlays show which tag aimbot selected in crowded fights.",
-    "tag": "Aimbot"
-  },
-  {
-    "slug": "player-visuals-breakdown",
-    "title": "Complete Player Visuals Breakdown for Tactical Dominance",
-    "excerpt": "Every player visual toggle explained for Wardogs three-team lobbies.",
+    "slug": "player-esp-first",
+    "title": "Player ESP Settings: What to Enable First",
+    "excerpt": "Configure the isle esp player overlays — box, snapline, distance, species, and growth tags without cluttering jungle fights.",
     "tag": "ESP"
   },
   {
-    "slug": "box-esp-setup",
-    "title": "Box ESP Setup: 2D vs 3D Bounding Boxes for Target Tracking",
-    "excerpt": "Box ESP styles for long-range hill fights vs close building clears.",
-    "tag": "ESP"
+    "slug": "silent-aim-overview",
+    "title": "Silent Aim and Combat Assist for The Isle",
+    "excerpt": "Overview of silent aim style assist on The Isle — when to keep combat modules off and rely on ESP awareness instead.",
+    "tag": "Combat"
   },
   {
-    "slug": "skeleton-esp-guide",
-    "title": "Skeleton ESP: Real-Time Stance and Movement Overlay Guide",
-    "excerpt": "Skeleton overlays show crouch vs standing through windows before you push.",
-    "tag": "ESP"
-  },
-  {
-    "slug": "head-circle-visuals",
-    "title": "Head Circle Visuals: Instant Headshot Alignment Overlays",
-    "excerpt": "Head circle pairing with low smooth aimbot for DMR players.",
-    "tag": "ESP"
-  },
-  {
-    "slug": "health-bar-tracking",
-    "title": "Enemy Health Bar Tracking: Prioritize Low-HP Targets",
-    "excerpt": "Health bars help focus fire in squad wipes during control-zone cash fights.",
-    "tag": "ESP"
-  },
-  {
-    "slug": "distance-esp-indicators",
-    "title": "Distance ESP Indicators: Judging Combat Ranges Effectively",
-    "excerpt": "Distance readouts for picking SMG vs DMR engagements on roads.",
-    "tag": "ESP"
-  },
-  {
-    "slug": "player-name-tags",
-    "title": "Player Name Tags: Identifying High-Value Targets In-Game",
-    "excerpt": "Name ESP for remembering repeat third parties in long sessions.",
-    "tag": "ESP"
-  },
-  {
-    "slug": "team-squad-filtering",
-    "title": "Team & Squad Visual Filtering: Avoid Screen Clutter",
-    "excerpt": "Team/squad filters so friendly markers do not mask enemies.",
-    "tag": "ESP"
-  },
-  {
-    "slug": "enemy-weapon-esp",
-    "title": "Enemy Weapon ESP: Spotting High-Tier Guns Instantly",
-    "excerpt": "Weapon ESP tells you when a tag carries a DMR worth pushing or avoiding.",
-    "tag": "ESP"
-  },
-  {
-    "slug": "view-direction-lines",
-    "title": "View Direction Lines: Spotting Enemy Flanks Before They Happen",
-    "excerpt": "View direction lines show where a tag is looking — flank safely.",
-    "tag": "ESP"
-  },
-  {
-    "slug": "oof-arrows-guide",
-    "title": "Out of Field Arrows: Off-Screen Threat Alerts Explained",
-    "excerpt": "OOF arrows for sound-only contacts during control-zone rotates.",
-    "tag": "ESP"
-  },
-  {
-    "slug": "max-distance-filters",
-    "title": "Optimizing Max Distance Filters to Clean Up Your Screen",
-    "excerpt": "Max distance caps for 100-player lobbies without losing close threats.",
-    "tag": "ESP"
-  },
-  {
-    "slug": "vehicle-visuals-setup",
-    "title": "Vehicle Visuals Setup: Locating All In-Game Transport",
-    "excerpt": "Map-wide vehicle overlay tuning — silhouette colors, convoy spacing, and when to hide distant blips on road-heavy maps.",
-    "tag": "Vehicles"
-  },
-  {
-    "slug": "vehicle-esp-tracking",
-    "title": "Full Vehicle ESP Tracking: Map Mobility Control Guide",
-    "excerpt": "Track trucks and transports across control-zone rotations.",
-    "tag": "Vehicles"
-  },
-  {
-    "slug": "vehicle-type-identification",
-    "title": "Vehicle Type Identification Overlays: Heavy Armor vs Transport",
-    "excerpt": "Type labels distinguish fast transports from heavier platforms.",
-    "tag": "Vehicles"
-  },
-  {
-    "slug": "vehicle-distance-measure",
-    "title": "Measuring Vehicle Distance for Strategic Encounters",
-    "excerpt": "Vehicle distance for AT vs small arms decisions.",
-    "tag": "Vehicles"
-  },
-  {
-    "slug": "occupied-empty-vehicles",
-    "title": "Occupied vs Empty Vehicle Indicators: Ambush Prevention",
-    "excerpt": "Empty truck bait vs occupied convoy — indicator saves pushes.",
-    "tag": "Vehicles"
-  },
-  {
-    "slug": "radar-options-guide",
-    "title": "2D Radar Options: Complete Minimap Awareness Guide",
-    "excerpt": "Radar module overview for Wardogs minimap power users.",
-    "tag": "Radar"
-  },
-  {
-    "slug": "custom-2d-radar-hud",
-    "title": "Positioning Mastery: Setting Up a Custom 2D Radar HUD",
-    "excerpt": "Radar size and corner placement on ultrawide vs 1080p.",
-    "tag": "Radar"
-  },
-  {
-    "slug": "player-markers-radar",
-    "title": "Player Markers on Radar: Tracking Enemy Rotation Paths",
-    "excerpt": "Read rotation arcs on 2D radar before third party sound.",
-    "tag": "Radar"
-  },
-  {
-    "slug": "vehicle-markers-radar",
-    "title": "Vehicle Radar Markers: High-Speed Threat Detection",
-    "excerpt": "Fast blips on radar for road pushes and flanking trucks.",
-    "tag": "Radar"
-  },
-  {
-    "slug": "radar-range-calibration",
-    "title": "Calibrating Radar Range for Close and Long-Range Fights",
-    "excerpt": "Radar range tuning for urban vs mountain maps.",
-    "tag": "Radar"
-  },
-  {
-    "slug": "misc-utility-features",
-    "title": "Miscellaneous Utility Features for Ultimate Gameplay Control",
-    "excerpt": "Misc menu: recoil, spread, brightness, crosshair, configs.",
-    "tag": "Misc"
-  },
-  {
-    "slug": "no-recoil-compensation",
-    "title": "Zero Recoil Compensation: Eliminating Weapon Kickback",
-    "excerpt": "No recoil toggle habits for burst weapons in Wardogs.",
-    "tag": "Misc"
-  },
-  {
-    "slug": "no-spread-elimination",
-    "title": "Perfect Bullet Spread Elimination: Laser-Accurate Firing",
-    "excerpt": "No spread interaction with movement and jump shots.",
-    "tag": "Misc"
-  },
-  {
-    "slug": "full-bright-toggles",
-    "title": "Full Bright Visual Toggles: Max Visibility in Dark Map Areas",
-    "excerpt": "Full bright for interior clears without cranking gamma globally.",
-    "tag": "Misc"
-  },
-  {
-    "slug": "custom-crosshair-overlays",
-    "title": "Custom Crosshair Overlays for Hipfire and Precision Shooting",
-    "excerpt": "Custom crosshair when iron sights clutter the screen.",
-    "tag": "Misc"
-  },
-  {
-    "slug": "config-save-load",
-    "title": "Fast Setup: How to Save and Load Your Custom Config Settings",
-    "excerpt": "Config profiles for solo vs trio control-zone nights.",
-    "tag": "Misc"
+    "slug": "game-patch-status",
+    "title": "The Isle Cheats After a Game Patch — What to Do",
+    "excerpt": "What Active vs Updating means after Evrima patches — and why loading early wastes your dinosaur growth session.",
+    "tag": "Status"
   },
   {
     "slug": "windows-setup",
-    "title": "Wardogs Cheats on Windows 10 and 11",
-    "excerpt": "Windows prep for Wardogs cheats — overlays, Defender, TPM/HVCI notes.",
+    "title": "The Isle Cheats on Windows 10 and 11",
+    "excerpt": "Windows prep for the isle cheats — overlays, Defender, and Evrima Steam launch order.",
     "tag": "Windows"
   },
   {
     "slug": "disable-antivirus",
-    "title": "Antivirus Exclusions for Wardogs Cheats",
+    "title": "Antivirus Exclusions for The Isle Cheats",
     "excerpt": "Allowlist loaders in Defender so files are not quarantined mid-setup.",
     "tag": "Antivirus"
   },
   {
     "slug": "hotkeys",
-    "title": "Wardogs Cheat Hotkeys After Load",
-    "excerpt": "Menu and toggle hotkeys — ESP, aimbot, radar panic binds.",
+    "title": "The Isle Cheat Hotkeys After Load",
+    "excerpt": "Menu, panic, and ESP master hotkeys — custom menu key and panic key configuration.",
     "tag": "Hotkeys"
   },
   {
     "slug": "loader-errors",
-    "title": "Fix Wardogs Cheat Loader Errors",
-    "excerpt": "Menu not opening, instant close, antivirus quarantine, failed inject.",
+    "title": "Fix The Isle Cheat Loader Errors",
+    "excerpt": "Menu not opening, instant close, antivirus quarantine, failed inject on Evrima.",
     "tag": "Support"
   },
   {
     "slug": "load-status-checklist",
     "title": "Pre-Load Checklist Before You Buy or Queue",
-    "excerpt": "Confirm Active status, game version, and config before ranked-style queues.",
+    "excerpt": "Confirm Active status, game version, and config before long Evrima growth sessions.",
     "tag": "Status"
+  },
+  {
+    "slug": "complete-visual-options-breakdown",
+    "title": "Complete Visual Options Breakdown for The Isle",
+    "excerpt": "Complete Visual Options Breakdown for The Isle for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 1.",
+    "tag": "Visuals"
+  },
+  {
+    "slug": "player-esp-tracking",
+    "title": "Player ESP Tracking: Never Get Ambushed in The Isle",
+    "excerpt": "Player ESP Tracking: Never Get Ambushed in The Isle for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 2.",
+    "tag": "ESP"
+  },
+  {
+    "slug": "npc-esp-guide",
+    "title": "NPC ESP Guide: Locating AI Dinosaurs Quickly",
+    "excerpt": "NPC ESP Guide: Locating AI Dinosaurs Quickly for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 3.",
+    "tag": "ESP"
+  },
+  {
+    "slug": "animal-esp-features",
+    "title": "Animal ESP Features: Finding Food and Prey Easily",
+    "excerpt": "Animal ESP Features: Finding Food and Prey Easily for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 4.",
+    "tag": "ESP"
+  },
+  {
+    "slug": "box-esp-overlays",
+    "title": "Box ESP Overlays for Clear Target Distances",
+    "excerpt": "Box ESP Overlays for Clear Target Distances for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 5.",
+    "tag": "Visuals"
+  },
+  {
+    "slug": "snapline-overlays",
+    "title": "Snapline Overlays: Instantly Spot Player Directions",
+    "excerpt": "Snapline Overlays: Instantly Spot Player Directions for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 6.",
+    "tag": "Visuals"
+  },
+  {
+    "slug": "player-name-tags",
+    "title": "Player Name Tags: Identifying Species and Players at Range",
+    "excerpt": "Player Name Tags: Identifying Species and Players at Range for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 7.",
+    "tag": "Visuals"
+  },
+  {
+    "slug": "distance-indicators",
+    "title": "Distance Indicators for Strategic Survival Positioning",
+    "excerpt": "Distance Indicators for Strategic Survival Positioning for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 8.",
+    "tag": "Visuals"
+  },
+  {
+    "slug": "corpse-esp",
+    "title": "Corpse ESP: Locating Food Sources Across the Map",
+    "excerpt": "Corpse ESP: Locating Food Sources Across the Map for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 9.",
+    "tag": "Visuals"
+  },
+  {
+    "slug": "health-tracking-overlays",
+    "title": "Health Tracking Overlays for Combat Advantage",
+    "excerpt": "Health Tracking Overlays for Combat Advantage for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 10.",
+    "tag": "Visuals"
+  },
+  {
+    "slug": "stamina-status-display",
+    "title": "Stamina Status Display for Predator Pursuits",
+    "excerpt": "Stamina Status Display for Predator Pursuits for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 11.",
+    "tag": "Visuals"
+  },
+  {
+    "slug": "growth-tracker",
+    "title": "Growth Tracker: Monitoring Your Dinosaur Maturation Stage",
+    "excerpt": "Growth Tracker: Monitoring Your Dinosaur Maturation Stage for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 12.",
+    "tag": "Visuals"
+  },
+  {
+    "slug": "species-identification-esp",
+    "title": "Species Identification ESP: Know Your Threat Level",
+    "excerpt": "Species Identification ESP: Know Your Threat Level for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 13.",
+    "tag": "Visuals"
+  },
+  {
+    "slug": "player-direction-indicators",
+    "title": "Player Direction Indicators to Anticipate Flanks",
+    "excerpt": "Player Direction Indicators to Anticipate Flanks for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 14.",
+    "tag": "Visuals"
+  },
+  {
+    "slug": "head-dot-precision",
+    "title": "Head Dot Precision Overlay for Accurate Targeting",
+    "excerpt": "Head Dot Precision Overlay for Accurate Targeting for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 15.",
+    "tag": "Visuals"
+  },
+  {
+    "slug": "visible-check-settings",
+    "title": "Visible Check Settings to Avoid Wall Detection Issues",
+    "excerpt": "Visible Check Settings to Avoid Wall Detection Issues for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 16.",
+    "tag": "Visuals"
+  },
+  {
+    "slug": "gore-visual-options",
+    "title": "Gore Visual Options for Immersive Dinosaur Combat",
+    "excerpt": "Gore Visual Options for Immersive Dinosaur Combat for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 17.",
+    "tag": "Visuals"
+  },
+  {
+    "slug": "fruit-esp",
+    "title": "Fruit ESP: Herbivore Food Hunting Made Simple",
+    "excerpt": "Fruit ESP: Herbivore Food Hunting Made Simple for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 18.",
+    "tag": "Visuals"
+  },
+  {
+    "slug": "water-source-esp",
+    "title": "Water Source ESP: Never Die of Dehydration Again",
+    "excerpt": "Water Source ESP: Never Die of Dehydration Again for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 19.",
+    "tag": "Visuals"
+  },
+  {
+    "slug": "optimizing-max-distance-filters",
+    "title": "Optimizing Max Distance Filters to Clear Your HUD",
+    "excerpt": "Optimizing Max Distance Filters to Clear Your HUD for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 20.",
+    "tag": "Visuals"
+  },
+  {
+    "slug": "miscellaneous-utility-settings",
+    "title": "Miscellaneous Utility Settings for Optimized Gameplay",
+    "excerpt": "Miscellaneous Utility Settings for Optimized Gameplay for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 21.",
+    "tag": "Misc"
+  },
+  {
+    "slug": "custom-crosshair-overlays",
+    "title": "Custom Crosshair Overlays for Aiming Assistance",
+    "excerpt": "Custom Crosshair Overlays for Aiming Assistance for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 22.",
+    "tag": "Misc"
+  },
+  {
+    "slug": "quick-suicide-command",
+    "title": "Quick Suicide Command for Fast Respawns",
+    "excerpt": "Quick Suicide Command for Fast Respawns for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 23.",
+    "tag": "Misc"
+  },
+  {
+    "slug": "fullbright-visuals",
+    "title": "Fullbright Visuals: See Clearly in Dark Night Cycles",
+    "excerpt": "Fullbright Visuals: See Clearly in Dark Night Cycles for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 24.",
+    "tag": "Misc"
+  },
+  {
+    "slug": "performance-monitoring-fps",
+    "title": "Performance Monitoring: Displaying FPS In-Game",
+    "excerpt": "Performance Monitoring: Displaying FPS In-Game for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 25.",
+    "tag": "Misc"
+  },
+  {
+    "slug": "resolution-display-tool",
+    "title": "Resolution Display Tool for Custom Overlays",
+    "excerpt": "Resolution Display Tool for Custom Overlays for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 26.",
+    "tag": "Misc"
+  },
+  {
+    "slug": "in-game-time-display",
+    "title": "In-Game Time Display for Environmental Tracking",
+    "excerpt": "In-Game Time Display for Environmental Tracking for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 27.",
+    "tag": "Misc"
+  },
+  {
+    "slug": "custom-menu-hotkey",
+    "title": "Setting Up Your Custom Menu Hotkey for Quick Toggles",
+    "excerpt": "Setting Up Your Custom Menu Hotkey for Quick Toggles for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 28.",
+    "tag": "Misc"
+  },
+  {
+    "slug": "panic-key-configuration",
+    "title": "Panic Key Configuration for Instant Overlay Hiding",
+    "excerpt": "Panic Key Configuration for Instant Overlay Hiding for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 29.",
+    "tag": "Misc"
+  },
+  {
+    "slug": "customizing-esp-colors",
+    "title": "Customizing ESP Colors for Personal Visual Preference",
+    "excerpt": "Customizing ESP Colors for Personal Visual Preference for The Isle Evrima — overlay toggles, distance filters, and survival habits without spamming your HUD. Thread 30.",
+    "tag": "Misc"
   }
 ]

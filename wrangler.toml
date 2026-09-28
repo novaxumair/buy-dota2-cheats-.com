@@ -1,5 +1,5 @@
-﻿# Cloudflare Workers + Pages (optional deploy)
-name = "buywardogscheat"
+# Cloudflare Workers + Pages (optional deploy)
+name = "buyislecheats"
 compatibility_date = "2024-09-23"
 main = "workers/site.js"
 
@@ -7,9 +7,9 @@ main = "workers/site.js"
 directory = "./dist"
 
 [[routes]]
-pattern = "buywardogscheat.com"
+pattern = "buyislecheats.com"
 custom_domain = true
 
 [[routes]]
-pattern = "www.buywardogscheat.com"
+pattern = "www.buyislecheats.com"
 custom_domain = true

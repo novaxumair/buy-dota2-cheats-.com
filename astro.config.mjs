@@ -1,10 +1,10 @@
-﻿import { defineConfig } from 'astro/config'
+import { defineConfig } from 'astro/config'
 import react from '@astrojs/react'
 import tailwind from '@astrojs/tailwind'
 import { sitemapBrowserViewPlugin } from './scripts/sitemap-browser-view.mjs'
 
 export default defineConfig({
-  site: 'https://buywardogscheat.com',
+  site: 'https://buyislecheats.com',
   output: 'static',
   trailingSlash: 'never',
   compressHTML: true,

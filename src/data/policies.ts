@@ -18,12 +18,12 @@ export const POLICY_PAGES: PolicyPageContent[] = [
   {
     slug: 'privacy',
     path: '/privacy',
-    title: 'Privacy Policy | Wardogs Cheats',
+    title: 'Privacy Policy | The Isle Cheats',
     description:
-      'How buywardogscheat.com handles order details, delivery email, support messages and basic site analytics for Wardogs cheats.',
+      'How buyislecheats.com handles order details, delivery email, support messages and basic site analytics for The Isle cheats.',
     h1: 'Privacy Policy',
     intro:
-      'This page explains what we collect when you browse buywardogscheat.com, buy an Wardogs cheat license, or contact support — and what we do not collect.',
+      'This page explains what we collect when you browse buyislecheats.com, buy an The Isle cheat license, or contact support ï¿½ and what we do not collect.',
     sections: [
       {
         heading: 'What we collect',
@@ -37,7 +37,7 @@ export const POLICY_PAGES: PolicyPageContent[] = [
         heading: 'How we use it',
         body: [
           'Order email is used for license delivery, renewals, and reply-to support.',
-          'Support details are used only to resolve your ticket — loader errors, exclusions, status questions, or refund requests that fall under our refunds policy.',
+          'Support details are used only to resolve your ticket ï¿½ loader errors, exclusions, status questions, or refund requests that fall under our refunds policy.',
           'Aggregate traffic data helps us keep pages fast and catch abuse. It is not used to profile you for ads.',
         ],
       },
@@ -45,8 +45,8 @@ export const POLICY_PAGES: PolicyPageContent[] = [
         heading: 'Cookies and third parties',
         body: [
           'Essential cookies may be set by checkout or CDN providers so payment and delivery work.',
-          'Preview media is self-hosted on buywardogscheat.com. Third-party embeds are not used for the main product preview.',
-          'Official Wardogs store links are external. Their privacy policies apply once you leave buywardogscheat.com.',
+          'Preview media is self-hosted on buyislecheats.com. Third-party embeds are not used for the main product preview.',
+          'Official The Isle store links are external. Their privacy policies apply once you leave buyislecheats.com.',
         ],
       },
       {
@@ -66,24 +66,24 @@ export const POLICY_PAGES: PolicyPageContent[] = [
   {
     slug: 'terms',
     path: '/terms',
-    title: 'Terms of Use | Wardogs Cheats',
+    title: 'Terms of Use | The Isle Cheats',
     description:
-      'License rules, age limits, anti-cheat risk, and liability limits for Wardogs cheats on buywardogscheat.com.',
+      'License rules, age limits, anti-cheat risk, and liability limits for The Isle cheats on buyislecheats.com.',
     h1: 'Terms of Use',
     intro:
-      'Buying or running Wardogs cheats means you accept these terms. A license covers personal use of Aimbot, ESP, wallhack, and vehicle radar and misc tools for Wardogs on Windows PC — nothing beyond that.',
+      'Buying or running The Isle cheats means you accept these terms. A license covers personal use of Aimbot, ESP, wallhack, and vehicle radar and misc tools for The Isle on Windows PC ï¿½ nothing beyond that.',
     sections: [
       {
         heading: 'Acceptance and what a license covers',
         body: [
-          'A key unlocks the current Wardogs cheat build for the duration you purchased (weekly or monthly plans where offered).',
+          'A key unlocks the current The Isle cheat build for the duration you purchased (weekly or monthly plans where offered).',
           'Handing the package to someone else, reselling it, sharing accounts, or reverse-engineering the loader breaks these terms and can end your access without a refund.',
         ],
       },
       {
         heading: 'Risk and anti-cheat disclaimer',
         body: [
-          'Wardogs uses anti-cheat and publisher moderation. Using third-party software can violate the game’s terms and lead to account penalties.',
+          'The Isle uses anti-cheat and publisher moderation. Using third-party software can violate the gameï¿½s terms and lead to account penalties.',
           'We push rebuilds after game updates when needed, but nothing here guarantees a build stays compatible forever or that an account stays safe.',
           'All risk sits with you. We accept no liability for bans, lost progress, or other damage tied to using the product. Check Active status before you load.',
         ],
@@ -98,8 +98,8 @@ export const POLICY_PAGES: PolicyPageContent[] = [
       {
         heading: 'Limitation of liability and disputes',
         body: [
-          'The product is provided “as is.” If anything goes wrong, our total liability is capped at what you paid for the affected license in the previous 30 days.',
-          'Open a ticket on Support first. Governing law follows our payment processor’s jurisdiction unless local law requires otherwise.',
+          'The product is provided ï¿½as is.ï¿½ If anything goes wrong, our total liability is capped at what you paid for the affected license in the previous 30 days.',
+          'Open a ticket on Support first. Governing law follows our payment processorï¿½s jurisdiction unless local law requires otherwise.',
           'We may update these terms on this page. Continued use after a change means the new version applies.',
         ],
       },
@@ -113,12 +113,12 @@ export const POLICY_PAGES: PolicyPageContent[] = [
   {
     slug: 'refunds',
     path: '/refunds',
-    title: 'Refund Policy | Wardogs Cheats',
+    title: 'Refund Policy | The Isle Cheats',
     description:
-      'When Wardogs cheat refunds apply for digital licenses, delivery failures, and Updating status windows on buywardogscheat.com.',
+      'When The Isle cheat refunds apply for digital licenses, delivery failures, and Updating status windows on buyislecheats.com.',
     h1: 'Refund Policy',
     intro:
-      'Wardogs cheat licenses are digital goods. This page covers when we can refund, when we cannot, and how to open a request with your order ID.',
+      'The Isle cheat licenses are digital goods. This page covers when we can refund, when we cannot, and how to open a request with your order ID.',
     sections: [
       {
         heading: 'When refunds are available',
@@ -132,7 +132,7 @@ export const POLICY_PAGES: PolicyPageContent[] = [
         heading: 'When refunds are not available',
         body: [
           'Change of mind after a working key has been delivered and activated.',
-          'Bans or gameplay outcomes — status is never a permanent guarantee.',
+          'Bans or gameplay outcomes ï¿½ status is never a permanent guarantee.',
           'Issues caused by skipping antivirus exclusions, running conflicting overlays, or loading while status is Updating.',
           'Shared, resold, or otherwise invalidated keys under the Terms of Use.',
         ],

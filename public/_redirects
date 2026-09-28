@@ -1,3 +1,6 @@
+# Checkout (302 — not indexed as site content; see CheckoutLink)
+/checkout  https://zadeyo.com/go/UMAIR?to=%2Fproducts%2Fthe-isle-novaxware  302
+
 # Path aliases
 /refund/        /refunds       301
 /refund-policy  /refunds       301
@@ -10,35 +13,42 @@
 /terms-of-service/ /terms      301
 
 # Primary SEO keyword variants → product or home
-# (Do not strip /wardogs-cheats/ — Cloudflare 308s bare path back to trailing slash → loop)
+/buy-the-isle-cheats  /   301
+/buy-the-isle-cheats/ /   301
+/buy-the-isle-cheat   /the-isle-cheats   301
+/buy-the-isle-cheat/  /the-isle-cheats   301
+/get-the-isle-cheats  /forums/complete-setup  301
+/get-the-isle-cheats/ /forums/complete-setup  301
+/the-isle-esp     /forums/advanced-esp-tactics  301
+/the-isle-esp/    /forums/advanced-esp-tactics  301
+/the-isle-cheats-evrima /forums/the-isle-evrima-cheats-recode 301
+/the-isle-cheats-evrima/ /forums/the-isle-evrima-cheats-recode 301
+/the-isle-evrima-cheats /forums/the-isle-evrima-cheats-recode 301
+/the-isle-evrima-cheats/ /forums/the-isle-evrima-cheats-recode 301
+/the-isle-esp-cheat /forums/player-esp-first 301
+/the-isle-esp-cheat/ /forums/player-esp-first 301
+/esp-the-isle /forums/advanced-esp-tactics 301
+/esp-the-isle/ /forums/advanced-esp-tactics 301
+/the-isle-evrima-esp /forums/advanced-esp-tactics 301
+/the-isle-evrima-esp/ /forums/advanced-esp-tactics 301
+/the-isle-evrima-cheat /the-isle-cheats 301
+/the-isle-evrima-cheat/ /the-isle-cheats 301
+/the-isle-game-cheat /forums/the-isle-cheats-guide 301
+/the-isle-game-cheat/ /forums/the-isle-cheats-guide 301
+/the-isle-cheats-lifetime /forums/the-isle-cheats-lifetime 301
+/the-isle-cheats-lifetime/ /forums/the-isle-cheats-lifetime 301
+
+# Legacy template paths → Isle product
+/wardogs-cheats    /the-isle-cheats   301
+/wardogs-cheats/   /the-isle-cheats   301
+/abi-cheats    /the-isle-cheats   301
+/abi-cheats/   /the-isle-cheats   301
+/dayz-cheats    /the-isle-cheats   301
+/dayz-cheats/   /the-isle-cheats   301
+/arena-breakout-infinite-cheats  /the-isle-cheats   301
+/arena-breakout-infinite-cheats/ /the-isle-cheats   301
 /buy-wardogs-cheats  /   301
 /buy-wardogs-cheats/ /   301
-/buy-wardogs-cheat   /wardogs-cheats   301
-/buy-wardogs-cheat/  /wardogs-cheats   301
-/get-wardogs-cheats  /forums/complete-setup  301
-/get-wardogs-cheats/ /forums/complete-setup  301
-/get-wardogs-cheat   /forums/complete-setup  301
-/get-wardogs-cheat/  /forums/complete-setup  301
-/wardogs-esp     /forums/player-visuals-breakdown  301
-/wardogs-esp/    /forums/player-visuals-breakdown  301
-/wardogs-aimbot  /forums/wardogs-aimbot-options  301
-/wardogs-aimbot/ /forums/wardogs-aimbot-options  301
-/buy-wardogs-esp /wardogs-cheats  301
-/buy-wardogs-esp/ /wardogs-cheats 301
-/buy-wardogs-aimbot /wardogs-cheats 301
-/buy-wardogs-aimbot/ /wardogs-cheats 301
-/wardogs-cheats-lifetime /forums/wardogs-cheats-lifetime 301
-/wardogs-cheats-lifetime/ /forums/wardogs-cheats-lifetime 301
-/wardogs-cheat-discord /forums/wardogs-cheat-discord 301
-/wardogs-cheat-discord/ /forums/wardogs-cheat-discord 301
-
-# Legacy template paths
-/abi-cheats    /wardogs-cheats   301
-/abi-cheats/   /wardogs-cheats   301
-/dayz-cheats    /wardogs-cheats   301
-/dayz-cheats/   /wardogs-cheats   301
-/arena-breakout-infinite-cheats  /wardogs-cheats   301
-/arena-breakout-infinite-cheats/ /wardogs-cheats   301
 
 /guides         /forums        301
 /guides/        /forums        301
@@ -48,20 +58,17 @@
 # Forum short-slug aliases
 /forums/setup         /forums/complete-setup     301
 /forums/features      /forums/features-list      301
-/forums/aimbot        /forums/aimbot-settings    301
-/forums/esp           /forums/esp-wallhack-guide 301
-/forums/wallhack      /forums/esp-wallhack-guide 301
-/forums/vehicles      /forums/vehicle-esp-first  301
-/forums/radar         /forums/radar-recommended-config 301
+/forums/esp           /forums/player-esp-first 301
+/forums/wallhack      /forums/player-esp-first 301
+/forums/evrima        /forums/the-isle-evrima-cheats-recode 301
 /forums/antivirus     /forums/disable-antivirus  301
 /forums/windows       /forums/windows-setup      301
 /forums/patch         /forums/game-patch-status  301
 /forums/status        /forums/load-status-checklist 301
 /forums/loader        /forums/loader-errors      301
-/forums/combat        /forums/combat-assist-settings 301
-/forums/buy           /forums/buy-wardogs-cheats-safely 301
-/forums/lifetime      /forums/wardogs-cheats-lifetime 301
-/forums/discord       /forums/wardogs-cheat-discord 301
+/forums/buy           /forums/buy-the-isle-cheats-safely 301
+/forums/lifetime      /forums/the-isle-cheats-lifetime 301
+/forums/review        /forums/best-the-isle-cheats-review-2026 301
 
 # Legacy slugs → forums
 /articles       /forums        301

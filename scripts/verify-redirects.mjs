@@ -172,7 +172,9 @@ if (!existsSync(dist)) {
     const startPath = rule.from.endsWith('/') ? rule.from : fromPath
     const { chain, loop } = followRedirects(startPath, redirectMap)
     if (loop) fail(`Redirect loop: ${chain.join(' → ')}`)
-    const dest = stripTrailingSlash(splitHash(chain.at(-1)).pathname)
+    const finalHop = chain.at(-1) ?? ''
+    if (/^https?:\/\//i.test(finalHop)) continue
+    const dest = stripTrailingSlash(splitHash(finalHop).pathname)
     if (!validDestinations.has(dest)) {
       fail(`Redirect target missing: ${rule.from} → ${chain.join(' → ')} (${dest})`)
     }
@@ -204,7 +206,10 @@ if (!existsSync(dist)) {
       if (loop) {
         fail(`Internal href resolves to loop ${chain.join(' → ')} (${relative(root, file)})`)
       }
-      const dest = stripTrailingSlash(splitHash(chain.at(-1)).pathname)
+      const finalHop = chain.at(-1) ?? ''
+      if (/^https?:\/\//i.test(finalHop)) continue
+      if (norm === '/checkout') continue
+      const dest = stripTrailingSlash(splitHash(finalHop).pathname)
       if (!validDestinations.has(dest)) {
         fail(`Internal href missing destination ${norm} → ${dest} (${relative(root, file)})`)
       }

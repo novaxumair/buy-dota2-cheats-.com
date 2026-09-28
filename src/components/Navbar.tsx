@@ -18,7 +18,7 @@ const NAV_LINKS = [
 
   { label: 'Forums', to: '/forums' },
 
-  { label: 'Product', to: '/wardogs-cheats' },
+  { label: 'Product', to: '/the-isle-cheats' },
 
   { label: 'Reviews', to: '/reviews' },
 
@@ -173,7 +173,7 @@ export function Navbar({ onVideo: _onVideo = false, currentPath }: NavbarProps) 
           </div>
 
           <CheckoutLink
-            aria-label="Get Wardogs Cheats — open checkout"
+            aria-label="Get The Isle Cheats — open checkout"
             className="cta-gradient flex items-center self-stretch rounded-full px-5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
           >
             Get
@@ -308,7 +308,7 @@ export function Navbar({ onVideo: _onVideo = false, currentPath }: NavbarProps) 
         <div className="mt-auto px-5 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
 
           <CheckoutLink
-            aria-label="Get Wardogs Cheats — open checkout"
+            aria-label="Get The Isle Cheats — open checkout"
             onClick={() => setMenuOpen(false)}
             className="cta-gradient block w-full rounded-full px-6 py-3 text-center text-sm font-semibold text-white"
           >

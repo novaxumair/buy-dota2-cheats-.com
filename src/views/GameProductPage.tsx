@@ -17,12 +17,12 @@ import { FaqSection } from '../components/FaqSection'
 import { CheckoutLink } from '../components/CheckoutLink'
 import { NotFoundPage } from './NotFoundPage'
 import { blogPath } from '../data/blogs'
-import { WD_HOME_VIDEO } from '../data/media'
+import { ISLE_HOME_VIDEO } from '../data/media'
 
 function ProductPurchaseCard({ game }: { game: Game }) {
   return (
     <div className="overflow-hidden rounded-2xl border border-z-soft/15 bg-[rgba(20,16,31,0.95)] sm:rounded-3xl">
-      <CheckoutLink className="block" aria-label="Buy Wardogs cheats">
+      <CheckoutLink className="block" aria-label="View The Isle cheats plans">
         <GameCover
           slug={game.slug}
           name={game.name}
@@ -33,9 +33,9 @@ function ProductPurchaseCard({ game }: { game: Game }) {
       </CheckoutLink>
       <div className="p-5 sm:p-6">
         <div className="flex items-center gap-3">
-          <div className="icon-well shrink-0 text-sm font-bold">WD</div>
+          <div className="icon-well shrink-0 text-sm font-bold">TI</div>
           <div className="min-w-0">
-            <p className="truncate text-sm font-semibold text-white">Wardogs</p>
+            <p className="truncate text-sm font-semibold text-white">The Isle</p>
             <p className="text-xs text-white/45">
               {game.status} · From ${PRODUCT_PRICE_USD}
             </p>
@@ -43,7 +43,7 @@ function ProductPurchaseCard({ game }: { game: Game }) {
         </div>
 
         <CheckoutLink className="cta-gradient mt-5 block w-full rounded-full py-3.5 text-center text-sm font-semibold text-white transition-opacity hover:opacity-90">
-          Buy Wardogs cheats
+          View plans & checkout
         </CheckoutLink>
         <p className="mt-3 text-center text-[11px] text-white/40">
           Digital delivery · Confirm Active status first
@@ -77,7 +77,7 @@ export function GameProductPage({ guideSlug }: GameProductPageProps) {
   return (
     <div className="content-surface min-h-screen overflow-x-hidden text-white">
       <div className="content-surface-nav">
-        <Navbar currentPath="/wardogs-cheats" />
+        <Navbar currentPath="/the-isle-cheats" />
       </div>
 
       <main>
@@ -97,16 +97,16 @@ export function GameProductPage({ guideSlug }: GameProductPageProps) {
             <div className="mt-6 text-center lg:mt-8">
               <span className="inline-flex items-center gap-1.5 text-xs text-z-soft">
                 <Shield className="h-3.5 w-3.5 shrink-0" strokeWidth={1.75} />
-                {game.status} · Wardogs · Windows PC · {SITE_HOST}
+                {game.status} · Evrima · Windows PC · {SITE_HOST}
               </span>
 
               <h1 className="mx-auto mt-3 max-w-3xl text-2xl font-semibold leading-tight tracking-tight text-white sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
-                Wardogs Cheats
+                The Isle Cheats
               </h1>
               <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-white/55 sm:mt-4 sm:text-base">
-                Full Wardogs cheat menu — aimbot options, player ESP, vehicle ESP, 2D radar, and
-                misc weapon helpers. Buy wardogs cheats or get wardogs esp access when Active —
-                confirm loader status, then checkout for PC.
+                Full Evrima overlay menu — the isle esp readouts, visual options, and misc utilities.
+                the isle evrima cheats access when Active — confirm loader status, then checkout for
+                PC.
               </p>
             </div>
 
@@ -162,10 +162,9 @@ export function GameProductPage({ guideSlug }: GameProductPageProps) {
                       Platforms & patches
                     </h2>
                     <p className="mt-3">
-                      Runs on Wardogs via Steam when loader status is Active. After a Wardogs patch,
-                      status may show Updating until tested —{' '}
-                      {SITE_NAME} publishes Active labels so you are not loading a mismatched build.
-                      Status first, raid second.
+                      Runs on The Isle Evrima via Steam when loader status is Active. After an Evrima
+                      patch, status may show Updating until tested — {SITE_NAME} publishes Active
+                      labels so you are not loading a mismatched build. Status first, then grow.
                     </p>
                   </div>
 
@@ -213,7 +212,7 @@ export function GameProductPage({ guideSlug }: GameProductPageProps) {
               Gameplay preview
             </h2>
             <p className="mx-auto mt-2 max-w-xl text-sm text-white/45">
-              {WD_HOME_VIDEO.caption} Hover to slow the scroll — click any shot to zoom in.
+              {ISLE_HOME_VIDEO.caption} Hover to slow the scroll — click any shot to zoom in.
             </p>
           </div>
           <div className="relative left-1/2 mt-6 w-screen max-w-[100vw] -translate-x-1/2 sm:mt-8">
@@ -222,13 +221,13 @@ export function GameProductPage({ guideSlug }: GameProductPageProps) {
         </section>
 
         <FaqSection
-          heading="Wardogs cheats FAQ"
+          heading="The Isle cheats FAQ"
           intro="Status, features, platforms, delivery, and load questions before checkout."
           items={PRODUCT_PAGE_FAQS}
         />
       </main>
 
-      <SiteFooter currentPath="/wardogs-cheats" />
+      <SiteFooter currentPath="/the-isle-cheats" />
     </div>
   )
 }
