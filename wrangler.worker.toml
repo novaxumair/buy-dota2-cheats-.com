@@ -1,0 +1,15 @@
+# Optional Workers deploy: npm run deploy (after npm run build)
+name = "buyislecheats"
+compatibility_date = "2024-09-23"
+main = "workers/site.js"
+
+[assets]
+directory = "./dist"
+
+[[routes]]
+pattern = "buyislecheats.com"
+custom_domain = true
+
+[[routes]]
+pattern = "www.buyislecheats.com"
+custom_domain = true
