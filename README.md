@@ -13,3 +13,13 @@ SEO targets **wardogs cheats**, **Wardogs ESP**, **Wardogs aimbot**, and related
 - `npm run fetch:game-cover` — refresh hosted WARDOGS key art
 
 Set `SITE_URL=https://buywardogscheats.net` when generating sitemaps outside the default build.
+
+## Cloudflare Pages (Git)
+
+| Setting | Value |
+|--------|--------|
+| Build command | `npm run build` |
+| Build output | `dist` (also set in `wrangler.toml`) |
+| **Deploy command** | **Leave empty** (recommended), or `npm run deploy:pages` |
+
+Do **not** use `npx wrangler deploy` — that targets Workers and fails without a worker entry. Optional standalone Worker: `npm run deploy:worker` (see `wrangler.worker.toml`).

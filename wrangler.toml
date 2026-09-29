@@ -1,4 +1,8 @@
 # Cloudflare Pages (Git) — Astro static output
+# Build: npm run build  |  Output: dist (below)
+# Deploy command in dashboard: leave EMPTY (Pages uploads dist automatically),
+# or set to: npm run deploy:pages
+# Do NOT use: npx wrangler deploy (Workers — will fail on this repo)
 name = "buywardogscheats"
 compatibility_date = "2024-09-23"
 pages_build_output_dir = "./dist"
