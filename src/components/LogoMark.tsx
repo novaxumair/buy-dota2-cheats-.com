@@ -11,7 +11,7 @@ export function LogoMark({ className = '', priority = false }: LogoMarkProps) {
       srcSet="/logo.png 1x, /logo.png 2x"
       width={82}
       height={82}
-      alt="The Isle Cheats logo"
+      alt="Wardogs Cheats logo"
       className={`h-[82px] w-[82px] shrink-0 object-contain ${className}`}
       decoding="async"
       loading={priority ? 'eager' : 'lazy'}

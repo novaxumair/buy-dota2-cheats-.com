@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { BlogPostPage } from '../../views/BlogPostPage'
 import { BLOGS, blogPath, getBlog } from '../../data/blogs'
-import { SITE_URL, type PageSeo } from '../../data/site'
+import { SEO, SITE_URL, type PageSeo } from '../../data/site'
 import { getForumMedia } from '../../data/media'
 
 export function getStaticPaths() {
@@ -23,15 +23,24 @@ const absoluteMedia = (path: string) => `${SITE_URL}${path}`
 const ogImage = `/og/forums-${post.slug}.jpg`
 const pageUrl = `${SITE_URL}${blogPath(post.slug)}`
 
-const seo: PageSeo = {
-  title: post.metaTitle,
-  description: post.metaDescription,
-  path: blogPath(post.slug),
-  ogType: 'article',
-  image: ogImage,
-  imageAlt: `${post.title} — The Isle cheats gameplay guide screenshot`,
-  robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+const SEO_BY_SLUG: Partial<Record<string, PageSeo>> = {
+  'features-list': SEO.features,
+  'complete-setup': SEO.setup,
+  'load-status-checklist': SEO.status,
 }
+
+const seoOverride = SEO_BY_SLUG[post.slug]
+const seo: PageSeo = seoOverride
+  ? { ...seoOverride, image: ogImage, imageAlt: `${post.title} — Wardogs cheats gameplay guide screenshot` }
+  : {
+      title: post.metaTitle,
+      description: post.metaDescription,
+      path: blogPath(post.slug),
+      ogType: 'article',
+      image: ogImage,
+      imageAlt: `${post.title} — Wardogs cheats gameplay guide screenshot`,
+      robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+    }
 
 const howToLd = post.howTo
   ? {
@@ -85,7 +94,7 @@ const jsonLdExtra = [
           '@type': 'VideoObject',
           name: media.videoTitle || media.title,
           description: media.videoDescription || media.caption,
-          thumbnailUrl: absoluteMedia('/media/isle-video-thumb.jpg'),
+          thumbnailUrl: absoluteMedia('/media/wd-video-thumb.jpg'),
           contentUrl: absoluteMedia(media.video),
           uploadDate: post.date,
           isFamilyFriendly: true,

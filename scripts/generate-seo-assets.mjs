@@ -12,10 +12,11 @@ const mediaDir = join(root, 'public', 'media')
 
 mkdirSync(ogDir, { recursive: true })
 
-const cover = join(mediaDir, 'isle-cover.webp')
-const hero = join(mediaDir, 'isle-hero-full.webp')
-const menu = join(mediaDir, 'isle-menu.webp')
-const shot = (n) => join(mediaDir, `isle-screenshot-${n}.webp`)
+const gameCover = join(mediaDir, 'wd-game-cover.webp')
+const cover = existsSync(gameCover) ? gameCover : join(mediaDir, 'wd-cover.webp')
+const hero = join(mediaDir, 'wd-hero-full.webp')
+const menu = join(mediaDir, 'wd-menu.webp')
+const shot = (n) => join(mediaDir, `wd-screenshot-${n}.webp`)
 
 async function ogFrom(src, outName, title) {
   const input = existsSync(src) ? src : cover
@@ -27,12 +28,12 @@ async function ogFrom(src, outName, title) {
 }
 
 const pages = [
-  ['home.jpg', hero, 'The Isle Cheats'],
-  ['the-isle-cheats.jpg', cover, 'The Isle ESP, Aimbot and Wallhack'],
-  ['forums.jpg', shot(4), 'The Isle Cheats Forum'],
-  ['reviews.jpg', shot(2), 'The Isle Cheats Reviews'],
-  ['faq.jpg', shot(8), 'The Isle Cheats FAQ'],
-  ['support.jpg', shot(6), 'The Isle Cheats Support'],
+  ['home.jpg', hero, 'Wardogs Cheats'],
+  ['wardogs-cheats.jpg', cover, 'Wardogs Store'],
+  ['forums.jpg', shot(4), 'Wardogs Intel'],
+  ['reviews.jpg', shot(2), 'Wardogs Cheats Reviews'],
+  ['faq.jpg', shot(8), 'Wardogs FAQ'],
+  ['support.jpg', shot(6), 'Wardogs Support'],
   ['privacy.jpg', menu, 'Privacy Policy'],
   ['terms.jpg', menu, 'Terms of Use'],
   ['refunds.jpg', menu, 'Refund Policy'],
@@ -51,7 +52,7 @@ const forums = jsonMatch ? JSON.parse(jsonMatch[1]) : []
 for (const forum of forums) {
   let h = 0
   for (let i = 0; i < forum.slug.length; i++) h = (h * 31 + forum.slug.charCodeAt(i)) >>> 0
-  const n = 1 + (h % 9)
+  const n = 1 + (h % 10)
   const src = shot(n)
   await ogFrom(src, `forums-${forum.slug}.jpg`, forum.title)
 }

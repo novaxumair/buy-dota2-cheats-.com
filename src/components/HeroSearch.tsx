@@ -30,7 +30,7 @@ export function HeroSearch({
   value,
   onChange,
   submitTo = 'forums',
-  placeholder = 'Search The Isle cheat guides…',
+  placeholder = 'Search Wardogs cheat guides…',
   autoFocus = false,
   className = '',
 }: HeroSearchProps) {

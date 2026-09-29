@@ -6,7 +6,7 @@ import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
-const HOST = 'buywardogscheat.com'
+const HOST = 'buywardogscheats.net'
 
 const POSTS = [
   {
@@ -247,12 +247,12 @@ const POSTS = [
   },
   {
     slug: 'best-wardogs-cheats-review-2026',
-    title: 'Best Wardogs Cheats Review & Comparison 2026: Features, Safety & Value',
+    title: 'Wardogs Cheats Review 2026: Features, Safety & Value',
     tag: 'Review',
     intent: 'commercial',
     kw: 'wardogs cheats, buy wardogs cheats, wardogs cheats lifetime',
     excerpt:
-      '2026 Wardogs cheat comparison — ESP clarity, aimbot tuning, vehicle radar, pricing, and loader maintenance habits.',
+      '2026 Wardogs cheats review — ESP clarity, aimbot tuning, vehicle radar, pricing, and loader maintenance on buywardogscheats.net.',
     sections: [
       {
         heading: 'What we compared',

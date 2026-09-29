@@ -18,8 +18,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Cinzel', 'Georgia', 'Times New Roman', 'serif'],
-        serif: ['Cinzel', 'Georgia', 'Times New Roman', 'serif'],
+        sans: ['"Chakra Petch"', 'system-ui', 'sans-serif'],
+        display: ['"Chakra Petch"', 'system-ui', 'sans-serif'],
       },
     },
   },

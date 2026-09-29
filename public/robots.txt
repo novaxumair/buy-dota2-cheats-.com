@@ -36,5 +36,5 @@ Allow: /videos/
 Disallow: /404
 Disallow: /404.html
 
-Sitemap: https://buyislecheats.com/sitemap
-Sitemap: https://buyislecheats.com/sitemap.xml
+Sitemap: https://buywardogscheats.net/sitemap
+Sitemap: https://buywardogscheats.net/sitemap.xml

@@ -1,6 +1,7 @@
-@import '@fontsource/cinzel/latin-400.css';
-@import '@fontsource/cinzel/latin-600.css';
-@import '@fontsource/cinzel/latin-700.css';
+@import '@fontsource/chakra-petch/latin-400.css';
+@import '@fontsource/chakra-petch/latin-500.css';
+@import '@fontsource/chakra-petch/latin-600.css';
+@import '@fontsource/chakra-petch/latin-700.css';
 
 @tailwind base;
 @tailwind components;
@@ -46,7 +47,7 @@ body::-webkit-scrollbar {
 
 body {
   margin: 0;
-  font-family: 'Cinzel', Georgia, 'Times New Roman', serif;
+  font-family: 'Chakra Petch', system-ui, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -63,14 +64,14 @@ body {
 
 @layer base {
   h1 {
-    font-weight: 600;
-    letter-spacing: 0.12em;
+    font-weight: 700;
+    letter-spacing: 0.04em;
   }
 
   h2,
   h3 {
     font-weight: 600;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.03em;
   }
 }
 

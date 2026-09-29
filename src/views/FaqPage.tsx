@@ -19,7 +19,7 @@ export function FaqPage() {
               {SITE_NAME}
             </p>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-              The Isle Cheats FAQ
+              Wardogs Cheats FAQ
             </h1>
             <p className="mt-4 text-base leading-relaxed text-white/60">
               Loader status, ESP, aimbot, vehicle radar, platforms, buying, loading, support and refunds

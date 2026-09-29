@@ -2,28 +2,28 @@ export type FaqItem = { q: string; a: string }
 
 export const HOME_FAQS: FaqItem[] = [
   {
-    q: 'What are The Isle cheats?',
-    a: 'The Isle cheats on buyislecheats.com are PC overlays with player, NPC, and animal ESP, visual options, and misc utilities — with Active or Updating loader status after Evrima patches.',
+    q: 'What are Wardogs cheats?',
+    a: 'Wardogs cheats on buywardogscheats.net are PC tools with aimbot, player ESP, vehicle ESP, 2D radar, and misc options — with Active or Updating loader status after game patches.',
   },
   {
-    q: 'How much do The Isle cheats cost?',
-    a: 'The Isle cheats start from $35 for monthly access. Lifetime plans cost more. Confirm Active status and pricing on buyislecheats.com before checkout.',
+    q: 'How much do Wardogs cheats cost?',
+    a: 'Wardogs cheats start at $35 for monthly access (30 days). Lifetime access is $150. Confirm Active status and pricing on buywardogscheats.net before checkout.',
   },
   {
     q: 'Do you sell tools for other games?',
-    a: 'No. buyislecheats.com covers The Isle Evrima only — one product, no multi-game catalog.',
+    a: 'No. buywardogscheats.net covers Wardogs only — one product, no multi-game catalog.',
   },
   {
-    q: 'Is combat assist required?',
-    a: 'Combat assist is optional. Many players lead with the isle esp — distance, species, and growth readouts — then add misc keys only when they want them.',
+    q: 'Is aimbot required?',
+    a: 'Aimbot is optional. Many players lead with player ESP, vehicle ESP, and radar — then tune aimbot FOV, smooth, and visible check only when they want combat assist.',
   },
   {
     q: 'How do you handle game patches?',
-    a: 'We publish Active or Updating labels after Evrima updates. Always check status on buyislecheats.com before you load.',
+    a: 'We publish Active or Updating labels after Wardogs updates. Elytra Anti-Cheat and game builds change — always check status on buywardogscheats.net before you load.',
   },
   {
-    q: 'What is The Isle ESP?',
-    a: 'The Isle ESP shows players and dinosaurs through foliage with box, snapline, health, stamina, growth, species, corpse, fruit, and water markers — plus max distance filters for clean HUDs.',
+    q: 'What is Wardogs ESP?',
+    a: 'Wardogs ESP shows players and vehicles through terrain with box, skeleton, health bar, weapon, team/squad, distance, OOF arrows, and max distance — plus vehicle type and occupied/empty state.',
   },
 ]
 
@@ -31,31 +31,31 @@ export const PRODUCT_PAGE_FAQS: FaqItem[] = [
   ...HOME_FAQS,
   {
     q: 'Which features are included?',
-    a: 'Visual options cover player, NPC, and animal ESP with box, snapline, name, distance, corpse, health, stamina, growth, species, direction, head dot, visible check, gore, fruit, water, and max distance. Misc options include crosshair, suicide, fullbright, FPS/resolution/time readouts, custom menu and panic keys, and custom ESP colors — Evrima on Windows PC. See the features checklist forum for the full list.',
+    a: 'Aimbot options include enable, FOV, smooth, bone selection, visible check, prediction, draw FOV, and draw target line. Player visuals cover box, skeleton, head circle, health bar, distance, name, team/squad, weapon, view direction, OOF arrows, and max distance. Vehicle ESP adds type, distance, and occupied/empty. Radar includes 2D radar, player markers, vehicle markers, and range. Misc covers no recoil, no spread, full bright, custom crosshair, and config save/load on Windows PC.',
   },
   {
-    q: 'Do The Isle cheats work on Steam Evrima?',
-    a: 'Yes. The loader supports The Isle Evrima on Steam when status is Active.',
+    q: 'Do Wardogs cheats work on Steam?',
+    a: 'Yes. The loader supports Wardogs on Steam for Windows PC when status is Active.',
   },
   {
     q: 'How do I get access?',
-    a: 'Start on the homepage, review features and Active status, open product details, then continue to checkout for digital delivery.',
+    a: 'Start on the homepage, review features and Active status, open the Wardogs store page, then continue to checkout for digital delivery.',
   },
   {
-    q: 'How do I load The Isle cheats?',
-    a: 'Follow the complete setup forum: exclusions, launch Evrima, run loader, configure ESP with distance caps, save a config. Re-check status after every patch.',
+    q: 'How do I load Wardogs cheats?',
+    a: 'Follow the complete setup guide: exclusions, launch Wardogs, run loader, configure ESP and radar, save a config. Re-check status after every patch.',
   },
   {
     q: 'Where do I get support?',
-    a: 'Use the Support page and your checkout order channel. Include current status and whether you need load, menu, or delivery help.',
+    a: 'Use the Support page and Discord channels linked after purchase. Include current status and whether you need load, menu, or delivery help.',
   },
   {
     q: 'Where can I read reviews?',
-    a: 'Visit the Reviews page for buyer feedback on ESP clarity, misc utilities, and loader updates.',
+    a: 'Visit the Reviews page for buyer feedback on aimbot, ESP, radar, and loader updates.',
   },
   {
-    q: 'Is this the official The Isle site?',
-    a: 'No. We cover third-party overlay software for The Isle only. Buy and play the game from official stores. We are not affiliated with the game publisher.',
+    q: 'Is this the official Wardogs site?',
+    a: 'No. We cover third-party software for Wardogs only. Buy and play the game from official stores. We are not affiliated with Bulkhead or Team17.',
   },
 ]
 

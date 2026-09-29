@@ -7,7 +7,7 @@ import { HeroSearch } from '../components/HeroSearch'
 import { blogPath } from '../data/blogs'
 import { FORUM_INDEX } from '../data/forum-index'
 import { guidePath } from '../data/games'
-import { SITE_HOST } from '../data/site'
+import { SITE_HOST, SITE_NAME } from '../data/site'
 
 type ForumsPageProps = {
   initialQuery?: string
@@ -35,21 +35,21 @@ export function ForumsPage({ initialQuery = '' }: ForumsPageProps) {
           <div className="page-x mt-auto pb-10 sm:pb-14">
             <div className="relative z-30 mx-auto max-w-6xl">
               <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-white/50">
-                Forums · Setup · {SITE_HOST}
+                Wardogs intel · Setup · {SITE_HOST}
               </p>
               <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-                The Isle Cheats Forum
+                Wardogs Intel
               </h1>
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/70">
-                Informational guides for the isle esp, the isle cheats evrima, and Evrima loader help —
-                plus commercial threads when you want to buy the isle cheats safely.
+                Guides for wardogs cheats on {SITE_NAME} — aimbot, ESP, radar, loader setup, and
+                patch-day checklists. Wardogs only; no other titles.
               </p>
               <div className="relative z-50 mt-7">
                 <HeroSearch
                   value={q}
                   onChange={onSearchChange}
                   submitTo="filter"
-                  placeholder="Search forums — setup, antivirus, hotkeys…"
+                  placeholder="Search intel — setup, aimbot, ESP, radar…"
                 />
               </div>
             </div>
@@ -72,23 +72,23 @@ export function ForumsPage({ initialQuery = '' }: ForumsPageProps) {
             <div className="page-card mb-10 flex flex-col gap-4 rounded-2xl p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
               <div>
                 <p className="text-xs uppercase tracking-wider text-white/45">Product</p>
-                <h2 className="mt-1 text-xl font-semibold text-white">The Isle Cheats</h2>
+                <h2 className="mt-1 text-xl font-semibold text-white">{SITE_NAME}</h2>
                 <p className="mt-2 max-w-xl text-sm text-white/55">
-                  The Isle ESP, aimbot, and wallhack-style visuals — confirm Active loader status
-                  before checkout.
+                  Wardogs aimbot, player ESP, vehicle ESP, and 2D radar — confirm Active loader
+                  status before checkout on {SITE_HOST}.
                 </p>
               </div>
               <a
-                href={guidePath('the-isle')}
+                href={guidePath('wardogs')}
                 className="cta-gradient inline-flex shrink-0 items-center justify-center rounded-full px-6 py-3 text-sm font-medium text-white"
               >
-                Product details
+                Wardogs store
               </a>
             </div>
 
             <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
               <h2 className="text-xl font-semibold tracking-tight text-white">
-                {q.trim() ? 'Search results' : 'All forum threads'}
+                {q.trim() ? 'Search results' : 'All intel threads'}
               </h2>
               <p className="text-sm text-white/40">
                 {filtered.length} thread{filtered.length === 1 ? '' : 's'}
@@ -98,7 +98,7 @@ export function ForumsPage({ initialQuery = '' }: ForumsPageProps) {
             {filtered.length === 0 ? (
               <div className="page-card mt-8 rounded-2xl px-6 py-10 text-center">
                 <p className="text-sm text-white/55">
-                  Nothing matched “{q}”. Try “setup”, “antivirus”, or “hotkeys”.
+                  Nothing matched “{q}”. Try “setup”, “aimbot”, or “radar”.
                 </p>
                 <button
                   type="button"
@@ -114,7 +114,7 @@ export function ForumsPage({ initialQuery = '' }: ForumsPageProps) {
                   <a
                     key={post.slug}
                     href={blogPath(post.slug)}
-                    aria-label={`Read forum thread: ${post.title}`}
+                    aria-label={`Read intel thread: ${post.title}`}
                     className="page-card group flex h-full flex-col rounded-2xl p-5 sm:p-6"
                   >
                     <div className="flex flex-wrap items-center justify-between gap-2">

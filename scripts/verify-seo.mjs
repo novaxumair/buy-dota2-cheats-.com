@@ -3,7 +3,7 @@ import { join, relative } from 'node:path'
 
 const root = join(import.meta.dirname, '..')
 const dist = join(root, 'dist')
-const site = 'https://buyislecheats.com'
+const site = 'https://buywardogscheats.net'
 const failures = []
 
 function fail(message) {
@@ -73,27 +73,27 @@ for (const file of files) {
 }
 
 const home = readFileSync(join(dist, 'index.html'), 'utf8')
-const product = readFileSync(join(dist, 'the-isle-cheats', 'index.html'), 'utf8')
+const product = readFileSync(join(dist, 'wardogs-cheats', 'index.html'), 'utf8')
 const reviews = readFileSync(join(dist, 'reviews', 'index.html'), 'utf8')
 const faq = readFileSync(join(dist, 'faq', 'index.html'), 'utf8')
 const support = readFileSync(join(dist, 'support', 'index.html'), 'utf8')
 const forums = readFileSync(join(dist, 'forums', 'index.html'), 'utf8')
 const siteTs = readFileSync(join(root, 'src', 'data', 'site.ts'), 'utf8')
 
-if (!home.includes('<title>The Isle Cheats | Evrima Overlays, Features &amp; Setup Guides</title>')) {
+if (!home.includes('<title>Wardogs Cheats | Aimbot, ESP and Radar</title>')) {
   fail('Homepage does not own the exact title')
 }
-if (!product.includes('<title>The Isle ESP, Aimbot &amp; Wallhack | Features &amp; Plans</title>')) {
+if (!product.includes('<title>Wardogs Store | Wardogs Cheats</title>')) {
   fail('Product page title must match SEO.product')
 }
-if (!forums.includes('<title>The Isle Cheats Forum | Guides &amp; Discussions</title>')) {
+if (!forums.includes('<title>Wardogs Intel | Wardogs Cheats</title>')) {
   fail('Forums index title must match SEO.forums')
 }
-if (!siteTs.includes('The Isle survival overlays')) {
-  fail('SITE_ABOUT must include The Isle survival overlays (6-term cap)')
+if (!siteTs.includes('Wardogs aimbot')) {
+  fail('SITE_ABOUT must include Wardogs aimbot (6-term cap)')
 }
-if (!siteTs.includes('buyislecheats.com')) {
-  fail('ORGANIZATION_ALTERNATE_NAMES must include buyislecheats.com')
+if (!siteTs.includes('buywardogscheats.net')) {
+  fail('ORGANIZATION_ALTERNATE_NAMES must include buywardogscheats.net')
 }
 if (/name="keywords"/.test(home + product + forums)) {
   fail('Pages must not use meta keywords')
@@ -101,7 +101,7 @@ if (/name="keywords"/.test(home + product + forums)) {
 const purposeMatch = siteTs.match(/export const SITE_PURPOSE =\s*\n\s*'([^']+)'/)
 const sitePurpose = purposeMatch?.[1] ?? ''
 if (!sitePurpose.includes('does not sell cheats for other games')) {
-  fail('SITE_PURPOSE must state single-game The Isle focus')
+  fail('SITE_PURPOSE must state single-game Wardogs focus')
 }
 if ((siteTs.match(/SITE_ABOUT = \[[\s\S]*?\] as const/)?.[0].match(/'/g) || []).length !== 12) {
   fail('SITE_ABOUT must contain exactly 6 terms')
@@ -124,7 +124,7 @@ for (const [name, html] of [
   ['product', product],
   ['reviews', reviews],
 ]) {
-  if (!html.includes('"@id":"https://buyislecheats.com/#product"')) {
+  if (!html.includes('"@id":"https://buywardogscheats.net/#product"')) {
     fail(`${name}: missing shared Product ID`)
   }
 }
@@ -165,8 +165,8 @@ for (const file of files) {
   const twImage = html.match(/<meta name="twitter:image" content="([^"]+)"/)?.[1]
   const robotsMeta = html.match(/<meta name="robots" content="([^"]+)"/)?.[1]
 
-  if (!ogImage?.startsWith('https://buyislecheats.com/og/') || !ogImage.endsWith('.jpg')) {
-    fail(`${page}: og:image must be https://buyislecheats.com/og/*.jpg for SERP thumbnails`)
+  if (!ogImage?.startsWith('https://buywardogscheats.net/og/') || !ogImage.endsWith('.jpg')) {
+    fail(`${page}: og:image must be https://buywardogscheats.net/og/*.jpg for SERP thumbnails`)
   }
   if (!twImage || twImage !== ogImage) {
     fail(`${page}: twitter:image must match og:image`)
@@ -191,8 +191,8 @@ for (const [name, html] of [
   ['product', product],
   ['forums', forums],
 ]) {
-  if (!html.includes('/media/isle-') && !html.includes('/videos/hero.webm')) {
-    fail(`${name}: missing visible The Isle media in page body`)
+  if (!html.includes('/media/wd-') && !html.includes('/videos/hero.webm')) {
+    fail(`${name}: missing visible Wardogs media in page body`)
   }
 }
 for (const [name, html, og] of [
@@ -204,14 +204,14 @@ for (const [name, html, og] of [
     fail(`${name}: missing Open Graph image ${og}`)
   }
 }
-if (!product.includes('preview-marquee-track') || !product.includes('/media/isle-screenshot-1.webp')) {
+if (!product.includes('preview-marquee-track') || !product.includes('/media/wd-screenshot-1.webp')) {
   fail('Product page is missing the gameplay preview image carousel')
 }
 if (home.includes('iframe.mediadelivery.net') || product.includes('iframe.mediadelivery.net')) {
   fail('Pages still embed blocked mediadelivery video (403 off-domain)')
 }
 if (
-  /tarkovcheats|Escape from Tarkov|tarkov-reaper|warzonecheats|buywardogscheat|wardogshacks|arena breakout|\.uk\/|Delta Product|Auron Product/i.test(
+  /tarkovcheats|Escape from Tarkov|tarkov-reaper|warzonecheats|buywardogscheat\.com|wardogshacks|arena breakout|\.uk\/|Delta Product|Auron Product/i.test(
     home + product,
   )
 ) {
@@ -221,8 +221,8 @@ if (
 const sitemap = readFileSync(join(dist, 'sitemap.xml'), 'utf8')
 if (sitemap.includes('<sitemapindex')) fail('sitemap.xml must be a single urlset, not an index')
 if (/forums\/(instructions|how-to-load)/.test(sitemap)) fail('Retired forum remains in sitemap.xml')
-if (!sitemap.includes('https://buyislecheats.com/')) {
-  fail('sitemap.xml must use https://buyislecheats.com URLs')
+if (!sitemap.includes('https://buywardogscheats.net/')) {
+  fail('sitemap.xml must use https://buywardogscheats.net URLs')
 }
 if (sitemap.includes('xmlns:video=') || sitemap.includes('<video:')) {
   fail('sitemap must not use video extension (GSC read errors)')
@@ -287,10 +287,10 @@ if (!existsSync(join(dist, 'robots.txt'))) fail('dist/robots.txt is missing')
 if (!existsSync(join(dist, '_routes.json'))) fail('dist/_routes.json is missing')
 
 const robots = readFileSync(join(dist, 'robots.txt'), 'utf8')
-if (!robots.includes('Sitemap: https://buyislecheats.com/sitemap')) {
+if (!robots.includes('Sitemap: https://buywardogscheats.net/sitemap')) {
   fail('robots.txt must point at the canonical HTTPS sitemap (/sitemap)')
 }
-if (!robots.includes('Sitemap: https://buyislecheats.com/sitemap.xml')) {
+if (!robots.includes('Sitemap: https://buywardogscheats.net/sitemap.xml')) {
   fail('robots.txt must also list /sitemap.xml for Search Console submissions')
 }
 if (!robots.includes('Allow: /sitemap')) {
@@ -320,16 +320,16 @@ for (const fn of ['functions/sitemap.js', 'functions/sitemap.xml.js']) {
 
 for (const asset of [
   'public/og/home.jpg',
-  'public/og/the-isle-cheats.jpg',
+  'public/og/wardogs-cheats.jpg',
   'public/og/forums.jpg',
   'public/og/reviews.jpg',
   'public/og/faq.jpg',
   'public/og/support.jpg',
-  'public/media/isle-hero-full.webp',
-  'public/media/isle-cover.webp',
-  'public/media/isle-menu.webp',
-  'public/media/isle-video-thumb.jpg',
-  'public/media/isle-screenshot-1.webp',
+  'public/media/wd-hero-full.webp',
+  'public/media/wd-cover.webp',
+  'public/media/wd-menu.webp',
+  'public/media/wd-video-thumb.jpg',
+  'public/media/wd-screenshot-1.webp',
   'public/videos/hero.webm',
   'public/sitemap.css',
   'public/_routes.json',
@@ -347,14 +347,14 @@ if (!redirects.includes('/sitemap-pages.xml')) {
 if (!redirects.includes('/sitemap-index.xml')) {
   fail('_redirects missing sitemap-index.xml -> /sitemap.xml redirect')
 }
-if (!redirects.includes('/buy-the-isle-cheats')) {
-  fail('_redirects must map buy-the-isle-cheats keyword alias')
+if (!redirects.includes('/buy-wardogs-cheats')) {
+  fail('_redirects must map buy-wardogs-cheats keyword alias')
 }
 if (!redirects.includes('/abi-cheats')) {
-  fail('_redirects must map legacy /abi-cheats to /the-isle-cheats')
+  fail('_redirects must map legacy /abi-cheats to /wardogs-cheats')
 }
-if (/^\/the-isle-cheats\s+\/the-isle-cheats\s/m.test(redirects)) {
-  fail('_redirects must not 301 /the-isle-cheats to itself (redirect loop)')
+if (/^\/wardogs-cheats\s+\/wardogs-cheats\s/m.test(redirects)) {
+  fail('_redirects must not 301 /wardogs-cheats to itself (redirect loop)')
 }
 
 const worker = readFileSync(join(root, 'workers', 'site.js'), 'utf8')

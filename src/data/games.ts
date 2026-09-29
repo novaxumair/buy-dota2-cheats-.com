@@ -7,9 +7,9 @@ export type Game = {
   popular?: boolean
 }
 
-/** Site is The Isle cheats only — no other titles. */
+/** Site is Wardogs cheats only — no other titles. */
 export const GAMES: Game[] = [
-  { slug: 'the-isle', name: 'The Isle', status: 'Active', popular: true },
+  { slug: 'wardogs', name: 'Wardogs', status: 'Active', popular: true },
 ]
 
 export function getGame(slug: string) {
@@ -27,69 +27,78 @@ export function parseGuideSlug(param: string) {
 
 export const PRODUCT_FEATURE_GROUPS = [
   {
-    name: 'Visual options',
+    name: 'Aimbot Options',
     items: [
-      'Player ESP',
-      'NPC ESP',
-      'Animal ESP',
-      'Box',
-      'Snapline',
-      'Name',
-      'Distance',
-      'Corpse',
-      'Health',
-      'Stamina',
-      'Growth',
-      'Species',
-      'Player Direction',
-      'Head Dot',
+      'Enable Aimbot',
+      'FOV',
+      'Smooth',
+      'Bone Selection',
       'Visible Check',
-      'Gore',
-      'Fruit',
-      'Water',
+      'Prediction',
+      'Draw FOV',
+      'Draw Target Line',
+    ],
+  },
+  {
+    name: 'Player Visual Options',
+    items: [
+      'Box',
+      'Skeleton',
+      'Head Circle',
+      'Health Bar',
+      'Distance',
+      'Name',
+      'Team / Squad',
+      'Weapon',
+      'View Direction',
+      'OOF Arrows',
       'Max Distance',
     ],
   },
   {
-    name: 'Misc options',
+    name: 'Vehicle Visual Options',
+    items: ['Vehicle ESP', 'Vehicle Type', 'Vehicle Distance', 'Occupied / Empty'],
+  },
+  {
+    name: 'Radar Options',
+    items: ['2D Radar', 'Player Markers', 'Vehicle Markers', 'Radar Range'],
+  },
+  {
+    name: 'Misc Options',
     items: [
-      'Crosshair',
-      'Suicide',
-      'Fullbright',
-      'Show FPS',
-      'Show Resolution',
-      'Show Time',
-      'Custom Menu Key',
-      'Custom Panic Key',
-      'Custom ESP Colors',
+      'No Recoil',
+      'No Spread',
+      'Full Bright',
+      'Custom Crosshair',
+      'Config System (Save / Load)',
     ],
   },
 ] as const
 
 export const GUIDE_FEATURES = [
   {
-    name: 'Player, NPC & animal ESP',
-    text: 'Layer player ESP with NPC and animal markers — species, growth, health, stamina, and distance readouts before you commit to a fight or migration.',
+    name: 'Precision aimbot',
+    text: 'Enable aimbot with FOV, smooth, bone selection, visible check, prediction, draw FOV, and draw target line for control-zone fights.',
   },
   {
-    name: 'Visual overlays',
-    text: 'Box, snapline, name tags, head dot, player direction, corpse, fruit, water, and gore toggles — tune max distance so jungles stay readable at night.',
+    name: 'Player ESP stack',
+    text: 'Box, skeleton, head circle, health bar, distance, name, team/squad, weapon, view direction, OOF arrows, and max distance for three-team lobbies.',
   },
   {
-    name: 'Misc survival utilities',
-    text: 'Crosshair, fullbright, FPS/resolution/time readouts, suicide for fast respawns, and custom menu or panic keys when you need quick control.',
+    name: 'Vehicle intel',
+    text: 'Vehicle ESP with type labels, distance readouts, and occupied/empty state before you push a mountain road or extract lane.',
   },
   {
-    name: 'Color and config discipline',
-    text: 'Custom ESP colors plus saved profiles for herbivore growth vs carnivore hunts — swap overlays without retuning every login.',
+    name: '2D radar',
+    text: 'Player and vehicle markers with adjustable radar range — pair with ESP when vehicles rotate around the control zone.',
   },
   {
-    name: 'Evrima on Windows PC',
-    text: 'Built for The Isle Evrima on Windows 10 and 11 via Steam when loader status is Active.',
+    name: 'Misc combat tuning',
+    text: 'No recoil, no spread, full bright, custom crosshair, and save/load configs for different squad roles.',
   },
   {
-    name: 'Patch-synced loader',
-    text: 'We publish Active or Updating status after Evrima patches so you load only when the current build matches the game client.',
+    name: 'Windows PC · Steam',
+    text: 'Built for Wardogs on Windows 10 and 11 via Steam when loader status is Active. Elytra Anti-Cheat compatibility is tracked on our status page.',
   },
 ] as const
 

@@ -1,14 +1,14 @@
-﻿export const SUPPORT_INTRO =
-  'Support for The Isle cheat buyers on buyislecheats.com — loader setup, Active status, menu config and delivery help after purchase.'
+export const SUPPORT_INTRO =
+  'Support for Wardogs cheat buyers on buywardogscheats.net — Discord help, loader setup, Active status, aimbot/ESP/radar config, and delivery after purchase.'
 
 export const SUPPORT_HIGHLIGHTS = [
   {
     title: 'Loader & menu',
-    text: 'Menu not opening, inject failures, and overlay conflicts — we walk through exclusions and load order.',
+    text: 'Menu not opening, inject failures, and overlay conflicts — we walk through exclusions and load order on Windows PC.',
   },
   {
     title: 'Patch windows',
-    text: 'Game patches can invalidate yesterday’s build. Status honesty matters more than rushing a queue.',
+    text: 'Wardogs and Elytra Anti-Cheat updates can invalidate yesterday’s build. Status honesty matters more than rushing a queue.',
   },
   {
     title: 'Delivery',
@@ -19,11 +19,11 @@ export const SUPPORT_HIGHLIGHTS = [
 export const SUPPORT_FAQ = [
   {
     q: 'What do you support?',
-    a: 'Supported: The Isle on Windows PC (Steam), loader and menu help for paid licenses.',
+    a: 'Supported: Wardogs on Windows PC (Steam), loader and menu help for paid licenses.',
   },
   {
     q: 'How do I contact support?',
-    a: 'Open your order on buyislecheats.com and use the checkout support channel tied to your purchase. Include a status screenshot (Active / Updating) and whether you need load, menu or delivery help.',
+    a: 'Join the Wardogs cheat Discord linked after purchase or open your order on buywardogscheats.net. Include a status screenshot (Active / Updating) and whether you need load, menu, or delivery help.',
   },
   {
     q: 'Loader fails after exclusions',
@@ -31,11 +31,11 @@ export const SUPPORT_FAQ = [
   },
   {
     q: 'Which clients are supported?',
-    a: 'Steam when loader status is Active.',
+    a: 'Steam on Windows when loader status is Active.',
   },
   {
     q: 'Delivery safety',
-    a: 'Delivery is digital after checkout on buyislecheats.com. Use only that loader link. Third-party mirrors are unsupported and unsafe.',
+    a: 'Delivery is digital after checkout on buywardogscheats.net. Use only that loader link. Third-party mirrors are unsupported and unsafe.',
   },
 ] as const
 

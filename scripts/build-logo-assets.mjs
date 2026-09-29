@@ -1,9 +1,15 @@
-import { readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import sharp from 'sharp'
 
 const publicDir = fileURLToPath(new URL('../public/', import.meta.url))
-const src = process.argv[2] || `${publicDir}brand/logo-source.png`
+const srcCandidates = [
+  process.argv[2],
+  `${publicDir}brand/logo-source.png`,
+  `${publicDir}brand/navbar logo and favicon.jpg`,
+  `${publicDir}brand/logo-source.jpg`,
+].filter(Boolean)
+const src = srcCandidates.find((p) => existsSync(p)) ?? srcCandidates[1]
 
 /** Remove near-black background; keep white/grunge artwork with soft edges. */
 async function makeTransparent(input, output, size) {
@@ -46,7 +52,7 @@ await makeTransparent(src, `${publicDir}apple-touch-icon.png`, 180)
 
 const png = readFileSync(`${publicDir}logo.png`)
 const b64 = png.toString('base64')
-const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="The Isle Cheats"><image width="512" height="512" href="data:image/png;base64,${b64}"/></svg>`
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Wardogs Cheats"><image width="512" height="512" href="data:image/png;base64,${b64}"/></svg>`
 writeFileSync(`${publicDir}favicon.svg`, svg)
 
 console.log('Logo assets written to public/ (transparent background)')

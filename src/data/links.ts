@@ -1,41 +1,41 @@
 import { blogPath } from './blog-paths'
 
-/** Official The Isle destinations for factual game context. */
+/** Official Wardogs destinations for factual game context. */
 export const OFFICIAL_GAME_LINKS = [
   {
-    label: 'The Isle on Steam',
-    href: 'https://store.steampowered.com/app/376210/The_Isle/',
+    label: 'WARDOGS on Steam',
+    href: 'https://store.steampowered.com/app/1867240/WARDOGS/',
     description: 'Official PC store page',
   },
 ] as const
 
 /** Primary internal routes for crawl equity. */
 export const SITE_PAGE_LINKS = [
-  { label: 'Home', to: '/', description: 'Overview, guides, and checkout' },
+  { label: 'Home', to: '/', description: 'Overview, intel, and checkout' },
   {
-    label: 'Product page',
-    to: '/the-isle-cheats',
-    description: 'ESP, visual options, and Evrima compatibility',
+    label: 'Store',
+    to: '/wardogs-cheats',
+    description: 'Aimbot, ESP, radar, and Wardogs plans',
   },
   {
-    label: 'Forums index',
+    label: 'Intel hub',
     to: '/forums',
-    description: 'Setup forums — ESP, misc options, load, status',
+    description: 'Setup guides — aimbot, ESP, radar, load, status',
   },
   {
-    label: 'Player reviews',
+    label: 'Reviews',
     to: '/reviews',
-    description: 'Player reviews and ratings',
+    description: 'Buyer reviews and ratings',
   },
   {
-    label: 'FAQ answers',
+    label: 'FAQ',
     to: '/faq',
     description: 'Frequently asked questions',
   },
   {
-    label: 'Support desk',
+    label: 'Support',
     to: '/support',
-    description: 'Delivery, loader and setup help',
+    description: 'Discord, delivery, and loader help',
   },
   {
     label: 'Privacy policy',
@@ -56,24 +56,24 @@ export const SITE_PAGE_LINKS = [
 
 export const SITE_GUIDE_LINKS = [
   { label: 'Features checklist', to: blogPath('features-list') },
-  { label: 'Player ESP setup', to: blogPath('player-esp-first') },
-  { label: 'Advanced ESP tactics', to: blogPath('advanced-esp-tactics') },
-  { label: 'Evrima recode notes', to: blogPath('the-isle-evrima-cheats-recode') },
-  { label: 'Visual options breakdown', to: blogPath('complete-visual-options-breakdown') },
-  { label: 'Hotkeys', to: blogPath('hotkeys') },
+  { label: 'Player ESP setup', to: blogPath('esp-wallhack-guide') },
+  { label: 'Aimbot tuning', to: blogPath('aimbot-settings') },
+  { label: 'Vehicle ESP', to: blogPath('vehicle-esp-first') },
+  { label: 'Radar config', to: blogPath('radar-recommended-config') },
   { label: 'Complete setup', to: blogPath('complete-setup') },
   { label: 'Windows setup', to: blogPath('windows-setup') },
   { label: 'Antivirus exclusions', to: blogPath('disable-antivirus') },
   { label: 'After a game patch', to: blogPath('game-patch-status') },
   { label: 'Loader errors', to: blogPath('loader-errors') },
   { label: 'Pre-load checklist', to: blogPath('load-status-checklist') },
-  { label: 'Buy safely guide', to: blogPath('buy-the-isle-cheats-safely') },
-  { label: 'Lifetime license', to: blogPath('the-isle-cheats-lifetime') },
+  { label: 'Buy safely guide', to: blogPath('buy-wardogs-cheats-safely') },
+  { label: 'Lifetime license', to: blogPath('wardogs-cheats-lifetime') },
+  { label: 'Anti-cheat & status', to: blogPath('game-patch-status') },
 ] as const
 
 /** Outbound checkout (all Get / buy CTAs). */
 export const CHECKOUT_OUTBOUND =
-  'https://zadeyo.com/go/UMAIR?to=%2Fproducts%2Fthe-isle-novaxware'
+  'https://zadeyo.com/go/UMAIR?to=%2Fproducts%2Fwardogs'
 
 export const CHECKOUT_URL = CHECKOUT_OUTBOUND
 

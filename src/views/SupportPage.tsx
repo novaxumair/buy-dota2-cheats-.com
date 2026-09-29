@@ -20,7 +20,7 @@ export function SupportPage() {
               {SITE_NAME} · Help
             </p>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-              The Isle Cheat Support
+              Wardogs Cheat Support
             </h1>
             <p className="mt-4 text-base leading-relaxed text-white/60">{SUPPORT_INTRO}</p>
             <p className="mt-3 text-sm text-white/45">
@@ -112,7 +112,7 @@ export function SupportPage() {
             </div>
             <div className="flex shrink-0 flex-wrap items-center gap-3">
               <a
-                href="/the-isle-cheats"
+                href="/wardogs-cheats"
                 className="inline-flex h-11 items-center justify-center rounded-full border border-z-soft/35 bg-white/[0.06] px-5 text-sm font-semibold text-white backdrop-blur-xl transition-colors hover:border-z-soft/50 hover:bg-white/[0.1]"
               >
                 Product details

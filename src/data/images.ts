@@ -1,16 +1,11 @@
-import { ISLE_COVER, ISLE_HERO, ISLE_MENU } from './media'
-import { ISLE_OG, getOgImageForPath, PAGE_OG } from './og'
+import { WD_COVER, WD_GAME_COVER, WD_HERO, WD_MENU } from './media'
+import { WD_OG, getOgImageForPath, PAGE_OG } from './og'
 
-export { ISLE_OG, getOgImageForPath, PAGE_OG }
+export { WD_OG, getOgImageForPath, PAGE_OG }
 export { forumOgImage } from './og'
 
-export const ISLE_PRODUCT_HERO = ISLE_HERO
-export const ISLE_PRODUCT_COVER = ISLE_COVER
-
-/** @deprecated */
-export const WD_OG = ISLE_OG
-export const WD_PRODUCT_HERO = ISLE_PRODUCT_HERO
-export const WD_PRODUCT_COVER = ISLE_PRODUCT_COVER
+export const WD_PRODUCT_HERO = WD_HERO
+export const WD_PRODUCT_COVER = WD_COVER
 
 export type ImageSeoFields = {
   alt: string
@@ -26,13 +21,13 @@ export const IMAGE_SEO: Record<
     heroCaption: string
   }
 > = {
-  'the-isle': {
-    alt: 'The Isle cheats product artwork for Evrima on PC',
-    title: 'The Isle Cheats Product Details',
-    caption: 'The Isle ESP, visual options, and dinosaur survival overlays',
-    heroAlt: 'The Isle ESP and visual options features',
-    heroTitle: 'The Isle Cheats Features',
-    heroCaption: 'Review The Isle ESP modules and loader status',
+  wardogs: {
+    alt: 'WARDOGS official key art on Steam for PC',
+    title: 'Wardogs Cheats Product Details',
+    caption: 'Wardogs aimbot, ESP, vehicle tracking, and radar',
+    heroAlt: 'WARDOGS — official game key art',
+    heroTitle: 'Wardogs Store',
+    heroCaption: 'Premium cheats for WARDOGS on Windows PC',
   },
 }
 
@@ -43,55 +38,55 @@ export const PAGE_IMAGES: Record<
   PageImage
 > = {
   home: {
-    src: ISLE_HERO,
+    src: WD_HERO,
     og: PAGE_OG.home,
-    alt: 'The Isle cheats ESP gameplay artwork for PC',
-    title: 'The Isle Cheats',
-    caption: 'The Isle ESP, visual options, and Evrima survival overview.',
+    alt: 'Wardogs cheats gameplay artwork for PC',
+    title: 'Wardogs Cheats',
+    caption: 'Aimbot, ESP, radar, and vehicle intel overview.',
   },
   forums: {
-    src: '/media/isle-screenshot-4.webp',
+    src: '/media/wd-screenshot-4.webp',
     og: PAGE_OG.forums,
-    alt: 'The Isle ESP gameplay screenshot from forums',
-    title: 'The Isle Cheat Guides',
-    caption: 'Setup, ESP, and misc option forum threads.',
+    alt: 'Wardogs ESP gameplay screenshot from intel hub',
+    title: 'Wardogs Intel',
+    caption: 'Setup, aimbot, ESP, and radar guides.',
   },
   reviews: {
-    src: '/media/isle-screenshot-2.webp',
+    src: '/media/wd-screenshot-2.webp',
     og: PAGE_OG.reviews,
-    alt: 'The Isle ESP gameplay review screenshot',
-    title: 'The Isle Cheat Reviews',
-    caption: 'Feature feedback from Evrima players.',
+    alt: 'Wardogs cheats review screenshot',
+    title: 'Wardogs Cheats Reviews',
+    caption: 'Buyer feedback on aimbot and ESP.',
   },
   faq: {
-    src: '/media/isle-screenshot-8.webp',
+    src: '/media/wd-screenshot-8.webp',
     og: PAGE_OG.faq,
-    alt: 'The Isle player ESP screenshot for FAQ',
-    title: 'The Isle Cheats FAQ',
+    alt: 'Wardogs player ESP screenshot for FAQ',
+    title: 'Wardogs FAQ',
     caption: 'Pricing, features, and setup answers.',
   },
   support: {
-    src: '/media/isle-screenshot-6.webp',
+    src: '/media/wd-screenshot-6.webp',
     og: PAGE_OG.support,
-    alt: 'The Isle ESP support screenshot',
-    title: 'The Isle Cheat Support',
-    caption: 'Delivery, loader, and Windows help.',
+    alt: 'Wardogs cheat support screenshot',
+    title: 'Wardogs Support',
+    caption: 'Discord, delivery, and loader help.',
   },
   product: {
-    src: ISLE_COVER,
+    src: WD_GAME_COVER,
     og: PAGE_OG.product,
-    alt: 'The Isle ESP and visual options product artwork',
-    title: 'The Isle Cheats Features',
-    caption: 'Product details for The Isle ESP and misc modules.',
+    alt: 'WARDOGS official key art — Wardogs store',
+    title: 'Wardogs Store',
+    caption: 'Aimbot, ESP, radar, and misc modules.',
   },
 }
 
 export function getGameImage(_slug: string): string {
-  return ISLE_PRODUCT_COVER
+  return WD_GAME_COVER
 }
 
 export function getProductHeroImage(_slug: string): string {
-  return ISLE_PRODUCT_COVER
+  return WD_GAME_COVER
 }
 
 export function getOgImage(path?: string): string {

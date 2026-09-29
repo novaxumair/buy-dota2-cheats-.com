@@ -1,42 +1,87 @@
-import { mkdir, readdir } from 'node:fs/promises'
+/**
+ * Builds public/media from Cursor assets (images_1 … images_N).
+ * Preserves native resolution; WebP/JPEG at high quality only (no aggressive downscale).
+ */
+import { mkdir, readdir, unlink } from 'node:fs/promises'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import sharp from 'sharp'
 
 const root = join(fileURLToPath(new URL('.', import.meta.url)), '..')
 const assetsDir =
-  'C:/Users/Bader/.cursor/projects/c-Users-Bader-Desktop-test-buy-wardogs-cheat-com/assets'
+  'C:/Users/Bader/.cursor/projects/c-Users-Bader-Desktop-test-buy-wardogs-cheats-net/assets'
 const mediaDir = join(root, 'public', 'media')
+
+const WEBP_OPTS = { quality: 95, effort: 6, smartSubsample: false }
+const JPEG_OPTS = { quality: 94, mozjpeg: true }
+
+/** Max width for hero/cover only — never upscale. */
+const HERO_MAX_W = 2560
+const COVER_MAX_W = 1920
 
 await mkdir(mediaDir, { recursive: true })
 
-const files = (await readdir(assetsDir)).filter((f) => f.endsWith('.png') || f.endsWith('.jpg'))
-const nums = files
+const allFiles = await readdir(assetsDir)
+const shots = allFiles
+  .filter((f) => /\.(png|jpe?g|webp)$/i.test(f))
   .map((f) => {
     const m = f.match(/images_(\d+)-/)
-    return { n: m ? parseInt(m[1], 10) : 99, f }
+    if (!m) return null
+    return { n: parseInt(m[1], 10), f }
   })
+  .filter(Boolean)
   .sort((a, b) => a.n - b.n)
 
-for (const { n, f } of nums) {
-  const src = join(assetsDir, f)
-  await sharp(src).webp({ quality: 82 }).toFile(join(mediaDir, `wd-screenshot-${n}.webp`))
+if (shots.length === 0) {
+  console.error('No images_N assets found in', assetsDir)
+  process.exit(1)
 }
 
-const pick = (n) => join(assetsDir, nums.find((x) => x.n === n)?.f ?? nums[0].f)
+const pick = (n) => join(assetsDir, shots.find((x) => x.n === n)?.f ?? shots[0].f)
 
-await sharp(pick(5))
-  .webp({ quality: 85 })
-  .resize(1920, 1080, { fit: 'cover' })
-  .toFile(join(mediaDir, 'wd-hero-full.webp'))
-await sharp(pick(5))
-  .webp({ quality: 85 })
-  .resize(1440, 810, { fit: 'cover' })
-  .toFile(join(mediaDir, 'wd-cover.webp'))
-await sharp(pick(5))
-  .jpeg({ quality: 88 })
-  .resize(1280, 720, { fit: 'cover' })
+async function toWebp(src, out, resizeMaxW) {
+  let pipe = sharp(src)
+  if (resizeMaxW) {
+    const meta = await sharp(src).metadata()
+    if (meta.width && meta.width > resizeMaxW) {
+      pipe = pipe.resize(resizeMaxW, null, { fit: 'inside', withoutEnlargement: true })
+    }
+  }
+  await pipe.webp(WEBP_OPTS).toFile(out)
+}
+
+for (const { n, f } of shots) {
+  await toWebp(join(assetsDir, f), join(mediaDir, `wd-screenshot-${n}.webp`))
+}
+
+// Hero banner + product cover (best wide frames)
+await toWebp(pick(6), join(mediaDir, 'wd-hero-full.webp'), HERO_MAX_W)
+await toWebp(pick(4), join(mediaDir, 'wd-cover.webp'), COVER_MAX_W)
+await sharp(pick(1))
+  .resize(COVER_MAX_W, null, { fit: 'inside', withoutEnlargement: true })
+  .jpeg(JPEG_OPTS)
   .toFile(join(mediaDir, 'wd-video-thumb.jpg'))
-await sharp(pick(8)).webp({ quality: 82 }).toFile(join(mediaDir, 'wd-menu.webp'))
+await toWebp(pick(10), join(mediaDir, 'wd-menu.webp'))
 
-console.log(`Prepared ${nums.length} Wardogs screenshots in public/media`)
+const legacyNames = new Set([
+  'wd-home-art.webp',
+  'wd-tactical-art.webp',
+  'wd-control-art.webp',
+  'wd-home-art.jpg',
+  'wd-tactical-art.jpg',
+  'wd-control-art.jpg',
+  ...Array.from({ length: 20 }, (_, i) => `wd-screenshot-${i + 11}.webp`),
+])
+for (const f of await readdir(mediaDir)) {
+  if (f.startsWith('isle-') || legacyNames.has(f)) {
+    try {
+      await unlink(join(mediaDir, f))
+    } catch {
+      /* already gone */
+    }
+  }
+}
+
+console.log(
+  `Prepared ${shots.length} Wardogs screenshots + hero/cover/thumb/menu in public/media (q=${WEBP_OPTS.quality})`,
+)

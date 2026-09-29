@@ -1,57 +1,59 @@
-import { ISLE_OG } from './images'
+import { WD_OG } from './images'
 import { PAGE_OG } from './og'
 
-export const SITE_URL = 'https://buyislecheats.com'
-export const SITE_NAME = 'The Isle Cheats'
-export const SITE_HOST = 'buyislecheats.com'
+export const SITE_URL = 'https://buywardogscheats.net'
+export const SITE_NAME = 'Wardogs Cheats'
+export const SITE_HOST = 'buywardogscheats.net'
 
 /** Stable site identity — Organization, WebSite, and about copy (not per-route). */
 export const SITE_PURPOSE =
-  'The Isle Cheats is a single-game site focused on The Isle Evrima overlays, survival tools, and related gameplay features. The site is dedicated to The Isle only and does not sell cheats for other games.'
+  'Wardogs Cheats is a single-game site focused on Wardogs aimbot, ESP, radar, and related PC tools. The site is dedicated to Wardogs only and does not sell cheats for other games.'
 
 /** Site-wide subject terms for schema knowsAbout (max 6). */
 export const SITE_ABOUT = [
-  'The Isle Cheats',
-  'The Isle Evrima',
-  'The Isle ESP',
-  'The Isle survival overlays',
-  'The Isle cheat setup',
-  'The Isle dinosaur ESP',
+  'Wardogs cheats',
+  'Wardogs',
+  'Wardogs ESP',
+  'Wardogs aimbot',
+  'Wardogs radar',
+  'Wardogs cheat setup',
 ] as const
 
 /** Legitimate brand variants only — not a meta keyword list. */
 export const ORGANIZATION_ALTERNATE_NAMES = [
-  'The Isle Cheats',
-  'The Isle cheats',
-  'buyislecheats',
-  'buyislecheats.com',
+  'Wardogs Cheats',
+  'Wardogs cheats',
+  'buywardogscheats',
+  'buywardogscheats.net',
 ] as const
 
 /**
  * Short intent-specific terms per main route (3–6 each). Not rendered as meta keywords.
  */
 export const SEO_ROUTE_INTENTS = {
-  home: ['the isle cheats', 'The Isle Evrima', 'The Isle ESP', 'The Isle guides'],
-  product: ['the isle cheats', 'the isle esp', 'The Isle features', 'The Isle setup'],
-  featuresHub: ['The Isle cheat features', 'The Isle ESP', 'The Isle visual options'],
-  reviews: ['The Isle Cheats reviews', 'The Isle player feedback'],
-  forums: ['The Isle Cheats forum', 'the isle esp', 'the isle evrima cheats'],
-  faq: ['The Isle Cheats FAQ', 'The Isle setup questions'],
+  home: ['wardogs cheats', 'Wardogs aimbot', 'Wardogs ESP', 'Wardogs radar'],
+  product: ['wardogs cheats', 'Wardogs features', 'Wardogs store', 'Wardogs setup'],
+  featuresHub: ['Wardogs cheat features', 'Wardogs aimbot', 'Wardogs vehicle ESP'],
+  reviews: ['Wardogs Cheats reviews', 'Wardogs buyer feedback'],
+  forums: ['Wardogs intel', 'wardogs cheats', 'wardogs anti cheat', 'Wardogs setup'],
+  faq: ['Wardogs Cheats FAQ', 'Wardogs setup questions'],
 } as const
 
 /** Product JSON-LD description (features + delivery — distinct from SITE_PURPOSE). */
 export const PRODUCT_SCHEMA_DESCRIPTION =
-  'Windows PC overlay menu for The Isle Evrima with player, NPC, and animal ESP, visual options, misc utilities, configs, and digital license delivery.'
+  'Windows PC menu for Wardogs with aimbot, player ESP, vehicle ESP, 2D radar, no recoil, no spread, full bright, custom crosshair, configs, and digital license delivery.'
 
-/** Offer price shown on product schema + purchase UI. */
+/** Offer price shown on product schema + purchase UI (lowest plan). */
 export const PRODUCT_PRICE_USD = '35'
+
+export const PRODUCT_LIFETIME_PRICE_USD = '150'
 
 export const SEO_REGIONS = [
   { hreflang: 'en', label: 'English' },
-  { hreflang: 'x-default', label: 'Default' },
+  { hreflang: 'x-default', label: 'English' },
 ] as const
 
-export const OG_IMAGE = ISLE_OG
+export const OG_IMAGE = WD_OG
 
 export type PageSeo = {
   title: string
@@ -68,74 +70,114 @@ const INDEX_ROBOTS =
 
 export const SEO = {
   home: {
-    title: 'The Isle Cheats | Evrima Overlays, Features & Setup Guides',
+    title: 'Wardogs Cheats | Aimbot, ESP and Radar',
     description:
-      'Survival overlays for The Isle Evrima on Windows PC — player ESP, dinosaur stat readouts, visual options, and wallhack-style awareness. Loader status, setup forums, reviews, and guides.',
+      'Buy Wardogs cheats for Windows PC. Aimbot, player ESP, vehicle ESP, radar, no recoil, no spread, and full bright with advanced visual options and config system.',
     path: '/',
     ogType: 'website',
     image: PAGE_OG.home,
-    imageAlt: 'The Isle Evrima gameplay with player ESP, snaplines, and dinosaur stat overlays',
+    imageAlt: 'Wardogs cheats gameplay with aimbot, player ESP, vehicle ESP, and radar on PC',
     robots: INDEX_ROBOTS,
   },
   forums: {
-    title: 'The Isle Cheats Forum | Guides & Discussions',
+    title: 'Wardogs Intel | Wardogs Cheats',
     description:
-      'Informational guides for the isle esp, the isle cheats evrima, and Evrima setup — player ESP, misc keys, growth sessions, and patch-day checklists.',
+      'Wardogs intel hub featuring guides, cheat features, aimbot settings, ESP customization, radar configuration, visual enhancements, and setup information.',
     path: '/forums',
     ogType: 'website',
     image: PAGE_OG.forums,
-    imageAlt: 'The Isle ESP gameplay screenshot from forum guides',
+    imageAlt: 'Wardogs ESP and radar gameplay screenshot from intel guides',
     robots: INDEX_ROBOTS,
   },
   reviews: {
-    title: 'The Isle Cheats Reviews | Player Feedback',
+    title: 'Wardogs Cheats Reviews | Buyer Feedback',
     description:
-      'Player feedback on the isle cheats — ESP clarity, Evrima loader updates, misc utilities, and growth-night reliability after patches.',
+      'Read Wardogs cheats reviews from users covering aimbot performance, ESP features, radar functionality, vehicle tracking, and overall experience.',
     path: '/reviews',
     ogType: 'website',
     image: PAGE_OG.reviews,
-    imageAlt: 'The Isle dinosaur ESP gameplay screenshot referenced in reviews',
+    imageAlt: 'Wardogs cheats review screenshot with ESP and radar overlays',
     robots: INDEX_ROBOTS,
   },
   faq: {
-    title: 'The Isle Cheats FAQ | Common Questions',
+    title: 'Wardogs FAQ | Wardogs Cheats',
     description:
-      'Answers about the isle cheats — Windows requirements, ESP and visual options, pricing from $35, digital delivery, loader status, and setup steps for Evrima.',
+      'Frequently asked questions about Wardogs cheats covering aimbot, ESP, radar, visual settings, configs, setup, and support.',
     path: '/faq',
     ogType: 'website',
     image: PAGE_OG.faq,
-    imageAlt: 'The Isle player ESP overlay screenshot from FAQ',
+    imageAlt: 'Wardogs player ESP overlay screenshot from FAQ',
     robots: INDEX_ROBOTS,
   },
   support: {
-    title: 'The Isle Cheats Support | Loader & Delivery',
+    title: 'Wardogs Support | Wardogs Cheats',
     description:
-      'Help with The Isle cheat orders, license delivery, Windows loader steps, antivirus exclusions, and common menu errors on Evrima.',
+      'Get support for Wardogs cheats on Discord including loader setup, configuration help, troubleshooting, and feature guidance after purchase.',
     path: '/support',
     ogType: 'website',
     image: PAGE_OG.support,
-    imageAlt: 'The Isle cheat support and loader help',
+    imageAlt: 'Wardogs cheat support and loader help',
     robots: INDEX_ROBOTS,
   },
   product: {
-    title: 'The Isle ESP, Aimbot & Wallhack | Features & Plans',
+    title: 'Wardogs Store | Wardogs Cheats',
     description:
-      'The Isle cheats for Evrima — ESP, aimbot-style assist, and wallhack-style player overlays. Visual and misc modules, pricing from $35, and loader status on PC.',
-    path: '/the-isle-cheats',
+      'Wardogs store for premium cheats. Get access to aimbot, ESP, radar, vehicle tracking, recoil control, and configuration profiles with instant delivery.',
+    path: '/wardogs-cheats',
     ogType: 'product',
     image: PAGE_OG.product,
-    imageAlt: 'The Isle product page showing dinosaur ESP, snaplines, and stat overlays',
+    imageAlt: 'Wardogs store page showing aimbot, ESP, vehicle tracking, and radar modules',
+    robots: INDEX_ROBOTS,
+  },
+  features: {
+    title: 'Wardogs Features | Wardogs Cheats',
+    description:
+      'Wardogs features include aimbot with prediction, visible check, smooth aim, player ESP, vehicle ESP, 2D radar, no recoil, no spread, full bright, and custom crosshair.',
+    path: '/forums/features-list',
+    ogType: 'article',
+    image: PAGE_OG.forums,
+    imageAlt: 'Wardogs cheat feature list with aimbot and ESP modules',
+    robots: INDEX_ROBOTS,
+  },
+  setup: {
+    title: 'Wardogs Setup | Wardogs Cheats',
+    description:
+      'Learn how Wardogs cheats work, configure aimbot, ESP, radar, and visual settings, and optimize your setup on Windows PC.',
+    path: '/forums/complete-setup',
+    ogType: 'article',
+    image: PAGE_OG.forums,
+    imageAlt: 'Wardogs cheat setup guide on Windows PC',
+    robots: INDEX_ROBOTS,
+  },
+  status: {
+    title: 'Wardogs Status | Wardogs Cheats',
+    description:
+      'Check the current status for Wardogs cheats. Stay updated on maintenance, updates, and feature availability before you load.',
+    path: '/forums/load-status-checklist',
+    ogType: 'article',
+    image: PAGE_OG.forums,
+    imageAlt: 'Wardogs loader status checklist before launch',
+    robots: INDEX_ROBOTS,
+  },
+  preview: {
+    title: 'Wardogs Preview | Wardogs Cheats',
+    description:
+      'Preview Wardogs cheats in action with aimbot, player ESP, vehicle ESP, radar, and visual enhancements before you checkout.',
+    path: '/wardogs-cheats',
+    ogType: 'website',
+    image: PAGE_OG.product,
+    imageAlt: 'Wardogs cheats preview with ESP, aimbot, and radar gameplay',
     robots: INDEX_ROBOTS,
   },
 } as const satisfies Record<string, PageSeo>
 
 export const HOME_HEADINGS = {
-  h1: 'The Isle Cheats',
-  h2Features: 'What The Isle Cheats Includes',
-  h2HowItWorks: 'How It Works on Evrima',
-  h2Reviews: 'The Isle Cheats Reviews',
-  h2Forums: 'The Isle Cheats Forum',
-  h2Faq: 'The Isle Cheats FAQ',
+  h1: 'Wardogs Cheats',
+  h2Features: 'Wardogs Cheats Features',
+  h2HowItWorks: 'How Wardogs Cheats Work',
+  h2Reviews: 'Wardogs Cheats Reviews',
+  h2Forums: 'Wardogs Intel',
+  h2Faq: 'Wardogs Cheats FAQ',
   h2Access: 'Ready when you are',
 } as const
 

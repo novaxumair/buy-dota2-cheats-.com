@@ -8,7 +8,7 @@ type SiteFooterProps = {
 }
 
 /**
- * Site footer with page / guide / official The Isle links (crawl-friendly).
+ * Site footer with page / guide / official Wardogs links (crawl-friendly).
  * XML sitemap remains at /sitemap.xml — not shown as an on-page “sitemap” section.
  */
 export function SiteFooter({ currentPath }: SiteFooterProps) {
@@ -24,7 +24,7 @@ export function SiteFooter({ currentPath }: SiteFooterProps) {
               <span className="font-semibold text-z-ink">{SITE_NAME}</span>
             </div>
             <p className="mt-3 text-sm leading-relaxed text-white/55">
-              The Isle cheats for PC — aimbot, player ESP, vehicle radar, and patch-synced loader
+              Wardogs cheats for PC — aimbot, player ESP, vehicle radar, and patch-synced loader
               status for control-zone fights.
             </p>
           </div>
@@ -129,7 +129,7 @@ export function SiteFooter({ currentPath }: SiteFooterProps) {
         </div>
 
         <p className="mt-10 border-t border-z-soft/10 pt-6 text-xs text-white/35">
-          © {new Date().getFullYear()} {SITE_NAME}. Not affiliated with the The Isle publisher.
+          © {new Date().getFullYear()} {SITE_NAME}. Not affiliated with the Wardogs publisher.
           Indexed pages are listed in{' '}
           <a href="/sitemap.xml" className="underline-offset-2 hover:text-white/55 hover:underline">
             sitemap.xml

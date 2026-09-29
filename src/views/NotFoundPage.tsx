@@ -23,11 +23,11 @@ export function NotFoundPage() {
               Page not found
             </h2>
             <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-white/55 sm:text-base">
-              That route does not exist. Search The Isle cheat guides or head back home.
+              That route does not exist. Search Wardogs cheat guides or head back home.
             </p>
 
             <div className="relative z-50 mx-auto mt-8 flex max-w-xl justify-center text-left">
-              <HeroSearch placeholder="Search The Isle cheat guides…" className="w-full" />
+              <HeroSearch placeholder="Search Wardogs cheat guides…" className="w-full" />
             </div>
 
             <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
