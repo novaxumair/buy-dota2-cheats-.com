@@ -20,6 +20,6 @@ Set `SITE_URL=https://buywardogscheats.net` when generating sitemaps outside the
 |--------|--------|
 | Build command | `npm run build` |
 | Build output | `dist` (also set in `wrangler.toml`) |
-| **Deploy command** | **Leave empty** (recommended), or `npm run deploy:pages` |
+| **Deploy command** | **Leave empty** (recommended), `npm run deploy:pages`, or `npx wrangler deploy` (shimmed to Pages deploy after `npm ci`) |
 
-Do **not** use `npx wrangler deploy` — that targets Workers and fails without a worker entry. Optional standalone Worker: `npm run deploy:worker` (see `wrangler.worker.toml`).
+Optional standalone Worker: `npm run deploy:worker` (see `wrangler.worker.toml`).

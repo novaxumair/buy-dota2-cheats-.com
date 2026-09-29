@@ -19,7 +19,8 @@
     "fetch:game-cover": "node scripts/fetch-wardogs-game-cover.mjs",
     "verify:seo": "node scripts/verify-seo.mjs",
     "verify:redirects": "node scripts/verify-redirects.mjs",
-    "lint": "oxlint"
+    "lint": "oxlint",
+    "postinstall": "node scripts/patch-wrangler-bin.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^4.4.2",
