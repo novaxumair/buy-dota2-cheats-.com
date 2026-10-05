@@ -37,7 +37,7 @@ Or leave deploy empty and set only:
 
 1. **API token** — In Builds settings, link a token with **Workers Scripts Edit** (+ **Account** read). Without it, Wrangler can sit waiting for login.
 2. **Account ID** — Add a build variable: **`CLOUDFLARE_ACCOUNT_ID`** = your Cloudflare account ID (dashboard URL: `dash.cloudflare.com/<account_id>`).
-3. **Deploy command** must stay **`npm run deploy:worker`** (calls real `wrangler.js`, not a shim).
+3. **Deploy command** must stay **`npm run deploy:worker`** (runs `wrangler deploy` without `--no-build`; Wrangler 4 removed that flag).
 
 Large first uploads (videos/media in `dist/`) can take **5–15 minutes** — watch for upload progress lines after the fix above.
 
