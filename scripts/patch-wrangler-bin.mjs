@@ -38,4 +38,4 @@ exit $LASTEXITCODE
   'utf8',
 )
 
-console.log('patch-wrangler-bin: wrangler → pages deploy shim (bare `wrangler deploy` only)')
+console.log('patch-wrangler-bin: wrangler → worker deploy shim (bare `wrangler deploy` only)')

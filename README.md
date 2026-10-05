@@ -13,13 +13,23 @@ SEO targets **dota 2 cheats**, **Dota 2 ESP**, **Dota 2 map hack**, and related 
 
 Set `SITE_URL=https://buydota2cheats.com` when generating sitemaps outside the default build.
 
-## Cloudflare (Pages)
+## Cloudflare deploy
 
-You deploy via **Workers & Pages → Pages**. Full checklist: **[docs/CLOUDFLARE-PAGES.md](docs/CLOUDFLARE-PAGES.md)**.
+### Worker (default)
 
-- **Build command:** `npm run build` · **Output:** `dist` · **Deploy command:** empty (recommended).
-- **`buydota2cheats.com` must point at the Pages project only** — remove any **Worker route** on the same hostname (that conflict breaks GSC sitemap reads).
-- **`npm run deploy`** = Pages upload (`deploy:pages`). **`npm run deploy:worker`** is for Worker-only hosting, not Pages.
+**[docs/CLOUDFLARE-WORKER.md](docs/CLOUDFLARE-WORKER.md)**
+
+| Dashboard field | Command |
+|-----------------|--------|
+| **Build command** | `npm run build` |
+| **Deploy command** | `npm run deploy:worker` |
+
+Local one-liner: **`npm run deploy`** (= build + Worker upload).  
+Bare **`npx wrangler deploy`** (postinstall shim) also runs Worker deploy.
+
+### Pages (optional)
+
+**[docs/CLOUDFLARE-PAGES.md](docs/CLOUDFLARE-PAGES.md)** — use **`npm run deploy:pages`** only if the domain is on a **Pages** project, not a Worker route.
 
 ## Google Search Console sitemap
 

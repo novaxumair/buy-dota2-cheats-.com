@@ -1,6 +1,6 @@
 /**
- * Routes bare `wrangler deploy` (Cloudflare Pages dashboard default) to Pages deploy.
- * `wrangler deploy -c wrangler.worker.toml` still uses the real Wrangler CLI.
+ * Routes bare `wrangler deploy` to Worker deploy (wrangler.worker.toml).
+ * `wrangler deploy -c wrangler.toml` / `wrangler pages deploy` use the real CLI.
  */
 import { spawnSync } from 'node:child_process'
 import { existsSync } from 'node:fs'
@@ -26,7 +26,7 @@ const isBareDeploy =
   !args.includes('pages')
 
 if (isBareDeploy) {
-  const deployScript = join(root, 'scripts/cf-pages-deploy.mjs')
+  const deployScript = join(root, 'scripts/cf-worker-deploy.mjs')
   const run = spawnSync(process.execPath, [deployScript], {
     stdio: 'inherit',
     cwd: root,

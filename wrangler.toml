@@ -1,7 +1,5 @@
-# Cloudflare Pages project (Workers & Pages → Pages → buydota2cheats)
-# Dashboard: Build command = npm run build  |  Build output = dist
-# Deploy command = leave EMPTY (recommended), OR npm run deploy:pages after build
-# Do NOT also attach wrangler.worker.toml to buydota2cheats.com — see docs/CLOUDFLARE-PAGES.md
+# Optional Cloudflare Pages project (Workers & Pages → Pages). Primary deploy is Worker:
+# see wrangler.worker.toml and docs/CLOUDFLARE-WORKER.md (npm run build + npm run deploy:worker).
 name = "buydota2cheats"
 compatibility_date = "2024-09-23"
 pages_build_output_dir = "./dist"
