@@ -15,11 +15,13 @@ export default {
           soft: '#a78bfa',
           deep: '#7c3aed',
           success: '#c084fc',
+          /** Matches Dota 2 wordmark red in navbar logo */
+          'dota-red': '#ff0000',
         },
       },
       fontFamily: {
-        sans: ['"Chakra Petch"', 'system-ui', 'sans-serif'],
-        display: ['"Chakra Petch"', 'system-ui', 'sans-serif'],
+        sans: ['Cinzel', 'Times New Roman', 'serif'],
+        display: ['Cinzel', 'Times New Roman', 'serif'],
       },
     },
   },

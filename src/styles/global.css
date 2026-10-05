@@ -1,7 +1,7 @@
-@import '@fontsource/chakra-petch/latin-400.css';
-@import '@fontsource/chakra-petch/latin-500.css';
-@import '@fontsource/chakra-petch/latin-600.css';
-@import '@fontsource/chakra-petch/latin-700.css';
+@import '@fontsource/cinzel/latin-400.css';
+@import '@fontsource/cinzel/latin-500.css';
+@import '@fontsource/cinzel/latin-600.css';
+@import '@fontsource/cinzel/latin-700.css';
 
 @tailwind base;
 @tailwind components;
@@ -24,6 +24,8 @@
   --success: #c084fc;
   --glow: rgba(176, 64, 251, 0.35);
   --glow-soft: rgba(167, 139, 250, 0.12);
+  /** Dota 2 wordmark red (matches navbar logo) */
+  --dota-red: #ff0000;
 }
 
 html {
@@ -47,8 +49,9 @@ body::-webkit-scrollbar {
 
 body {
   margin: 0;
-  font-family: 'Chakra Petch', system-ui, sans-serif;
+  font-family: 'Cinzel', 'Times New Roman', serif;
   font-synthesis: none;
+  letter-spacing: 0.02em;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -76,6 +79,65 @@ body {
 }
 
 @layer components {
+  .text-dota-red {
+    color: var(--dota-red);
+  }
+
+  /* Keep mobile menu toggle above hero copy and cards */
+  .site-nav {
+    pointer-events: auto;
+  }
+
+  .mobile-nav-backdrop {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .mobile-nav-drawer {
+    pointer-events: none;
+    transform: translateX(100%);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .mobile-nav-icon-close {
+    opacity: 0;
+    transform: scale(0.85) rotate(-90deg);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .mobile-nav-icon-menu {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  html.mobile-nav-open .mobile-nav-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  html.mobile-nav-open .mobile-nav-drawer {
+    pointer-events: auto;
+    transform: translateX(0);
+  }
+
+  html.mobile-nav-open .mobile-nav-icon-menu {
+    opacity: 0;
+    transform: scale(0.85) rotate(90deg);
+  }
+
+  html.mobile-nav-open .mobile-nav-icon-close {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+
+  .mobile-nav-link {
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+
   .page-x {
     @apply px-5 sm:px-8 lg:px-12;
   }
@@ -146,13 +208,127 @@ body {
   min-height: 100svh;
 }
 
-.hero-panel--forums {
-  height: 65svh;
-  max-height: 65svh;
-  min-height: 65svh;
-  /* Allow forum search dropdown to extend below the hero band */
+/* Blog / forums — compact header (no full-viewport hero) */
+.hero-panel--listing {
+  height: auto;
+  min-height: 0;
+  max-height: none;
   overflow: visible;
-  z-index: 20;
+}
+
+.listing-hero-bg {
+  background:
+    radial-gradient(ellipse 90% 70% at 10% -20%, rgba(167, 139, 250, 0.22), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 95% 0%, rgba(124, 58, 237, 0.12), transparent 50%),
+    linear-gradient(180deg, #0c0a14 0%, #0a0812 72%, #08060f 100%);
+}
+
+.listing-hero-grid {
+  display: grid;
+  gap: 1.75rem;
+  align-items: end;
+}
+
+@media (min-width: 1024px) {
+  .listing-hero-grid:not(.listing-hero-grid--solo) {
+    grid-template-columns: 1fr min(22rem, 100%);
+    gap: 2.5rem 3rem;
+  }
+}
+
+.listing-toolbar__search .listing-search-field {
+  padding: 0.5rem 1rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.listing-hero-eyebrow {
+  margin-bottom: 0.75rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.listing-hero-title {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.listing-hero-desc {
+  margin-top: 1rem;
+  max-width: 38rem;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.listing-hero-desc a {
+  color: rgba(255, 255, 255, 0.88);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.listing-hero-desc a:hover {
+  color: #fff;
+}
+
+.listing-hero-search-wrap {
+  width: 100%;
+}
+
+.listing-search-field {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.65rem 1.15rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(167, 139, 250, 0.22);
+  background: rgba(8, 6, 15, 0.72);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 12px 40px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.listing-search-field:focus-within {
+  border-color: rgba(167, 139, 250, 0.45);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 0 0 3px rgba(124, 58, 237, 0.15),
+    0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.listing-search-field__icon {
+  color: rgba(167, 139, 250, 0.75);
+}
+
+.listing-search-field__input {
+  width: 100%;
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  background: transparent;
+  font-size: 0.875rem;
+  color: #fff;
+  outline: none;
+}
+
+.listing-search-field__input::placeholder {
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.hero-panel--listing + .hero-to-body {
+  height: 3rem;
+  margin-top: -3rem;
 }
 
 .hero-video-wrap {
@@ -248,8 +424,27 @@ body {
   width: max-content;
   gap: 1rem;
   padding: 0 0.5rem;
-  transform: translateX(-50%);
   will-change: transform;
+  animation: preview-marquee-scroll 48s linear infinite;
+}
+
+@keyframes preview-marquee-scroll {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.preview-marquee-root:hover .preview-marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preview-marquee-track {
+    animation-duration: 120s;
+  }
 }
 
 .preview-marquee-item {
@@ -390,7 +585,8 @@ body {
     linear-gradient(180deg, #0c0a14 0%, #0a0812 55%, #08060f 100%);
   color: var(--ink);
   position: relative;
-  z-index: 1;
+  /* Above hero overlap (hero-to-body) so forum/blog toolbars stay clickable */
+  z-index: 2;
 }
 
 /* Shared content pages: dark purple (support / reviews / product) */

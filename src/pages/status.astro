@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { StatusPage } from '../views/StatusPage'
+import { SEO, SITE_URL } from '../data/site'
+import { getGame } from '../data/games'
+
+const game = getGame('dota-2')
+const status = game?.status ?? 'Active'
+
+const jsonLdExtra = [
+  {
+    '@type': 'WebPage',
+    '@id': `${SITE_URL}/status#webpage`,
+    name: SEO.status.title,
+    description: SEO.status.description,
+    url: `${SITE_URL}/status`,
+    inLanguage: 'en',
+    about: {
+      '@type': 'SoftwareApplication',
+      name: 'Dota 2 Cheats Loader',
+      applicationCategory: 'GameApplication',
+      operatingSystem: 'Windows',
+    },
+    mainEntity: {
+      '@type': 'PropertyValue',
+      name: 'Loader status',
+      value: status,
+    },
+  },
+]
+---
+
+<BaseLayout seo={SEO.status} jsonLdExtra={jsonLdExtra}>
+  <StatusPage client:load />
+</BaseLayout>

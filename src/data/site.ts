@@ -1,47 +1,48 @@
-import { WD_OG } from './images'
+import { SITE_OG } from './images'
 import { PAGE_OG } from './og'
 
-export const SITE_URL = 'https://buywardogscheats.net'
-export const SITE_NAME = 'Wardogs Cheats'
-export const SITE_HOST = 'buywardogscheats.net'
+export const SITE_URL = 'https://buydota2cheats.com'
+export const SITE_NAME = 'Dota 2 Cheats'
+export const SITE_HOST = 'buydota2cheats.com'
 
 /** Stable site identity — Organization, WebSite, and about copy (not per-route). */
 export const SITE_PURPOSE =
-  'Wardogs Cheats is a single-game site focused on Wardogs aimbot, ESP, radar, and related PC tools. The site is dedicated to Wardogs only and does not sell cheats for other games.'
+  'Dota 2 Cheats is a single-game site focused on Dota 2 map vision, hero ESP, timers, and related PC tools. The site is dedicated to Dota 2 only and does not sell cheats for other games.'
 
 /** Site-wide subject terms for schema knowsAbout (max 6). */
 export const SITE_ABOUT = [
-  'Wardogs cheats',
-  'Wardogs',
-  'Wardogs ESP',
-  'Wardogs aimbot',
-  'Wardogs radar',
-  'Wardogs cheat setup',
+  'Dota 2 cheats',
+  'Dota 2',
+  'Dota 2 ESP',
+  'Dota 2 map hack',
+  'Valve Anti-Cheat',
+  'Dota 2 cheat setup',
 ] as const
 
 /** Legitimate brand variants only — not a meta keyword list. */
 export const ORGANIZATION_ALTERNATE_NAMES = [
-  'Wardogs Cheats',
-  'Wardogs cheats',
-  'buywardogscheats',
-  'buywardogscheats.net',
+  'Dota 2 Cheats',
+  'Dota 2 cheats',
+  'buydota2cheats',
+  'buydota2cheats.com',
 ] as const
 
 /**
  * Short intent-specific terms per main route (3–6 each). Not rendered as meta keywords.
  */
 export const SEO_ROUTE_INTENTS = {
-  home: ['wardogs cheats', 'Wardogs aimbot', 'Wardogs ESP', 'Wardogs radar'],
-  product: ['wardogs cheats', 'Wardogs features', 'Wardogs store', 'Wardogs setup'],
-  featuresHub: ['Wardogs cheat features', 'Wardogs aimbot', 'Wardogs vehicle ESP'],
-  reviews: ['Wardogs Cheats reviews', 'Wardogs buyer feedback'],
-  forums: ['Wardogs intel', 'wardogs cheats', 'wardogs anti cheat', 'Wardogs setup'],
-  faq: ['Wardogs Cheats FAQ', 'Wardogs setup questions'],
+  home: ['dota 2 cheats', 'Dota 2 ESP', 'Dota 2 map hack', 'cheat dota 2'],
+  product: ['dota 2 cheats', 'Dota 2 features', 'Dota 2 store', 'Dota 2 setup'],
+  featuresHub: ['Dota 2 cheat features', 'hero ESP', 'fog of war hack'],
+  reviews: ['Dota 2 Cheats reviews', 'Dota 2 buyer feedback'],
+  blog: ['dota 2 cheats', 'dota 2 cheats list', 'cheat dota 2', 'cheat code dota 2'],
+  forums: ['dota 2 cheats', 'cheat dota 2', 'VAC Dota 2', 'Dota 2 setup'],
+  faq: ['Dota 2 Cheats FAQ', 'Dota 2 setup questions'],
 } as const
 
 /** Product JSON-LD description (features + delivery — distinct from SITE_PURPOSE). */
 export const PRODUCT_SCHEMA_DESCRIPTION =
-  'Windows PC menu for Wardogs with aimbot, player ESP, vehicle ESP, 2D radar, no recoil, no spread, full bright, custom crosshair, configs, and digital license delivery.'
+  'Windows PC menu for Dota 2 with hero ESP, full map hack, ability cooldown tracker, creep and rune timers, last-hit helper, auto-dodge, ward ESP, roshan timer, enemy inventory ESP, and digital license delivery.'
 
 /** Offer price shown on product schema + purchase UI (lowest plan). */
 export const PRODUCT_PRICE_USD = '35'
@@ -53,7 +54,7 @@ export const SEO_REGIONS = [
   { hreflang: 'x-default', label: 'English' },
 ] as const
 
-export const OG_IMAGE = WD_OG
+export const OG_IMAGE = SITE_OG
 
 export type PageSeo = {
   title: string
@@ -70,114 +71,125 @@ const INDEX_ROBOTS =
 
 export const SEO = {
   home: {
-    title: 'Wardogs Cheats | Aimbot, ESP and Radar',
+    title: 'Dota 2 Cheats | ESP, Map Hack & Timers',
     description:
-      'Buy Wardogs cheats for Windows PC. Aimbot, player ESP, vehicle ESP, radar, no recoil, no spread, and full bright with advanced visual options and config system.',
+      'Buy Dota 2 cheats for Windows PC. Hero ESP, full map hack, cooldown tracker, creep and rune timers, last-hit helper, ward ESP, roshan timer, and 24/7 support.',
     path: '/',
     ogType: 'website',
     image: PAGE_OG.home,
-    imageAlt: 'Wardogs cheats gameplay with aimbot, player ESP, vehicle ESP, and radar on PC',
+    imageAlt: 'Dota 2 cheats gameplay with hero ESP, map vision, and timers on PC',
+    robots: INDEX_ROBOTS,
+  },
+  blog: {
+    title: 'Dota 2 Cheats Blog | Guides & Features',
+    description:
+      'Dota 2 cheats blog with console command guides, item lists, lobby setup, feature deep dives, HWID safety, and 2026 product comparisons.',
+    path: '/blog',
+    ogType: 'website',
+    image: PAGE_OG.blog,
+    imageAlt: 'Dota 2 cheats blog guides and feature articles',
     robots: INDEX_ROBOTS,
   },
   forums: {
-    title: 'Wardogs Intel | Wardogs Cheats',
+    title: 'Dota 2 Cheats Forums | Community Threads',
     description:
-      'Wardogs intel hub featuring guides, cheat features, aimbot settings, ESP customization, radar configuration, visual enhancements, and setup information.',
+      'Reddit-style Dota 2 cheats forums — VAC safety, setup, hero ESP, map hack configs, loader help, and patch-day status from moderators.',
     path: '/forums',
     ogType: 'website',
     image: PAGE_OG.forums,
-    imageAlt: 'Wardogs ESP and radar gameplay screenshot from intel guides',
+    imageAlt: 'Dota 2 cheats community forum threads',
     robots: INDEX_ROBOTS,
   },
   reviews: {
-    title: 'Wardogs Cheats Reviews | Buyer Feedback',
+    title: 'Dota 2 Cheats Reviews | Buyer Feedback',
     description:
-      'Read Wardogs cheats reviews from users covering aimbot performance, ESP features, radar functionality, vehicle tracking, and overall experience.',
+      'Read Dota 2 cheats reviews covering ESP clarity, map vision, timer accuracy, loader stability, and overall value on Windows PC.',
     path: '/reviews',
     ogType: 'website',
     image: PAGE_OG.reviews,
-    imageAlt: 'Wardogs cheats review screenshot with ESP and radar overlays',
+    imageAlt: 'Dota 2 cheats review screenshot with ESP overlays',
     robots: INDEX_ROBOTS,
   },
   faq: {
-    title: 'Wardogs FAQ | Wardogs Cheats',
+    title: 'Dota 2 Cheats FAQ',
     description:
-      'Frequently asked questions about Wardogs cheats covering aimbot, ESP, radar, visual settings, configs, setup, and support.',
+      'Frequently asked questions about Dota 2 cheats covering VAC, features, Windows setup, monthly and lifetime plans, and support.',
     path: '/faq',
     ogType: 'website',
     image: PAGE_OG.faq,
-    imageAlt: 'Wardogs player ESP overlay screenshot from FAQ',
+    imageAlt: 'Dota 2 hero ESP overlay screenshot from FAQ',
     robots: INDEX_ROBOTS,
   },
   support: {
-    title: 'Wardogs Support | Wardogs Cheats',
+    title: 'Dota 2 Cheats Support',
     description:
-      'Get support for Wardogs cheats on Discord including loader setup, configuration help, troubleshooting, and feature guidance after purchase.',
+      'Get support for Dota 2 cheats including loader setup, configuration help, troubleshooting, and feature guidance after purchase.',
     path: '/support',
     ogType: 'website',
     image: PAGE_OG.support,
-    imageAlt: 'Wardogs cheat support and loader help',
+    imageAlt: 'Dota 2 cheat support and loader help',
     robots: INDEX_ROBOTS,
   },
   product: {
-    title: 'Wardogs Store | Wardogs Cheats',
+    title: 'Dota 2 Cheats Store',
     description:
-      'Wardogs store for premium cheats. Get access to aimbot, ESP, radar, vehicle tracking, recoil control, and configuration profiles with instant delivery.',
-    path: '/wardogs-cheats',
+      'Dota 2 cheats store — hero ESP, map hack, timers, last-hit helper, auto-dodge, and inventory ESP. Monthly $35 and lifetime $150 with instant delivery.',
+    path: '/dota-2-cheats',
     ogType: 'product',
     image: PAGE_OG.product,
-    imageAlt: 'Wardogs store page showing aimbot, ESP, vehicle tracking, and radar modules',
+    imageAlt: 'Dota 2 store page showing ESP, map hack, and timer modules',
     robots: INDEX_ROBOTS,
   },
   features: {
-    title: 'Wardogs Features | Wardogs Cheats',
+    title: 'Dota 2 Cheats Features',
     description:
-      'Wardogs features include aimbot with prediction, visible check, smooth aim, player ESP, vehicle ESP, 2D radar, no recoil, no spread, full bright, and custom crosshair.',
+      'Dota 2 cheats features include hero ESP, fog removal, ability cooldown tracker, creep spawn timers, rune indicators, and roshan timer.',
     path: '/forums/features-list',
     ogType: 'article',
     image: PAGE_OG.forums,
-    imageAlt: 'Wardogs cheat feature list with aimbot and ESP modules',
+    imageAlt: 'Dota 2 cheat feature list with ESP and map hack modules',
     robots: INDEX_ROBOTS,
   },
   setup: {
-    title: 'Wardogs Setup | Wardogs Cheats',
+    title: 'Dota 2 Cheats Setup',
     description:
-      'Learn how Wardogs cheats work, configure aimbot, ESP, radar, and visual settings, and optimize your setup on Windows PC.',
+      'Learn how Dota 2 cheats work, configure ESP and map vision, and optimize your loader setup on Windows PC.',
     path: '/forums/complete-setup',
     ogType: 'article',
     image: PAGE_OG.forums,
-    imageAlt: 'Wardogs cheat setup guide on Windows PC',
+    imageAlt: 'Dota 2 cheat setup guide on Windows PC',
     robots: INDEX_ROBOTS,
   },
   status: {
-    title: 'Wardogs Status | Wardogs Cheats',
+    title: 'Dota 2 Cheats Status | Loader Active or Updating',
     description:
-      'Check the current status for Wardogs cheats. Stay updated on maintenance, updates, and feature availability before you load.',
-    path: '/forums/load-status-checklist',
-    ogType: 'article',
-    image: PAGE_OG.forums,
-    imageAlt: 'Wardogs loader status checklist before launch',
+      'Live loader status for Dota 2 cheats on buydota2cheats.com. Active means ready to load; Updating means wait after a Valve patch.',
+    path: '/status',
+    ogType: 'website',
+    image: PAGE_OG.status,
+    imageAlt: 'Dota 2 Cheats loader status — Active or Updating',
     robots: INDEX_ROBOTS,
   },
   preview: {
-    title: 'Wardogs Preview | Wardogs Cheats',
+    title: 'Dota 2 Cheats Preview',
     description:
-      'Preview Wardogs cheats in action with aimbot, player ESP, vehicle ESP, radar, and visual enhancements before you checkout.',
-    path: '/wardogs-cheats',
+      'Preview Dota 2 cheats with hero ESP, map hack, and timer overlays before checkout.',
+    path: '/dota-2-cheats',
     ogType: 'website',
     image: PAGE_OG.product,
-    imageAlt: 'Wardogs cheats preview with ESP, aimbot, and radar gameplay',
+    imageAlt: 'Dota 2 cheats preview with ESP and map vision',
     robots: INDEX_ROBOTS,
   },
 } as const satisfies Record<string, PageSeo>
 
 export const HOME_HEADINGS = {
-  h1: 'Wardogs Cheats',
-  h2Features: 'Wardogs Cheats Features',
-  h2HowItWorks: 'How Wardogs Cheats Work',
-  h2Reviews: 'Wardogs Cheats Reviews',
-  h2Forums: 'Wardogs Intel',
-  h2Faq: 'Wardogs Cheats FAQ',
+  h1: 'Dota 2 Cheats',
+  h2Features: 'Dota 2 Cheats Features',
+  h2HowItWorks: 'How Dota 2 Cheats Work',
+  h2Reviews: 'Dota 2 Cheats Reviews',
+  h2Blog: 'Dota 2 Cheats Blog',
+  h2Forums: 'Community Forums',
+  h2Faq: 'Dota 2 Cheats FAQ',
   h2Access: 'Ready when you are',
 } as const
 

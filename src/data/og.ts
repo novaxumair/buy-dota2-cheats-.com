@@ -3,24 +3,35 @@
  */
 
 export const OG_HOME = '/og/home.jpg'
-export const OG_PRODUCT = '/og/wardogs-cheats.jpg'
+export const OG_PRODUCT = '/og/dota-2-cheats.jpg'
 export const OG_FORUMS = '/og/forums.jpg'
+export const OG_BLOG = '/og/blog.jpg'
 export const OG_REVIEWS = '/og/reviews.jpg'
 export const OG_FAQ = '/og/faq.jpg'
 export const OG_SUPPORT = '/og/support.jpg'
 export const OG_PRIVACY = '/og/privacy.jpg'
 export const OG_TERMS = '/og/terms.jpg'
 export const OG_REFUNDS = '/og/refunds.jpg'
+export const OG_STATUS = '/og/status.jpg'
 
-export const WD_OG = OG_PRODUCT
+export const SITE_OG = OG_PRODUCT
 
 export function forumOgImage(slug: string) {
   return `/og/forums-${slug}.jpg`
 }
 
+export function blogOgImage(slug: string) {
+  return `/og/blog-${slug}.jpg`
+}
+
 export function getOgImageForPath(path?: string): string {
   if (!path || path === '/') return OG_HOME
-  if (path === '/wardogs-cheats' || path === '/buy-wardogs-cheats') return OG_PRODUCT
+  if (path === '/dota-2-cheats' || path === '/buy-dota2-cheats') return OG_PRODUCT
+  if (path === '/blog') return OG_BLOG
+  if (path.startsWith('/blog/')) {
+    const slug = path.slice('/blog/'.length).replace(/\/$/, '')
+    return blogOgImage(slug)
+  }
   if (path === '/forums') return OG_FORUMS
   if (path === '/reviews') return OG_REVIEWS
   if (path === '/faq') return OG_FAQ
@@ -28,6 +39,7 @@ export function getOgImageForPath(path?: string): string {
   if (path === '/privacy') return OG_PRIVACY
   if (path === '/terms') return OG_TERMS
   if (path === '/refunds') return OG_REFUNDS
+  if (path === '/status') return OG_STATUS
   if (path.startsWith('/forums/')) {
     const slug = path.slice('/forums/'.length).replace(/\/$/, '')
     return forumOgImage(slug)
@@ -39,10 +51,12 @@ export const PAGE_OG = {
   home: OG_HOME,
   product: OG_PRODUCT,
   forums: OG_FORUMS,
+  blog: OG_BLOG,
   reviews: OG_REVIEWS,
   faq: OG_FAQ,
   support: OG_SUPPORT,
   privacy: OG_PRIVACY,
   terms: OG_TERMS,
   refunds: OG_REFUNDS,
+  status: OG_STATUS,
 } as const

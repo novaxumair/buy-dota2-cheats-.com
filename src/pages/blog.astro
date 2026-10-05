@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { BlogPage } from '../views/BlogPage'
+import { SEO, SITE_URL } from '../data/site'
+
+const initialQuery = Astro.url.searchParams.get('q') ?? ''
+
+const jsonLdExtra = [
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog` },
+    ],
+  },
+]
+---
+
+<BaseLayout seo={SEO.blog} jsonLdExtra={jsonLdExtra}>
+  <BlogPage client:load initialQuery={initialQuery} />
+  <script src="/listing-search.js" defer></script>
+</BaseLayout>

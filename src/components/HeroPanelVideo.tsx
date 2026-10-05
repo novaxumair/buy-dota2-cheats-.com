@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { WD_HOME_VIDEO } from '../data/media'
+import { D2_HOME_VIDEO } from '../data/media'
 
 type HeroPanelVideoProps = {
   variant?: 'home' | 'forums'
@@ -82,15 +82,15 @@ export function HeroPanelVideo({ variant = 'home' }: HeroPanelVideoProps) {
         loop
         playsInline
         preload="auto"
-        aria-label={WD_HOME_VIDEO.title}
+        aria-label={D2_HOME_VIDEO.title}
       >
-        <source src={WD_HOME_VIDEO.src} type="video/webm" />
+        <source src={D2_HOME_VIDEO.src} type="video/webm" />
         <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
       <div className="hero-video-tint pointer-events-none absolute inset-0 z-[2]" />
       <div className="hero-video-tint-glow pointer-events-none absolute inset-0 z-[2]" />
-      <div className="absolute inset-x-0 bottom-0 z-[3] h-40 bg-gradient-to-t from-z-bg via-z-bg/80 to-transparent" />
-      <div className="absolute inset-x-0 top-0 z-[3] h-24 bg-gradient-to-b from-z-bg/70 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[3] h-40 bg-gradient-to-t from-z-bg via-z-bg/80 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-[3] h-24 bg-gradient-to-b from-z-bg/70 to-transparent" />
     </div>
   )
 }

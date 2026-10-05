@@ -1,5 +1,5 @@
 /**
- * Ensures the site remains Wardogs-only (buywardogscheats.net) in source and built HTML.
+ * Ensures the site remains Dota 2-only (buydota2cheats.com) in source and built HTML.
  */
 import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { join, relative } from 'node:path'
@@ -16,7 +16,7 @@ const SKIP_FILES = new Set([
   '_redirects',
 ])
 
-const SKIP_SCRIPT_PATHS = /^scripts\/(verify-|generate-sitemaps|prepare-wardogs-media|fetch-wardogs)/
+const SKIP_SCRIPT_PATHS = /^scripts\/(verify-|generate-sitemaps|generate-dota2)/
 
 /** Legacy template paths — allowed only in redirect rules, not in page HTML/TSX. */
 const REDIRECT_ONLY = /the-isle|buyislecheats|abi-cheats|dayz-cheats|tarkov|warzone|arena.breakout/i
@@ -31,10 +31,20 @@ const FORBIDDEN = [
   /dayz-cheats/i,
   /arena\s+breakout/i,
   /escape\s+from\s+tarkov/i,
+  /wardogs/i,
+  /buywardogscheats/i,
   /assets-prd\.ignimgs\.com/i,
   /cdn\.cosmocheats\.com/i,
   /376210\/The_Isle/i,
   /novaxware/i,
+]
+
+const LEGACY_PATHS = [
+  'src/data/blogs.ts',
+  'src/pages/wardogs-cheats.astro',
+  'scripts/generate-wardogs-forums.mjs',
+  'scripts/prepare-wardogs-media.mjs',
+  'scripts/fetch-wardogs-game-cover.mjs',
 ]
 
 function walk(dir, out = []) {
@@ -75,29 +85,43 @@ if (existsSync(dist)) {
         failures.push(`dist ${relative(dist, file)}: matched ${re}`)
       }
     }
-    if (REDIRECT_ONLY.test(html) && !html.includes('buywardogscheats.net')) {
+    if (REDIRECT_ONLY.test(html) && !html.includes('buydota2cheats.com')) {
       failures.push(`dist ${relative(dist, file)}: legacy game slug in HTML`)
     }
   }
 }
 
 const siteTs = readFileSync(join(root, 'src', 'data', 'site.ts'), 'utf8')
-if (!siteTs.includes('buywardogscheats.net')) {
-  failures.push('site.ts must use buywardogscheats.net')
+if (!siteTs.includes('buydota2cheats.com')) {
+  failures.push('site.ts must use buydota2cheats.com')
 }
-if (!siteTs.includes('Wardogs Cheats')) {
-  failures.push('site.ts must use Wardogs Cheats brand')
+if (!siteTs.includes('Dota 2 Cheats')) {
+  failures.push('site.ts must use Dota 2 Cheats brand')
 }
 if (!siteTs.includes('does not sell cheats for other games')) {
-  failures.push('site.ts must declare single-game Wardogs focus')
+  failures.push('site.ts must declare single-game Dota 2 focus')
 }
 
 const gamesTs = readFileSync(join(root, 'src', 'data', 'games.ts'), 'utf8')
 const gameCount = (gamesTs.match(/slug:\s*['"]/g) || []).length
 if (gameCount !== 1) failures.push(`games.ts must list exactly one game (found ${gameCount})`)
 
+for (const rel of LEGACY_PATHS) {
+  if (existsSync(join(root, rel))) {
+    failures.push(`Remove legacy multi-game file: ${rel}`)
+  }
+}
+
+const sitemapCss = join(root, 'public', 'sitemap.css')
+if (existsSync(sitemapCss)) {
+  const css = readFileSync(sitemapCss, 'utf8')
+  if (/wardogs|buywardogscheats/i.test(css)) {
+    failures.push('public/sitemap.css must brand buydota2cheats.com only')
+  }
+}
+
 if (failures.length) {
   throw new Error(`Single-game verification failed:\n- ${failures.join('\n- ')}`)
 }
 
-console.log('Single-game verification passed (Wardogs / buywardogscheats.net only)')
+console.log('Single-game verification passed (Dota 2 / buydota2cheats.com only)')

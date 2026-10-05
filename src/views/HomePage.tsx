@@ -1,4 +1,4 @@
-import { ArrowRight, Crosshair, Eye, Radar, Sparkles, Star, Truck } from 'lucide-react'
+import { ArrowRight, Clock, Eye, Map, Sparkles, Star, Swords } from 'lucide-react'
 import { Navbar } from '../components/Navbar'
 import { SiteFooter } from '../components/SiteFooter'
 import { FaqSection } from '../components/FaqSection'
@@ -6,34 +6,37 @@ import { guidePath } from '../data/games'
 import { CheckoutLink } from '../components/CheckoutLink'
 import { HOME_FAQS } from '../data/faqs'
 import { HOME_HEADINGS, PRODUCT_LIFETIME_PRICE_USD, PRODUCT_PRICE_USD, SITE_NAME } from '../data/site'
-import { blogPath } from '../data/blogs'
+import { articlePath, forumPath } from '../data/blog-paths'
+import { ARTICLES } from '../data/articles'
+import { BlogArticleCard } from '../components/BlogArticleCard'
+import { orderArticlesForGrid } from '../lib/blog-order'
 import { FORUM_INDEX } from '../data/forum-index'
 import { REVIEWS } from '../data/reviews'
 
 const FEATURES = [
   {
-    icon: Crosshair,
-    label: 'Aimbot options',
-    desc: 'FOV, smooth, bone selection, visible check, prediction, draw FOV, and target line for control-zone fights.',
-    href: blogPath('aimbot-settings'),
-  },
-  {
     icon: Eye,
-    label: 'Player ESP',
-    desc: 'Box, skeleton, health bar, weapon, team/squad, OOF arrows, and max distance — wardogs esp before you push ridge lines.',
-    href: blogPath('esp-wallhack-guide'),
+    label: 'Hero ESP',
+    desc: 'Items and level on enemy heroes — know who can burst before they show on your lane.',
+    href: articlePath('hero-esp-items-levels'),
   },
   {
-    icon: Truck,
-    label: 'Vehicle ESP',
-    desc: 'Vehicle type, distance, and occupied/empty state — spot transports before you cross open ground.',
-    href: blogPath('vehicle-esp-first'),
+    icon: Map,
+    label: 'Map hack',
+    desc: 'Remove fog of war for tactical awareness — pair with ward ESP for smarter rotations.',
+    href: articlePath('full-map-hack-fog-of-war'),
   },
   {
-    icon: Radar,
-    label: '2D radar',
-    desc: 'Player and vehicle markers with adjustable range — pair with ESP in three-team lobbies.',
-    href: blogPath('radar-recommended-config'),
+    icon: Clock,
+    label: 'Timers',
+    desc: 'Creep spawn, rune indicators, and roshan timer keep your farm and objective tempo honest.',
+    href: articlePath('rune-spawn-indicators'),
+  },
+  {
+    icon: Swords,
+    label: 'Teamfight tools',
+    desc: 'Cooldown tracker, auto-dodge skillshots, and enemy inventory ESP for cleaner engagements.',
+    href: articlePath('ability-cooldown-tracker'),
   },
 ] as const
 
@@ -41,17 +44,17 @@ const HOW_IT_WORKS = [
   {
     step: '01',
     title: 'Check loader status',
-    text: 'After Wardogs patches we label builds Active or Updating on buywardogscheats.net — load only when Active matches your client.',
+    text: 'After Dota 2 patches we label builds Active or Updating on buydota2cheats.com — load only when Active matches your client.',
   },
   {
     step: '02',
     title: 'Prep Windows & exclusions',
-    text: 'Close overlays, allowlist the delivery folder, and follow the complete setup guide so the menu opens on first inject.',
+    text: 'Close overlays, allowlist the delivery folder, and follow the complete setup forum thread so the menu opens on first inject.',
   },
   {
     step: '03',
-    title: 'Configure ESP & radar first',
-    text: 'Enable player ESP with distance caps, add vehicle ESP and 2D radar, save a config profile, then tune aimbot only if you need it.',
+    title: 'Configure ESP & timers first',
+    text: 'Enable hero ESP and ward placement, add creep/rune timers, save a profile, then tune map vision to readable opacity.',
   },
 ] as const
 
@@ -63,29 +66,30 @@ type HomePageProps = {
 export function HomePage({ part = 'full' }: HomePageProps) {
   const featuredReviews = REVIEWS.slice(0, 4)
   const forumHighlights = FORUM_INDEX.slice(0, 4)
+  const blogHighlights = orderArticlesForGrid(ARTICLES, 4).slice(0, 4)
 
   const heroContent = (
         <div className="relative z-20 flex h-full min-h-0 flex-1 flex-col">
           <Navbar onVideo currentPath="/" />
 
-          <main className="page-x mt-auto pb-6 sm:pb-8 lg:pb-10">
+          <main className="page-x relative z-0 mt-auto pb-6 sm:pb-8 lg:pb-10">
             <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
-              <div className="relative z-30 max-w-xl lg:max-w-2xl">
+              <div className="max-w-xl lg:max-w-2xl">
                 <p className="mb-2.5 text-[11px] font-medium uppercase tracking-[0.18em] text-z-soft/80 sm:mb-3 sm:text-xs sm:tracking-[0.2em]">
-                  Wardogs · Steam · Windows PC
+                  Dota 2 · Steam · Windows PC
                 </p>
                 <h1 className="text-[1.75rem] font-semibold leading-[1.12] tracking-tight text-white sm:text-4xl lg:text-[2.65rem] lg:leading-[1.1]">
-                  {HOME_HEADINGS.h1}
+                  Dota 2 <span className="text-dota-red">Cheats</span>
                 </h1>
                 <p className="mt-3 max-w-lg text-sm leading-relaxed text-white/70 sm:mt-3.5 sm:text-[0.95rem]">
-                  Buy Wardogs cheats with aimbot, player ESP, vehicle ESP, radar, no recoil, no spread,
-                  and full bright. Intel guides, reviews, and loader status before you queue a
-                  control-zone match.
+                  Buy Dota 2 cheats with hero ESP, full map hack, cooldown tracker, creep and rune
+                  timers, last-hit helper, and 24/7 support. Blog guides, forums, reviews, and loader
+                  status before you queue.
                 </p>
 
-                <div className="relative z-50 mt-5 flex flex-col gap-2.5 sm:flex-row sm:items-center">
+                <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:items-center">
                   <a
-                    href={guidePath('wardogs')}
+                    href={guidePath('dota-2')}
                     className="cta-gradient inline-flex items-center justify-center rounded-full px-6 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
                   >
                     Explore features
@@ -94,7 +98,7 @@ export function HomePage({ part = 'full' }: HomePageProps) {
                     href="/forums"
                     className="inline-flex items-center justify-center rounded-full border border-z-soft/35 bg-[rgba(28,22,48,0.88)] px-5 py-2.5 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-xl transition-[background-color,border-color] hover:border-z-soft/50 hover:bg-[rgba(36,28,58,0.95)]"
                   >
-                    Wardogs intel
+                    Forums
                   </a>
                 </div>
               </div>
@@ -106,21 +110,21 @@ export function HomePage({ part = 'full' }: HomePageProps) {
                     <span className="text-sm font-semibold text-white">Patch-synced loader</span>
                   </div>
                   <p className="mt-2.5 text-xs leading-relaxed text-white/70 sm:mt-3 sm:text-sm">
-                    <span className="text-glow-active">Active</span> or Updating labels after Wardogs
-                    updates — Elytra Anti-Cheat builds tracked before you load.
+                    <span className="text-glow-active">Active</span> or Updating labels after Dota 2
+                    updates — VAC builds tracked before you load.
                   </p>
                 </div>
 
                 <div className="glass flex h-full min-h-[140px] flex-col rounded-2xl p-4 sm:min-h-[160px] sm:p-5">
                   <div className="mb-2.5 flex items-center gap-2 sm:mb-3">
                     <div className="flex h-5 w-5 items-center justify-center rounded bg-z-accent/30 text-[10px] font-bold text-z-soft sm:h-6 sm:w-6 sm:text-xs">
-                      WD
+                      D2
                     </div>
                     <span className="text-sm font-semibold text-white">From reviews</span>
                   </div>
                   <p className="flex-1 text-xs leading-relaxed text-white/80 sm:text-sm">
-                    “Vehicle ESP with occupied tags saved our rotate twice — radar range took ten
-                    minutes to dial for control zone.”
+                    “Rosh timer plus ward ESP cleaned up our mid-game calls — map hack opacity took
+                    five minutes to dial for trios.”
                   </p>
                   <div className="mt-3 flex items-center gap-2.5 sm:mt-4 sm:gap-3">
                     <div className="flex h-8 w-8 items-center justify-center rounded-full bg-z-accent/25 text-xs font-semibold text-z-ink sm:h-9 sm:w-9 sm:text-sm">
@@ -128,7 +132,7 @@ export function HomePage({ part = 'full' }: HomePageProps) {
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-white">nova</p>
-                      <p className="text-xs text-white/60">Vehicle squad</p>
+                      <p className="text-xs text-white/60">Stack trio</p>
                     </div>
                   </div>
                 </div>
@@ -153,8 +157,8 @@ export function HomePage({ part = 'full' }: HomePageProps) {
               {HOME_HEADINGS.h2Features}
             </h2>
             <p className="mb-8 max-w-2xl text-sm leading-relaxed text-white/55 sm:text-base">
-              Aimbot, player ESP, vehicle ESP, 2D radar, and misc combat tuning — intel threads cover
-              wardogs cheats setup without cluttering your HUD.
+              Hero ESP, map hack, timers, last-hit helper, auto-dodge, and inventory intel — blog
+              articles and forum threads cover dota 2 cheats setup without cluttering your HUD.
             </p>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {FEATURES.map(({ icon: Icon, label, desc, href }) => (
@@ -184,8 +188,8 @@ export function HomePage({ part = 'full' }: HomePageProps) {
               {HOME_HEADINGS.h2HowItWorks}
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/55 sm:text-base">
-              Wardogs cheats stay maintainable when you treat loader status and configs like part of
-              your loadout — same habit as checking patch notes before a long control-zone session.
+              Dota 2 cheats stay maintainable when you treat loader status and configs like part of
+              your loadout — same habit as checking patch notes before a ranked session.
             </p>
             <ol className="mt-10 grid gap-4 lg:grid-cols-3">
               {HOW_IT_WORKS.map(({ step, title, text }) => (
@@ -201,17 +205,17 @@ export function HomePage({ part = 'full' }: HomePageProps) {
             <p className="mt-8 text-sm text-white/55">
               Full walkthrough:{' '}
               <a
-                href={blogPath('complete-setup')}
+                href={forumPath('complete-setup')}
                 className="font-medium text-white/85 underline-offset-2 hover:underline"
               >
-                Wardogs setup guide
+                setup forum thread
               </a>{' '}
               and{' '}
               <a
-                href={blogPath('game-patch-status')}
+                href="/status"
                 className="font-medium text-white/85 underline-offset-2 hover:underline"
               >
-                after a game patch
+                patch-day status
               </a>
               .
             </p>
@@ -229,8 +233,8 @@ export function HomePage({ part = 'full' }: HomePageProps) {
                   {HOME_HEADINGS.h2Reviews}
                 </h2>
                 <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/55 sm:text-base">
-                  Feedback on aimbot tuning, ESP clarity, radar range, and loader updates — no
-                  external review links.
+                  Feedback on ESP clarity, map vision, timers, and loader updates — no external review
+                  links.
                 </p>
               </div>
               <a
@@ -260,26 +264,56 @@ export function HomePage({ part = 'full' }: HomePageProps) {
           </div>
         </section>
 
-        <section id="picks" className="page-x py-16 sm:py-20">
+        <section id="blog" className="page-x py-16 sm:py-20">
+          <div className="mx-auto max-w-6xl">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/45">Blog</p>
+                <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                  {HOME_HEADINGS.h2Blog}
+                </h2>
+                <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/55 sm:text-base">
+                  Console commands, cheat lists, lobby guides, HWID safety, 2026 reviews, and feature
+                  deep dives — no comment threads on blog posts.
+                </p>
+              </div>
+              <a
+                href="/blog"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-white"
+              >
+                All articles
+                <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
+              </a>
+            </div>
+
+            <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {blogHighlights.map((post) => (
+                <BlogArticleCard key={post.slug} article={post} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="picks" className="page-band page-x border-t border-white/10 py-16 sm:py-20">
           <div className="mx-auto max-w-6xl">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/45">
-                  Intel hub
+                  Community
                 </p>
                 <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
                   {HOME_HEADINGS.h2Forums}
                 </h2>
                 <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/55 sm:text-base">
-                  Aimbot settings, ESP guides, radar configs, and Elytra patch checklists — browse
-                  threads for full replies on every guide.
+                  Reddit-style threads with moderators, upvotes, and member replies — VAC safety,
+                  setup, ESP configs, and loader help.
                 </p>
               </div>
               <a
                 href="/forums"
                 className="inline-flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-white"
               >
-                All intel
+                All forums
                 <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
               </a>
             </div>
@@ -288,18 +322,16 @@ export function HomePage({ part = 'full' }: HomePageProps) {
               {forumHighlights.map((post) => (
                 <a
                   key={post.slug}
-                  href={blogPath(post.slug)}
+                  href={forumPath(post.slug)}
                   className="page-card group flex h-full flex-col rounded-2xl p-5 sm:p-6"
                 >
-                  <p className="text-xs uppercase tracking-wider text-white/45">{post.tag}</p>
-                  <p className="mt-2 text-lg font-semibold tracking-tight text-white">
-                    {post.title}
+                  <p className="text-xs uppercase tracking-wider text-orange-200/70">
+                    r/{post.community}
                   </p>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-white/55">
-                    {post.excerpt}
-                  </p>
+                  <p className="mt-2 text-lg font-semibold tracking-tight text-white">{post.title}</p>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-white/55">{post.excerpt}</p>
                   <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-white transition-colors group-hover:text-white/80">
-                    Read thread
+                    {post.commentCount} comments
                     <ArrowRight
                       className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
                       strokeWidth={1.75}
@@ -307,18 +339,6 @@ export function HomePage({ part = 'full' }: HomePageProps) {
                   </span>
                 </a>
               ))}
-            </div>
-
-            <div className="page-card mt-8 rounded-2xl p-6 sm:p-8">
-              <p className="text-lg font-semibold text-white">Join the discussion</p>
-              <p className="mt-2 text-sm leading-relaxed text-white/55">
-                Every intel thread includes buyer replies — clean runs, frustrated patch days, and
-                config tips. Open the{' '}
-                <a href="/forums" className="text-white/80 underline-offset-2 hover:underline">
-                  intel index
-                </a>{' '}
-                to read all comments and follow setup threads end to end.
-              </p>
             </div>
           </div>
         </section>
@@ -342,10 +362,10 @@ export function HomePage({ part = 'full' }: HomePageProps) {
               Active and your config is saved, continue to checkout for {SITE_NAME} on PC — or read
               the{' '}
               <a
-                href="/wardogs-cheats"
+                href="/dota-2-cheats"
                 className="text-white/80 underline-offset-2 hover:underline"
               >
-                Wardogs store
+                Dota 2 store
               </a>{' '}
               first.
             </p>

@@ -111,8 +111,8 @@ function followRedirects(startPathname, redirectMap, maxHops = 20) {
   return { finalPath: current, chain, loop: true }
 }
 
-const blogsTs = readFileSync(join(root, 'src', 'data', 'blogs.ts'), 'utf8')
-const slugs = [...blogsTs.matchAll(/"slug": "([^"]+)"/g)].map((m) => m[1])
+const forumsTs = readFileSync(join(root, 'src', 'data', 'forums.ts'), 'utf8')
+const slugs = [...forumsTs.matchAll(/"slug": "([^"]+)"/g)].map((m) => m[1])
 
 const redirectsRaw = readFileSync(join(root, 'public', '_redirects'), 'utf8')
 const rules = parseRedirects(redirectsRaw)

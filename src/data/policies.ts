@@ -18,12 +18,12 @@ export const POLICY_PAGES: PolicyPageContent[] = [
   {
     slug: 'privacy',
     path: '/privacy',
-    title: 'Privacy Policy | Wardogs Cheats',
+    title: 'Privacy Policy | Dota 2 Cheats',
     description:
-      'How buywardogscheats.net handles order details, delivery email, support messages and basic site analytics for Wardogs cheats.',
+      'How buydota2cheats.com handles order details, delivery email, support messages and basic site analytics for Dota 2 Cheats.',
     h1: 'Privacy Policy',
     intro:
-      'This page explains what we collect when you browse buywardogscheats.net, buy an Wardogs cheat license, or contact support � and what we do not collect.',
+      'This page explains what we collect when you browse buydota2cheats.com, buy a Dota 2 cheat license, or contact support — and what we do not collect.',
     sections: [
       {
         heading: 'What we collect',
@@ -37,7 +37,7 @@ export const POLICY_PAGES: PolicyPageContent[] = [
         heading: 'How we use it',
         body: [
           'Order email is used for license delivery, renewals, and reply-to support.',
-          'Support details are used only to resolve your ticket � loader errors, exclusions, status questions, or refund requests that fall under our refunds policy.',
+          'Support details are used only to resolve your ticket — loader errors, exclusions, status questions, or refund requests that fall under our refunds policy.',
           'Aggregate traffic data helps us keep pages fast and catch abuse. It is not used to profile you for ads.',
         ],
       },
@@ -45,8 +45,8 @@ export const POLICY_PAGES: PolicyPageContent[] = [
         heading: 'Cookies and third parties',
         body: [
           'Essential cookies may be set by checkout or CDN providers so payment and delivery work.',
-          'Preview media is self-hosted on buywardogscheats.net. Third-party embeds are not used for the main product preview.',
-          'Official Wardogs store links are external. Their privacy policies apply once you leave buywardogscheats.net.',
+          'Preview media is self-hosted on buydota2cheats.com. Third-party embeds are not used for the main product preview.',
+          'Official Dota 2 on Steam links are external. Valve privacy policies apply once you leave buydota2cheats.com.',
         ],
       },
       {
@@ -66,26 +66,26 @@ export const POLICY_PAGES: PolicyPageContent[] = [
   {
     slug: 'terms',
     path: '/terms',
-    title: 'Terms of Use | Wardogs Cheats',
+    title: 'Terms of Use | Dota 2 Cheats',
     description:
-      'License rules, age limits, anti-cheat risk, and liability limits for Wardogs cheats on buywardogscheats.net.',
+      'License rules, age limits, VAC risk, and liability limits for Dota 2 Cheats on buydota2cheats.com.',
     h1: 'Terms of Use',
     intro:
-      'Buying or running Wardogs cheats means you accept these terms. A license covers personal use of Aimbot, ESP, wallhack, and vehicle radar and misc tools for Wardogs on Windows PC � nothing beyond that.',
+      'Buying or running Dota 2 Cheats means you accept these terms. A license covers personal use of hero ESP, map hack, timers, and related modules for Dota 2 on Windows PC — nothing beyond that.',
     sections: [
       {
         heading: 'Acceptance and what a license covers',
         body: [
-          'A key unlocks the current Wardogs cheat build for the duration you purchased (weekly or monthly plans where offered).',
+          'A key unlocks the current Dota 2 cheat build for the duration you purchased (monthly or lifetime plans).',
           'Handing the package to someone else, reselling it, sharing accounts, or reverse-engineering the loader breaks these terms and can end your access without a refund.',
         ],
       },
       {
         heading: 'Risk and anti-cheat disclaimer',
         body: [
-          'Wardogs uses anti-cheat and publisher moderation. Using third-party software can violate the game�s terms and lead to account penalties.',
+          'Dota 2 uses Valve Anti-Cheat (VAC) and Valve moderation. Using third-party software can violate the game terms and lead to account penalties.',
           'We push rebuilds after game updates when needed, but nothing here guarantees a build stays compatible forever or that an account stays safe.',
-          'All risk sits with you. We accept no liability for bans, lost progress, or other damage tied to using the product. Check Active status before you load.',
+          'All risk sits with you. We accept no liability for bans, lost MMR, or other damage tied to using the product. Check Active status before you load.',
         ],
       },
       {
@@ -98,8 +98,8 @@ export const POLICY_PAGES: PolicyPageContent[] = [
       {
         heading: 'Limitation of liability and disputes',
         body: [
-          'The product is provided �as is.� If anything goes wrong, our total liability is capped at what you paid for the affected license in the previous 30 days.',
-          'Open a ticket on Support first. Governing law follows our payment processor�s jurisdiction unless local law requires otherwise.',
+          'The product is provided as is. If anything goes wrong, our total liability is capped at what you paid for the affected license in the previous 30 days.',
+          'Open a ticket on Support first. Governing law follows our payment processor jurisdiction unless local law requires otherwise.',
           'We may update these terms on this page. Continued use after a change means the new version applies.',
         ],
       },
@@ -113,12 +113,12 @@ export const POLICY_PAGES: PolicyPageContent[] = [
   {
     slug: 'refunds',
     path: '/refunds',
-    title: 'Refund Policy | Wardogs Cheats',
+    title: 'Refund Policy | Dota 2 Cheats',
     description:
-      'When Wardogs cheat refunds apply for digital licenses, delivery failures, and Updating status windows on buywardogscheats.net.',
+      'When Dota 2 Cheats refunds apply for digital licenses, delivery failures, and Updating status windows on buydota2cheats.com.',
     h1: 'Refund Policy',
     intro:
-      'Wardogs cheat licenses are digital goods. This page covers when we can refund, when we cannot, and how to open a request with your order ID.',
+      'Dota 2 Cheats licenses are digital goods. This page covers when we can refund, when we cannot, and how to open a request with your order ID.',
     sections: [
       {
         heading: 'When refunds are available',
@@ -132,7 +132,7 @@ export const POLICY_PAGES: PolicyPageContent[] = [
         heading: 'When refunds are not available',
         body: [
           'Change of mind after a working key has been delivered and activated.',
-          'Bans or gameplay outcomes � status is never a permanent guarantee.',
+          'Bans or gameplay outcomes — status is never a permanent guarantee.',
           'Issues caused by skipping antivirus exclusions, running conflicting overlays, or loading while status is Updating.',
           'Shared, resold, or otherwise invalidated keys under the Terms of Use.',
         ],
@@ -142,7 +142,7 @@ export const POLICY_PAGES: PolicyPageContent[] = [
         body: [
           'Open Support and include: order ID, purchase email, license length, and a short description of the problem (screenshots help).',
           'We aim to reply within one to two business days. Approved refunds go back through the original payment method.',
-          'Buying a short weekly key first is the safest way to confirm the loader fits your PC before a longer plan.',
+          'Buying monthly access first is the safest way to confirm the loader fits your PC before a lifetime plan.',
         ],
       },
     ],

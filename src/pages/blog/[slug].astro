@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { BlogArticlePage } from '../../views/BlogArticlePage'
+import { ARTICLES, getArticle } from '../../data/articles'
+import { articlePath } from '../../data/blog-paths'
+import { SITE_URL, type PageSeo } from '../../data/site'
+
+export function getStaticPaths() {
+  return ARTICLES.map((post) => ({
+    params: { slug: post.slug },
+  }))
+}
+
+const { slug } = Astro.params
+const post = getArticle(slug!)
+
+if (!post) {
+  return Astro.redirect('/404')
+}
+
+const pageUrl = `${SITE_URL}${articlePath(post.slug)}`
+const ogImage = `/og/blog-${post.slug}.jpg`
+
+const seo: PageSeo = {
+  title: post.metaTitle,
+  description: post.metaDescription,
+  path: articlePath(post.slug),
+  ogType: 'article',
+  image: ogImage,
+  imageAlt: `${post.title} — Dota 2 Cheats blog`,
+  robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+}
+
+const jsonLdExtra = [
+  {
+    '@type': 'BlogPosting',
+    '@id': `${pageUrl}#article`,
+    headline: post.title,
+    description: post.metaDescription,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: { '@id': `${SITE_URL}/#organization` },
+    publisher: { '@id': `${SITE_URL}/#organization` },
+    url: pageUrl,
+    mainEntityOfPage: { '@id': `${pageUrl}#webpage` },
+    isPartOf: { '@id': `${SITE_URL}/blog#webpage` },
+    inLanguage: 'en',
+    articleSection: post.tag,
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog` },
+      { '@type': 'ListItem', position: 3, name: post.title, item: pageUrl },
+    ],
+  },
+]
+---
+
+<BaseLayout seo={seo} jsonLdExtra={jsonLdExtra}>
+  <BlogArticlePage client:visible slug={post.slug} />
+</BaseLayout>

@@ -1,148 +1,207 @@
 import { useMemo, useState } from 'react'
-import { ArrowRight, Lock } from 'lucide-react'
-import { Navbar } from '../components/Navbar'
+import { ArrowBigUp, MessageSquare, Shield } from 'lucide-react'
+import { ListingPageHero } from '../components/ListingPageHero'
+import { ListingSearchField } from '../components/ListingSearchField'
 import { SiteFooter } from '../components/SiteFooter'
-import { HeroPanelVideo } from '../components/HeroPanelVideo'
-import { HeroSearch } from '../components/HeroSearch'
-import { blogPath } from '../data/blogs'
-import { FORUM_INDEX } from '../data/forum-index'
+import { forumPath } from '../data/blog-paths'
+import { FORUM_INDEX, FORUM_MODERATORS } from '../data/forum-index'
 import { guidePath } from '../data/games'
+import { useListingSearchQuery } from '../hooks/useListingSearchQuery'
+import { forumSearchHaystack } from '../lib/listing-search'
 import { SITE_HOST, SITE_NAME } from '../data/site'
 
 type ForumsPageProps = {
   initialQuery?: string
 }
 
-export function ForumsPage({ initialQuery = '' }: ForumsPageProps) {
-  const [q, setQ] = useState(() => initialQuery)
+type SortMode = 'hot' | 'new'
 
-  function onSearchChange(next: string) {
-    setQ(next)
-  }
+function formatScore(score: number) {
+  if (score >= 1000) return `${(score / 1000).toFixed(1)}k`
+  return String(score)
+}
+
+export function ForumsPage({ initialQuery = '' }: ForumsPageProps) {
+  const { inputRef, q, onSearchInput } = useListingSearchQuery(initialQuery)
+  const [sort, setSort] = useState<SortMode>('hot')
 
   const filtered = useMemo(() => {
     const term = q.trim().toLowerCase()
-    if (!term) return FORUM_INDEX
-    return FORUM_INDEX.filter((b) => {
-      const hay = `${b.title} ${b.excerpt} ${b.tag}`.toLowerCase()
-      return hay.includes(term)
-    })
-  }, [q])
+    let list = term
+      ? FORUM_INDEX.filter((b) => {
+          const hay = `${b.title} ${b.excerpt} ${b.tag} r/${b.community} ${b.slug}`.toLowerCase()
+          return hay.includes(term)
+        })
+      : [...FORUM_INDEX]
 
-  const heroContent = (
-        <div className="relative z-20 flex h-full min-h-0 flex-1 flex-col">
-          <Navbar onVideo currentPath="/forums" />
-          <div className="page-x mt-auto pb-10 sm:pb-14">
-            <div className="relative z-30 mx-auto max-w-6xl">
-              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-white/50">
-                Wardogs intel · Setup · {SITE_HOST}
-              </p>
-              <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-                Wardogs Intel
-              </h1>
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/70">
-                Guides for wardogs cheats on {SITE_NAME} — aimbot, ESP, radar, loader setup, and
-                patch-day checklists. Wardogs only; no other titles.
-              </p>
-              <div className="relative z-50 mt-7">
-                <HeroSearch
-                  value={q}
-                  onChange={onSearchChange}
-                  submitTo="filter"
-                  placeholder="Search intel — setup, aimbot, ESP, radar…"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-  )
+    if (sort === 'hot') {
+      list = [...list].sort((a, b) => b.score - a.score)
+    } else {
+      list = [...list].sort((a, b) => a.slug.localeCompare(b.slug))
+    }
+    return list
+  }, [q, sort])
+
+  const communities = useMemo(() => {
+    const map = new Map<string, number>()
+    for (const t of FORUM_INDEX) {
+      map.set(t.community, (map.get(t.community) ?? 0) + 1)
+    }
+    return [...map.entries()].sort((a, b) => b[1] - a[1])
+  }, [])
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-z-bg text-white">
-      <section className="hero-panel hero-panel--forums relative flex flex-col">
-        <HeroPanelVideo variant="forums" />
-        {heroContent}
-      </section>
+      <ListingPageHero
+        currentPath="/forums"
+        eyebrow={<>r/dota2cheats · VAC · Setup · {SITE_HOST}</>}
+        title="Dota 2 Cheats Forums"
+        description={
+          <>
+            Reddit-style threads for dota 2 cheats — moderators, locked archives, and member replies.
+            Long-form guides live on the <a href="/blog">blog</a>.
+          </>
+        }
+      />
 
       <div className="hero-to-body" aria-hidden />
 
       <main className="page-body relative z-10">
-        <section className="page-x py-12">
-          <div className="mx-auto max-w-6xl">
-            <div className="page-card mb-10 flex flex-col gap-4 rounded-2xl p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
-              <div>
-                <p className="text-xs uppercase tracking-wider text-white/45">Product</p>
-                <h2 className="mt-1 text-xl font-semibold text-white">{SITE_NAME}</h2>
-                <p className="mt-2 max-w-xl text-sm text-white/55">
-                  Wardogs aimbot, player ESP, vehicle ESP, and 2D radar — confirm Active loader
-                  status before checkout on {SITE_HOST}.
-                </p>
+        <section id="forums-listing" className="page-x py-10 sm:py-12">
+          <div className="mx-auto flex max-w-6xl flex-col gap-8 lg:flex-row lg:items-start">
+            <div className="min-w-0 flex-1">
+              <div className="forums-list-toolbar flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                <div className="flex shrink-0 rounded-full border border-white/10 bg-black/30 p-1">
+                  <button
+                    type="button"
+                    onClick={() => setSort('hot')}
+                    className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
+                      sort === 'hot' ? 'bg-white/15 text-white' : 'text-white/55 hover:text-white/80'
+                    }`}
+                  >
+                    Hot
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setSort('new')}
+                    className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
+                      sort === 'new' ? 'bg-white/15 text-white' : 'text-white/55 hover:text-white/80'
+                    }`}
+                  >
+                    New
+                  </button>
+                </div>
+                <div className="listing-toolbar__search min-w-0 w-full sm:max-w-md sm:flex-1 sm:ml-auto lg:max-w-lg">
+                  <ListingSearchField
+                    id="forums-search"
+                    label="Search forum threads"
+                    placeholder="Search forums — VAC, setup, ESP…"
+                    defaultValue={initialQuery}
+                    inputRef={inputRef}
+                    onInput={onSearchInput}
+                  />
+                </div>
               </div>
-              <a
-                href={guidePath('wardogs')}
-                className="cta-gradient inline-flex shrink-0 items-center justify-center rounded-full px-6 py-3 text-sm font-medium text-white"
-              >
-                Wardogs store
-              </a>
-            </div>
 
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-              <h2 className="text-xl font-semibold tracking-tight text-white">
-                {q.trim() ? 'Search results' : 'All intel threads'}
-              </h2>
-              <p className="text-sm text-white/40">
-                {filtered.length} thread{filtered.length === 1 ? '' : 's'}
+              <ul className="mt-6 overflow-hidden rounded-xl border border-white/10 bg-[rgba(10,6,18,0.85)]">
+                {filtered.map((post) => (
+                  <li
+                    key={post.slug}
+                    className="border-b border-white/10 last:border-b-0 hover:bg-white/[0.02]"
+                    data-listing-item
+                    data-search={forumSearchHaystack(post)}
+                  >
+                    <a
+                      href={forumPath(post.slug)}
+                      className="flex gap-3 px-3 py-3 sm:gap-4 sm:px-4 sm:py-4"
+                      aria-label={`Open forum thread: ${post.title}`}
+                    >
+                      <div className="flex w-10 shrink-0 flex-col items-center gap-0.5 pt-1 text-white/70">
+                        <ArrowBigUp className="h-5 w-5 text-orange-400/90" strokeWidth={1.75} aria-hidden />
+                        <span className="text-xs font-bold tabular-nums">{formatScore(post.score)}</span>
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-semibold leading-snug text-white sm:text-base">
+                          {post.title}
+                        </p>
+                        <p className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-white/45">
+                          <span className="font-medium text-orange-200/80">r/{post.community}</span>
+                          <span>·</span>
+                          <span>Posted by u/{post.author}</span>
+                          <span>·</span>
+                          <span className="inline-flex items-center gap-1">
+                            <MessageSquare className="h-3 w-3" strokeWidth={2} aria-hidden />
+                            {post.commentCount} comments
+                          </span>
+                          <span>·</span>
+                          <span className="rounded bg-white/10 px-1.5 py-0.5 text-[10px] uppercase tracking-wide">
+                            {post.tag}
+                          </span>
+                        </p>
+                        <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-white/50 sm:text-sm">
+                          {post.excerpt}
+                        </p>
+                      </div>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+
+              <p
+                data-listing-empty
+                hidden={filtered.length !== 0}
+                className="mt-8 text-center text-sm text-white/55"
+              >
+                No threads matched your search.
               </p>
             </div>
 
-            {filtered.length === 0 ? (
-              <div className="page-card mt-8 rounded-2xl px-6 py-10 text-center">
-                <p className="text-sm text-white/55">
-                  Nothing matched “{q}”. Try “setup”, “aimbot”, or “radar”.
+            <aside className="w-full shrink-0 lg:w-72">
+              <div className="page-card rounded-2xl p-5">
+                <p className="text-xs font-bold uppercase tracking-wider text-white/45">About</p>
+                <h2 className="mt-2 text-lg font-semibold text-white">{SITE_NAME}</h2>
+                <p className="mt-2 text-sm leading-relaxed text-white/55">
+                  Community forums for Dota 2 cheats on Windows PC. Threads are moderated; no key
+                  reselling or crack links.
                 </p>
-                <button
-                  type="button"
-                  onClick={() => onSearchChange('')}
-                  className="mt-4 text-sm font-medium text-white hover:text-white/80"
+                <a
+                  href={guidePath('dota-2')}
+                  className="cta-gradient mt-4 block rounded-full py-2.5 text-center text-sm font-semibold text-white"
                 >
-                  Clear search
-                </button>
+                  Store
+                </a>
               </div>
-            ) : (
-              <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {filtered.map((post) => (
-                  <a
-                    key={post.slug}
-                    href={blogPath(post.slug)}
-                    aria-label={`Read intel thread: ${post.title}`}
-                    className="page-card group flex h-full flex-col rounded-2xl p-5 sm:p-6"
-                  >
-                    <div className="flex flex-wrap items-center justify-between gap-2">
-                      <span className="text-xs font-medium uppercase tracking-wider text-white/45">
-                        {post.tag}
+
+              <div className="page-card mt-4 rounded-2xl p-5">
+                <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white/45">
+                  <Shield className="h-3.5 w-3.5" strokeWidth={2} aria-hidden />
+                  Moderators
+                </p>
+                <ul className="mt-3 space-y-2">
+                  {FORUM_MODERATORS.map((mod) => (
+                    <li key={mod.name} className="text-sm">
+                      <span className="font-semibold text-white">{mod.name}</span>
+                      <span className="text-white/45"> · r/{mod.community}</span>
+                      <span className="ml-1 rounded bg-amber-400/15 px-1.5 py-0.5 text-[10px] font-bold uppercase text-amber-100/90">
+                        {mod.flair}
                       </span>
-                      <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wide text-amber-100/80">
-                        <Lock className="h-3 w-3" strokeWidth={2} aria-hidden />
-                        Locked
-                      </span>
-                    </div>
-                    <h3 className="mt-3 text-base font-semibold tracking-tight text-white sm:text-lg">
-                      {post.title}
-                    </h3>
-                    <p className="mt-2 flex-1 text-sm leading-relaxed text-white/55">
-                      {post.excerpt}
-                    </p>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-white transition-colors group-hover:text-white/80">
-                      Open thread
-                      <ArrowRight
-                        className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-                        strokeWidth={1.75}
-                      />
-                    </span>
-                  </a>
-                ))}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            )}
+
+              <div className="page-card mt-4 rounded-2xl p-5">
+                <p className="text-xs font-bold uppercase tracking-wider text-white/45">Communities</p>
+                <ul className="mt-3 space-y-1.5 text-sm text-white/60">
+                  {communities.map(([name, count]) => (
+                    <li key={name}>
+                      <span className="font-medium text-orange-200/85">r/{name}</span>
+                      <span className="text-white/40"> — {count} thread{count === 1 ? '' : 's'}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </aside>
           </div>
         </section>
 

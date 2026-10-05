@@ -10,18 +10,18 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const publicDir = join(root, 'public')
 const dataDir = join(root, 'src', 'data')
 const pagesDir = join(root, 'src', 'pages')
-const SITE = (process.env.SITE_URL || 'https://buywardogscheats.net').replace(/\/$/, '')
+const SITE = (process.env.SITE_URL || 'https://buydota2cheats.com').replace(/\/$/, '')
 const TODAY = new Date().toLocaleDateString('en-CA')
 
-const HERO_FULL = '/media/wd-hero-full.webp'
-const COVER = '/media/wd-cover.webp'
-const BOX = '/media/wd-screenshot-8.webp'
-const ESP = '/media/wd-screenshot-5.webp'
-const MENU = '/media/wd-menu.webp'
-const SHOT = (n) => `/media/wd-screenshot-${n}.webp`
-const VIDEO_THUMB = '/media/wd-video-thumb.jpg'
+const HERO_FULL = '/media/d2-hero-full.webp'
+const COVER = '/media/d2-cover.webp'
+const BOX = '/media/d2-screenshot-8.webp'
+const ESP = '/media/d2-screenshot-5.webp'
+const MENU = '/media/d2-menu.webp'
+const SHOT = (n) => `/media/d2-screenshot-${n}.webp`
+const VIDEO_THUMB = '/media/d2-video-thumb.jpg'
 const PREVIEW_VIDEO = '/videos/hero.webm'
-const OG_DEFAULT = '/og/wardogs-cheats.jpg'
+const OG_DEFAULT = '/og/dota-2-cheats.jpg'
 
 const ALL_SITE_IMAGES = [
   HERO_FULL,
@@ -32,11 +32,13 @@ const ALL_SITE_IMAGES = [
   ...Array.from({ length: 10 }, (_, i) => SHOT(i + 1)),
   VIDEO_THUMB,
   '/og/home.jpg',
-  '/og/wardogs-cheats.jpg',
+  '/og/dota-2-cheats.jpg',
+  '/og/blog.jpg',
   '/og/forums.jpg',
   '/og/reviews.jpg',
   '/og/faq.jpg',
   '/og/support.jpg',
+  '/og/status.jpg',
   '/og/privacy.jpg',
   '/og/terms.jpg',
   '/og/refunds.jpg',
@@ -44,27 +46,24 @@ const ALL_SITE_IMAGES = [
 
 const FORUM_IMAGES = {
   'features-list': COVER,
-  hotkeys: MENU,
   'complete-setup': HERO_FULL,
-  'disable-antivirus': SHOT(3),
-  'load-status-checklist': COVER,
-  'aimbot-settings': MENU,
-  'esp-wallhack-guide': ESP,
+  'hero-esp-config': ESP,
+  'map-hack-fog-config': BOX,
   'game-patch-status': COVER,
-  'windows-setup': HERO_FULL,
-  'combat-assist-settings': ESP,
   'loader-errors': SHOT(7),
-  'vehicle-esp-first': BOX,
-  'radar-recommended-config': MENU,
+  'vac-anticheat-safety': MENU,
+  'dota-2-cheats-discussion': HERO_FULL,
 }
 
 const PAGE_META = {
   '/': { priority: '1.0', changefreq: 'daily' },
-  '/wardogs-cheats': { priority: '0.9', changefreq: 'weekly' },
+  '/dota-2-cheats': { priority: '0.9', changefreq: 'weekly' },
+  '/blog': { priority: '0.88', changefreq: 'weekly' },
   '/forums': { priority: '0.85', changefreq: 'weekly' },
   '/reviews': { priority: '0.8', changefreq: 'weekly' },
   '/faq': { priority: '0.75', changefreq: 'monthly' },
   '/support': { priority: '0.75', changefreq: 'weekly' },
+  '/status': { priority: '0.82', changefreq: 'daily' },
   '/privacy': { priority: '0.4', changefreq: 'yearly' },
   '/terms': { priority: '0.4', changefreq: 'yearly' },
   '/refunds': { priority: '0.45', changefreq: 'yearly' },
@@ -100,14 +99,21 @@ function loadGames() {
   )
 }
 
-function loadForums() {
-  const src = readFileSync(join(dataDir, 'blogs.ts'), 'utf8')
+function loadJsonPosts(file, constName, fnName) {
+  const src = readFileSync(join(dataDir, file), 'utf8')
   const jsonMatch = src.match(
-    /export const BLOGS: BlogPost\[\] = (\[[\s\S]*?\n\])\s*\n\s*export function getBlog/,
+    new RegExp(`export const ${constName}[\\s\\S]*?= (\\[[\\s\\S]*?\\n\\])\\s*\\n\\s*export function ${fnName}`),
   )
   if (jsonMatch) {
     return JSON.parse(jsonMatch[1])
   }
+  return null
+}
+
+function loadForums() {
+  const parsed = loadJsonPosts('forums.ts', 'FORUM_THREADS', 'getForumThread')
+  if (parsed) return parsed
+  const src = readFileSync(join(dataDir, 'forums.ts'), 'utf8')
   const pattern =
     /slug:\s*['"]([^'"]+)['"],\s*title:\s*['"]([^'"]+)['"],\s*excerpt:\s*['"]([^'"]+)['"],\s*metaTitle:\s*['"]([^'"]+)['"],\s*metaDescription:\s*['"]([^'"]+)['"],[\s\S]*?date:\s*['"](\d{4}-\d{2}-\d{2})['"]/g
   return [...src.matchAll(pattern)].map((match) => ({
@@ -118,6 +124,11 @@ function loadForums() {
     metaDescription: match[5],
     date: match[6],
   }))
+}
+
+function loadArticles() {
+  const parsed = loadJsonPosts('articles.ts', 'ARTICLES', 'getArticle')
+  return parsed ?? []
 }
 
 function loadStaticRoutes() {
@@ -145,12 +156,22 @@ function videoBlock({ thumb, title, description, content }) {
     </video:video>`
 }
 
-/** Minimal urlset entries — loc + lastmod only (best GSC compatibility on Cloudflare Pages). */
+function metaForPath(path) {
+  if (PAGE_META[path]) return PAGE_META[path]
+  if (path.startsWith('/blog/')) return { priority: '0.72', changefreq: 'monthly' }
+  if (path.startsWith('/forums/')) return { priority: '0.68', changefreq: 'monthly' }
+  return { priority: '0.55', changefreq: 'monthly' }
+}
+
+/** Plain urlset entries (loc, lastmod, changefreq, priority) for GSC and human-readable XML. */
 function urlEntry({ path, lastmod = TODAY }) {
   const url = siteUrl(path)
+  const { changefreq, priority } = metaForPath(path)
   return `  <url>
     <loc>${escapeXml(url)}</loc>
     <lastmod>${lastmod}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
   </url>`
 }
 
@@ -159,28 +180,28 @@ function imagesForPath(path, games, forums) {
     return [
       {
         src: '/og/home.jpg',
-        title: 'Wardogs Cheats Open Graph',
+        title: 'Dota 2 Cheats Open Graph',
         caption: 'Primary social and search preview for the homepage.',
       },
       {
         src: HERO_FULL,
-        title: 'Wardogs Cheats Hero',
-        caption: 'Hero artwork for Wardogs aimbot, ESP, and radar on PC.',
+        title: 'Dota 2 Cheats Hero',
+        caption: 'Hero artwork for Dota 2 hero ESP, map hack, and timers on PC.',
       },
       {
         src: COVER,
-        title: 'Wardogs Cheats Product Cover',
+        title: 'Dota 2 Cheats Product Cover',
         caption: 'Product cover used on checkout and product previews.',
       },
       {
         src: VIDEO_THUMB,
-        title: 'Wardogs Cheats Preview Thumbnail',
+        title: 'Dota 2 Cheats Preview Thumbnail',
         caption: 'Video thumbnail for the self-hosted product preview.',
       },
       {
         src: BOX,
-        title: 'Wardogs ESP Gameplay Screenshot',
-        caption: 'Steam gameplay with player ESP overlays on buywardogscheats.net.',
+        title: 'Dota 2 Cheats ESP Gameplay Screenshot',
+        caption: 'Steam gameplay with player ESP overlays on buydota2cheats.com.',
       },
     ]
   }
@@ -189,34 +210,34 @@ function imagesForPath(path, games, forums) {
   if (game) {
     return [
       {
-        src: '/og/wardogs-cheats.jpg',
-        title: 'Wardogs Cheats Open Graph',
-        caption: 'Google and social preview for the Wardogs Cheats product page.',
+        src: '/og/dota-2-cheats.jpg',
+        title: 'Dota 2 Cheats Open Graph',
+        caption: 'Google and social preview for the Dota 2 Cheats product page.',
       },
       {
         src: COVER,
-        title: 'Wardogs aimbot ESP Product Artwork',
+        title: 'Dota 2 Cheats ESP Product Artwork',
         caption: 'Product features, compatibility, status and price before checkout.',
       },
       {
         src: HERO_FULL,
         title: `${game.name} Cheats Product Hero`,
-        caption: `Hero artwork for ${game.name} Aimbot, ESP and radar hack product details.`,
+        caption: `Hero artwork for ${game.name} hero ESP, map hack, and timer product details.`,
       },
       {
         src: MENU,
         title: `${game.name} Cheats Menu Preview`,
-        caption: `Menu and Aimbot settings preview for ${game.name} cheats.`,
+        caption: `In-game menu and overlay settings preview for ${game.name} cheats.`,
       },
       {
         src: ESP,
         title: `${game.name} ESP Gameplay`,
-        caption: `Player ESP and wallhack preview for ${game.name}.`,
+        caption: `Hero ESP and map vision preview for ${game.name} on PC.`,
       },
       {
         src: VIDEO_THUMB,
-        title: 'Wardogs Cheats Preview Thumbnail',
-        caption: 'Thumbnail for the Wardogs Cheats preview video.',
+        title: 'Dota 2 Cheats Preview Thumbnail',
+        caption: 'Thumbnail for the Dota 2 Cheats preview video.',
       },
     ]
   }
@@ -225,13 +246,13 @@ function imagesForPath(path, games, forums) {
     return [
       {
         src: '/og/forums.jpg',
-        title: 'Wardogs Cheats Forums Open Graph',
-        caption: 'Google preview image for the Wardogs Cheats guides index.',
+        title: 'Dota 2 Cheats Forums Open Graph',
+        caption: 'Google preview image for the Dota 2 Cheats guides index.',
       },
       {
         src: MENU,
-        title: 'Wardogs Cheats Forum Artwork',
-        caption: 'Artwork reference for Wardogs setup and feature guides.',
+        title: 'Dota 2 Cheats Forum Artwork',
+        caption: 'Artwork reference for Dota 2 Cheats setup and feature guides.',
       },
     ]
   }
@@ -245,14 +266,14 @@ function imagesForPath(path, games, forums) {
         title: `${forum?.title || slug} Open Graph`,
         caption:
           forum?.metaDescription ||
-          `Google preview image for ${forum?.title || slug} on buywardogscheats.net.`,
+          `Google preview image for ${forum?.title || slug} on buydota2cheats.com.`,
       },
       {
         src: FORUM_IMAGES[slug] || MENU,
         title: `${forum?.title || slug} Artwork`,
         caption:
           forum?.excerpt ||
-          `Visible Wardogs Cheats guide artwork for ${forum?.title || slug}.`,
+          `Visible Dota 2 Cheats guide artwork for ${forum?.title || slug}.`,
       },
     ]
   }
@@ -261,8 +282,8 @@ function imagesForPath(path, games, forums) {
     return [
       {
         src: '/og/reviews.jpg',
-        title: 'Wardogs Cheats Reviews Open Graph',
-        caption: 'Google preview image for Wardogs Cheats reviews.',
+        title: 'Dota 2 Cheats Reviews Open Graph',
+        caption: 'Google preview image for Dota 2 Cheats reviews.',
       },
     ]
   }
@@ -270,8 +291,8 @@ function imagesForPath(path, games, forums) {
     return [
       {
         src: '/og/faq.jpg',
-        title: 'Wardogs Cheats FAQ Open Graph',
-        caption: 'Google preview image for the Wardogs Cheats FAQ.',
+        title: 'Dota 2 Cheats FAQ Open Graph',
+        caption: 'Google preview image for the Dota 2 Cheats FAQ.',
       },
     ]
   }
@@ -279,8 +300,8 @@ function imagesForPath(path, games, forums) {
     return [
       {
         src: '/og/support.jpg',
-        title: 'Wardogs Cheats Support Open Graph',
-        caption: 'Google preview image for Wardogs Cheats support.',
+        title: 'Dota 2 Cheats Support Open Graph',
+        caption: 'Google preview image for Dota 2 Cheats support.',
       },
     ]
   }
@@ -288,8 +309,8 @@ function imagesForPath(path, games, forums) {
     return [
       {
         src: '/og/privacy.jpg',
-        title: 'Wardogs Cheats Privacy Policy',
-        caption: 'Privacy policy preview for buywardogscheats.net orders and support.',
+        title: 'Dota 2 Cheats Privacy Policy',
+        caption: 'Privacy policy preview for buydota2cheats.com orders and support.',
       },
     ]
   }
@@ -297,8 +318,8 @@ function imagesForPath(path, games, forums) {
     return [
       {
         src: '/og/terms.jpg',
-        title: 'Wardogs Cheats Terms of Use',
-        caption: 'License terms preview for Wardogs Cheats.',
+        title: 'Dota 2 Cheats Terms of Use',
+        caption: 'License terms preview for Dota 2 Cheats.',
       },
     ]
   }
@@ -306,23 +327,23 @@ function imagesForPath(path, games, forums) {
     return [
       {
         src: '/og/refunds.jpg',
-        title: 'Wardogs Cheats Refund Policy',
-        caption: 'Refund rules preview for digital Wardogs Cheats licenses.',
+        title: 'Dota 2 Cheats Refund Policy',
+        caption: 'Refund rules preview for digital Dota 2 Cheats licenses.',
       },
     ]
   }
 
-  return [{ src: OG_DEFAULT, title: 'Wardogs Cheats', caption: 'Wardogs Cheats page artwork.' }]
+  return [{ src: OG_DEFAULT, title: 'Dota 2 Cheats', caption: 'Dota 2 Cheats page artwork.' }]
 }
 
 function videosForPath(path) {
-  if (path === '/wardogs-cheats') {
+  if (path === '/dota-2-cheats') {
     return [
       {
         thumb: VIDEO_THUMB,
-        title: 'Wardogs Cheats Aimbot and ESP Preview',
+        title: 'Dota 2 Cheats ESP and Map Vision Preview',
         description:
-          'Self-hosted Wardogs Cheats preview showing Aimbot, ESP menu and survival gameplay visuals on PC.',
+          'Self-hosted Dota 2 Cheats preview showing hero ESP, map hack, and timer overlays on PC.',
         content: PREVIEW_VIDEO,
       },
     ]
@@ -330,11 +351,12 @@ function videosForPath(path) {
   return []
 }
 
-function collectAllPaths(games, forums, staticRoutes) {
+function collectAllPaths(games, forums, articles, staticRoutes) {
   const paths = new Set([
     ...staticRoutes,
     ...games.map((game) => `/${game.slug}-cheats`),
     ...forums.map((forum) => `/forums/${forum.slug}`),
+    ...articles.map((article) => `/blog/${article.slug}`),
   ])
   // Never index error page
   paths.delete('/404')
@@ -344,10 +366,61 @@ function collectAllPaths(games, forums, staticRoutes) {
 function sectionLabel(path) {
   if (path === '/') return 'Homepage'
   if (path.endsWith('-cheats')) return 'Product'
+  if (path === '/blog') return 'Blog index'
+  if (path.startsWith('/blog/')) return 'Blog article'
   if (path === '/forums') return 'Forums index'
-  if (path.startsWith('/forums/')) return 'Forum threads'
+  if (path.startsWith('/forums/')) return 'Forum guide'
+  if (path === '/status') return 'Loader status'
   if (path === '/reviews' || path === '/faq' || path === '/support') return 'Trust and support'
   return 'Legal and policies'
+}
+
+function plainTitleForPath(path, forums, articles) {
+  if (path === '/') return 'Dota 2 Cheats home'
+  if (path === '/dota-2-cheats') return 'Dota 2 Cheats product page'
+  if (path === '/status') return 'Loader status (Active or Updating)'
+  if (path === '/blog') return 'Blog index'
+  if (path.startsWith('/blog/')) {
+    const slug = path.slice('/blog/'.length)
+    const article = articles.find((a) => a.slug === slug)
+    return article?.title || slug
+  }
+  if (path === '/forums') return 'Forums and setup guides'
+  if (path.startsWith('/forums/')) {
+    const slug = path.slice('/forums/'.length)
+    const forum = forums.find((f) => f.slug === slug)
+    return forum?.title || slug
+  }
+  const labels = {
+    '/reviews': 'Customer reviews',
+    '/faq': 'FAQ',
+    '/support': 'Support',
+    '/privacy': 'Privacy policy',
+    '/terms': 'Terms of use',
+    '/refunds': 'Refund policy',
+  }
+  return labels[path] || path
+}
+
+function writePlainUrlList(forums, articles, allPaths) {
+  const lines = [
+    '# Dota 2 Cheats — plain URL list (buydota2cheats.com)',
+    '# One URL per line for humans and tools. Canonical sitemap for Google: /sitemap.xml',
+    '',
+  ]
+  const sorted = [...allPaths].sort((a, b) => a.localeCompare(b))
+  for (const path of sorted) {
+    const title = asciiSafe(plainTitleForPath(path, forums, articles))
+    const section = sectionLabel(path)
+    lines.push(`${siteUrl(path)}\t[${section}] ${title}`)
+  }
+  lines.push('')
+  const text = lines.join('\n')
+  writeFileSync(join(publicDir, 'sitemap-urls.txt'), text, 'utf8')
+  const distDir = join(root, 'dist')
+  if (existsSync(distDir)) {
+    writeFileSync(join(distDir, 'sitemap-urls.txt'), text, 'utf8')
+  }
 }
 
 function buildSitemap(games, forums, allPaths) {
@@ -381,7 +454,7 @@ ${chunks.join('\n')}
 `
 }
 
-function validate(games, forums, allPaths, sitemap) {
+function validate(games, forums, articles, allPaths, sitemap) {
   const errors = []
   if (forums.some((forum) => ['instructions', 'how-to-load'].includes(forum.slug))) {
     errors.push('Retired forum slug remains indexed')
@@ -400,6 +473,13 @@ function validate(games, forums, allPaths, sitemap) {
   for (const forum of forums) {
     const og = join(publicDir, 'og', `forums-${forum.slug}.jpg`)
     if (!existsSync(og)) errors.push(`Missing forum OG image: /og/forums-${forum.slug}.jpg`)
+  }
+  for (const article of articles) {
+    const og = join(publicDir, 'og', `blog-${article.slug}.jpg`)
+    if (!existsSync(og)) errors.push(`Missing blog OG image: /og/blog-${article.slug}.jpg`)
+  }
+  if (articles.length && !existsSync(join(pagesDir, 'blog', '[slug].astro'))) {
+    errors.push('Blog routes have no dynamic page file: src/pages/blog/[slug].astro')
   }
 
   const expectedUrls = new Set(allPaths.map(siteUrl))
@@ -438,11 +518,17 @@ function validate(games, forums, allPaths, sitemap) {
   if (/Tarkov|tarkovcheats|EFT Reaper|Warzone|warzonecheats|Ricochet/i.test(sitemap)) {
     errors.push('Sitemap still contains legacy Tarkov/Warzone labels')
   }
-  if (!sitemap.includes('buywardogscheats.net')) {
-    errors.push('Sitemap must target buywardogscheats.net')
+  if (!sitemap.includes('buydota2cheats.com')) {
+    errors.push('Sitemap must target buydota2cheats.com')
   }
-  if (/tarkovcheats|warzonecheats|buywardogscheat\.com|zadeyo|arena breakout/i.test(sitemap)) {
+  if (/tarkovcheats|warzonecheats|buywardogscheats|wardogs|zadeyo|arena breakout/i.test(sitemap)) {
     errors.push('Sitemap contains legacy or third-party branding')
+  }
+  if (!allPaths.includes('/status')) {
+    errors.push('Sitemap must include /status')
+  }
+  if (!allPaths.includes('/blog')) {
+    errors.push('Sitemap must include /blog')
   }
   if (/[^\x09\x0A\x0D\x20-\x7E]/.test(sitemap.replace(/https?:\/\//g, ''))) {
     // Allow non-ascii only inside https URLs if any; captions should be ascii.
@@ -494,10 +580,11 @@ function writeRoutesConfig() {
 function main() {
   const games = loadGames()
   const forums = loadForums()
+  const articles = loadArticles()
   const staticRoutes = loadStaticRoutes()
-  const allPaths = collectAllPaths(games, forums, staticRoutes)
+  const allPaths = collectAllPaths(games, forums, articles, staticRoutes)
   const sitemap = buildSitemap(games, forums, allPaths)
-  validate(games, forums, allPaths, sitemap)
+  validate(games, forums, articles, allPaths, sitemap)
 
   const sitemapPaths = [
     join(publicDir, 'sitemap.xml'),
@@ -510,6 +597,7 @@ function main() {
     writeFileSync(path, sitemap, 'utf8')
   }
   writeSitemapFunctions(sitemap)
+  writePlainUrlList(forums, articles, allPaths)
   writeRoutesConfig()
   const distDir = join(root, 'dist')
   writeFileSync(

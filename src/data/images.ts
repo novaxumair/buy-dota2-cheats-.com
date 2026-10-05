@@ -1,11 +1,11 @@
-import { WD_COVER, WD_GAME_COVER, WD_HERO, WD_MENU } from './media'
-import { WD_OG, getOgImageForPath, PAGE_OG } from './og'
+import { D2_COVER, D2_GAME_COVER, D2_HERO, D2_MENU } from './media'
+import { SITE_OG, getOgImageForPath, PAGE_OG } from './og'
 
-export { WD_OG, getOgImageForPath, PAGE_OG }
+export { SITE_OG, getOgImageForPath, PAGE_OG }
 export { forumOgImage } from './og'
 
-export const WD_PRODUCT_HERO = WD_HERO
-export const WD_PRODUCT_COVER = WD_COVER
+export const D2_PRODUCT_HERO = D2_HERO
+export const D2_PRODUCT_COVER = D2_COVER
 
 export type ImageSeoFields = {
   alt: string
@@ -21,72 +21,79 @@ export const IMAGE_SEO: Record<
     heroCaption: string
   }
 > = {
-  wardogs: {
-    alt: 'WARDOGS official key art on Steam for PC',
-    title: 'Wardogs Cheats Product Details',
-    caption: 'Wardogs aimbot, ESP, vehicle tracking, and radar',
-    heroAlt: 'WARDOGS — official game key art',
-    heroTitle: 'Wardogs Store',
-    heroCaption: 'Premium cheats for WARDOGS on Windows PC',
+  'dota-2': {
+    alt: 'Dota 2 official key art on Steam for PC',
+    title: 'Dota 2 Cheats Product Details',
+    caption: 'Hero ESP, map hack, timers, and inventory intel',
+    heroAlt: 'Dota 2 — IGN key art',
+    heroTitle: 'Dota 2 Cheats Store',
+    heroCaption: 'Premium Dota 2 cheats on Windows PC',
   },
 }
 
 type PageImage = ImageSeoFields & { src: string; og: string }
 
 export const PAGE_IMAGES: Record<
-  'home' | 'forums' | 'reviews' | 'faq' | 'support' | 'product',
+  'home' | 'forums' | 'reviews' | 'faq' | 'support' | 'product' | 'blog',
   PageImage
 > = {
   home: {
-    src: WD_HERO,
+    src: D2_HERO,
     og: PAGE_OG.home,
-    alt: 'Wardogs cheats gameplay artwork for PC',
-    title: 'Wardogs Cheats',
-    caption: 'Aimbot, ESP, radar, and vehicle intel overview.',
+    alt: 'Dota 2 cheats gameplay artwork for PC',
+    title: 'Dota 2 Cheats',
+    caption: 'Hero ESP, map hack, and timer overview.',
+  },
+  blog: {
+    src: '/media/d2-screenshot-5.webp',
+    og: PAGE_OG.blog,
+    alt: 'Dota 2 cheats blog guides screenshot',
+    title: 'Dota 2 Cheats Blog',
+    caption: 'Console commands, features, and safety articles.',
   },
   forums: {
-    src: '/media/wd-screenshot-4.webp',
+    src: '/media/d2-screenshot-4.webp',
     og: PAGE_OG.forums,
-    alt: 'Wardogs ESP gameplay screenshot from intel hub',
-    title: 'Wardogs Intel',
-    caption: 'Setup, aimbot, ESP, and radar guides.',
+    alt: 'Dota 2 ESP gameplay screenshot from forums',
+    title: 'Dota 2 Cheats Forums',
+    caption: 'Setup, VAC, ESP, and loader threads.',
   },
   reviews: {
-    src: '/media/wd-screenshot-2.webp',
+    src: '/media/d2-screenshot-2.webp',
     og: PAGE_OG.reviews,
-    alt: 'Wardogs cheats review screenshot',
-    title: 'Wardogs Cheats Reviews',
-    caption: 'Buyer feedback on aimbot and ESP.',
+    alt: 'Dota 2 cheats review screenshot',
+    title: 'Dota 2 Cheats Reviews',
+    caption: 'Buyer feedback on ESP and timers.',
   },
   faq: {
-    src: '/media/wd-screenshot-8.webp',
+    src: '/media/d2-screenshot-8.webp',
     og: PAGE_OG.faq,
-    alt: 'Wardogs player ESP screenshot for FAQ',
-    title: 'Wardogs FAQ',
+    alt: 'Dota 2 hero ESP screenshot for FAQ',
+    title: 'Dota 2 Cheats FAQ',
     caption: 'Pricing, features, and setup answers.',
   },
   support: {
-    src: '/media/wd-screenshot-6.webp',
+    src: '/media/d2-screenshot-6.webp',
     og: PAGE_OG.support,
-    alt: 'Wardogs cheat support screenshot',
-    title: 'Wardogs Support',
-    caption: 'Discord, delivery, and loader help.',
+    alt: 'Dota 2 cheat support screenshot',
+    title: 'Dota 2 Cheats Support',
+    caption: 'Delivery and loader help.',
   },
   product: {
-    src: WD_GAME_COVER,
+    src: D2_GAME_COVER,
     og: PAGE_OG.product,
-    alt: 'WARDOGS official key art — Wardogs store',
-    title: 'Wardogs Store',
-    caption: 'Aimbot, ESP, radar, and misc modules.',
+    alt: 'Dota 2 official key art (IGN) — Dota 2 Cheats store',
+    title: 'Dota 2 Cheats Store',
+    caption: 'Hero ESP, map hack, timers, and support.',
   },
 }
 
 export function getGameImage(_slug: string): string {
-  return WD_GAME_COVER
+  return D2_GAME_COVER
 }
 
 export function getProductHeroImage(_slug: string): string {
-  return WD_GAME_COVER
+  return D2_GAME_COVER
 }
 
 export function getOgImage(path?: string): string {
@@ -116,3 +123,6 @@ export function getImageTitle(
   if (seo) return variant === 'product' ? seo.heroTitle : seo.title
   return `${name} product`
 }
+
+/** @deprecated unused menu asset — kept for legacy imports */
+export const D2_MENU_ASSET = D2_MENU

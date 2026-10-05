@@ -1,5 +1,5 @@
 {
-  "name": "buywardogscheats",
+  "name": "buydota2cheats",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -13,10 +13,9 @@
     "check": "astro check",
     "generate:sitemaps": "node scripts/generate-sitemaps.mjs",
     "generate:seo-assets": "node scripts/generate-seo-assets.mjs",
-    "generate:forums": "node scripts/generate-wardogs-forums.mjs",
-    "prepare:media": "node scripts/prepare-wardogs-media.mjs",
+    "generate:content": "node scripts/generate-dota2-content.mjs",
     "prepare:logo": "node scripts/build-logo-assets.mjs",
-    "fetch:game-cover": "node scripts/fetch-wardogs-game-cover.mjs",
+    "prepare:media": "node scripts/prepare-dota2-media.mjs",
     "verify:seo": "node scripts/verify-seo.mjs",
     "verify:redirects": "node scripts/verify-redirects.mjs",
     "lint": "oxlint",
@@ -25,7 +24,7 @@
   "dependencies": {
     "@astrojs/react": "^4.4.2",
     "@astrojs/tailwind": "^6.0.2",
-    "@fontsource/chakra-petch": "^5.3.0",
+    "@fontsource/cinzel": "^5.3.0",
     "astro": "^5.18.2",
     "lucide-react": "^1.43.0",
     "react": "^19.2.8",

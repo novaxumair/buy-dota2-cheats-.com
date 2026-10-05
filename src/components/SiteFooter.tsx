@@ -1,5 +1,13 @@
+import type { ReactNode } from 'react'
+import { ArrowUpRight } from 'lucide-react'
 import { LogoMark } from './LogoMark'
-import { OFFICIAL_GAME_LINKS, SITE_GUIDE_LINKS, SITE_PAGE_LINKS } from '../data/links'
+import { CheckoutLink } from './CheckoutLink'
+import {
+  OFFICIAL_GAME_LINKS,
+  SITE_GUIDE_LINKS,
+  SITE_PAGE_LINKS,
+} from '../data/links'
+import { guidePath } from '../data/games'
 import { SITE_NAME } from '../data/site'
 import { isActiveRoute as isCurrent, normalizePath } from '../lib/paths'
 
@@ -7,135 +15,169 @@ type SiteFooterProps = {
   currentPath?: string
 }
 
+const FOOTER_PAGES = SITE_PAGE_LINKS.filter(
+  (l) => !['/privacy', '/terms', '/refunds'].includes(l.to),
+)
+
+const FOOTER_LEGAL = SITE_PAGE_LINKS.filter((l) =>
+  ['/privacy', '/terms', '/refunds'].includes(l.to),
+)
+
+function FooterLink({
+  href,
+  children,
+  active,
+  external,
+}: {
+  href: string
+  children: ReactNode
+  active?: boolean
+  external?: boolean
+}) {
+  const className = `inline-flex items-center gap-1 rounded-md py-0.5 transition-colors ${
+    active ? 'text-white' : 'text-white/65 hover:text-white'
+  }`
+
+  if (external) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+        {children}
+        <ArrowUpRight className="h-3 w-3 opacity-60" strokeWidth={2} aria-hidden />
+      </a>
+    )
+  }
+
+  return (
+    <a href={href} aria-current={active ? 'page' : undefined} className={className}>
+      {children}
+    </a>
+  )
+}
+
 /**
- * Site footer with page / guide / official Wardogs links (crawl-friendly).
- * XML sitemap remains at /sitemap.xml — not shown as an on-page “sitemap” section.
+ * Site footer with page / guide / official Dota 2 links (crawl-friendly).
  */
 export function SiteFooter({ currentPath }: SiteFooterProps) {
   const path = normalizePath(currentPath || '/')
 
   return (
-    <footer className="page-x border-t border-z-soft/15 bg-z-band py-12 sm:py-14">
-      <div className="mx-auto max-w-6xl">
-        <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
-          <div className="w-full max-w-sm shrink-0 lg:max-w-xs">
-            <div className="flex items-center gap-2">
-              <LogoMark />
-              <span className="font-semibold text-z-ink">{SITE_NAME}</span>
+    <footer className="relative mt-auto border-t border-z-soft/20 bg-z-bg">
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-z-accent/40 to-transparent"
+        aria-hidden
+      />
+      <div className="page-x py-14 sm:py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
+            <div className="lg:col-span-4">
+              <a href="/" className="inline-flex items-center gap-3" aria-label={SITE_NAME}>
+                <LogoMark className="!h-16 !w-16" />
+              </a>
+              <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/55">
+                Hero ESP, map hack, rune and roshan timers, and patch-synced loader status for Dota
+                2 on Windows PC.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <CheckoutLink className="cta-gradient inline-flex rounded-full px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90">
+                  View plans
+                </CheckoutLink>
+                <a
+                  href={guidePath('dota-2')}
+                  className="inline-flex rounded-full border border-white/15 bg-white/[0.04] px-5 py-2.5 text-sm font-medium text-white/85 transition-colors hover:border-white/25 hover:bg-white/[0.07]"
+                >
+                  Product page
+                </a>
+              </div>
             </div>
-            <p className="mt-3 text-sm leading-relaxed text-white/55">
-              Wardogs cheats for PC — aimbot, player ESP, vehicle radar, and patch-synced loader
-              status for control-zone fights.
-            </p>
-          </div>
 
-          <nav
-            aria-label="Footer"
-            className="flex w-full min-w-0 flex-1 flex-col gap-8 sm:gap-10 lg:grid lg:grid-cols-3 lg:gap-10"
-          >
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-white/45">
+            <nav aria-label="Footer pages" className="lg:col-span-2">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-z-soft/90">
                 Pages
               </p>
-              <ul className="mt-3 space-y-2 text-sm text-white/65">
-                {SITE_PAGE_LINKS.filter(
-                  (l) => !['/privacy', '/terms', '/refunds'].includes(l.to),
-                ).map((l) => (
+              <ul className="mt-4 space-y-2.5 text-sm">
+                {FOOTER_PAGES.map((l) => (
                   <li key={l.to}>
-                    <a
-                      href={l.to}
-                      aria-current={isCurrent(l.to, path) ? 'page' : undefined}
-                      className={
-                        isCurrent(l.to, path)
-                          ? 'font-medium text-white'
-                          : 'transition-colors hover:text-white'
-                      }
-                    >
+                    <FooterLink href={l.to} active={isCurrent(l.to, path)}>
                       {l.label}
-                    </a>
+                    </FooterLink>
                   </li>
                 ))}
               </ul>
-            </div>
+            </nav>
 
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-white/45">
+            <nav aria-label="Footer guides" className="lg:col-span-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-z-soft/90">
                 Guides
               </p>
-              <ul className="mt-3 space-y-2 text-sm text-white/65">
+              <ul className="mt-4 columns-1 gap-x-8 space-y-2.5 text-sm sm:columns-2">
                 {SITE_GUIDE_LINKS.map((l) => (
-                  <li key={l.to}>
-                    <a
-                      href={l.to}
-                      aria-current={isCurrent(l.to, path) ? 'page' : undefined}
-                      className={
-                        isCurrent(l.to, path)
-                          ? 'font-medium text-white'
-                          : 'transition-colors hover:text-white'
-                      }
-                    >
+                  <li key={l.to} className="break-inside-avoid">
+                    <FooterLink href={l.to} active={isCurrent(l.to, path)}>
                       {l.label}
-                    </a>
+                    </FooterLink>
                   </li>
                 ))}
-                <li>
-                  <a
-                    href="/forums"
-                    className="font-medium text-white/80 transition-colors hover:text-white"
-                  >
-                    All guides →
-                  </a>
-                </li>
               </ul>
-            </div>
+              <div className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-sm font-medium">
+                <a href="/blog" className="text-z-soft transition-colors hover:text-white">
+                  All blog articles →
+                </a>
+                <a href="/forums" className="text-z-soft transition-colors hover:text-white">
+                  All forum threads →
+                </a>
+              </div>
+            </nav>
 
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-white/45">
+            <div className="lg:col-span-2">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-z-soft/90">
+                Legal
+              </p>
+              <ul className="mt-4 space-y-2.5 text-sm">
+                {FOOTER_LEGAL.map((l) => (
+                  <li key={l.to}>
+                    <FooterLink href={l.to} active={isCurrent(l.to, path)}>
+                      {l.label}
+                    </FooterLink>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-8 text-[11px] font-semibold uppercase tracking-[0.16em] text-z-soft/90">
                 Official game
               </p>
-              <ul className="mt-3 space-y-2 text-sm text-white/65">
+              <ul className="mt-4 space-y-2.5 text-sm">
                 {OFFICIAL_GAME_LINKS.map((l) => (
                   <li key={l.href}>
-                    <a
-                      href={l.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="transition-colors hover:text-white"
-                    >
+                    <FooterLink href={l.href} external>
                       {l.label}
-                    </a>
+                    </FooterLink>
                   </li>
                 ))}
               </ul>
-              <ul className="mt-6 flex flex-col gap-2 text-sm text-white/55 sm:flex-row sm:flex-wrap sm:gap-x-5 sm:gap-y-2">
-                <li>
-                  <a href="/privacy" className="hover:text-white">
-                    Privacy
-                  </a>
-                </li>
-                <li>
-                  <a href="/terms" className="hover:text-white">
-                    Terms
-                  </a>
-                </li>
-                <li>
-                  <a href="/refunds" className="hover:text-white">
-                    Refunds
-                  </a>
-                </li>
-              </ul>
             </div>
-          </nav>
-        </div>
+          </div>
 
-        <p className="mt-10 border-t border-z-soft/10 pt-6 text-xs text-white/35">
-          © {new Date().getFullYear()} {SITE_NAME}. Not affiliated with the Wardogs publisher.
-          Indexed pages are listed in{' '}
-          <a href="/sitemap.xml" className="underline-offset-2 hover:text-white/55 hover:underline">
-            sitemap.xml
-          </a>
-          .
-        </p>
+          <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-8 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between">
+            <p>
+              © {new Date().getFullYear()} {SITE_NAME}. Not affiliated with Valve Corporation.
+            </p>
+            <p className="sm:text-right">
+              Crawl index:{' '}
+              <a
+                href="/sitemap.xml"
+                className="text-white/55 underline-offset-2 transition-colors hover:text-white hover:underline"
+              >
+                sitemap.xml
+              </a>
+              <span className="mx-2 text-white/25">·</span>
+              <a
+                href="/sitemap"
+                className="text-white/55 underline-offset-2 transition-colors hover:text-white hover:underline"
+              >
+                HTML sitemap
+              </a>
+            </p>
+          </div>
+        </div>
       </div>
     </footer>
   )

@@ -1,25 +1,14 @@
-# Wardogs Cheats (buywardogscheats.net)
+# Dota 2 Cheats (buydota2cheats.com)
 
-Static Astro site for **Wardogs Cheats** on Windows PC — aimbot, ESP, vehicle tracking, 2D radar, and loader status. Single-game only; Cloudflare Pages / Workers ready.
+Static Astro site for **Dota 2 Cheats** on Windows PC — hero ESP, map hack, timers, blog, forums, and loader status. Single-game only; Cloudflare Pages ready.
 
-SEO targets **wardogs cheats**, **Wardogs ESP**, **Wardogs aimbot**, and related Wardogs PC keywords on `https://buywardogscheats.net`.
+SEO targets **dota 2 cheats**, **Dota 2 ESP**, **Dota 2 map hack**, and related Dota 2 PC keywords on `https://buydota2cheats.com`.
 
 ## Commands
 
-- `npm run dev` — local dev (port 5174)
-- `npm run build` — production build + sitemap + SEO + single-game checks
-- `npm run generate:forums` — regenerate intel threads (`scripts/generate-wardogs-forums.mjs`)
-- `npm run prepare:media` — rebuild gameplay WebP assets
-- `npm run fetch:game-cover` — refresh hosted WARDOGS key art
+- `npm run dev` — local dev server (port 5174)
+- `npm run build` — production build + sitemap + SEO checks
+- `npm run generate:content` — regenerate blog articles and forum threads (`scripts/generate-dota2-content.mjs`)
+- `npm run generate:seo-assets` — rebuild OG JPEGs from screenshots
 
-Set `SITE_URL=https://buywardogscheats.net` when generating sitemaps outside the default build.
-
-## Cloudflare Pages (Git)
-
-| Setting | Value |
-|--------|--------|
-| Build command | `npm run build` |
-| Build output | `dist` (also set in `wrangler.toml`) |
-| **Deploy command** | **Leave empty** (recommended), `npm run deploy:pages`, or `npx wrangler deploy` (shimmed to Pages deploy after `npm ci`) |
-
-Optional standalone Worker: `npm run deploy:worker` (see `wrangler.worker.toml`).
+Set `SITE_URL=https://buydota2cheats.com` when generating sitemaps outside the default build.

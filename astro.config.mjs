@@ -4,7 +4,7 @@ import tailwind from '@astrojs/tailwind'
 import { sitemapBrowserViewPlugin } from './scripts/sitemap-browser-view.mjs'
 
 export default defineConfig({
-  site: 'https://buywardogscheats.net',
+  site: 'https://buydota2cheats.com',
   output: 'static',
   trailingSlash: 'never',
   compressHTML: true,
@@ -45,8 +45,11 @@ export default defineConfig({
             if (id.includes('node_modules/lucide-react')) {
               return 'icons'
             }
-            if (id.includes('/src/data/blogs')) {
-              return 'blogs-data'
+            if (id.includes('/src/data/forums')) {
+              return 'forums-data'
+            }
+            if (id.includes('/src/data/articles')) {
+              return 'articles-data'
             }
             if (id.includes('/src/data/forum-replies')) {
               return 'forum-replies'

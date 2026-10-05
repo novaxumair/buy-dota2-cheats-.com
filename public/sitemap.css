@@ -4,7 +4,7 @@
 
 :root {
   color-scheme: dark;
-  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-family: Cinzel, "Times New Roman", serif;
   background: #0d1117;
   color: #e6edf3;
   font-size: 15px;
@@ -19,7 +19,7 @@ sitemap|urlset {
 }
 
 sitemap|urlset::before {
-  content: "Wardogs Cheats — XML Sitemap\A Indexable pages for Google Search Console (buywardogscheats.net)\A\A Open the raw XML for crawlers; this styled view is for humans only.";
+  content: "Dota 2 Cheats — Site Map (XML)\A All indexable pages for Google Search Console: https://buydota2cheats.com\A\A Crawlers should use /sitemap.xml or /sitemap. This styled view is for people only. Each row is one public page on this site (Dota 2 Cheats only).";
   display: block;
   white-space: pre-wrap;
   margin-bottom: 24px;

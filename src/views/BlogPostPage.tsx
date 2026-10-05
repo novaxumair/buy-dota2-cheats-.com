@@ -1,7 +1,7 @@
 import { ArrowLeft, ArrowRight, Lock } from 'lucide-react'
 import { Navbar } from '../components/Navbar'
 import { SiteFooter } from '../components/SiteFooter'
-import { blogPath, getBlog, getRelatedForumThreads } from '../data/blogs'
+import { forumPath, getForumThread, getRelatedForumThreads } from '../data/forums'
 import { guidePath } from '../data/games'
 import { CheckoutLink } from '../components/CheckoutLink'
 import { SeoMedia } from '../components/SeoMedia'
@@ -23,7 +23,7 @@ function sectionId(heading: string) {
 }
 
 export function BlogPostPage({ slug }: BlogPostPageProps) {
-  const post = getBlog(slug)
+  const post = getForumThread(slug)
 
   if (!post) return <NotFoundPage />
 
@@ -59,12 +59,12 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
                 Forums
               </a>
               <span>/</span>
-              <span className="text-white/70">{post.tag}</span>
+              <span className="text-white/70">r/{post.community}</span>
             </nav>
 
             <div className="mt-6 flex flex-wrap items-center gap-2">
               <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/45">
-                {post.tag} · {post.date}
+                u/{post.author} · r/{post.community} · {post.date}
               </p>
               <span className="inline-flex items-center gap-1 rounded-full border border-amber-400/25 bg-amber-400/10 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-amber-100/90">
                 <Lock className="h-3 w-3" strokeWidth={2} aria-hidden />
@@ -78,7 +78,7 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
               {post.excerpt}
             </p>
 
-            <SeoMedia media={getForumMedia(post.slug)} className="mt-8" />
+            <SeoMedia media={getForumMedia(post.slug)} className="mt-8" showVideo={false} />
 
             <div className="mt-10 space-y-10">
               {post.sections.map((section) => (
@@ -148,11 +148,11 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
 
             <div className="page-card mt-12 rounded-2xl p-6 sm:p-8">
               <h2 className="text-lg font-semibold text-white">
-                Ready for Wardogs cheats?
+                Ready for Dota 2 Cheats?
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-white/55">
-                Check Active loader status, then continue to ESP, wallhack-style visuals, and optional
-                aimbot on {SITE_HOST}. Need help? Read{' '}
+                Check Active loader status, then continue to hero ESP, map hack, and timers on{' '}
+                {SITE_HOST}. Need help? Read{' '}
                 <a href="/support" className="text-white/80 underline-offset-2 hover:underline">
                   support
                 </a>{' '}
@@ -164,7 +164,7 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
               </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
-                  href={guidePath('wardogs')}
+                  href={guidePath('dota-2')}
                   className="inline-flex items-center justify-center rounded-full border border-white/15 px-5 py-2.5 text-sm font-medium text-white hover:bg-white/5"
                 >
                   Product details
@@ -201,7 +201,7 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
                 {related.map((b) => (
                   <a
                     key={b.slug}
-                    href={blogPath(b.slug)}
+                    href={forumPath(b.slug)}
                     className="page-card group flex h-full flex-col rounded-2xl p-5"
                   >
                     <div className="flex items-center justify-between gap-2">
@@ -225,7 +225,7 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
           </section>
         ) : null}
 
-        <SiteFooter currentPath={blogPath(post.slug)} />
+        <SiteFooter currentPath={forumPath(post.slug)} />
       </main>
     </div>
   )

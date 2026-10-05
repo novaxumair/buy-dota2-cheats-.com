@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { WD_HOME_VIDEO } from '../data/media'
+import { D2_HOME_VIDEO } from '../data/media'
 
 type ProductPreviewProps = {
   className?: string
@@ -30,14 +30,14 @@ export function ProductPreview({ className = '' }: ProductPreviewProps) {
           loop
           playsInline
           preload="auto"
-          poster={WD_HOME_VIDEO.poster}
-          aria-label={WD_HOME_VIDEO.title}
+          poster={D2_HOME_VIDEO.poster}
+          aria-label={D2_HOME_VIDEO.title}
         >
-          <source src={WD_HOME_VIDEO.src} type="video/webm" />
+          <source src={D2_HOME_VIDEO.src} type="video/webm" />
           <source src="/videos/hero.mp4" type="video/mp4" />
         </video>
       </div>
-      <p className="sr-only">{WD_HOME_VIDEO.title}</p>
+      <p className="sr-only">{D2_HOME_VIDEO.title}</p>
     </div>
   )
 }

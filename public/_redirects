@@ -1,5 +1,5 @@
 # Checkout (302 — not indexed as site content; see CheckoutLink)
-/checkout  https://zadeyo.com/go/UMAIR?to=%2Fproducts%2Fwardogs  302
+/checkout  https://zadeyo.com/go/UMAIR?to=%2Fproducts%2Fdota-2  302
 
 # Path aliases
 /refund/        /refunds       301
@@ -13,64 +13,48 @@
 /terms-of-service/ /terms      301
 
 # Primary SEO keyword variants → product or home
+/buy-dota-2-cheats  /   301
+/buy-dota-2-cheats/ /   301
+/buy-dota2-cheats   /dota-2-cheats   301
+/buy-dota2-cheats/  /dota-2-cheats   301
+/get-dota-2-cheats  /forums/complete-setup  301
+/get-dota-2-cheats/ /forums/complete-setup  301
+
+# Legacy Wardogs / template paths
+/wardogs-cheats    /dota-2-cheats   301
+/wardogs-cheats/   /dota-2-cheats   301
 /buy-wardogs-cheats  /   301
 /buy-wardogs-cheats/ /   301
-/buy-wardogs-cheat   /wardogs-cheats   301
-/buy-wardogs-cheat/  /wardogs-cheats   301
-/get-wardogs-cheats  /forums/complete-setup  301
-/get-wardogs-cheats/ /forums/complete-setup  301
-/wardogs-esp     /forums/esp-wallhack-guide  301
-/wardogs-esp/    /forums/esp-wallhack-guide  301
-/wardogs-cheats-lifetime /forums/wardogs-cheats-lifetime 301
-/wardogs-cheats-lifetime/ /forums/wardogs-cheats-lifetime 301
-/wardogs-anti-cheat /forums/game-patch-status 301
-/wardogs-anti-cheat/ /forums/game-patch-status 301
-
-# Legacy template paths → Wardogs product
-/the-isle-cheats    /wardogs-cheats   301
-/the-isle-cheats/   /wardogs-cheats   301
-/abi-cheats    /wardogs-cheats   301
-/abi-cheats/   /wardogs-cheats   301
-/dayz-cheats    /wardogs-cheats   301
-/dayz-cheats/   /wardogs-cheats   301
-/buy-the-isle-cheats  /   301
-/buy-the-isle-cheats/ /   301
+/the-isle-cheats    /dota-2-cheats   301
+/the-isle-cheats/   /dota-2-cheats   301
+/abi-cheats    /dota-2-cheats   301
+/abi-cheats/   /dota-2-cheats   301
+/dayz-cheats    /dota-2-cheats   301
+/dayz-cheats/   /dota-2-cheats   301
 
 /guides         /forums        301
 /guides/        /forums        301
 /features-list  /forums/features-list  301
 /setup          /forums/complete-setup 301
-/store          /wardogs-cheats 301
-/preview        /wardogs-cheats 301
-/status         /forums/load-status-checklist 301
+/store          /dota-2-cheats 301
+/preview        /dota-2-cheats 301
+# /status is a dedicated loader status page (see src/pages/status.astro)
 
 # Forum short-slug aliases
 /forums/setup         /forums/complete-setup     301
 /forums/features      /forums/features-list      301
-/forums/esp           /forums/esp-wallhack-guide 301
-/forums/aimbot        /forums/aimbot-settings    301
-/forums/vehicles      /forums/vehicle-esp-first  301
-/forums/radar         /forums/radar-recommended-config 301
-/forums/antivirus     /forums/disable-antivirus  301
-/forums/windows       /forums/windows-setup      301
+/forums/vac           /forums/vac-anticheat-safety 301
+/forums/esp           /forums/hero-esp-config    301
+/forums/map           /forums/map-hack-fog-config 301
 /forums/patch         /forums/game-patch-status  301
-/forums/status        /forums/load-status-checklist 301
 /forums/loader        /forums/loader-errors      301
-/forums/buy           /forums/buy-wardogs-cheats-safely 301
-/forums/lifetime      /forums/wardogs-cheats-lifetime 301
+/forums/buy           /forums/buy-dota-2-cheats-safely 301
+/forums/lifetime      /forums/dota-2-cheats-lifetime 301
 
-# Legacy slugs → forums
-/articles       /forums        301
-/articles/      /forums        301
-/articles/*     /forums        301
-/blog/instructions       /forums/complete-setup#1-confirm-status-and-checkout  301
-/blog/how-to-load        /forums/complete-setup#3-load-order       301
-/forums/instructions     /forums/complete-setup#1-confirm-status-and-checkout  301
-/forums/instructions/    /forums/complete-setup#1-confirm-status-and-checkout  301
-/forums/how-to-load      /forums/complete-setup#3-load-order       301
-/forums/how-to-load/     /forums/complete-setup#3-load-order       301
-/blog/:slug/    /forums/:slug  301
-/blog/:slug     /forums/:slug  301
+# Legacy blog → new blog (do not send to forums)
+/articles       /blog        301
+/articles/      /blog        301
+/articles/*     /blog        301
 
 # Alternate sitemap URLs
 /sitemap-pages.xml     /sitemap.xml  301

@@ -2,7 +2,7 @@ import { useEffect, useId, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import type { KeyboardEvent, SyntheticEvent } from 'react'
 import { ArrowRight, Search } from 'lucide-react'
-import { blogPath } from '../data/blogs'
+import { forumPath } from '../data/blog-paths'
 import { FORUM_INDEX } from '../data/forum-index'
 import { GAMES, guidePath } from '../data/games'
 
@@ -30,7 +30,7 @@ export function HeroSearch({
   value,
   onChange,
   submitTo = 'forums',
-  placeholder = 'Search Wardogs cheat guides…',
+  placeholder = 'Search Dota 2 forum threads…',
   autoFocus = false,
   className = '',
 }: HeroSearchProps) {
@@ -104,7 +104,7 @@ export function HeroSearch({
     const post = forumMatches[index]
     if (!post) return
     setOpen(false)
-    window.location.assign(blogPath(post.slug))
+    window.location.assign(forumPath(post.slug))
   }
 
   function submit(e?: SyntheticEvent) {
@@ -120,7 +120,7 @@ export function HeroSearch({
       (post) => post.title.toLowerCase() === term.toLowerCase(),
     )
     if (exactForum) {
-      window.location.assign(blogPath(exactForum.slug))
+      window.location.assign(forumPath(exactForum.slug))
       return
     }
 

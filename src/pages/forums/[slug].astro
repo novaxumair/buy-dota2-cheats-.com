@@ -1,44 +1,41 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { BlogPostPage } from '../../views/BlogPostPage'
-import { BLOGS, blogPath, getBlog } from '../../data/blogs'
+import { FORUM_THREADS, getForumThread } from '../../data/forums'
+import { forumPath } from '../../data/blog-paths'
 import { SEO, SITE_URL, type PageSeo } from '../../data/site'
-import { getForumMedia } from '../../data/media'
-
 export function getStaticPaths() {
-  return BLOGS.map((post) => ({
+  return FORUM_THREADS.map((post) => ({
     params: { slug: post.slug },
   }))
 }
 
 const { slug } = Astro.params
-const post = getBlog(slug!)
+const post = getForumThread(slug!)
 
 if (!post) {
   return Astro.redirect('/404')
 }
 
-const media = getForumMedia(post.slug)
 const absoluteMedia = (path: string) => `${SITE_URL}${path}`
 const ogImage = `/og/forums-${post.slug}.jpg`
-const pageUrl = `${SITE_URL}${blogPath(post.slug)}`
+const pageUrl = `${SITE_URL}${forumPath(post.slug)}`
 
 const SEO_BY_SLUG: Partial<Record<string, PageSeo>> = {
   'features-list': SEO.features,
   'complete-setup': SEO.setup,
-  'load-status-checklist': SEO.status,
 }
 
 const seoOverride = SEO_BY_SLUG[post.slug]
 const seo: PageSeo = seoOverride
-  ? { ...seoOverride, image: ogImage, imageAlt: `${post.title} — Wardogs cheats gameplay guide screenshot` }
+  ? { ...seoOverride, image: ogImage, imageAlt: `${post.title} — Dota 2 cheats forum thread` }
   : {
       title: post.metaTitle,
       description: post.metaDescription,
-      path: blogPath(post.slug),
+      path: forumPath(post.slug),
       ogType: 'article',
       image: ogImage,
-      imageAlt: `${post.title} — Wardogs cheats gameplay guide screenshot`,
+      imageAlt: `${post.title} — Dota 2 cheats forum thread`,
       robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
     }
 
@@ -88,19 +85,6 @@ const jsonLdExtra = [
     articleSection: post.tag,
   },
   ...(howToLd ? [howToLd] : []),
-  ...(media.video
-    ? [
-        {
-          '@type': 'VideoObject',
-          name: media.videoTitle || media.title,
-          description: media.videoDescription || media.caption,
-          thumbnailUrl: absoluteMedia('/media/wd-video-thumb.jpg'),
-          contentUrl: absoluteMedia(media.video),
-          uploadDate: post.date,
-          isFamilyFriendly: true,
-        },
-      ]
-    : []),
   {
     '@type': 'BreadcrumbList',
     itemListElement: [

@@ -7,9 +7,9 @@ export type Game = {
   popular?: boolean
 }
 
-/** Site is Wardogs cheats only — no other titles. */
+/** Site is Dota 2 cheats only — no other titles. */
 export const GAMES: Game[] = [
-  { slug: 'wardogs', name: 'Wardogs', status: 'Active', popular: true },
+  { slug: 'dota-2', name: 'Dota 2', status: 'Active', popular: true },
 ]
 
 export function getGame(slug: string) {
@@ -27,78 +27,48 @@ export function parseGuideSlug(param: string) {
 
 export const PRODUCT_FEATURE_GROUPS = [
   {
-    name: 'Aimbot Options',
+    name: 'Dota 2 Cheats modules',
     items: [
-      'Enable Aimbot',
-      'FOV',
-      'Smooth',
-      'Bone Selection',
-      'Visible Check',
-      'Prediction',
-      'Draw FOV',
-      'Draw Target Line',
-    ],
-  },
-  {
-    name: 'Player Visual Options',
-    items: [
-      'Box',
-      'Skeleton',
-      'Head Circle',
-      'Health Bar',
-      'Distance',
-      'Name',
-      'Team / Squad',
-      'Weapon',
-      'View Direction',
-      'OOF Arrows',
-      'Max Distance',
-    ],
-  },
-  {
-    name: 'Vehicle Visual Options',
-    items: ['Vehicle ESP', 'Vehicle Type', 'Vehicle Distance', 'Occupied / Empty'],
-  },
-  {
-    name: 'Radar Options',
-    items: ['2D Radar', 'Player Markers', 'Vehicle Markers', 'Radar Range'],
-  },
-  {
-    name: 'Misc Options',
-    items: [
-      'No Recoil',
-      'No Spread',
-      'Full Bright',
-      'Custom Crosshair',
-      'Config System (Save / Load)',
+      'Hero ESP with items and level',
+      'Full map hack - Remove fog of war',
+      'Ability cooldown tracker',
+      'Creep spawn timers',
+      'Rune spawn indicators',
+      'Last hit prediction helper',
+      'Auto-dodge skillshots',
+      'Ward placement ESP',
+      'Roshan timer',
+      'Enemy inventory ESP',
+      'Performance optimized',
+      '24/7 Support',
     ],
   },
 ] as const
 
 export const GUIDE_FEATURES = [
   {
-    name: 'Precision aimbot',
-    text: 'Enable aimbot with FOV, smooth, bone selection, visible check, prediction, draw FOV, and draw target line for control-zone fights.',
+    name: 'Hero ESP',
+    text: 'Track enemy heroes with item readouts and level tags so you know power spikes before they walk into your lane.',
   },
   {
-    name: 'Player ESP stack',
-    text: 'Box, skeleton, head circle, health bar, distance, name, team/squad, weapon, view direction, OOF arrows, and max distance for three-team lobbies.',
+    name: 'Full map vision',
+    text: 'Remove fog of war for strategic awareness — pair with ward ESP so you still respect true vision and smoke plays.',
   },
   {
-    name: 'Vehicle intel',
-    text: 'Vehicle ESP with type labels, distance readouts, and occupied/empty state before you push a mountain road or extract lane.',
+    name: 'Timers & prediction',
+    text: 'Creep spawn timers, rune indicators, roshan timer, and last-hit prediction helper keep your farm and objective tempo on schedule.',
   },
   {
-    name: '2D radar',
-    text: 'Player and vehicle markers with adjustable radar range — pair with ESP when vehicles rotate around the control zone.',
+    name: 'Teamfight tools',
+    text: 'Ability cooldown tracker and auto-dodge skillshots widen reaction windows without replacing game sense.',
   },
   {
-    name: 'Misc combat tuning',
-    text: 'No recoil, no spread, full bright, custom crosshair, and save/load configs for different squad roles.',
+    name: 'Inventory intel',
+    text: 'Enemy inventory ESP surfaces key items (BKB, blink, smoke) before engagements.',
   },
   {
     name: 'Windows PC · Steam',
-    text: 'Built for Wardogs on Windows 10 and 11 via Steam when loader status is Active. Elytra Anti-Cheat compatibility is tracked on our status page.',
+    text: 'Built for Dota 2 on Windows 10 and 11 via Steam when loader status is Active. Valve Anti-Cheat (VAC) compatibility is tracked on our status threads.',
   },
 ] as const
 

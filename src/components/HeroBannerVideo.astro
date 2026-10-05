@@ -2,7 +2,7 @@
 /** Native hero video — must stay opaque (no VP9 alpha) for Chrome background playback. */
 const webm = '/videos/hero.webm'
 const mp4 = '/videos/hero.mp4'
-const label = 'Wardogs gameplay preview with dinosaur ESP overlays'
+const label = 'Dota 2 gameplay preview with hero ESP and map vision overlays'
 ---
 
 <div
@@ -26,11 +26,11 @@ const label = 'Wardogs gameplay preview with dinosaur ESP overlays'
   <div class="hero-video-tint pointer-events-none absolute inset-0 z-[2]" aria-hidden="true"></div>
   <div class="hero-video-tint-glow pointer-events-none absolute inset-0 z-[2]" aria-hidden="true"></div>
   <div
-    class="absolute inset-x-0 bottom-0 z-[3] h-40 bg-gradient-to-t from-z-bg via-z-bg/80 to-transparent"
+    class="pointer-events-none absolute inset-x-0 bottom-0 z-[3] h-40 bg-gradient-to-t from-z-bg via-z-bg/80 to-transparent"
     aria-hidden="true"
   ></div>
   <div
-    class="absolute inset-x-0 top-0 z-[3] h-24 bg-gradient-to-b from-z-bg/70 to-transparent"
+    class="pointer-events-none absolute inset-x-0 top-0 z-[3] h-24 bg-gradient-to-b from-z-bg/70 to-transparent"
     aria-hidden="true"
   ></div>
 </div>

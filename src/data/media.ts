@@ -1,103 +1,101 @@
-export type SeoMediaItem = {
-  image: string
-  video?: string
-  alt: string
-  title: string
-  caption: string
-  videoTitle?: string
-  videoDescription?: string
-}
+/**
+ * First-party Dota 2 Cheats media paths and page SEO fields.
+ */
 
-export const WD_HERO = '/media/wd-hero-full.webp'
-export const WD_COVER = '/media/wd-cover.webp'
-/** Official WARDOGS key art (first-party hosted copy for the store card). */
-export const WD_GAME_COVER = '/media/wd-game-cover.webp'
-export const WD_MENU = '/media/wd-menu.webp'
-export const WD_VIDEO_THUMB = '/media/wd-video-thumb.jpg'
+export const D2_HERO = '/media/d2-hero-full.webp'
+export const D2_COVER = '/media/d2-cover.webp'
+/** Dota 2 key art from IGN — store / purchase card. */
+export const D2_IGN_COVER = '/media/d2-ign-cover.webp'
+export const D2_GAME_COVER = D2_IGN_COVER
+export const D2_MENU = '/media/d2-menu.webp'
+export const D2_VIDEO_THUMB = '/media/d2-video-thumb.jpg'
 
-export const WD_HOME_VIDEO = {
+export const D2_HOME_VIDEO = {
   src: '/videos/hero.webm',
-  poster: WD_VIDEO_THUMB,
-  title: 'Wardogs cheats gameplay preview with aimbot, player ESP, and 2D radar',
+  poster: D2_VIDEO_THUMB,
+  title: 'Dota 2 cheats gameplay preview with hero ESP, map hack, and timers',
   caption:
-    'Preview of Wardogs aimbot, player ESP, vehicle ESP, radar markers, and control-zone fights on Windows PC.',
+    'Preview of Dota 2 hero ESP, fog removal, rune timers, and teamfight overlays on Windows PC.',
 } as const
 
-export const SCREENSHOT_COUNT = 10
-
-function shot(n: number) {
-  return `/media/wd-screenshot-${n}.webp`
+export function shot(n: number) {
+  return `/media/d2-screenshot-${n}.webp`
 }
 
-/** Product page gameplay preview carousel. */
-export const PRODUCT_PREVIEW_GALLERY = [
-  { src: shot(1), alt: 'Wardogs player ESP box and skeleton through doorway at 20m' },
-  { src: shot(2), alt: 'Wardogs ESP on train yard with box, skeleton, and distance tags' },
-  { src: shot(3), alt: 'Wardogs indoor fight with green box ESP and health bar' },
-  { src: shot(4), alt: 'Wardogs aimbot view through optic with multi-target ESP labels' },
-  { src: shot(5), alt: 'Wardogs warehouse fight with purple and green player boxes' },
-  { src: shot(6), alt: 'Wardogs ADS with skeleton ESP and radar mini-map' },
-  { src: shot(7), alt: 'Wardogs outdoor control zone with name and distance ESP' },
-  { src: shot(8), alt: 'Wardogs red-dot sight tracking enemies with team ESP colors' },
-  { src: shot(9), alt: 'Wardogs stone wall peek with cyan and green player ESP' },
-  { src: shot(10), alt: 'Wardogs headshot kill with box ESP and 2D radar' },
+/** Stable gameplay thumb per blog slug (screenshots 1–10). */
+export function articleThumbnail(slug: string) {
+  let h = 0
+  for (let i = 0; i < slug.length; i++) h = (h * 31 + slug.charCodeAt(i)) >>> 0
+  return shot(1 + (h % 10))
+}
+
+export const GALLERY_SHOTS = [
+  { src: shot(1), alt: 'Dota 2 hero ESP with item and level tags on enemy offlaner' },
+  { src: shot(2), alt: 'Dota 2 map vision and ward ESP during mid-game rotation' },
+  { src: shot(3), alt: 'Dota 2 ability cooldown tracker in a teamfight' },
+  { src: shot(4), alt: 'Dota 2 rune spawn indicator and creep timer overlay' },
+  { src: shot(5), alt: 'Dota 2 last-hit helper and GPM-focused lane farm' },
+  { src: shot(6), alt: 'Dota 2 roshan timer callout with inventory ESP' },
+  { src: shot(7), alt: 'Dota 2 fog removal with readable map hack opacity' },
+  { src: shot(8), alt: 'Dota 2 autohook script assist during lane skirmish' },
+  { src: shot(9), alt: 'Dota 2 skillshot dodger overlay in teamfight' },
+  { src: shot(10), alt: 'Dota 2 rune and objective timer abuse helper in match' },
 ] as const
+
+/** Product page marquee gallery */
+export const PRODUCT_PREVIEW_GALLERY = GALLERY_SHOTS
 
 export const PAGE_MEDIA = {
   home: {
-    image: WD_HERO,
-    alt: 'Wardogs cheats gameplay with aimbot, box ESP, and skeleton overlays',
-    title: 'Wardogs Cheats',
-    caption: 'Aimbot, player ESP, vehicle ESP, and 2D radar for control-zone fights.',
+    image: D2_HERO,
+    alt: 'Dota 2 cheats gameplay with hero ESP and map vision overlays',
+    title: 'Dota 2 Cheats',
+    caption: 'Hero ESP, map hack, timers, and inventory intel for Dota 2 on PC.',
   },
   product: {
-    image: WD_COVER,
-    video: WD_HOME_VIDEO.src,
-    alt: 'Wardogs cheats store — aimbot, ESP, and radar in live matches',
-    title: 'Wardogs Store',
-    caption: 'Full module list and plans for Wardogs on Windows PC.',
-    videoTitle: WD_HOME_VIDEO.title,
-    videoDescription: WD_HOME_VIDEO.caption,
+    image: D2_COVER,
+    video: D2_HOME_VIDEO.src,
+    alt: 'Dota 2 Cheats store — ESP, map hack, and timers in live matches',
+    title: 'Dota 2 Cheats Store',
+    caption: 'Full module list and plans for Dota 2 on Windows PC.',
+    videoTitle: D2_HOME_VIDEO.title,
+    videoDescription: D2_HOME_VIDEO.caption,
   },
   forums: {
     image: shot(4),
-    alt: 'Wardogs ESP and aimbot gameplay screenshot from intel guides',
-    title: 'Wardogs Intel',
-    caption: 'Setup threads for aimbot, ESP, radar, and loader help.',
+    alt: 'Dota 2 ESP gameplay screenshot from community forums',
+    title: 'Dota 2 Cheats Forums',
+    caption: 'VAC safety, setup, ESP configs, and loader help.',
   },
   reviews: {
     image: shot(2),
-    alt: 'Wardogs cheats review screenshot with box and skeleton ESP',
-    title: 'Wardogs Cheats Reviews',
-    caption: 'Buyer feedback on aimbot, ESP, and radar after patches.',
+    alt: 'Dota 2 cheats review screenshot with ESP overlays',
+    title: 'Dota 2 Cheats Reviews',
+    caption: 'Buyer feedback on map vision, timers, and loader stability.',
   },
   faq: {
-    image: shot(9),
-    alt: 'Wardogs player ESP overlay screenshot for FAQ',
-    title: 'Wardogs FAQ',
-    caption: 'Compatibility, pricing, Elytra updates, and setup answers.',
+    image: shot(8),
+    alt: 'Dota 2 hero ESP overlay screenshot for FAQ',
+    title: 'Dota 2 Cheats FAQ',
+    caption: 'Compatibility, pricing, VAC notes, and setup answers.',
   },
   support: {
     image: shot(6),
-    alt: 'Wardogs cheat support screenshot with ESP and radar HUD',
-    title: 'Wardogs Support',
-    caption: 'Discord support, delivery, and Windows troubleshooting.',
+    alt: 'Dota 2 cheat support screenshot with menu HUD',
+    title: 'Dota 2 Cheats Support',
+    caption: 'Delivery, loader errors, and configuration help.',
   },
-} as const satisfies Record<string, SeoMediaItem>
+} as const
 
-function forumMediaFromSlug(slug: string): SeoMediaItem {
+export function getForumMedia(slug: string) {
   let h = 0
   for (let i = 0; i < slug.length; i++) h = (h * 31 + slug.charCodeAt(i)) >>> 0
-  const n = 1 + (h % SCREENSHOT_COUNT)
+  const n = 1 + (h % 10)
   const title = slug.replace(/-/g, ' ')
   return {
     image: shot(n),
-    alt: `Wardogs intel guide — ${title} gameplay screenshot`,
-    title: `Wardogs intel — ${title}`,
-    caption: 'In-game ESP and radar reference for this guide.',
+    alt: `Dota 2 cheats guide — ${title} gameplay screenshot`,
+    title: `Dota 2 Cheats — ${title}`,
+    caption: `Forum thread imagery for ${title} on buydota2cheats.com.`,
   }
-}
-
-export function getForumMedia(slug: string): SeoMediaItem {
-  return forumMediaFromSlug(slug)
 }

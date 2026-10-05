@@ -14,7 +14,7 @@ import {
 } from '../data/site'
 import { getReviewsAggregate, REVIEWS } from '../data/reviews'
 import type { GameStatus } from '../data/games'
-import { WD_HOME_VIDEO, PAGE_MEDIA } from '../data/media'
+import { D2_HOME_VIDEO, PAGE_MEDIA } from '../data/media'
 
 export const PRODUCT_ID = `${SITE_URL}/#product`
 
@@ -63,7 +63,7 @@ export function siteIdentityGraph() {
       inLanguage: 'en',
       about: {
         '@type': 'Thing',
-        name: 'Wardogs Cheats',
+        name: 'Dota 2 Cheats',
         description: SITE_PURPOSE,
       },
       publisher: { '@id': `${SITE_URL}/#organization` },
@@ -84,7 +84,9 @@ export function webPageNode(seo: PageSeo) {
     inLanguage: 'en',
   } as Record<string, unknown>
   const hasVisibleImage =
-    ['/', '/wardogs-cheats', '/forums'].includes(seo.path) || seo.path.startsWith('/forums/')
+    ['/', '/dota-2-cheats', '/blog', '/forums'].includes(seo.path) ||
+    seo.path.startsWith('/forums/') ||
+    seo.path.startsWith('/blog/')
   const hasOgImage = Boolean(seo.image)
   if (hasVisibleImage || hasOgImage) {
     page.primaryImageOfPage = {
@@ -103,12 +105,12 @@ export function productCoreJsonLd() {
   return {
     '@type': 'Product',
     '@id': PRODUCT_ID,
-    name: 'Wardogs Cheats',
-    alternateName: ['Wardogs Cheats', 'wardogs cheats'],
+    name: 'Dota 2 Cheats',
+    alternateName: ['Dota 2 Cheats', 'dota 2 cheats'],
     description: PRODUCT_SCHEMA_DESCRIPTION,
-    url: `${SITE_URL}/wardogs-cheats`,
+    url: `${SITE_URL}/dota-2-cheats`,
     image: [
-      absoluteAsset('/og/wardogs-cheats.jpg'),
+      absoluteAsset('/og/dota-2-cheats.jpg'),
       absoluteAsset('/og/home.jpg'),
       absoluteAsset(PAGE_MEDIA.product.image),
       absoluteAsset(PAGE_MEDIA.home.image),
@@ -116,13 +118,13 @@ export function productCoreJsonLd() {
     brand: { '@type': 'Brand', name: SITE_NAME },
     manufacturer: { '@id': `${SITE_URL}/#organization` },
     category: 'PC game software',
-    offers: baseOffer(`${SITE_URL}/wardogs-cheats`, 'https://schema.org/InStock'),
+    offers: baseOffer(`${SITE_URL}/dota-2-cheats`, 'https://schema.org/InStock'),
     subjectOf: {
       '@type': 'VideoObject',
-      name: WD_HOME_VIDEO.title,
-      description: WD_HOME_VIDEO.caption,
-      thumbnailUrl: absoluteAsset(WD_HOME_VIDEO.poster),
-      contentUrl: absoluteAsset(WD_HOME_VIDEO.src),
+      name: D2_HOME_VIDEO.title,
+      description: D2_HOME_VIDEO.caption,
+      thumbnailUrl: absoluteAsset(D2_HOME_VIDEO.poster),
+      contentUrl: absoluteAsset(D2_HOME_VIDEO.src),
       uploadDate: '2026-09-16',
       inLanguage: 'en',
     },
@@ -134,12 +136,12 @@ export function productDetailJsonLd(status: GameStatus) {
     status === 'Active' ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock'
   return {
     ...productCoreJsonLd(),
-    url: `${SITE_URL}/wardogs-cheats`,
+    url: `${SITE_URL}/dota-2-cheats`,
     image: absoluteAsset(PAGE_MEDIA.product.image),
     about: {
       '@type': 'VideoGame',
-      name: 'Wardogs',
-      alternateName: ['Wardogs'],
+      name: 'Dota 2',
+      alternateName: ['Dota 2'],
       gamePlatform: 'PC',
     },
     additionalProperty: [
@@ -147,17 +149,17 @@ export function productDetailJsonLd(status: GameStatus) {
       {
         '@type': 'PropertyValue',
         name: 'Features',
-        value: 'Aimbot, player ESP, vehicle ESP, 2D radar, no recoil, no spread, configs',
+        value: 'Hero ESP, map hack, cooldown tracker, creep/rune timers, last-hit helper, ward ESP',
       },
       {
         '@type': 'PropertyValue',
         name: 'Clients',
         value: 'Steam',
       },
-      { '@type': 'PropertyValue', name: 'Anti-cheat', value: 'Elytra Anti-Cheat' },
+      { '@type': 'PropertyValue', name: 'Anti-cheat', value: 'Valve Anti-Cheat (VAC)' },
       { '@type': 'PropertyValue', name: 'Status', value: status },
     ],
-    offers: baseOffer(`${SITE_URL}/wardogs-cheats`, availability),
+    offers: baseOffer(`${SITE_URL}/dota-2-cheats`, availability),
   }
 }
 
@@ -165,7 +167,7 @@ export function productReviewsJsonLd() {
   const aggregate = getReviewsAggregate()
   return {
     ...productCoreJsonLd(),
-    url: `${SITE_URL}/wardogs-cheats`,
+    url: `${SITE_URL}/dota-2-cheats`,
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: aggregate.ratingValue,
