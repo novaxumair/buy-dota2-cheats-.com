@@ -58,16 +58,16 @@
 /articles/      /blog        301
 /articles/*     /blog        301
 
-# Canonical sitemap (extensionless → .xml for Google Search Console)
-/sitemap               /sitemap.xml  301
+# Canonical sitemap (extensionless — Cloudflare serves application/xml; .xml URLs often become text/xml)
+/sitemap.xml           /sitemap  301
+/sitemap.xml/          /sitemap  301
 
 # Alternate sitemap URLs
-/sitemap-pages.xml     /sitemap.xml  301
-/sitemap-products.xml  /sitemap.xml  301
-/sitemap-forums.xml    /sitemap.xml  301
-/sitemap-images.xml    /sitemap.xml  301
-/sitemap-blogs.xml     /sitemap.xml  301
-/sitemap-regions.xml   /sitemap.xml  301
-/sitemap-index.xml     /sitemap.xml  301
-/sitemap_index.xml     /sitemap.xml  301
-/sitemap.xml/          /sitemap.xml  301
+/sitemap-pages.xml     /sitemap  301
+/sitemap-products.xml  /sitemap  301
+/sitemap-forums.xml    /sitemap  301
+/sitemap-images.xml    /sitemap  301
+/sitemap-blogs.xml     /sitemap  301
+/sitemap-regions.xml   /sitemap  301
+/sitemap-index.xml     /sitemap  301
+/sitemap_index.xml     /sitemap  301

@@ -1,5 +1,5 @@
 # Dota 2 Cheats — plain URL list (buydota2cheats.com)
-# One URL per line for humans and tools. Canonical sitemap for Google: /sitemap.xml
+# One URL per line for humans and tools. Canonical sitemap for Google: /sitemap
 
 https://buydota2cheats.com/	[Homepage] Dota 2 Cheats home
 https://buydota2cheats.com/blog	[Blog index] Blog index

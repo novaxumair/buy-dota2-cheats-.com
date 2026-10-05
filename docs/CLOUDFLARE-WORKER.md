@@ -19,7 +19,7 @@ Requires `CLOUDFLARE_API_TOKEN` (Workers Scripts Edit) or `wrangler login`.
 
 ## Cloudflare dashboard (Workers Builds / Git)
 
-**Workers & Pages → Workers → buydota2cheats-worker → Settings → Builds**
+**Workers & Pages → Workers → buy-dota2-cheats--com → Settings → Builds**
 
 | Setting | Value |
 |---------|--------|
@@ -43,8 +43,8 @@ Large first uploads (videos/media in `dist/`) can take **5–15 minutes** — wa
 
 ## Custom domain
 
-1. **Workers & Pages → Workers → buydota2cheats-worker → Settings → Domains & routes**
-2. Add route: **`buydota2cheats.com/*`** (and optionally **`www.buydota2cheats.com/*`** — Worker 301s www → apex).
+1. **Workers & Pages → Workers → buy-dota2-cheats--com → Settings → Domains & routes**
+2. Add routes: **`buydota2cheats.com/*`** and **`www.buydota2cheats.com/*`** (required — Worker 301s www → apex).
 3. **Do not** attach the same hostname to a **Pages** project at the same time.
 
 ## After deploy
@@ -53,7 +53,7 @@ Large first uploads (videos/media in `dist/`) can take **5–15 minutes** — wa
 npm run verify:live-sitemap
 ```
 
-Response should be **`text/xml`**, **no** `Access-Control-Allow-Origin: *`, and sitemap **`lastmod`** should match your latest build.
+Response should be **`application/xml`**, **no** `Access-Control-Allow-Origin: *`, www must **301** to apex, and sitemap **`lastmod`** should match your latest build.
 
 ## Config file
 

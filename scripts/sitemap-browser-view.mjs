@@ -8,10 +8,17 @@ import { join } from 'node:path'
 export function sitemapBrowserViewPlugin(root = process.cwd()) {
   const files = new Map([
     [
+      '/sitemap',
+      {
+        path: join(root, 'public', 'sitemap'),
+        type: 'application/xml; charset=utf-8',
+      },
+    ],
+    [
       '/sitemap.xml',
       {
         path: join(root, 'public', 'sitemap.xml'),
-        type: 'text/xml; charset=utf-8',
+        type: 'application/xml; charset=utf-8',
       },
     ],
     [

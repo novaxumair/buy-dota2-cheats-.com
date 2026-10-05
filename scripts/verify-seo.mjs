@@ -282,20 +282,20 @@ for (const stale of [
 }
 
 if (!existsSync(join(dist, 'sitemap.xml'))) fail('dist/sitemap.xml is missing')
-if (existsSync(join(dist, 'sitemap'))) {
-  fail('dist/sitemap must not exist — use /sitemap → /sitemap.xml redirect only')
-}
+if (!existsSync(join(dist, 'sitemap'))) fail('dist/sitemap (extensionless) is missing')
+const sitemapExtless = readFileSync(join(dist, 'sitemap'), 'utf8')
+if (sitemapExtless !== sitemap) fail('dist/sitemap must match dist/sitemap.xml byte-for-byte')
 if (!existsSync(join(dist, 'robots.txt'))) fail('dist/robots.txt is missing')
 if (existsSync(join(dist, '_routes.json'))) {
   fail('dist/_routes.json must not route sitemap through Pages Functions (GSC parse errors)')
 }
 
 const robots = readFileSync(join(dist, 'robots.txt'), 'utf8')
-if (!robots.includes('Sitemap: https://buydota2cheats.com/sitemap.xml')) {
-  fail('robots.txt must point at the canonical HTTPS sitemap (/sitemap.xml)')
+if (!robots.includes('Sitemap: https://buydota2cheats.com/sitemap')) {
+  fail('robots.txt must point at the extensionless HTTPS sitemap (/sitemap)')
 }
-if (robots.includes('Sitemap: https://buydota2cheats.com/sitemap\n') || robots.includes('Sitemap: https://buydota2cheats.com/sitemap\r')) {
-  fail('robots.txt must not list extensionless /sitemap (use /sitemap.xml only)')
+if (robots.includes('Sitemap: https://buydota2cheats.com/sitemap.xml')) {
+  fail('robots.txt must not list /sitemap.xml (canonical is extensionless /sitemap)')
 }
 if (!robots.includes('Allow: /sitemap')) {
   fail('robots.txt must explicitly allow /sitemap')
@@ -315,15 +315,15 @@ for (const fn of ['functions/sitemap.js', 'functions/sitemap.xml.js']) {
   if (src.includes('SITEMAP_XML')) {
     fail(`${fn} must not embed XML — use ASSETS.fetch(dist/sitemap.xml)`)
   }
-  if (fn.endsWith('sitemap.xml.js')) {
-    if (!src.includes('ASSETS.fetch')) fail(`${fn} must proxy static dist/sitemap.xml via ASSETS`)
-    if (!src.includes('text/xml; charset=utf-8')) fail(`${fn} must return text/xml; charset=utf-8`)
+  if (fn.endsWith('sitemap.js')) {
+    if (!src.includes('ASSETS.fetch')) fail(`${fn} must proxy static dist/sitemap via ASSETS`)
+    if (!src.includes('application/xml; charset=utf-8')) fail(`${fn} must return application/xml; charset=utf-8`)
     if (src.includes('Access-Control-Allow-Origin')) {
       fail(`${fn} must not set Access-Control-Allow-Origin (GSC parse issues)`)
     }
   }
-  if (fn.endsWith('sitemap.js') && !src.includes('Response.redirect')) {
-    fail('functions/sitemap.js must 301 redirect to /sitemap.xml')
+  if (fn.endsWith('sitemap.xml.js') && !src.includes("new URL('/sitemap'")) {
+    fail('functions/sitemap.xml.js must 301 redirect to /sitemap')
   }
 }
 
@@ -376,8 +376,11 @@ if (!worker.includes('301')) {
 if (/set\s*\(\s*['"]access-control-allow-origin['"]/i.test(worker)) {
   fail('workers/site.js must not set Access-Control-Allow-Origin on sitemap (GSC)')
 }
-if (!worker.includes("'content-type', 'text/xml; charset=utf-8'") && !worker.includes('"content-type", "text/xml; charset=utf-8"')) {
-  fail('workers/site.js must serve /sitemap.xml as text/xml; charset=utf-8')
+if (
+  !worker.includes("'content-type', 'application/xml; charset=utf-8'") &&
+  !worker.includes('"content-type", "application/xml; charset=utf-8"')
+) {
+  fail('workers/site.js must serve /sitemap.xml as application/xml; charset=utf-8')
 }
 
 if (site.includes('://www.')) {
@@ -402,17 +405,17 @@ if (!headers.includes('Content-Type: text/html; charset=utf-8')) {
 if (/^\/\r?\n\s*Content-Type: text\/html/m.test(headers)) {
   fail('_headers must not set Content-Type: text/html on / (overrides sitemap for Googlebot)')
 }
-if (!headers.includes('/sitemap.xml')) {
-  fail('_headers missing /sitemap.xml Content-Type')
+if (!/^\/sitemap\s*$/m.test(headers)) {
+  fail('_headers missing /sitemap Content-Type (canonical GSC URL)')
 }
-if (!headers.includes('text/xml; charset=utf-8')) {
-  fail('_headers must set text/xml; charset=utf-8 for /sitemap.xml (GSC on Cloudflare)')
+if (!headers.includes('application/xml; charset=utf-8')) {
+  fail('_headers must set application/xml; charset=utf-8 for /sitemap (GSC)')
 }
 if (sitemap.includes('<changefreq>') || sitemap.includes('<priority>')) {
   fail('sitemap.xml must only use <loc> and <lastmod> (GSC compatibility)')
 }
-if (!/^\/sitemap\s+\/sitemap\.xml\s+301/m.test(redirects)) {
-  fail('_redirects must 301 /sitemap → /sitemap.xml')
+if (!/^\/sitemap\.xml\s+\/sitemap\s+301/m.test(redirects)) {
+  fail('_redirects must 301 /sitemap.xml → /sitemap')
 }
 
 if (failures.length) {
