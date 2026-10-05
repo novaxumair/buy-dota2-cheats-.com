@@ -291,11 +291,8 @@ if (existsSync(join(dist, '_routes.json'))) {
 }
 
 const robots = readFileSync(join(dist, 'robots.txt'), 'utf8')
-if (!robots.includes('Sitemap: https://buydota2cheats.com/sitemap')) {
-  fail('robots.txt must point at the extensionless HTTPS sitemap (/sitemap)')
-}
-if (robots.includes('Sitemap: https://buydota2cheats.com/sitemap.xml')) {
-  fail('robots.txt must not list /sitemap.xml (canonical is extensionless /sitemap)')
+if (!robots.includes('Sitemap: https://buydota2cheats.com/sitemap.xml')) {
+  fail('robots.txt must point at https://buydota2cheats.com/sitemap.xml')
 }
 if (!robots.includes('Allow: /sitemap')) {
   fail('robots.txt must explicitly allow /sitemap')

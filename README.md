@@ -35,7 +35,7 @@ Bare **`npx wrangler deploy`** (postinstall shim) also runs Worker deploy.
 
 Full troubleshooting: **[docs/GOOGLE-SEARCH-CONSOLE.md](docs/GOOGLE-SEARCH-CONSOLE.md)**.
 
-- Submit **`sitemap`** or **`sitemap.xml`** in GSC (both **200 OK**; delete failed rows before resubmitting).
+- **Domain property:** submit full URL **`https://buydota2cheats.com/sitemap.xml`** in **Sitemaps** (not URL Inspection; not filename-only `sitemap.xml`). Remove failed rows first.
 - Sitemap bytes live in **`dist/sitemap`** and **`dist/sitemap.xml`** (`<loc>` + `<lastmod>`). Pages Functions only proxy those files via `ASSETS.fetch` (never embed XML in JS).
 - **Production must redeploy after every sitemap fix.** If `npm run verify:live-sitemap` mentions a legacy Function, Cloudflare is still on an old deployment — trigger **Pages → Deployments → Retry** or push to `main` with GitHub Actions secrets `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID`.
 - Cloudflare Pages **build command** must be `npm run build` (not `astro build` alone). Disable duplicate deploy if you use `.github/workflows/cloudflare-pages.yml`.

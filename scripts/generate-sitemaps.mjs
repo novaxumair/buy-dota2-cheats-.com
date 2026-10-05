@@ -666,7 +666,7 @@ function main() {
       'Disallow: /404',
       'Disallow: /404.html',
       '',
-      `Sitemap: ${siteUrl('/sitemap')}`,
+      `Sitemap: ${siteUrl('/sitemap.xml')}`,
       '',
     ].join('\n'),
     'utf8',
