@@ -1,8 +1,9 @@
+# Optional: use this ONLY if you deploy from GitHub (not Cloudflare Workers Builds).
+# If Cloudflare dashboard already runs npm run build + npm run deploy:worker, leave this
+# on workflow_dispatch or delete this file to avoid duplicate/failed runs.
 name: Cloudflare Worker
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 concurrency:
@@ -21,6 +22,17 @@ jobs:
         with:
           node-version-file: .node-version
           cache: npm
+
+      - name: Require Cloudflare secrets
+        run: |
+          if [ -z "${{ secrets.CLOUDFLARE_API_TOKEN }}" ]; then
+            echo "Add CLOUDFLARE_API_TOKEN in GitHub repo Settings → Secrets."
+            exit 1
+          fi
+          if [ -z "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}" ]; then
+            echo "Add CLOUDFLARE_ACCOUNT_ID in GitHub repo Settings → Secrets."
+            exit 1
+          fi
 
       - run: npm ci
       - run: npm run build

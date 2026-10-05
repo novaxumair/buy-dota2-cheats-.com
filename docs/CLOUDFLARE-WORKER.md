@@ -15,6 +15,8 @@ Pages Functions in `/functions` are **not** used on this path — sitemap comes 
 
 Requires `CLOUDFLARE_API_TOKEN` (Workers Scripts Edit) or `wrangler login`.
 
+**GitHub Actions:** If you deploy from **Cloudflare Workers Builds** (dashboard), you do **not** need GitHub workflows. The old **Cloudflare Pages** workflow was removed; optional Worker workflow is **manual only** (`workflow_dispatch`).
+
 ## Cloudflare dashboard (Workers Builds / Git)
 
 **Workers & Pages → Workers → buydota2cheats-worker → Settings → Builds**
@@ -23,6 +25,7 @@ Requires `CLOUDFLARE_API_TOKEN` (Workers Scripts Edit) or `wrangler login`.
 |---------|--------|
 | **Build command** | `npm run build` |
 | **Deploy command** | `npm run deploy:worker` |
+| **Preview command** | `npm run deploy:worker` (not `wrangler preview`) |
 
 Or leave deploy empty and set only:
 
