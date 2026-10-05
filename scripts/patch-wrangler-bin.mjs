@@ -8,6 +8,16 @@ const root = join(import.meta.dirname, '..')
 const shim = join(root, 'scripts/wrangler-shim.mjs')
 const wranglerPkg = join(root, 'node_modules/wrangler/bin/wrangler.js')
 
+// Cloudflare Workers Builds: keep the real wrangler CLI (shim can hang or confuse deploy).
+if (
+  process.cwd().includes('buildhome') ||
+  process.env.CI === 'true' ||
+  process.env.CF_PAGES === '1'
+) {
+  console.log('patch-wrangler-bin: skip (Cloudflare/CI — use real wrangler)')
+  process.exit(0)
+}
+
 if (!existsSync(wranglerPkg)) {
   console.log('patch-wrangler-bin: skip (wrangler not installed yet)')
   process.exit(0)
