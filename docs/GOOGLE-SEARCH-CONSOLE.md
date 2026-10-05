@@ -15,7 +15,7 @@ Do **not** use only `https://www.buydota2cheats.com` as the property: every `<lo
 
 1. **Indexing → Sitemaps**
 2. Remove any old failed `sitemap.xml` row (⋮ → Delete).
-3. Submit: **`sitemap`** (extensionless — **not** `sitemap.xml`). Cloudflare often serves `.xml` as `text/xml`, which triggers “Sitemap could not be read” even when the file opens in a browser.
+3. Submit **`sitemap`** or **`sitemap.xml`** (both return **HTTP 200** + `application/xml` after deploy). **Delete** the old failed row first — GSC keeps showing “could not be read” until you remove and resubmit.
 4. Wait **15 minutes to 48 hours** after a **successful** Cloudflare deploy before judging status.
 
 ## After deploy

@@ -44,7 +44,7 @@ Large first uploads (videos/media in `dist/`) can take **5–15 minutes** — wa
 ## Custom domain
 
 1. **Workers & Pages → Workers → buy-dota2-cheats--com → Settings → Domains & routes**
-2. Add routes: **`buydota2cheats.com/*`** and **`www.buydota2cheats.com/*`** (required — Worker 301s www → apex).
+2. Routes are in **`wrangler.worker.toml`** (`buydota2cheats.com/*` + `www.buydota2cheats.com/*`) and are applied on **`npm run deploy:worker`**. Worker 301s www → apex.
 3. **Do not** attach the same hostname to a **Pages** project at the same time.
 
 ## After deploy

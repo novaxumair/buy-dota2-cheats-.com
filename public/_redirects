@@ -58,9 +58,7 @@
 /articles/      /blog        301
 /articles/*     /blog        301
 
-# Canonical sitemap (extensionless — Cloudflare serves application/xml; .xml URLs often become text/xml)
-/sitemap.xml           /sitemap  301
-/sitemap.xml/          /sitemap  301
+# Sitemap bytes: /sitemap and /sitemap.xml (same file in dist). Do not redirect — GSC needs 200 on the submitted URL.
 
 # Alternate sitemap URLs
 /sitemap-pages.xml     /sitemap  301

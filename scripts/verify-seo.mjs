@@ -322,8 +322,9 @@ for (const fn of ['functions/sitemap.js', 'functions/sitemap.xml.js']) {
       fail(`${fn} must not set Access-Control-Allow-Origin (GSC parse issues)`)
     }
   }
-  if (fn.endsWith('sitemap.xml.js') && !src.includes("new URL('/sitemap'")) {
-    fail('functions/sitemap.xml.js must 301 redirect to /sitemap')
+  if (fn.endsWith('sitemap.xml.js')) {
+    if (!src.includes('ASSETS.fetch')) fail(`${fn} must proxy static dist/sitemap.xml via ASSETS`)
+    if (!src.includes('application/xml; charset=utf-8')) fail(`${fn} must return application/xml; charset=utf-8`)
   }
 }
 
@@ -414,8 +415,8 @@ if (!headers.includes('application/xml; charset=utf-8')) {
 if (sitemap.includes('<changefreq>') || sitemap.includes('<priority>')) {
   fail('sitemap.xml must only use <loc> and <lastmod> (GSC compatibility)')
 }
-if (!/^\/sitemap\.xml\s+\/sitemap\s+301/m.test(redirects)) {
-  fail('_redirects must 301 /sitemap.xml → /sitemap')
+if (/^\/sitemap\.xml\s+\/sitemap\s+301/m.test(redirects)) {
+  fail('_redirects must not redirect /sitemap.xml (GSC needs HTTP 200 on the submitted URL)')
 }
 
 if (failures.length) {
