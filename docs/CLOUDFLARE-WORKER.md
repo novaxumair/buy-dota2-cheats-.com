@@ -8,7 +8,7 @@ Pages Functions in `/functions` are **not** used on this path — sitemap comes 
 | Command | When to use |
 |---------|-------------|
 | **`npm run build`** or **`npm run build:worker`** | Build `dist/` (Astro + sitemap + SEO checks) |
-| **`npm run deploy:worker`** | Upload Worker + `dist/` (**run after build**; uses `--no-build`) |
+| **`npm run deploy:worker`** | Upload Worker + `dist/` (**run after build**; `wrangler deploy` only) |
 | **`npm run deploy`** | `build` then `deploy:worker` (one shot locally) |
 | **`npm run deploy:worker:full`** | `wrangler deploy -c wrangler.worker.toml` (runs `[build]` in config again) |
 | **`npm run deploy:pages`** | Cloudflare **Pages** only (different product) |
