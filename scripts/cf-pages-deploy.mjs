@@ -18,15 +18,12 @@ if (!existsSync(dist)) {
   process.exit(1)
 }
 
-const functionsDir = join(root, 'functions')
-for (const fn of ['sitemap.js', 'sitemap.xml.js']) {
-  if (!existsSync(join(functionsDir, fn))) {
-    console.error(`cf-pages-deploy: functions/${fn} missing — run npm run build first`)
-    process.exit(1)
-  }
+if (!existsSync(join(dist, 'sitemap.xml'))) {
+  console.error('cf-pages-deploy: dist/sitemap.xml missing — run npm run build first')
+  process.exit(1)
 }
-if (!existsSync(join(dist, 'sitemap.xml')) || !existsSync(join(dist, 'sitemap'))) {
-  console.error('cf-pages-deploy: dist/sitemap and dist/sitemap.xml missing — run npm run build first')
+if (existsSync(join(dist, '_routes.json'))) {
+  console.error('cf-pages-deploy: dist/_routes.json must not exist (static sitemap only)')
   process.exit(1)
 }
 

@@ -282,18 +282,20 @@ for (const stale of [
 }
 
 if (!existsSync(join(dist, 'sitemap.xml'))) fail('dist/sitemap.xml is missing')
-if (!existsSync(join(dist, 'sitemap'))) fail('dist/sitemap is missing (extensionless URL for Google)')
-const sitemapPlain = readFileSync(join(dist, 'sitemap'), 'utf8')
-if (sitemapPlain !== sitemap) fail('/sitemap and /sitemap.xml must be identical')
+if (existsSync(join(dist, 'sitemap'))) {
+  fail('dist/sitemap must not exist — use /sitemap → /sitemap.xml redirect only')
+}
 if (!existsSync(join(dist, 'robots.txt'))) fail('dist/robots.txt is missing')
-if (!existsSync(join(dist, '_routes.json'))) fail('dist/_routes.json is missing')
+if (existsSync(join(dist, '_routes.json'))) {
+  fail('dist/_routes.json must not route sitemap through Pages Functions (GSC parse errors)')
+}
 
 const robots = readFileSync(join(dist, 'robots.txt'), 'utf8')
-if (!robots.includes('Sitemap: https://buydota2cheats.com/sitemap')) {
-  fail('robots.txt must point at the canonical HTTPS sitemap (/sitemap)')
-}
 if (!robots.includes('Sitemap: https://buydota2cheats.com/sitemap.xml')) {
-  fail('robots.txt must also list /sitemap.xml for Search Console submissions')
+  fail('robots.txt must point at the canonical HTTPS sitemap (/sitemap.xml)')
+}
+if (robots.includes('Sitemap: https://buydota2cheats.com/sitemap\n') || robots.includes('Sitemap: https://buydota2cheats.com/sitemap\r')) {
+  fail('robots.txt must not list extensionless /sitemap (use /sitemap.xml only)')
 }
 if (!robots.includes('Allow: /sitemap')) {
   fail('robots.txt must explicitly allow /sitemap')
@@ -308,16 +310,10 @@ if (!robots.includes('User-agent: Googlebot')) {
   fail('robots.txt must explicitly allow Googlebot')
 }
 
-const routes = JSON.parse(readFileSync(join(dist, '_routes.json'), 'utf8'))
-if (!routes.include?.includes('/sitemap') || !routes.include?.includes('/sitemap.xml')) {
-  fail('_routes.json must route /sitemap and /sitemap.xml through Pages Functions')
-}
 for (const fn of ['functions/sitemap.js', 'functions/sitemap.xml.js']) {
-  const src = readFileSync(join(root, fn), 'utf8')
-  if (!src.includes('application/xml; charset=utf-8')) {
-    fail(`${fn} must return application/xml for Google Search Console`)
+  if (existsSync(join(root, fn))) {
+    fail(`${fn} must not exist — sitemap is served as a static file from dist/sitemap.xml`)
   }
-  if (!src.includes('SITEMAP_XML')) fail(`${fn} missing embedded sitemap payload`)
 }
 
 for (const asset of [
@@ -335,7 +331,6 @@ for (const asset of [
   'public/media/d2-screenshot-1.webp',
   'public/videos/hero.webm',
   'public/sitemap.css',
-  'public/_routes.json',
 ]) {
   if (!existsSync(join(root, asset))) fail(`Missing first-party asset: ${asset}`)
 }
@@ -390,11 +385,17 @@ if (!headers.includes('Content-Type: text/html; charset=utf-8')) {
 if (/^\/\r?\n\s*Content-Type: text\/html/m.test(headers)) {
   fail('_headers must not set Content-Type: text/html on / (overrides sitemap for Googlebot)')
 }
-if (!headers.includes('/sitemap.xml') || !headers.includes('/sitemap')) {
-  fail('_headers missing /sitemap and /sitemap.xml Content-Type')
+if (!headers.includes('/sitemap.xml')) {
+  fail('_headers missing /sitemap.xml Content-Type')
 }
-if (!headers.includes('application/xml; charset=utf-8')) {
-  fail('_headers missing application/xml charset Content-Type for sitemap')
+if (!headers.includes('text/xml; charset=utf-8')) {
+  fail('_headers must set text/xml; charset=utf-8 for /sitemap.xml (GSC on Cloudflare)')
+}
+if (sitemap.includes('<changefreq>') || sitemap.includes('<priority>')) {
+  fail('sitemap.xml must only use <loc> and <lastmod> (GSC compatibility)')
+}
+if (!/^\/sitemap\s+\/sitemap\.xml\s+301/m.test(redirects)) {
+  fail('_redirects must 301 /sitemap → /sitemap.xml')
 }
 
 if (failures.length) {

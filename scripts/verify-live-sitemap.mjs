@@ -3,9 +3,7 @@
  * Usage: npm run verify:live-sitemap
  */
 const SITEMAP_URL = (process.env.SITEMAP_URL || 'https://buydota2cheats.com/sitemap.xml').replace(/\/$/, '')
-const ALT_URL = SITEMAP_URL.endsWith('.xml')
-  ? SITEMAP_URL.replace(/\.xml$/, '')
-  : `${SITEMAP_URL}.xml`
+const EXTENSIONLESS = SITEMAP_URL.replace(/\/sitemap\.xml$/, '/sitemap')
 
 const GOOGLEBOT =
   'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
@@ -19,8 +17,11 @@ async function check(label, url) {
     throw new Error(`${label}: HTTP ${res.status} ${res.statusText} for ${url}`)
   }
   const contentType = res.headers.get('content-type') || ''
-  if (!/application\/xml|text\/xml/i.test(contentType)) {
-    throw new Error(`${label}: expected XML Content-Type, got "${contentType}" (${url})`)
+  if (!/text\/xml|application\/xml/i.test(contentType)) {
+    throw new Error(`${label}: expected text/xml Content-Type, got "${contentType}" (${url})`)
+  }
+  if (res.headers.get('access-control-allow-origin') === '*') {
+    throw new Error(`${label}: still served by Pages Function (static sitemap required) (${url})`)
   }
   const body = await res.text()
   if (!body.trimStart().startsWith('<?xml')) {
@@ -42,15 +43,24 @@ async function check(label, url) {
   return { locCount, bytes: body.length }
 }
 
+async function checkRedirect(fromUrl, toUrl) {
+  const res = await fetch(fromUrl, {
+    redirect: 'manual',
+    headers: { 'User-Agent': GOOGLEBOT },
+  })
+  if (res.status !== 301 && res.status !== 308) {
+    throw new Error(`/sitemap redirect: expected 301, got ${res.status} for ${fromUrl}`)
+  }
+  const location = res.headers.get('location') || ''
+  if (!location.includes('/sitemap.xml')) {
+    throw new Error(`/sitemap redirect: Location must be sitemap.xml, got "${location}"`)
+  }
+}
+
 try {
   const primary = await check('sitemap.xml', SITEMAP_URL)
-  const alt = await check('sitemap', ALT_URL)
-  if (primary.locCount !== alt.locCount) {
-    throw new Error(`/sitemap and /sitemap.xml URL counts differ (${alt.locCount} vs ${primary.locCount})`)
-  }
-  console.log(
-    `Live sitemap OK: ${primary.locCount} URLs, ${primary.bytes} bytes (${SITEMAP_URL} + extensionless mirror)`,
-  )
+  await checkRedirect(EXTENSIONLESS, SITEMAP_URL)
+  console.log(`Live sitemap OK: ${primary.locCount} URLs, ${primary.bytes} bytes (${SITEMAP_URL}, static)`)
 } catch (err) {
   console.error(String(err.message || err))
   process.exit(1)
