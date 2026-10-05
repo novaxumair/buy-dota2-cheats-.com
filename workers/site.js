@@ -80,14 +80,18 @@ export default {
       return Response.redirect(apex.toString(), 301)
     }
 
+    if (url.pathname === '/sitemap') {
+      return Response.redirect(new URL('/sitemap.xml', url).toString(), 301)
+    }
+
     const assetResponse = await fetchStatic(env, request, url)
     let response = withHtmlCharset(assetResponse)
 
-    if ((url.pathname === '/sitemap.xml' || url.pathname === '/sitemap') && response.ok) {
+    if (url.pathname === '/sitemap.xml' && response.ok) {
       const headers = new Headers(response.headers)
-      headers.set('content-type', 'application/xml; charset=utf-8')
+      headers.set('content-type', 'text/xml; charset=utf-8')
       headers.set('cache-control', 'public, max-age=3600')
-      headers.set('access-control-allow-origin', '*')
+      headers.delete('access-control-allow-origin')
       response = new Response(response.body, {
         status: response.status,
         statusText: response.statusText,

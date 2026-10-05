@@ -13,6 +13,14 @@ SEO targets **dota 2 cheats**, **Dota 2 ESP**, **Dota 2 map hack**, and related 
 
 Set `SITE_URL=https://buydota2cheats.com` when generating sitemaps outside the default build.
 
+## Cloudflare (Pages)
+
+You deploy via **Workers & Pages → Pages**. Full checklist: **[docs/CLOUDFLARE-PAGES.md](docs/CLOUDFLARE-PAGES.md)**.
+
+- **Build command:** `npm run build` · **Output:** `dist` · **Deploy command:** empty (recommended).
+- **`buydota2cheats.com` must point at the Pages project only** — remove any **Worker route** on the same hostname (that conflict breaks GSC sitemap reads).
+- **`npm run deploy`** = Pages upload (`deploy:pages`). **`npm run deploy:worker`** is for Worker-only hosting, not Pages.
+
 ## Google Search Console sitemap
 
 - Submit **`sitemap.xml`** only (`https://buydota2cheats.com/sitemap.xml`). Extensionless `/sitemap` 301s to it.

@@ -373,6 +373,12 @@ if (!worker.includes("startsWith('www.')") && !worker.includes('startsWith("www.
 if (!worker.includes('301')) {
   fail('workers/site.js must 301 www ? apex for a single canonical host')
 }
+if (/set\s*\(\s*['"]access-control-allow-origin['"]/i.test(worker)) {
+  fail('workers/site.js must not set Access-Control-Allow-Origin on sitemap (GSC)')
+}
+if (!worker.includes("'content-type', 'text/xml; charset=utf-8'") && !worker.includes('"content-type", "text/xml; charset=utf-8"')) {
+  fail('workers/site.js must serve /sitemap.xml as text/xml; charset=utf-8')
+}
 
 if (site.includes('://www.')) {
   fail('Canonical SITE_URL must be apex (no www) Â www redirects to apex')

@@ -1,7 +1,9 @@
-# Optional Workers deploy: npm run deploy (after npm run build)
-# WARNING: Do not attach this worker to buydota2cheats.com while Cloudflare Pages
-# serves the site — a Worker on the same hostname breaks sitemap fetch in Search Console.
-name = "buydota2cheats"
+# Standalone Worker + static assets — NOT for use with Cloudflare Pages on the same domain.
+# Deploy only if buydota2cheats.com is NOT connected to a Pages project:
+#   npm run build && npm run deploy:worker
+# If you use Workers & Pages → Pages (Git) for this site, do NOT add a Worker route on
+# buydota2cheats.com — use npm run build + Pages deploy only (see docs/CLOUDFLARE-PAGES.md).
+name = "buydota2cheats-worker"
 compatibility_date = "2024-09-23"
 main = "workers/site.js"
 
