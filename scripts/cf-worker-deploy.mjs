@@ -44,7 +44,7 @@ if (onCloudflareBuild && !hasToken) {
 // Build already ran in dashboard (wrangler.worker.toml has no [build] — Wrangler 4 has no --no-build).
 const wranglerArgs = ['deploy', '-c', 'wrangler.worker.toml']
 
-console.log(`Worker deploy → buydota2cheats-worker (${dist})`)
+console.log(`Worker deploy → buy-dota2-cheats--com (${dist})`)
 console.log(`cf-worker-deploy: node wrangler.js ${wranglerArgs.join(' ')}`)
 
 const env = {

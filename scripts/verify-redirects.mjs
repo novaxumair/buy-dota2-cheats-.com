@@ -117,6 +117,12 @@ const slugs = [...forumsTs.matchAll(/"slug": "([^"]+)"/g)].map((m) => m[1])
 const redirectsRaw = readFileSync(join(root, 'public', '_redirects'), 'utf8')
 const rules = parseRedirects(redirectsRaw)
 
+for (const rule of rules) {
+  if (/^https?:\/\//i.test(rule.from)) {
+    fail(`_redirects source must be relative (Worker assets): ${rule.from}`)
+  }
+}
+
 const redirectMap = new Map()
 for (const rule of rules) {
   const entries = rule.from.includes(':slug')

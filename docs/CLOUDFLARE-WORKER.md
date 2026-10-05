@@ -1,6 +1,6 @@
 # Deploy on Cloudflare **Worker** (static assets)
 
-This site can be served by **`buydota2cheats-worker`** (`workers/site.js` + `dist/` assets).  
+This site is served by Worker **`buy-dota2-cheats--com`** (`workers/site.js` + `dist/` assets).  
 Pages Functions in `/functions` are **not** used on this path — sitemap comes from `dist/sitemap.xml` via the Worker.
 
 ## npm scripts
