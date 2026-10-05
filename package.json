@@ -17,6 +17,7 @@
     "prepare:logo": "node scripts/build-logo-assets.mjs",
     "prepare:media": "node scripts/prepare-dota2-media.mjs",
     "verify:seo": "node scripts/verify-seo.mjs",
+    "verify:live-sitemap": "node scripts/verify-live-sitemap.mjs",
     "verify:redirects": "node scripts/verify-redirects.mjs",
     "lint": "oxlint",
     "postinstall": "node scripts/patch-wrangler-bin.mjs"
