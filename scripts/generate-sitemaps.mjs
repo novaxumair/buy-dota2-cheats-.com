@@ -614,9 +614,17 @@ function main() {
   const sitemap = normalizeSitemapXml(buildSitemap(games, forums, allPaths))
   validate(games, forums, articles, allPaths, sitemap)
 
-  const writeTargets = [join(publicDir, 'sitemap'), join(publicDir, 'sitemap.xml')]
+  const writeTargets = [
+    join(publicDir, 'sitemap'),
+    join(publicDir, 'sitemap.xml'),
+    join(publicDir, 'google-sitemap.xml'),
+  ]
   if (existsSync(join(root, 'dist'))) {
-    writeTargets.push(join(root, 'dist', 'sitemap'), join(root, 'dist', 'sitemap.xml'))
+    writeTargets.push(
+      join(root, 'dist', 'sitemap'),
+      join(root, 'dist', 'sitemap.xml'),
+      join(root, 'dist', 'google-sitemap.xml'),
+    )
   }
   for (const path of writeTargets) {
     writeFileSync(path, sitemap, 'utf8')
@@ -632,6 +640,7 @@ function main() {
       'Allow: /',
       'Allow: /sitemap',
       'Allow: /sitemap.xml',
+      'Allow: /google-sitemap.xml',
       'Allow: /robots.txt',
       'Allow: /media/',
       'Allow: /og/',
@@ -641,6 +650,7 @@ function main() {
       'Allow: /',
       'Allow: /sitemap',
       'Allow: /sitemap.xml',
+      'Allow: /google-sitemap.xml',
       'Allow: /robots.txt',
       'Allow: /media/',
       'Allow: /og/',
@@ -650,6 +660,7 @@ function main() {
       'Allow: /',
       'Allow: /sitemap',
       'Allow: /sitemap.xml',
+      'Allow: /google-sitemap.xml',
       'Allow: /robots.txt',
       'Allow: /media/',
       'Allow: /og/',
@@ -659,6 +670,7 @@ function main() {
       'Allow: /',
       'Allow: /sitemap',
       'Allow: /sitemap.xml',
+      'Allow: /google-sitemap.xml',
       'Allow: /robots.txt',
       'Allow: /media/',
       'Allow: /og/',
@@ -667,6 +679,7 @@ function main() {
       'Disallow: /404.html',
       '',
       `Sitemap: ${siteUrl('/sitemap.xml')}`,
+      `Sitemap: ${siteUrl('/google-sitemap.xml')}`,
       '',
     ].join('\n'),
     'utf8',

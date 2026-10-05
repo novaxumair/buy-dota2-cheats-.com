@@ -25,6 +25,7 @@ if (!existsSync(workerEntry)) fail('workers/site.js missing')
 if (!existsSync(dist)) fail('dist/ missing — run npm run build first')
 if (!existsSync(join(dist, 'sitemap'))) fail('dist/sitemap missing — run npm run build first')
 if (!existsSync(join(dist, 'sitemap.xml'))) fail('dist/sitemap.xml missing — run npm run build first')
+if (!existsSync(join(dist, 'google-sitemap.xml'))) fail('dist/google-sitemap.xml missing — run npm run build first')
 
 const onCloudflareBuild =
   process.cwd().includes('buildhome') ||

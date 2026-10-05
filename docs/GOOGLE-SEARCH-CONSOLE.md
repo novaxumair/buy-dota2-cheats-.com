@@ -62,6 +62,50 @@ Browser check: [https://buydota2cheats.com/sitemap.xml](https://buydota2cheats.c
 
 ---
 
+## If status is **“Couldn’t fetch”** (Type Unknown, empty Last read)
+
+Google **never got an HTTP response** (different from “could not be read”, which is usually parse/format). Your browser can still open the sitemap.
+
+### 1. Test the exact sitemap URL (not `/sitemap` alone)
+
+**URL Inspection** → paste:
+
+```text
+https://buydota2cheats.com/sitemap.xml
+```
+
+→ **Test live URL** → **Page fetch** must be **Successful**. If it fails here, GSC will show **Couldn’t fetch**.
+
+### 2. Cloudflare WAF (most common fix)
+
+**Security → Events** → resubmit the sitemap → watch for **403 / Block / Managed challenge** on `/sitemap.xml`.
+
+Add a **WAF custom rule**:
+
+| Field | Value |
+|--------|--------|
+| **Name** | Allow Google sitemap |
+| **When** | `(http.request.uri.path eq "/sitemap.xml" or http.request.uri.path eq "/google-sitemap.xml" or http.request.uri.path eq "/robots.txt")` |
+| **Then** | **Skip** → *All remaining custom rules* |
+
+Also check **Security → Bots** → turn off **Block** for **Verified bots** (Googlebot must pass).
+
+### 3. Submit a fresh sitemap URL
+
+Remove the failed row, then submit (full URL on Domain property):
+
+```text
+https://buydota2cheats.com/google-sitemap.xml
+```
+
+(Same 53 URLs as `sitemap.xml`; use this if Google cached a failed fetch on the old path.)
+
+### 4. Worker must be on the domain
+
+After deploy, `https://www.buydota2cheats.com/` must **301** to `https://buydota2cheats.com/`. If both return **200**, add routes for Worker **`buy-dota2-cheats--com`** or redeploy so `wrangler.worker.toml` routes apply.
+
+---
+
 ## If status stays “Sitemap could not be read”
 
 1. Confirm you used the **full URL** on a **Domain** property (see above).

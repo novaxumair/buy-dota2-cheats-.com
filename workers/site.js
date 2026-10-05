@@ -65,9 +65,35 @@ function toApexUrl(url) {
   return next
 }
 
+async function serveSitemap(env, request, pathname) {
+  const assetPath = pathname === '/sitemap' ? '/sitemap' : '/sitemap.xml'
+  const asset = await assetsFetch(env, request, assetPath)
+  if (!asset.ok) {
+    return new Response('Sitemap unavailable', { status: 503 })
+  }
+  const body = await asset.text()
+  if (!body.trimStart().startsWith('<?xml')) {
+    return new Response('Invalid sitemap', { status: 500 })
+  }
+  return new Response(body, {
+    status: 200,
+    headers: {
+      'content-type': 'application/xml; charset=utf-8',
+      'cache-control': 'public, max-age=3600',
+      'x-robots-tag': 'noindex',
+    },
+  })
+}
+
+const SITEMAP_PATHS = new Set(['/sitemap', '/sitemap.xml', '/google-sitemap.xml'])
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url)
+
+    if (SITEMAP_PATHS.has(url.pathname)) {
+      return serveSitemap(env, request, url.pathname)
+    }
 
     if (url.protocol === 'http:') {
       url.protocol = 'https:'
@@ -82,18 +108,6 @@ export default {
 
     const assetResponse = await fetchStatic(env, request, url)
     let response = withHtmlCharset(assetResponse)
-
-    if ((url.pathname === '/sitemap' || url.pathname === '/sitemap.xml') && response.ok) {
-      const headers = new Headers(response.headers)
-      headers.set('content-type', 'application/xml; charset=utf-8')
-      headers.set('cache-control', 'public, max-age=3600')
-      headers.delete('access-control-allow-origin')
-      response = new Response(response.body, {
-        status: response.status,
-        statusText: response.statusText,
-        headers,
-      })
-    }
 
     // Help crawlers + Seobility: advertise preferred host + self-canonical
     const headers = new Headers(response.headers)

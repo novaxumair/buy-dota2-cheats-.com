@@ -2,6 +2,7 @@ User-agent: Googlebot
 Allow: /
 Allow: /sitemap
 Allow: /sitemap.xml
+Allow: /google-sitemap.xml
 Allow: /robots.txt
 Allow: /media/
 Allow: /og/
@@ -11,6 +12,7 @@ User-agent: Google-InspectionTool
 Allow: /
 Allow: /sitemap
 Allow: /sitemap.xml
+Allow: /google-sitemap.xml
 Allow: /robots.txt
 Allow: /media/
 Allow: /og/
@@ -20,6 +22,7 @@ User-agent: Bingbot
 Allow: /
 Allow: /sitemap
 Allow: /sitemap.xml
+Allow: /google-sitemap.xml
 Allow: /robots.txt
 Allow: /media/
 Allow: /og/
@@ -29,6 +32,7 @@ User-agent: *
 Allow: /
 Allow: /sitemap
 Allow: /sitemap.xml
+Allow: /google-sitemap.xml
 Allow: /robots.txt
 Allow: /media/
 Allow: /og/
@@ -37,3 +41,4 @@ Disallow: /404
 Disallow: /404.html
 
 Sitemap: https://buydota2cheats.com/sitemap.xml
+Sitemap: https://buydota2cheats.com/google-sitemap.xml

@@ -283,8 +283,11 @@ for (const stale of [
 
 if (!existsSync(join(dist, 'sitemap.xml'))) fail('dist/sitemap.xml is missing')
 if (!existsSync(join(dist, 'sitemap'))) fail('dist/sitemap (extensionless) is missing')
+if (!existsSync(join(dist, 'google-sitemap.xml'))) fail('dist/google-sitemap.xml is missing')
 const sitemapExtless = readFileSync(join(dist, 'sitemap'), 'utf8')
+const sitemapGoogle = readFileSync(join(dist, 'google-sitemap.xml'), 'utf8')
 if (sitemapExtless !== sitemap) fail('dist/sitemap must match dist/sitemap.xml byte-for-byte')
+if (sitemapGoogle !== sitemap) fail('dist/google-sitemap.xml must match dist/sitemap.xml byte-for-byte')
 if (!existsSync(join(dist, 'robots.txt'))) fail('dist/robots.txt is missing')
 if (existsSync(join(dist, '_routes.json'))) {
   fail('dist/_routes.json must not route sitemap through Pages Functions (GSC parse errors)')
@@ -371,14 +374,14 @@ if (!worker.includes("startsWith('www.')") && !worker.includes('startsWith("www.
 if (!worker.includes('301')) {
   fail('workers/site.js must 301 www ? apex for a single canonical host')
 }
+if (!worker.includes('/google-sitemap.xml')) {
+  fail('workers/site.js must serve /google-sitemap.xml for GSC alternate URL')
+}
 if (/set\s*\(\s*['"]access-control-allow-origin['"]/i.test(worker)) {
   fail('workers/site.js must not set Access-Control-Allow-Origin on sitemap (GSC)')
 }
-if (
-  !worker.includes("'content-type', 'application/xml; charset=utf-8'") &&
-  !worker.includes('"content-type", "application/xml; charset=utf-8"')
-) {
-  fail('workers/site.js must serve /sitemap.xml as application/xml; charset=utf-8')
+if (!worker.includes('application/xml; charset=utf-8') || !worker.includes('serveSitemap')) {
+  fail('workers/site.js must serve sitemap paths via serveSitemap() as application/xml')
 }
 
 if (site.includes('://www.')) {
