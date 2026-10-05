@@ -275,10 +275,16 @@ for (const stale of [
   'sitemap-images.xml',
   'sitemap-blogs.xml',
   'sitemap-regions.xml',
-  'sitemap-index.xml',
   'sitemap_index.xml',
 ]) {
   if (existsSync(join(dist, stale))) fail(`Stale split sitemap still published: ${stale}`)
+}
+
+if (!existsSync(join(dist, 'sitemap-index.xml'))) fail('dist/sitemap-index.xml is missing')
+const sitemapIndex = readFileSync(join(dist, 'sitemap-index.xml'), 'utf8')
+if (!sitemapIndex.includes('<sitemapindex')) fail('sitemap-index.xml must be a sitemap index')
+if (!sitemapIndex.includes('https://buydota2cheats.com/sitemap.xml')) {
+  fail('sitemap-index.xml must point at https://buydota2cheats.com/sitemap.xml')
 }
 
 if (!existsSync(join(dist, 'sitemap.xml'))) fail('dist/sitemap.xml is missing')
@@ -294,8 +300,8 @@ if (existsSync(join(dist, '_routes.json'))) {
 }
 
 const robots = readFileSync(join(dist, 'robots.txt'), 'utf8')
-if (!robots.includes('Sitemap: https://buydota2cheats.com/sitemap.xml')) {
-  fail('robots.txt must point at https://buydota2cheats.com/sitemap.xml')
+if (!robots.includes('Sitemap: https://buydota2cheats.com/sitemap-index.xml')) {
+  fail('robots.txt must point at https://buydota2cheats.com/sitemap-index.xml')
 }
 if (!robots.includes('Allow: /sitemap')) {
   fail('robots.txt must explicitly allow /sitemap')
@@ -354,8 +360,8 @@ const redirects = readFileSync(join(root, 'public', '_redirects'), 'utf8')
 if (!redirects.includes('/sitemap-pages.xml')) {
   fail('_redirects missing legacy sitemap -> /sitemap.xml redirects')
 }
-if (!redirects.includes('/sitemap-index.xml')) {
-  fail('_redirects missing sitemap-index.xml -> /sitemap.xml redirect')
+if (/^\/sitemap-index\.xml\s+\/sitemap\s+301/m.test(redirects)) {
+  fail('_redirects must not redirect /sitemap-index.xml (GSC needs the index file)')
 }
 if (!redirects.includes('/buy-dota2-cheats')) {
   fail('_redirects must map buy-dota2-cheats keyword alias')

@@ -3,6 +3,7 @@ Allow: /
 Allow: /sitemap
 Allow: /sitemap.xml
 Allow: /google-sitemap.xml
+Allow: /sitemap-index.xml
 Allow: /robots.txt
 Allow: /media/
 Allow: /og/
@@ -13,6 +14,7 @@ Allow: /
 Allow: /sitemap
 Allow: /sitemap.xml
 Allow: /google-sitemap.xml
+Allow: /sitemap-index.xml
 Allow: /robots.txt
 Allow: /media/
 Allow: /og/
@@ -23,6 +25,7 @@ Allow: /
 Allow: /sitemap
 Allow: /sitemap.xml
 Allow: /google-sitemap.xml
+Allow: /sitemap-index.xml
 Allow: /robots.txt
 Allow: /media/
 Allow: /og/
@@ -33,6 +36,7 @@ Allow: /
 Allow: /sitemap
 Allow: /sitemap.xml
 Allow: /google-sitemap.xml
+Allow: /sitemap-index.xml
 Allow: /robots.txt
 Allow: /media/
 Allow: /og/
@@ -40,5 +44,4 @@ Allow: /videos/
 Disallow: /404
 Disallow: /404.html
 
-Sitemap: https://buydota2cheats.com/sitemap.xml
-Sitemap: https://buydota2cheats.com/google-sitemap.xml
+Sitemap: https://buydota2cheats.com/sitemap-index.xml

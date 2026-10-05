@@ -66,7 +66,8 @@ function toApexUrl(url) {
 }
 
 async function serveSitemap(env, request, pathname) {
-  const assetPath = pathname === '/sitemap' ? '/sitemap' : '/sitemap.xml'
+  const assetPath =
+    pathname === '/sitemap' ? '/sitemap' : pathname === '/google-sitemap.xml' ? '/google-sitemap.xml' : '/sitemap.xml'
   const asset = await assetsFetch(env, request, assetPath)
   if (!asset.ok) {
     return new Response('Sitemap unavailable', { status: 503 })
@@ -80,7 +81,24 @@ async function serveSitemap(env, request, pathname) {
     headers: {
       'content-type': 'application/xml; charset=utf-8',
       'cache-control': 'public, max-age=3600',
-      'x-robots-tag': 'noindex',
+    },
+  })
+}
+
+async function serveSitemapIndex(env, request) {
+  const asset = await assetsFetch(env, request, '/sitemap-index.xml')
+  if (!asset.ok) {
+    return new Response('Sitemap index unavailable', { status: 503 })
+  }
+  const body = await asset.text()
+  if (!body.includes('<sitemapindex')) {
+    return new Response('Invalid sitemap index', { status: 500 })
+  }
+  return new Response(body, {
+    status: 200,
+    headers: {
+      'content-type': 'application/xml; charset=utf-8',
+      'cache-control': 'public, max-age=3600',
     },
   })
 }
@@ -90,6 +108,10 @@ const SITEMAP_PATHS = new Set(['/sitemap', '/sitemap.xml', '/google-sitemap.xml'
 export default {
   async fetch(request, env) {
     const url = new URL(request.url)
+
+    if (url.pathname === '/sitemap-index.xml') {
+      return serveSitemapIndex(env, request)
+    }
 
     if (SITEMAP_PATHS.has(url.pathname)) {
       return serveSitemap(env, request, url.pathname)

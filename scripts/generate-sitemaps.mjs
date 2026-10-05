@@ -605,6 +605,17 @@ function normalizeSitemapXml(sitemap) {
   return `${sitemap.replace(/\r\n/g, '\n').replace(/\r/g, '\n').trimEnd()}\n`
 }
 
+function buildSitemapIndex(lastmod) {
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>${escapeXml(siteUrl('/sitemap.xml'))}</loc>
+    <lastmod>${lastmod}</lastmod>
+  </sitemap>
+</sitemapindex>
+`
+}
+
 function main() {
   const games = loadGames()
   const forums = loadForums()
@@ -629,6 +640,10 @@ function main() {
   for (const path of writeTargets) {
     writeFileSync(path, sitemap, 'utf8')
   }
+  const indexXml = normalizeSitemapXml(buildSitemapIndex(TODAY))
+  for (const dir of [publicDir, ...(existsSync(join(root, 'dist')) ? [join(root, 'dist')] : [])]) {
+    writeFileSync(join(dir, 'sitemap-index.xml'), indexXml, 'utf8')
+  }
   writeSitemapProxyFunctions()
   removeSitemapRoutesConfig()
   writePlainUrlList(forums, articles, allPaths)
@@ -641,6 +656,7 @@ function main() {
       'Allow: /sitemap',
       'Allow: /sitemap.xml',
       'Allow: /google-sitemap.xml',
+      'Allow: /sitemap-index.xml',
       'Allow: /robots.txt',
       'Allow: /media/',
       'Allow: /og/',
@@ -651,6 +667,7 @@ function main() {
       'Allow: /sitemap',
       'Allow: /sitemap.xml',
       'Allow: /google-sitemap.xml',
+      'Allow: /sitemap-index.xml',
       'Allow: /robots.txt',
       'Allow: /media/',
       'Allow: /og/',
@@ -661,6 +678,7 @@ function main() {
       'Allow: /sitemap',
       'Allow: /sitemap.xml',
       'Allow: /google-sitemap.xml',
+      'Allow: /sitemap-index.xml',
       'Allow: /robots.txt',
       'Allow: /media/',
       'Allow: /og/',
@@ -671,6 +689,7 @@ function main() {
       'Allow: /sitemap',
       'Allow: /sitemap.xml',
       'Allow: /google-sitemap.xml',
+      'Allow: /sitemap-index.xml',
       'Allow: /robots.txt',
       'Allow: /media/',
       'Allow: /og/',
@@ -678,8 +697,7 @@ function main() {
       'Disallow: /404',
       'Disallow: /404.html',
       '',
-      `Sitemap: ${siteUrl('/sitemap.xml')}`,
-      `Sitemap: ${siteUrl('/google-sitemap.xml')}`,
+      `Sitemap: ${siteUrl('/sitemap-index.xml')}`,
       '',
     ].join('\n'),
     'utf8',
@@ -695,7 +713,6 @@ function main() {
     'sitemap-images.xml',
     'sitemap-blogs.xml',
     'sitemap-regions.xml',
-    'sitemap-index.xml',
     'sitemap_index.xml',
   ]) {
     for (const dir of [publicDir, join(root, 'dist')]) {

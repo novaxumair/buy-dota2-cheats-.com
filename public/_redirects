@@ -67,5 +67,4 @@
 /sitemap-images.xml    /sitemap  301
 /sitemap-blogs.xml     /sitemap  301
 /sitemap-regions.xml   /sitemap  301
-/sitemap-index.xml     /sitemap  301
-/sitemap_index.xml     /sitemap  301
+/sitemap_index.xml     /sitemap-index.xml  301

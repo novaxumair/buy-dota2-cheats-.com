@@ -22,8 +22,10 @@ Every `<loc>` in the sitemap is **apex** (`https://buydota2cheats.com/...`).
 In **Add a new sitemap**, paste the **complete URL** (not a filename alone):
 
 ```text
-https://buydota2cheats.com/sitemap.xml
+https://buydota2cheats.com/sitemap-index.xml
 ```
+
+That index lists `sitemap.xml` (all 53 page URLs). Prefer it if URL Inspection succeeds but the Sitemaps row still says “could not be read”.
 
 These often **fail silently** or stay on “Sitemap could not be read” on Domain properties:
 
