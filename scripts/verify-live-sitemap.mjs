@@ -21,7 +21,9 @@ async function check(label, url) {
     throw new Error(`${label}: expected text/xml Content-Type, got "${contentType}" (${url})`)
   }
   if (res.headers.get('access-control-allow-origin') === '*') {
-    throw new Error(`${label}: still served by Pages Function (static sitemap required) (${url})`)
+    throw new Error(
+      `${label}: legacy embedded sitemap Function still live — redeploy Cloudflare Pages (Git push or npm run deploy:pages) (${url})`,
+    )
   }
   const body = await res.text()
   if (!body.trimStart().startsWith('<?xml')) {

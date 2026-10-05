@@ -16,8 +16,9 @@ Set `SITE_URL=https://buydota2cheats.com` when generating sitemaps outside the d
 ## Google Search Console sitemap
 
 - Submit **`sitemap.xml`** only (`https://buydota2cheats.com/sitemap.xml`). Extensionless `/sitemap` 301s to it.
-- Sitemap is a **static file** in `dist/sitemap.xml` (`<loc>` + `<lastmod>` only). Do not use Pages Functions or `_routes.json` for sitemap paths.
-- Cloudflare Pages **build command** must be `npm run build` (not `astro build` alone).
+- Sitemap bytes live in **`dist/sitemap.xml`** (`<loc>` + `<lastmod>`). `functions/sitemap.xml.js` only proxies that file via `ASSETS.fetch` (never embed XML in JS).
+- **Production must redeploy after every sitemap fix.** If `npm run verify:live-sitemap` mentions a legacy Function, Cloudflare is still on an old deployment — trigger **Pages → Deployments → Retry** or push to `main` with GitHub Actions secrets `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID`.
+- Cloudflare Pages **build command** must be `npm run build` (not `astro build` alone). Disable duplicate deploy if you use `.github/workflows/cloudflare-pages.yml`.
 - Do **not** attach the optional Worker in `wrangler.worker.toml` to the same hostname as Pages.
 - If GSC shows **“Sitemap could not be read”** but the URL opens in your browser: open Cloudflare → **Security → Events**, filter path `/sitemap.xml`, and add a **WAF skip** or allow rule for verified bots (Googlebot often gets **403** from Bot Fight Mode / managed rules).
 - After deploy: `npm run verify:live-sitemap`, delete failed GSC sitemap rows, resubmit `sitemap.xml`.

@@ -1,3 +1,6 @@
+# Apex canonical host (Search Console must match https://buydota2cheats.com)
+https://www.buydota2cheats.com/*  https://buydota2cheats.com/:splat  301
+
 # Checkout (302 — not indexed as site content; see CheckoutLink)
 /checkout  https://zadeyo.com/go/UMAIR?to=%2Fproducts%2Fdota-2  302
 

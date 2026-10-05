@@ -311,8 +311,19 @@ if (!robots.includes('User-agent: Googlebot')) {
 }
 
 for (const fn of ['functions/sitemap.js', 'functions/sitemap.xml.js']) {
-  if (existsSync(join(root, fn))) {
-    fail(`${fn} must not exist — sitemap is served as a static file from dist/sitemap.xml`)
+  const src = readFileSync(join(root, fn), 'utf8')
+  if (src.includes('SITEMAP_XML')) {
+    fail(`${fn} must not embed XML — use ASSETS.fetch(dist/sitemap.xml)`)
+  }
+  if (fn.endsWith('sitemap.xml.js')) {
+    if (!src.includes('ASSETS.fetch')) fail(`${fn} must proxy static dist/sitemap.xml via ASSETS`)
+    if (!src.includes('text/xml; charset=utf-8')) fail(`${fn} must return text/xml; charset=utf-8`)
+    if (src.includes('Access-Control-Allow-Origin')) {
+      fail(`${fn} must not set Access-Control-Allow-Origin (GSC parse issues)`)
+    }
+  }
+  if (fn.endsWith('sitemap.js') && !src.includes('Response.redirect')) {
+    fail('functions/sitemap.js must 301 redirect to /sitemap.xml')
   }
 }
 

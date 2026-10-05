@@ -3,7 +3,7 @@
  * Dashboard: leave deploy command empty (recommended), or set to `npm run deploy:pages`.
  */
 import { execSync } from 'node:child_process'
-import { existsSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 const root = join(import.meta.dirname, '..')
@@ -23,7 +23,12 @@ if (!existsSync(join(dist, 'sitemap.xml'))) {
   process.exit(1)
 }
 if (existsSync(join(dist, '_routes.json'))) {
-  console.error('cf-pages-deploy: dist/_routes.json must not exist (static sitemap only)')
+  console.error('cf-pages-deploy: dist/_routes.json must not exist (no embedded sitemap routing)')
+  process.exit(1)
+}
+const fnXml = join(root, 'functions', 'sitemap.xml.js')
+if (!existsSync(fnXml) || !readFileSync(fnXml, 'utf8').includes('ASSETS.fetch')) {
+  console.error('cf-pages-deploy: functions/sitemap.xml.js missing — run npm run build first')
   process.exit(1)
 }
 
